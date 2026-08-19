@@ -3,7 +3,7 @@
  * The generic Calculator. Renders form, computes result, encodes state in URL.
  * One component handles all 20 calculators — the config comes from the registry.
  */
-import type { Calculator, InputDef } from '../data/calculators';
+import type { Calculator } from '../data/calculators';
 
 export interface Props {
   calc: Calculator;
@@ -11,8 +11,6 @@ export interface Props {
 
 const { calc } = Astro.props;
 
-// Render a default empty result for SSR; real compute happens client-side.
-const initialResult = { primary: [{ label: '—', value: '—' }] };
 ---
 <div class="grid gap-6 lg:grid-cols-3">
   <div class="lg:col-span-2">
@@ -20,6 +18,7 @@ const initialResult = { primary: [{ label: '—', value: '—' }] };
       id="calc-form"
       class="card"
       data-slug={calc.slug}
+      data-inputs={JSON.stringify(calc.inputs.map((i) => i.name))}
       data-defaults={JSON.stringify(
         Object.fromEntries(calc.inputs.map((i) => [i.name, i.default ?? '']))
       )}
@@ -110,124 +109,111 @@ const initialResult = { primary: [{ label: '—', value: '—' }] };
   </div>
 </div>
 
-<script is:inline define:vars={{ calc }}>
-  // === Client-side calculator ===
-  // Pulls the compute function from /lib/calc.ts via dynamic import.
-  // For V0.1, we ship all 20 compute functions; the script picks the right one
-  // based on the calculator slug from the data-attribute.
+<script>
+  import * as allCalcs from '../lib/calc';
 
-  (async () => {
-    const allCalcs = await import('/src/lib/calc.ts');
-    const fn = allCalcs[calc.slug];
-    if (!fn) {
-      console.error('No compute function for', calc.slug);
-      return;
-    }
+  const form = document.getElementById('calc-form') as HTMLFormElement | null;
+  const resultPrimary = document.getElementById('result-primary');
+  const resultSecondary = document.getElementById('result-secondary');
+  const resultNotes = document.getElementById('result-notes');
+  const status = document.getElementById('calc-status');
+  const shareBtn = document.getElementById('calc-share');
+  const resetBtn = document.getElementById('calc-reset');
+  const plausible = (window as Window & {
+    plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
+  }).plausible;
 
-    const form = document.getElementById('calc-form');
-    const resultPrimary = document.getElementById('result-primary');
-    const resultSecondary = document.getElementById('result-secondary');
-    const resultNotes = document.getElementById('result-notes');
-    const status = document.getElementById('calc-status');
-    const shareBtn = document.getElementById('calc-share');
-    const resetBtn = document.getElementById('calc-reset');
+  if (form && resultPrimary && resultSecondary && resultNotes) {
+    const slug = form.dataset.slug || '';
+    const fn = allCalcs[slug as keyof typeof allCalcs];
+    const defaults = JSON.parse(form.dataset.defaults || '{}') as Record<string, string | number>;
+    const inputNames = JSON.parse(form.dataset.inputs || '[]') as string[];
 
-    if (!form || !resultPrimary) return;
-
-    const defaults = JSON.parse(form.dataset.defaults || '{}');
-
-    function readInputs() {
-      const inputs = {};
-      for (const def of calc.inputs) {
-        const el = form.querySelector(`[name="${def.name}"]`);
-        if (!el) continue;
-        inputs[def.name] = el.value;
-      }
-      return inputs;
-    }
-
-    function setStatus(text) {
-      if (status) status.textContent = text;
-    }
-
-    function render(result) {
-      resultPrimary.textContent = result.primary[0]?.value ?? '—';
-      resultSecondary.innerHTML = (result.secondary || [])
-        .map((s) => `<div><dt class="text-neutral-500 dark:text-neutral-500">${s.label}</dt><dd class="mt-1 font-mono">${s.value}</dd></div>`)
-        .join('');
-      if (result.notes && result.notes.length) {
-        resultNotes.innerHTML = result.notes.map((n) => `<p>${n}</p>`).join('');
-        resultNotes.classList.remove('hidden');
-      } else {
-        resultNotes.classList.add('hidden');
-      }
-    }
-
-    function updateUrl(inputs) {
-      const params = new URLSearchParams();
-      for (const [k, v] of Object.entries(inputs)) {
-        if (v === '' || v === null || v === undefined) continue;
-        params.set(k, String(v));
-      }
-      const str = params.toString();
-      const url = str ? `?${str}` : window.location.pathname;
-      window.history.replaceState({}, '', url);
-    }
-
-    function loadFromUrl() {
-      const params = new URLSearchParams(window.location.search);
-      for (const def of calc.inputs) {
-        const el = form.querySelector(`[name="${def.name}"]`);
-        if (!el) continue;
-        if (params.has(def.name)) {
-          el.value = params.get(def.name);
+    if (typeof fn !== 'function') {
+      console.error('No compute function for', slug);
+    } else {
+      const readInputs = () => {
+        const inputs: Record<string, string> = {};
+        for (const name of inputNames) {
+          const el = form.querySelector(`[name="${name}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+          if (el) inputs[name] = el.value;
         }
-      }
-    }
+        return inputs;
+      };
 
-    function compute() {
-      const inputs = readInputs();
-      try {
-        const result = fn(inputs);
-        render(result);
-        updateUrl(inputs);
-        setStatus('Computed');
-        window.plausible?.('compute', { props: { calculator: calc.slug } });
-      } catch (err) {
-        setStatus('Error: ' + (err instanceof Error ? err.message : 'compute failed'));
-      }
-    }
+      const setStatus = (text: string) => {
+        if (status) status.textContent = text;
+      };
 
-    // Live recompute on any input change
-    form.addEventListener('input', compute);
-    form.addEventListener('change', compute);
-
-    // Reset
-    resetBtn?.addEventListener('click', () => {
-      setTimeout(() => {
-        for (const [k, v] of Object.entries(defaults)) {
-          const el = form.querySelector(`[name="${k}"]`);
-          if (el) el.value = String(v);
+      const render = (result: ReturnType<typeof fn>) => {
+        resultPrimary.textContent = result.primary[0]?.value ?? '—';
+        resultSecondary.innerHTML = (result.secondary || [])
+          .map((s) => `<div><dt class="text-neutral-500 dark:text-neutral-500">${s.label}</dt><dd class="mt-1 font-mono">${s.value}</dd></div>`)
+          .join('');
+        if (result.notes && result.notes.length) {
+          resultNotes.innerHTML = result.notes.map((n) => `<p>${n}</p>`).join('');
+          resultNotes.classList.remove('hidden');
+        } else {
+          resultNotes.classList.add('hidden');
         }
-        compute();
-      }, 0);
-    });
+      };
 
-    // Share link
-    shareBtn?.addEventListener('click', async () => {
-      const url = window.location.href;
-      try {
-        await navigator.clipboard.writeText(url);
-        setStatus('Link copied to clipboard');
-        setTimeout(() => setStatus(''), 2000);
-        window.plausible?.('share_link', { props: { calculator: calc.slug } });
-      } catch {
-        setStatus('Copy failed — select URL manually');
-      }
-    });
+      const updateUrl = (inputs: Record<string, string>) => {
+        const params = new URLSearchParams();
+        for (const [key, value] of Object.entries(inputs)) {
+          if (value !== '') params.set(key, value);
+        }
+        const str = params.toString();
+        const url = str ? `?${str}` : window.location.pathname;
+        window.history.replaceState({}, '', url);
+      };
 
-    // Initial: load from URL if present, else from defaults
-    loadFromUrl();
-    compute();
-  })();
+      const loadFromUrl = () => {
+        const params = new URLSearchParams(window.location.search);
+        for (const name of inputNames) {
+          const el = form.querySelector(`[name="${name}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+          if (el && params.has(name)) el.value = params.get(name) || '';
+        }
+      };
+
+      const compute = () => {
+        const inputs = readInputs();
+        try {
+          render(fn(inputs));
+          updateUrl(inputs);
+          setStatus('Computed');
+          plausible?.('compute', { props: { calculator: slug } });
+        } catch (err) {
+          setStatus('Error: ' + (err instanceof Error ? err.message : 'compute failed'));
+        }
+      };
+
+      form.addEventListener('input', compute);
+      form.addEventListener('change', compute);
+
+      resetBtn?.addEventListener('click', () => {
+        setTimeout(() => {
+          for (const [key, value] of Object.entries(defaults)) {
+            const el = form.querySelector(`[name="${key}"]`) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+            if (el) el.value = String(value);
+          }
+          compute();
+        }, 0);
+      });
+
+      shareBtn?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          setStatus('Link copied to clipboard');
+          setTimeout(() => setStatus(''), 2000);
+          plausible?.('share_link', { props: { calculator: slug } });
+        } catch {
+          setStatus('Copy failed — select URL manually');
+        }
+      });
+
+      loadFromUrl();
+      compute();
+    }
+  }
 </script>
