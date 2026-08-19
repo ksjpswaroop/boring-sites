@@ -18,6 +18,7 @@ export interface Props {
   noindex?: boolean;
   customDisclaimer?: string;
   nav?: Array<{ label: string; href: string }>;
+  logoVariant?: 'default' | 'word-unscrambler';
   jsonLd?: {
     type: 'WebApplication' | 'FAQPage' | 'Article' | 'HowTo' | 'Organization' | 'WebSite';
     data: Record<string, unknown>;
@@ -34,6 +35,7 @@ const {
   noindex = false,
   customDisclaimer,
   nav = [],
+  logoVariant = 'default',
   jsonLd,
 } = Astro.props;
 
@@ -100,7 +102,7 @@ const headerHomeHref = siteUrl ?? '/';
     )}
   </head>
   <body class="min-h-screen bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-    <Header siteName={siteName} siteUrl={headerHomeHref} nav={nav} />
+    <Header siteName={siteName} siteUrl={headerHomeHref} nav={nav} logoVariant={logoVariant} />
     <main>
       <slot />
     </main>

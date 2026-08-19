@@ -48,15 +48,30 @@ const index = buildIndex(wordList);
 </div>
 
 <div class="mt-8">
-  <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Results</h2>
+  <div class="flex items-center justify-between gap-3">
+    <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Results</h2>
+    <button
+      id="pronunciation-toggle"
+      type="button"
+      class="rounded-md border border-neutral-200 px-2 py-1 text-sm text-neutral-500 transition hover:border-primary-400 hover:text-primary-700 dark:border-neutral-800 dark:hover:border-primary-500 dark:hover:text-primary-300"
+      aria-label="Toggle pronunciation audio"
+      title="Toggle pronunciation audio"
+    >
+      Sound on
+    </button>
+  </div>
   <ul id="results" class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3"></ul>
   <p id="empty-state" class="mt-8 hidden text-center text-sm text-neutral-500">No words found. Try different letters.</p>
 </div>
+
+<div id="word-info-tooltip" class="word-info-tooltip" role="tooltip" aria-hidden="true"></div>
 
 <script is:inline type="application/json" id="word-index-data" set:html={JSON.stringify(Array.from(index.entries()))}></script>
 
 <script>
   import { solve, scrabbleScore, normalizeLetters } from '../lib/generator';
+  import { getWordInfo, type WordInfo } from '../lib/definitions';
+  import { initVoices, isMuted, speak, stopSpeaking, toggleMute } from '../lib/speech';
 
   const indexData = document.getElementById('word-index-data');
   const index = new Map<string, string[]>(JSON.parse(indexData?.textContent || '[]'));
@@ -69,8 +84,10 @@ const index = buildIndex(wordList);
   const resultsEl = $<HTMLUListElement>('#results');
   const resultCountEl = $<HTMLElement>('#result-count');
   const emptyEl = $<HTMLElement>('#empty-state');
+  const tooltipEl = $<HTMLElement>('#word-info-tooltip');
+  const pronunciationToggle = $<HTMLButtonElement>('#pronunciation-toggle');
 
-  if (input && minLenEl && mustContainEl && sortModeEl && resultsEl && resultCountEl && emptyEl) {
+  if (input && minLenEl && mustContainEl && sortModeEl && resultsEl && resultCountEl && emptyEl && tooltipEl && pronunciationToggle) {
     const lettersInput = input;
     const minLengthInput = minLenEl;
     const mustContainInput = mustContainEl;
@@ -78,6 +95,129 @@ const index = buildIndex(wordList);
     const resultsList = resultsEl;
     const resultCount = resultCountEl;
     const emptyState = emptyEl;
+    const tooltip = tooltipEl;
+    const soundToggle = pronunciationToggle;
+    let hoverTimer: ReturnType<typeof setTimeout> | null = null;
+    let closeTimer: ReturnType<typeof setTimeout> | null = null;
+    let activeAbort: AbortController | null = null;
+    let activeWord = '';
+
+    initVoices();
+
+    const escapeHtml = (value: string) => value
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+    const positionTooltip = (anchor: HTMLElement) => {
+      const rect = anchor.getBoundingClientRect();
+      const width = Math.min(360, window.innerWidth - 16);
+      const left = Math.min(Math.max(8, rect.left), window.innerWidth - width - 8);
+      const topBelow = rect.bottom + 8;
+      const topAbove = rect.top - tooltip.offsetHeight - 8;
+      const top = topBelow + tooltip.offsetHeight > window.innerHeight && topAbove > 8 ? topAbove : topBelow;
+
+      tooltip.style.width = `${width}px`;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${Math.max(8, top)}px`;
+    };
+
+    const setTooltipContent = (html: string) => {
+      tooltip.innerHTML = html;
+      const speakButton = tooltip.querySelector<HTMLButtonElement>('[data-speak-word]');
+      speakButton?.addEventListener('click', () => {
+        const word = speakButton.dataset.speakWord;
+        if (!word) return;
+        speakButton.classList.add('is-speaking');
+        speak(word, () => speakButton.classList.remove('is-speaking'));
+      });
+    };
+
+    const renderInfo = (info: WordInfo | null, word: string) => {
+      if (!info) {
+        setTooltipContent(`
+          <div class="tooltip-head">
+            <strong>${escapeHtml(word)}</strong>
+            <button type="button" class="tooltip-speak" data-speak-word="${escapeHtml(word)}" aria-label="Pronounce ${escapeHtml(word)}">Speak</button>
+          </div>
+          <p class="tooltip-muted">No definition found for this word.</p>
+        `);
+        return;
+      }
+
+      const meaningHtml = info.meanings.map((meaning) => `
+        <section class="tooltip-meaning">
+          <div class="tooltip-pos">${escapeHtml(meaning.partOfSpeech)}</div>
+          ${meaning.definitions.map((definition) => `
+            <p class="tooltip-def">${escapeHtml(definition.definition)}</p>
+            ${definition.example ? `<p class="tooltip-example">"${escapeHtml(definition.example)}"</p>` : ''}
+          `).join('')}
+        </section>
+      `).join('');
+
+      setTooltipContent(`
+        <div class="tooltip-head">
+          <div>
+            <strong>${escapeHtml(info.word)}</strong>
+            ${info.phonetic ? `<div class="tooltip-phonetic">${escapeHtml(info.phonetic)}</div>` : '<div class="tooltip-phonetic">Pronunciation unavailable</div>'}
+          </div>
+          <button type="button" class="tooltip-speak" data-speak-word="${escapeHtml(info.word)}" aria-label="Pronounce ${escapeHtml(info.word)}">Speak</button>
+        </div>
+        ${meaningHtml}
+      `);
+    };
+
+    const showTooltip = (anchor: HTMLElement, word: string) => {
+      activeWord = word;
+      activeAbort?.abort();
+      activeAbort = new AbortController();
+      if (hoverTimer) clearTimeout(hoverTimer);
+      if (closeTimer) clearTimeout(closeTimer);
+
+      setTooltipContent(`
+        <div class="tooltip-head">
+          <strong>${escapeHtml(word)}</strong>
+          <button type="button" class="tooltip-speak" data-speak-word="${escapeHtml(word)}" aria-label="Pronounce ${escapeHtml(word)}">Speak</button>
+        </div>
+        <p class="tooltip-muted">Looking up pronunciation, meaning, and usage...</p>
+      `);
+      tooltip.classList.add('is-visible');
+      tooltip.setAttribute('aria-hidden', 'false');
+      positionTooltip(anchor);
+
+      hoverTimer = setTimeout(async () => {
+        const info = await getWordInfo(word, activeAbort?.signal);
+        if (activeWord !== word) return;
+        renderInfo(info, word);
+        positionTooltip(anchor);
+      }, 180);
+    };
+
+    const hideTooltip = () => {
+      if (closeTimer) clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        activeAbort?.abort();
+        activeWord = '';
+        tooltip.classList.remove('is-visible');
+        tooltip.setAttribute('aria-hidden', 'true');
+        stopSpeaking();
+      }, 140);
+    };
+
+    tooltip.addEventListener('mouseenter', () => {
+      if (closeTimer) clearTimeout(closeTimer);
+    });
+    tooltip.addEventListener('mouseleave', hideTooltip);
+
+    soundToggle.addEventListener('click', () => {
+      const muted = toggleMute();
+      soundToggle.textContent = muted ? 'Sound off' : 'Sound on';
+      soundToggle.classList.toggle('text-neutral-400', muted);
+      soundToggle.setAttribute('aria-pressed', String(!muted));
+    });
+    soundToggle.setAttribute('aria-pressed', String(!isMuted()));
 
     function render() {
       const raw = lettersInput.value;
@@ -120,7 +260,7 @@ const index = buildIndex(wordList);
       resultsList.innerHTML = results.map((word) => {
         const score = scrabbleScore(word);
         return `
-          <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-2.5 dark:border-neutral-800 dark:bg-neutral-900">
+          <li class="word-result flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-2.5 transition hover:border-primary-300 hover:bg-primary-50 focus-within:border-primary-400 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-primary-700 dark:hover:bg-primary-950/40" data-word="${word}">
             <div>
               <span class="font-mono font-medium">${word}</span>
               <span class="ml-2 text-xs text-neutral-500">${word.length}L · ${score}pt</span>
@@ -128,6 +268,19 @@ const index = buildIndex(wordList);
             <button class="copy-btn text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-word="${word}" aria-label="Copy ${word}">Copy</button>
           </li>`;
       }).join('');
+
+      document.querySelectorAll<HTMLElement>('.word-result').forEach((item) => {
+        const word = item.dataset.word;
+        if (!word) return;
+        item.addEventListener('mouseenter', () => showTooltip(item, word));
+        item.addEventListener('mouseleave', hideTooltip);
+        item.addEventListener('focusin', () => showTooltip(item, word));
+        item.addEventListener('focusout', hideTooltip);
+        item.addEventListener('click', (event) => {
+          if ((event.target as HTMLElement).closest('.copy-btn')) return;
+          showTooltip(item, word);
+        });
+      });
 
       document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
         btn.addEventListener('click', async () => {
@@ -155,3 +308,129 @@ const index = buildIndex(wordList);
     render();
   }
 </script>
+
+<style is:global>
+  .word-info-tooltip {
+    position: fixed;
+    z-index: 60;
+    max-height: min(420px, calc(100vh - 24px));
+    overflow: auto;
+    border: 1px solid rgb(186 230 253);
+    border-radius: 8px;
+    background: rgb(255 255 255);
+    box-shadow: 0 18px 50px rgb(2 29 61 / 0.22);
+    color: rgb(23 23 23);
+    opacity: 0;
+    padding: 14px;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 120ms ease, transform 120ms ease;
+  }
+
+  .dark .word-info-tooltip {
+    border-color: rgb(12 74 110);
+    background: rgb(10 10 10);
+    box-shadow: 0 18px 50px rgb(0 0 0 / 0.5);
+    color: rgb(245 245 245);
+  }
+
+  .word-info-tooltip.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .tooltip-head {
+    align-items: flex-start;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
+  .tooltip-head strong {
+    color: rgb(10 102 194);
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+
+  .tooltip-phonetic {
+    color: rgb(82 82 82);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.875rem;
+    margin-top: 2px;
+  }
+
+  .dark .tooltip-phonetic {
+    color: rgb(163 163 163);
+  }
+
+  .tooltip-speak {
+    border: 1px solid rgb(10 102 194);
+    border-radius: 6px;
+    color: rgb(10 102 194);
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: 6px 8px;
+  }
+
+  .tooltip-speak:hover,
+  .tooltip-speak.is-speaking {
+    background: rgb(238 247 255);
+  }
+
+  .dark .tooltip-speak:hover,
+  .dark .tooltip-speak.is-speaking {
+    background: rgb(6 34 59);
+  }
+
+  .tooltip-muted {
+    color: rgb(82 82 82);
+    font-size: 0.875rem;
+    margin-top: 10px;
+  }
+
+  .dark .tooltip-muted {
+    color: rgb(163 163 163);
+  }
+
+  .tooltip-meaning {
+    border-top: 1px solid rgb(229 229 229);
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .dark .tooltip-meaning {
+    border-color: rgb(38 38 38);
+  }
+
+  .tooltip-pos {
+    color: rgb(0 65 130);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .dark .tooltip-pos {
+    color: rgb(82 167 245);
+  }
+
+  .tooltip-def {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    margin-top: 5px;
+  }
+
+  .tooltip-example {
+    color: rgb(82 82 82);
+    font-size: 0.82rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+
+  .dark .tooltip-example {
+    color: rgb(163 163 163);
+  }
+</style>

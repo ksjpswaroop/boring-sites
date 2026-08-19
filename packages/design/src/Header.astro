@@ -7,14 +7,29 @@ export interface Props {
   siteName: string;
   siteUrl?: string;
   nav?: Array<{ label: string; href: string }>;
+  logoVariant?: 'default' | 'word-unscrambler';
 }
 
-const { siteName, siteUrl = '/', nav = [] } = Astro.props;
+const { siteName, siteUrl = '/', nav = [], logoVariant = 'default' } = Astro.props;
 ---
 <header class="sticky top-0 z-40 w-full border-b border-neutral-200/50 bg-white/80 backdrop-blur dark:border-neutral-800/50 dark:bg-neutral-950/80">
   <div class="container-wide flex h-14 items-center justify-between">
     <a href={siteUrl} class="flex items-center gap-2 text-base font-semibold">
-      <span class="inline-block h-6 w-6 rounded bg-gradient-to-br from-primary-500 to-accent-500"></span>
+      {logoVariant === 'word-unscrambler' ? (
+        <svg class="h-7 w-7" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="7" fill="#0A66C2" />
+          <rect x="4" y="4" width="10" height="10" rx="2" fill="#ffffff" opacity="0.96" />
+          <rect x="18" y="4" width="10" height="10" rx="2" fill="#D7EBFF" />
+          <rect x="4" y="18" width="10" height="10" rx="2" fill="#B8DCFF" />
+          <rect x="18" y="18" width="10" height="10" rx="2" fill="#ffffff" opacity="0.96" />
+          <text x="9" y="12" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="800" fill="#004182">W</text>
+          <text x="23" y="12" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="800" fill="#004182">O</text>
+          <text x="9" y="26" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="800" fill="#004182">R</text>
+          <text x="23" y="26" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="800" fill="#004182">D</text>
+        </svg>
+      ) : (
+        <span class="inline-block h-6 w-6 rounded bg-gradient-to-br from-primary-500 to-accent-500"></span>
+      )}
       <span>{siteName}</span>
     </a>
 
