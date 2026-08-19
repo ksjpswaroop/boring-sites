@@ -1,0 +1,38 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Sleep Calculator';
+---
+<Layout
+  title="About"
+  description="About the Sleep Calculator."
+  siteName={siteName}
+  customDisclaimer="Estimates only — not medical advice."
+>
+  <Disclaimer text="Estimates only — not medical advice." />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">About</h1>
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        <strong>Sleep Calculator</strong> is a fast, no-signup sleep cycle calculator. It's part of the <a href="https://github.com/ksjpswaroop/boring-sites">boring-sites</a> portfolio.
+      </p>
+      <h2>Installable</h2>
+      <p>
+        This site is a Progressive Web App (PWA). On most modern browsers, you can install it to your home screen for quick access. The app works offline after the first visit.
+      </p>
+      <h2>The science (briefly)</h2>
+      <p>
+        The 90-minute sleep cycle is a simplification of a real phenomenon. Actual cycles vary from 70 to 120 minutes, and your sleep architecture changes through the night (more deep sleep early, more REM late). The calculator uses the 90-minute average as a useful approximation.
+      </p>
+      <p>
+        The 14-minute time-to-fall-asleep is also an average. Heavy sleepers might take 5 minutes; anxious sleepers might take 30. Use the <em>time to fall asleep</em> field to adjust.
+      </p>
+      <h2>Not a substitute for medical advice</h2>
+      <p>
+        If you have chronic sleep issues (insomnia, sleep apnea, restless legs, etc.), see a healthcare professional. This calculator helps with normal sleep optimization; it doesn't diagnose or treat sleep disorders.
+      </p>
+      <h2>Open source</h2>
+      <p>The full source is on <a href="https://github.com/ksjpswaroop/boring-sites">GitHub</a>.</p>
+    </div>
+  </article>
+</Layout>

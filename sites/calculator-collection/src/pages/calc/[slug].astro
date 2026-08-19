@@ -1,0 +1,86 @@
+---
+/**
+ * Dynamic route for all 20 calculators. Looks up the calculator config
+ * from the registry and renders it with the generic Calculator component.
+ */
+import Layout from '@boring-sites/design/Layout.astro';
+import Calculator from '../../components/Calculator.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
+import RelatedCalculators from '../../components/RelatedCalculators.astro';
+import { calculators, getCalculator, getRelated, getAllSlugs } from '../../data/calculators';
+
+export async function getStaticPaths() {
+  return getAllSlugs().map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const calc = getCalculator(slug!);
+
+if (!calc) {
+  return Astro.redirect('/404');
+}
+
+const related = getRelated(slug!);
+const siteName = 'Calculator Collection';
+const url = `https://calculator.example.com/calc/${slug}`;
+---
+<Layout
+  title={`${calc.title} — Free Online Calculator`}
+  description={calc.description}
+  siteName={siteName}
+  customDisclaimer="Estimates only — not financial, medical, or legal advice. Verify with a professional."
+  nav={[
+    { label: 'All calculators', href: '/' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: calc.title,
+      description: calc.description,
+      url,
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  }}
+>
+  <Disclaimer text={calc.disclaimer} />
+
+  <section class="container-wide py-10">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-6">
+        <a href="/" class="text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100">← All calculators</a>
+        <h1 class="mt-2 flex items-center gap-3 text-3xl font-bold sm:text-4xl">
+          <span class="text-3xl">{calc.icon}</span>
+          <span>{calc.title}</span>
+        </h1>
+        <p class="mt-2 text-neutral-600 dark:text-neutral-400">{calc.description}</p>
+        <span class="mt-2 inline-block rounded-full bg-neutral-100 px-2 py-0.5 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
+          {calc.category}
+        </span>
+      </div>
+
+      <Calculator calc={calc}>
+        <RelatedCalculators slot="sidebar" current={slug!} related={related} />
+      </Calculator>
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <h2 class="text-2xl font-bold">More from {calc.category}</h2>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {calculators
+          .filter((c) => c.category === calc.category && c.slug !== slug)
+          .slice(0, 6)
+          .map((c) => (
+            <a href={`/calc/${c.slug}`} class="card hover:scale-[1.02] transition-transform">
+              <h3 class="font-semibold">{c.icon} {c.title}</h3>
+              <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{c.description}</p>
+            </a>
+          ))}
+      </div>
+    </div>
+  </section>
+</Layout>

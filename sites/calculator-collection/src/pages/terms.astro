@@ -1,0 +1,19 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Terms from '@boring-sites/legal/terms.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Calculator Collection';
+---
+<Layout
+  title="Terms of Service"
+  description="Terms of service for the Calculator Collection."
+  siteName={siteName}
+>
+  <Disclaimer />
+  <Terms
+    siteName={siteName}
+    siteUrl="https://calculator.example.com"
+    contactEmail="hello@calculator.example.com"
+    customClause="Calculator results are estimates. Do not make financial, medical, or legal decisions based on them without consulting a professional."
+  />
+</Layout>

@@ -1,0 +1,33 @@
+{
+  "race": "human",
+  "displayName": "Human",
+  "description": "The most adaptable and widespread race. Human names vary by culture — this generator draws from fantasy European conventions.",
+  "lore": "Human names are the most varied, since humans live in every climate and culture. This generator offers a generic 'fantasy European' pool that draws on English, German, French, Italian, Spanish, and Slavic influences. For more specific human cultures (Calishite, Chondathan, Damaran, Illuskan, Mulan, Rashemi, Shou, Turami, etc.) consider a future region-specific generator.",
+  "pools": {
+    "masculine": [
+      "Aldric", "Brennan", "Cedric", "Darius", "Edmund", "Finn", "Gareth", "Hadrian",
+      "Ivor", "Jasper", "Kael", "Leofric", "Marcus", "Nolan", "Owen", "Percival",
+      "Quentin", "Ronan", "Sebastian", "Tristan", "Ulric", "Victor", "Wesley", "Xavier",
+      "Yorick", "Zachary", "Alaric", "Bjorn", "Cedric", "Darian", "Edric", "Florian",
+      "Galen", "Henrick", "Idris", "Joren", "Kestrel", "Liam", "Marek", "Nyle", "Orin",
+      "Piers", "Quinlan", "Rhys", "Soren", "Talin", "Uric", "Varian", "Wren",
+      "Xander", "Yannick", "Zev", "Cassian", "Doran", "Ewan", "Garrick", "Hale"
+    ],
+    "feminine": [
+      "Adelyn", "Brielle", "Cerys", "Delia", "Elara", "Fiona", "Giselle", "Helena",
+      "Isolde", "Juno", "Katarina", "Lydia", "Maeve", "Nadia", "Ophelia", "Petra",
+      "Quinn", "Rhiannon", "Selene", "Thalia", "Ursula", "Vera", "Wren", "Xena",
+      "Yara", "Zelda", "Anwen", "Briar", "Cora", "Daphne", "Eira", "Faye", "Gemma",
+      "Hester", "Iona", "Jora", "Kira", "Lark", "Mira", "Nessa", "Ottilie", "Pia",
+      "Quinta", "Rune", "Sage", "Tessa", "Una", "Vela", "Wynne", "Xanthe",
+      "Yael", "Zara", "Alma", "Bonnie", "Clara", "Daria", "Edith", "Flora", "Greta"
+    ],
+    "neutral": [
+      "Wren", "Sage", "Quinn", "Rowan", "Reese", "Briar", "Faye", "Rune", "Lark",
+      "Jora", "Pia", "Una", "Tessa", "Iona", "Hale", "Garrick", "Ewan", "Cassian",
+      "Doran", "Xander", "Yannick", "Soren", "Rhys", "Quinlan", "Piers", "Marek",
+      "Kestrel", "Idris", "Henrick", "Galen", "Florian", "Edric", "Brennan", "Aldric",
+      "Varian", "Talin", "Ronan", "Nolan", "Marcus", "Leofric", "Jasper", "Hadrian"
+    ]
+  }
+}

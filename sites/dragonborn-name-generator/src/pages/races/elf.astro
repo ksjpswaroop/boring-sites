@@ -1,0 +1,65 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Generator from '../../components/Generator.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
+import dragonbornPool from '../../data/dragonborn.json';
+import elfPool from '../../data/elf.json';
+import dwarfPool from '../../data/dwarf.json';
+import tieflingPool from '../../data/tiefling.json';
+import halflingPool from '../../data/halfling.json';
+import humanPool from '../../data/human.json';
+const pools = {
+  dragonborn: dragonbornPool,
+  elf: elfPool,
+  dwarf: dwarfPool,
+  tiefling: tieflingPool,
+  halfling: halflingPool,
+  human: humanPool,
+};
+const siteName = 'Dragonborn Names';
+const pool = elfPool;
+---
+<Layout
+  title={`${pool.displayName} Name Generator`}
+  description={`Generate random ${pool.displayName} names for D&D 5e and Pathfinder. 10 original names at a time.`}
+  siteName={siteName}
+  customDisclaimer="Fan-made project. Not affiliated with Wizards of the Coast or Bethesda."
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: `${pool.displayName} Name Generator`,
+      description: `Random ${pool.displayName} name generator for fantasy TTRPGs`,
+      applicationCategory: 'MultimediaApplication',
+    },
+  }}
+>
+  <Disclaimer variant="fan-made" />
+  <section class="container-wide py-12">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">{pool.displayName} Name Generator</h1>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">{pool.description}</p>
+    </div>
+    <div class="mt-10 mx-auto max-w-3xl">
+      <Generator pools={pools} defaultRace="elf" defaultGender="feminine" />
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-prose">
+      <h2 class="text-2xl font-bold">About {pool.displayName} Names</h2>
+      <p class="mt-4 text-neutral-700 dark:text-neutral-300">{pool.lore}</p>
+    </div>
+  </section>
+
+  <section class="container-wide py-12">
+    <h2 class="text-2xl font-bold">Other races</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {Object.values(pools).filter(p => p.race !== 'elf').map((p) => (
+        <a href={`/races/${p.race}`} class="card hover:scale-[1.02] transition-transform">
+          <h3 class="font-semibold">{p.displayName}</h3>
+          <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{p.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

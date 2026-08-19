@@ -1,0 +1,142 @@
+---
+/**
+ * The word unscrambler. Renders the input box, runs the unscramble engine
+ * client-side as the user types, displays results in a sortable, filterable list.
+ */
+import words from '../data/words.json';
+import { buildIndex, solve, scrabbleScore, normalizeLetters } from '../lib/generator';
+
+const wordList: string[] = words as string[];
+const index = buildIndex(wordList);
+---
+<div class="card">
+  <label for="letters-input" class="block text-sm font-medium">Letters to unscramble (up to 15)</label>
+  <div class="relative mt-2">
+    <input
+      type="text"
+      id="letters-input"
+      autocomplete="off"
+      autocapitalize="characters"
+      spellcheck="false"
+      maxlength="15"
+      placeholder="e.g. aetprs"
+      class="block w-full rounded-lg border border-neutral-300 bg-white px-4 py-4 text-2xl font-mono tracking-widest uppercase dark:border-neutral-700 dark:bg-neutral-900"
+    />
+  </div>
+  <p class="mt-2 text-sm text-neutral-500">
+    <span id="result-count">Type letters to see results</span>
+  </p>
+
+  <div id="filters" class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <label class="flex items-center gap-2">
+      <span class="text-neutral-500">Min length:</span>
+      <input type="number" id="min-length" min="2" max="15" value="2" class="w-16 rounded border border-neutral-300 bg-white px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900" />
+    </label>
+    <label class="flex items-center gap-2">
+      <span class="text-neutral-500">Must contain:</span>
+      <input type="text" id="must-contain" maxlength="15" placeholder="(optional)" class="w-24 rounded border border-neutral-300 bg-white px-2 py-1 font-mono uppercase dark:border-neutral-700 dark:bg-neutral-900" />
+    </label>
+    <label class="flex items-center gap-2">
+      <span class="text-neutral-500">Sort:</span>
+      <select id="sort-mode" class="rounded border border-neutral-300 bg-white px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900">
+        <option value="alpha">A → Z</option>
+        <option value="length">Length ↓</option>
+        <option value="score" selected>Score ↓</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<div class="mt-8">
+  <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Results</h2>
+  <ul id="results" class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3"></ul>
+  <p id="empty-state" class="mt-8 hidden text-center text-sm text-neutral-500">No words found. Try different letters.</p>
+</div>
+
+<script is:inline define:vars={{ indexEntries: Array.from(index.entries()) }}>
+  // Rebuild the index on the client (it was serialized via define:vars)
+  const index = new Map(indexEntries);
+
+  const $ = (s) => document.querySelector(s);
+  const input = $('#letters-input');
+  const minLenEl = $('#min-length');
+  const mustContainEl = $('#must-contain');
+  const sortModeEl = $('#sort-mode');
+  const resultsEl = $('#results');
+  const resultCountEl = $('#result-count');
+  const emptyEl = $('#empty-state');
+
+  function tileScore(w) { return w.toUpperCase().split('').reduce((s, c) => s + ({A:1,E:1,I:1,O:1,U:1,L:1,N:1,S:1,T:1,R:1,D:2,G:2,B:3,C:3,M:3,P:3,F:4,H:4,V:4,W:4,Y:4,K:5,J:8,X:8,Q:10,Z:10}[c] || 0), 0); }
+
+  function render() {
+    const raw = input.value;
+    const normalized = raw.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 15);
+    const minLen = parseInt(minLenEl.value, 10) || 2;
+    const mustContain = (mustContainEl.value || '').toUpperCase().replace(/[^A-Z]/g, '');
+    const sortMode = sortModeEl.value;
+
+    if (normalized.length < 2) {
+      resultsEl.innerHTML = '';
+      emptyEl.classList.add('hidden');
+      resultCountEl.textContent = 'Type at least 2 letters';
+      return;
+    }
+
+    let results = solve(normalized, index).filter(w => w.length >= minLen);
+    if (mustContain) {
+      const mc = mustContain.split('');
+      results = results.filter(w => mc.every(c => w.includes(c)));
+    }
+
+    if (sortMode === 'alpha') results.sort();
+    else if (sortMode === 'length') results.sort((a, b) => b.length - a.length || a.localeCompare(b));
+    else if (sortMode === 'score') results.sort((a, b) => tileScore(b) - tileScore(a) || b.length - a.length || a.localeCompare(b));
+
+    resultCountEl.textContent = results.length === 0
+      ? 'No words found'
+      : `${results.length} word${results.length === 1 ? '' : 's'} found`;
+
+    if (results.length === 0) {
+      resultsEl.innerHTML = '';
+      emptyEl.classList.remove('hidden');
+      return;
+    }
+    emptyEl.classList.add('hidden');
+
+    resultsEl.innerHTML = results.map((w) => {
+      const score = tileScore(w);
+      return `
+        <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-2.5 dark:border-neutral-800 dark:bg-neutral-900">
+          <div>
+            <span class="font-mono font-medium">${w}</span>
+            <span class="ml-2 text-xs text-neutral-500">${w.length}L · ${score}pt</span>
+          </div>
+          <button class="copy-btn text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-word="${w}" aria-label="Copy ${w}">Copy</button>
+        </li>`;
+    }).join('');
+
+    document.querySelectorAll('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const w = btn.getAttribute('data-word');
+        try {
+          await navigator.clipboard.writeText(w);
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 1200);
+        } catch {}
+      });
+    });
+  }
+
+  input.addEventListener('input', render);
+  minLenEl.addEventListener('input', render);
+  mustContainEl.addEventListener('input', render);
+  sortModeEl.addEventListener('change', render);
+  input.focus();
+
+  // Restore last from localStorage
+  const last = localStorage.getItem('boring-sites:wordunscrambler:letters');
+  if (last) { input.value = last; }
+  input.addEventListener('input', () => localStorage.setItem('boring-sites:wordunscrambler:letters', input.value));
+  render();
+</script>

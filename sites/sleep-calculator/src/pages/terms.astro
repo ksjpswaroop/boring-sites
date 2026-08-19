@@ -1,0 +1,19 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Terms from '@boring-sites/legal/terms.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Sleep Calculator';
+---
+<Layout
+  title="Terms of Service"
+  description="Terms of service for the Sleep Calculator."
+  siteName={siteName}
+>
+  <Disclaimer text="Estimates only — not medical advice." />
+  <Terms
+    siteName={siteName}
+    siteUrl="https://sleepcalculator.example.com"
+    contactEmail="hello@sleepcalculator.example.com"
+    customClause="Sleep recommendations are estimates. Not a substitute for medical advice. Consult a healthcare professional for sleep concerns."
+  />
+</Layout>

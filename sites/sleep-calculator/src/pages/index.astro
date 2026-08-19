@@ -1,0 +1,117 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Calculator from '../components/Calculator.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+
+const siteName = 'Sleep Calculator';
+const description = 'Free sleep cycle calculator: find the best bedtime or wake time based on 90-minute sleep cycles. Set an alarm with one tap. PWA-installable.';
+const url = 'https://sleepcalculator.example.com';
+
+function fmtTime(t: string): string {
+  const parts = t.split(':').map(Number);
+  return `${String(parts[0]).padStart(2, '0')}:${String(parts[1]).padStart(2, '0')}`;
+}
+
+// Pre-render a few "wake up at X" pages for SEO long-tail
+const wakeTimes = ['06:00', '06:30', '07:00', '07:30', '08:00', '08:30', '09:00'];
+---
+<Layout
+  title="Sleep Calculator — Find Your Best Bedtime"
+  description={description}
+  siteName={siteName}
+  customDisclaimer="Estimates only — not medical advice. Consult a healthcare professional for sleep concerns."
+  nav={[
+    { label: 'How it works', href: '#how' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: siteName,
+      description,
+      url,
+      applicationCategory: 'HealthApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  }}
+>
+  <Disclaimer text="Estimates only — not medical advice. Consult a healthcare professional for sleep concerns." />
+
+  <section class="container-wide py-12 sm:py-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Sleep Calculator</h1>
+      <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
+        Find the best bedtime or wake time based on <strong>90-minute sleep cycles</strong>. Set your alarm in one tap.
+      </p>
+    </div>
+
+    <div class="mt-8 mx-auto max-w-3xl">
+      <Calculator />
+    </div>
+  </section>
+
+  <section id="how" class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-3xl font-bold">How it works</h2>
+        <div class="prose mt-6 dark:prose-invert">
+          <p>
+            The human sleep cycle is about <strong>90 minutes</strong>, cycling through light sleep, deep sleep, and REM. Waking up mid-cycle (in deep sleep) leaves you groggy for hours. Waking at the end of a cycle (in light sleep) leaves you feeling refreshed.
+          </p>
+          <p>
+            This calculator takes your desired wake-up time and works backward in 90-minute increments (plus <strong>14 minutes</strong> for the average time it takes to fall asleep) to find the optimal bedtimes. Or, take your bedtime and work forward to find the optimal wake times.
+          </p>
+          <h3>Why 14 minutes?</h3>
+          <p>
+            The 14-minute average comes from sleep research on healthy adults. Some people fall asleep in 5 minutes; others take 30. Use the <em>time to fall asleep</em> field to adjust.
+          </p>
+          <h3>Should I aim for exactly 6 cycles?</h3>
+          <p>
+            5–6 cycles (7.5–9 hours) is the typical recommendation for adults. Teenagers often need 8–10 hours. Older adults may need only 7. Use the calculator as a starting point and adjust based on how you feel.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wide py-16">
+    <h2 class="text-center text-2xl font-bold">Common wake times</h2>
+    <p class="mt-2 text-center text-sm text-neutral-600 dark:text-neutral-400">
+      Quick links for the most popular wake-up queries.
+    </p>
+    <div class="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      {wakeTimes.map((t) => (
+        <a
+          href={`/wake-up-at-${t.replace(':', '')}`}
+          class="card text-center hover:scale-[1.02] transition-transform"
+        >
+          <p class="text-2xl font-bold">{t}</p>
+          <p class="mt-1 text-xs text-neutral-500">See best bedtimes →</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-prose text-center">
+      <h2 class="text-2xl font-bold">Install as an app</h2>
+      <p class="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+        This site is a PWA. On most modern browsers, click the install icon in the URL bar to add it to your home screen.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-wide py-12">
+    <div class="container-prose text-center">
+      <h2 class="text-2xl font-bold">More from the boring-sites portfolio</h2>
+      <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://wordunscrambler.example.com" class="btn btn-secondary">🔤 Word Unscrambler</a>
+        <a href="https://whatismyip.example.com" class="btn btn-secondary">🌐 What Is My IP</a>
+        <a href="https://calculator.example.com" class="btn btn-secondary">🧮 Calculators</a>
+        <a href="https://phonenumbergen.example.com" class="btn btn-secondary">📞 Phone Number Generator</a>
+        <a href="https://dragonbornnames.example.com" class="btn btn-secondary">🐉 Dragonborn Names</a>
+      </div>
+    </div>
+  </section>
+</Layout>

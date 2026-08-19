@@ -1,0 +1,101 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Generator from '../components/Generator.astro';
+
+const siteName = 'Phone Number Generator';
+const description = 'Free random phone number generator. Pick a country, get valid-FORMAT numbers for testing, screenshots, and design mocks. NOT real, NOT for fraud.';
+const url = 'https://phonenumbergen.example.com';
+
+const countries = [
+  { slug: 'us', name: 'United States', flag: '🇺🇸' },
+  { slug: 'uk', name: 'United Kingdom', flag: '🇬🇧' },
+  { slug: 'ca', name: 'Canada', flag: '🇨🇦' },
+  { slug: 'au', name: 'Australia', flag: '🇦🇺' },
+  { slug: 'de', name: 'Germany', flag: '🇩🇪' },
+  { slug: 'fr', name: 'France', flag: '🇫🇷' },
+];
+---
+<Layout
+  title="Phone Number Generator — Random Valid-Format Numbers"
+  description={description}
+  siteName={siteName}
+  customDisclaimer="Numbers are NOT real. Do not use for fraud, harassment, or verification bypass."
+  nav={[
+    { label: 'How it works', href: '#how' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: siteName,
+      description,
+      url,
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  }}
+>
+  <section class="container-wide py-12 sm:py-16">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Phone Number Generator</h1>
+        <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
+          Random, <strong>valid-FORMAT</strong> phone numbers for testing, screenshots, and design mocks. <strong>Not real numbers.</strong>
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <Generator />
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-3xl font-bold">How it works</h2>
+        <div class="prose mt-6 dark:prose-invert">
+          <p>
+            The generator produces phone numbers in the correct format for the selected country. For the US and Canada, you can also pick a specific area code (or let it randomize).
+          </p>
+          <p>
+            <strong>These numbers are NOT real.</strong> They follow the right format (length, area code structure, prefix patterns) but are not assigned to any phone, person, or carrier. Do not use them to commit fraud, harass anyone, or bypass verification systems that require real numbers.
+          </p>
+          <h3>Use cases</h3>
+          <ul>
+            <li>Testing forms that require a phone number</li>
+            <li>Populating test databases with realistic-looking data</li>
+            <li>Mockup screenshots for design presentations</li>
+            <li>Sample data in documentation or tutorials</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wide py-12">
+    <h2 class="text-center text-2xl font-bold">By country</h2>
+    <div class="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      {countries.map((c) => (
+        <a href={`/${c.slug}-phone-numbers`} class="card text-center hover:scale-[1.02] transition-transform">
+          <p class="text-3xl">{c.flag}</p>
+          <p class="mt-2 text-sm font-medium">{c.name}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-prose text-center">
+      <h2 class="text-2xl font-bold">More from the boring-sites portfolio</h2>
+      <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://wordunscrambler.example.com" class="btn btn-secondary">🔤 Word Unscrambler</a>
+        <a href="https://sleepcalculator.example.com" class="btn btn-secondary">😴 Sleep Calculator</a>
+        <a href="https://whatismyip.example.com" class="btn btn-secondary">🌐 What Is My IP</a>
+        <a href="https://calculator.example.com" class="btn btn-secondary">🧮 Calculators</a>
+        <a href="https://dragonbornnames.example.com" class="btn btn-secondary">🐉 Dragonborn Names</a>
+      </div>
+    </div>
+  </section>
+</Layout>

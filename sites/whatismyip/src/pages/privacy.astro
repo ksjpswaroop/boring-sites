@@ -1,0 +1,75 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../components/NoLogsBanner.astro';
+const siteName = 'What Is My IP';
+---
+<Layout
+  title="Privacy Policy"
+  description="Privacy policy for What Is My IP. We don't log your IP. We don't store it. We don't track you."
+  siteName={siteName}
+>
+  <NoLogsBanner />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">Privacy Policy</h1>
+    <p class="mt-2 text-sm text-neutral-500">Last updated: 2026-08-18</p>
+
+    <div class="prose mt-8 dark:prose-invert">
+      <h2>The short version</h2>
+      <p>
+        <strong>We do not log your IP address.</strong> We do not store it in a database. We do not send it to a third-party analytics service. We do not use it for any purpose other than displaying it to you on this page.
+      </p>
+      <p>
+        The source code is <a href="https://github.com/ksjpswaroop/boring-sites">open source on GitHub</a>. You can audit every byte that runs on the server.
+      </p>
+
+      <h2>What we collect</h2>
+      <p>
+        By default, nothing. Specifically:
+      </p>
+      <ul>
+        <li><strong>No server logs.</strong> We use Vercel Edge Functions, which do not write access logs by default. We have not enabled Vercel Web Analytics (it would log IPs).</li>
+        <li><strong>No database.</strong> There is no database, period.</li>
+        <li><strong>No cookies.</strong> This site sets no cookies.</li>
+        <li><strong>No third-party trackers.</strong> We use Plausible Analytics, which is cookieless and does not store personal data. We do not use Google Analytics, Facebook Pixel, or any other tracker that would log your IP.</li>
+      </ul>
+
+      <h2>What we do (so the site works)</h2>
+      <ul>
+        <li><strong>Display your IP</strong> — read from the <code>x-forwarded-for</code> header set by Vercel, then rendered into the HTML. The IP lives only in the response we send back to you.</li>
+        <li><strong>Count visits</strong> via Plausible. Plausible sees your request, counts it, and forgets it. It does not store IPs.</li>
+        <li><strong>Show ads</strong> via Google AdSense. AdSense may set cookies for ad personalization. You can opt out at <a href="https://www.google.com/settings/ads">Google Ads Settings</a>.</li>
+      </ul>
+
+      <h2>What we don't do (and how you can verify)</h2>
+      <ul>
+        <li><strong>Don't log IPs</strong> — verifiable by reading the source code. The IP echo endpoint at <code>/api/ip</code> reads the header and returns the IP as JSON. Nothing else. No logging. No database write.</li>
+        <li><strong>Don't store analytics IP data</strong> — verifiable by reading Plausible's data policy. They do not log IPs.</li>
+        <li><strong>Don't use Google Analytics</strong> — verifiable by viewing the page source. There is no GA snippet.</li>
+        <li><strong>Don't use advertising trackers beyond AdSense</strong> — verifiable by viewing the page source and the network tab.</li>
+      </ul>
+
+      <h2>Your rights</h2>
+      <p>
+        EU/UK users: GDPR rights apply. Since we collect essentially nothing, there's usually nothing to access or delete. But you can still ask.
+      </p>
+      <p>
+        California users: CCPA rights apply. Same as above.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        This site is not directed at children under 13 and we do not knowingly collect data from children.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we change this policy, we'll update the date at the top. Material changes will be noted on the home page.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions? Email us at <a href="mailto:hello@whatismyip.example.com">hello@whatismyip.example.com</a>.
+      </p>
+    </div>
+  </article>
+</Layout>

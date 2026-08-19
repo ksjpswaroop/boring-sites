@@ -1,0 +1,18 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Privacy from '@boring-sites/legal/privacy.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Calculator Collection';
+---
+<Layout
+  title="Privacy Policy"
+  description="Privacy policy for the Calculator Collection."
+  siteName={siteName}
+>
+  <Disclaimer />
+  <Privacy
+    siteName={siteName}
+    siteUrl="https://calculator.example.com"
+    contactEmail="hello@calculator.example.com"
+  />
+</Layout>

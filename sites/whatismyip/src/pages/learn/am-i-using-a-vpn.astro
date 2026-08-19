@@ -1,0 +1,83 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../../components/NoLogsBanner.astro';
+const siteName = 'What Is My IP';
+---
+<Layout
+  title="Am I using a VPN?"
+  description="How to tell if your internet traffic is going through a VPN or proxy. Practical, non-technical checks you can do right now."
+  siteName={siteName}
+  jsonLd={{
+    type: 'Article',
+    data: {
+      headline: 'Am I using a VPN?',
+      description: 'Practical checks to see if your traffic is being routed through a VPN or proxy.',
+      author: { '@type': 'Organization', name: siteName },
+    },
+  }}
+>
+  <NoLogsBanner />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">Am I using a VPN?</h1>
+    <p class="mt-2 text-sm text-neutral-500">3 min read · Last updated 2026-08-18</p>
+
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        Whether you <em>intended</em> to be on a VPN or not, there are a few quick checks you can do to find out. We'll go from quick-and-dirty to thorough.
+      </p>
+
+      <h2>Check 1: Look at your IP</h2>
+      <p>
+        Look at the IP on <a href="/">our home page</a>. Now compare it to:
+      </p>
+      <ul>
+        <li>Your known home IP (if you have one — most consumer ISPs assign dynamic IPs, so this only works if you know your current one)</li>
+        <li>The IP your VPN provider says you have (most VPN apps show this)</li>
+        <li>The IP of your office network (if you're at work)</li>
+      </ul>
+      <p>
+        If the IP is different from your "expected" IP, you might be on a VPN, proxy, or just have a different IP from your ISP today.
+      </p>
+
+      <h2>Check 2: Compare your IP's location to your timezone</h2>
+      <p>
+        Look at the IP's geolocation (use any free IP geolocation service — we don't run one). It should be roughly where you are.
+      </p>
+      <p>
+        Now check your browser's timezone: in Chrome, go to <code>chrome://settings/appearance</code> and look for "Time zone". In Firefox, it's in <code>about:preferences#general</code> under "Language and Appearance". Or just run <code>Intl.DateTimeFormat().resolvedOptions().timeZone</code> in the browser console.
+      </p>
+      <p>
+        If your IP is in, say, Frankfurt but your timezone is America/Los_Angeles, you're almost certainly on a VPN that picked a German exit node, or your system timezone is set wrong.
+      </p>
+
+      <h2>Check 3: Run the DNS leak test on our home page</h2>
+      <p>
+        The <a href="/#learn">DNS leak test</a> on our home page runs multiple checks against your IP. If they all return the same IP, your DNS isn't leaking. If they return different IPs, your DNS might be going through a different path than your web traffic — a sign that something's misconfigured (a VPN that's not routing DNS, a corporate proxy, etc.).
+      </p>
+
+      <h2>Check 4: Run the WebRTC leak test on our home page</h2>
+      <p>
+        WebRTC can sometimes leak your local network IP, even when a VPN is active. The <a href="/#learn">WebRTC test</a> on our home page checks for this. If local IPs (192.168.x.x, 10.x.x.x) appear, your browser is leaking them.
+      </p>
+
+      <h2>Check 5: Look at your VPN app</h2>
+      <p>
+        If you have a VPN app installed (NordVPN, ExpressVPN, Mullvad, etc.), just open it. If it says "Connected", you're on a VPN. If it says "Disconnected", you're not.
+      </p>
+
+      <h2>What to do if you didn't intend to be on a VPN</h2>
+      <p>
+        If you find yourself on a VPN without remembering to enable one, check:
+      </p>
+      <ul>
+        <li>Your browser extensions — some "privacy" extensions install proxy settings</li>
+        <li>Your system settings — macOS, Windows, and Linux all support system-wide VPN/proxy configs</li>
+        <li>Your employer's MDM (Mobile Device Management) profile, if you're on a work device</li>
+        <li>Your router — some consumer routers come with "security" features that proxy traffic</li>
+      </ul>
+      <p>
+        If none of those explain it, change your WiFi password and check your router for unauthorized config changes.
+      </p>
+    </div>
+  </article>
+</Layout>

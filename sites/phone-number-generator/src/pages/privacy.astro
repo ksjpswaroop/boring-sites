@@ -1,0 +1,16 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Privacy from '@boring-sites/legal/privacy.astro';
+const siteName = 'Phone Number Generator';
+---
+<Layout
+  title="Privacy Policy"
+  description="Privacy policy for the Phone Number Generator."
+  siteName={siteName}
+>
+  <Privacy
+    siteName={siteName}
+    siteUrl="https://phonenumbergen.example.com"
+    contactEmail="hello@phonenumbergen.example.com"
+  />
+</Layout>

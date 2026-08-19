@@ -1,0 +1,26 @@
+{
+  "name": "@boring-sites/design",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./Footer.astro": "./src/Footer.astro",
+    "./Header.astro": "./src/Header.astro",
+    "./JsonLd.astro": "./src/JsonLd.astro",
+    "./Layout.astro": "./src/Layout.astro",
+    "./tokens": "./src/tokens.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@boring-sites/analytics": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

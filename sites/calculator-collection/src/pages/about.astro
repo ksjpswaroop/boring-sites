@@ -1,0 +1,43 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Calculator Collection';
+---
+<Layout
+  title="About"
+  description="About the Calculator Collection — 20+ free online calculators."
+  siteName={siteName}
+  customDisclaimer="Estimates only — not financial, medical, or legal advice."
+>
+  <Disclaimer />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">About</h1>
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        <strong>Calculator Collection</strong> is a portfolio of {20}+ free online calculators — mortgage, BMI, tip, GPA, calorie, retirement, percentage, and more. It's part of the <a href="https://github.com/ksjpswaroop/boring-sites">boring-sites</a> portfolio.
+      </p>
+      <h2>Why this exists</h2>
+      <p>
+        The dominant calculator site, <a href="https://calculator.net" rel="nofollow">calculator.net</a>, has 100+ tools and earns $825K/mo. But the experience feels like 100 different freelancers built it: inconsistent design, dated UI, ad-heavy layouts. We built this as the alternative: a single design system, modern UI, ad-light, with calculators that all feel like one family.
+      </p>
+      <h2>What you get</h2>
+      <ul>
+        <li>Real-time results as you type (no click-to-submit)</li>
+        <li>Mobile-first, dark-mode-by-default UI</li>
+        <li>Shareable URLs that encode your inputs</li>
+        <li>Educational content explaining the math (per calculator)</li>
+        <li>Cross-linked related calculators</li>
+      </ul>
+      <h2>What you don't get</h2>
+      <ul>
+        <li>No login, no account, no saved history (we use localStorage only for convenience)</li>
+        <li>No calculator that requires server-side compute (everything is client-side, fast)</li>
+        <li>No data collection beyond cookieless analytics (Plausible)</li>
+      </ul>
+      <h2>Open source</h2>
+      <p>
+        The full source code is on <a href="https://github.com/ksjpswaroop/boring-sites">GitHub</a>. Audit it, fork it, run it locally.
+      </p>
+    </div>
+  </article>
+</Layout>

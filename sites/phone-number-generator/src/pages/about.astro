@@ -1,0 +1,39 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+const siteName = 'Phone Number Generator';
+---
+<Layout
+  title="About"
+  description="About the Phone Number Generator."
+  siteName={siteName}
+  customDisclaimer="Numbers are NOT real. Do not use for fraud, harassment, or verification bypass."
+>
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">About</h1>
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        <strong>Phone Number Generator</strong> is a fast, no-signup tool for producing random valid-FORMAT phone numbers. It's part of the <a href="https://github.com/ksjpswaroop/boring-sites">boring-sites</a> portfolio.
+      </p>
+      <h2>Critical: these numbers are not real</h2>
+      <p>
+        Every number produced by this tool is randomly generated. It is <strong>not assigned to any phone, person, or carrier</strong>. The format is correct (US numbers have the right 10-digit structure, UK numbers include the +44 country code, etc.), but the numbers are not real.
+      </p>
+      <h2>What's NOT okay</h2>
+      <ul>
+        <li>Using these numbers to commit fraud</li>
+        <li>Using them to harass or impersonate real people</li>
+        <li>Using them to bypass verification systems that require real numbers (most will detect generated numbers anyway)</li>
+        <li>Using them for any illegal purpose</li>
+      </ul>
+      <h2>What's okay</h2>
+      <ul>
+        <li>Testing forms that require a phone number field</li>
+        <li>Populating test databases with realistic-looking data</li>
+        <li>Creating mockup screenshots for design presentations</li>
+        <li>Using as placeholders in documentation or tutorials</li>
+      </ul>
+      <h2>Open source</h2>
+      <p>The full source is on <a href="https://github.com/ksjpswaroop/boring-sites">GitHub</a>. The area code data is bundled at build time.</p>
+    </div>
+  </article>
+</Layout>

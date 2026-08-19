@@ -1,0 +1,45 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+const siteName = 'Word Unscrambler';
+const faqs = [
+  { q: 'How does the unscrambler work?', a: 'Type your letters. The tool finds every English word that can be formed from a subset of those letters (in any order). The word list is bundled in the page — no API calls, no server roundtrip.' },
+  { q: 'Do you save the letters I type?', a: 'No, not on our server. Your last input is remembered in your browser via localStorage so the form feels persistent across visits, but nothing leaves your device.' },
+  { q: 'What if I want a specific word length?', a: 'Use the "Min length" filter. Set it to 4 if you only want 4+ letter words; set it to 7 if you only want full 7-letter words.' },
+  { q: 'How do I require specific letters?', a: 'Use the "Must contain" filter. Type the letters that must appear in every result (e.g. "J" for words containing a J).' },
+  { q: 'Where does the word list come from?', a: 'A public-domain English word list (the ENABLE word list, derived from Scrabble tournament dictionaries). It is bundled with the page at build time.' },
+  { q: 'What are the Scrabble scores?', a: 'NA tournament tile values: A=1, B=3, C=3, D=2, E=1, F=4, G=2, H=4, I=1, J=8, K=5, L=1, M=3, N=1, O=1, P=3, Q=10, R=1, S=1, T=1, U=1, V=4, W=4, X=8, Y=4, Z=10.' },
+  { q: 'Is the tool accurate for Scrabble?', a: 'Yes for the ENABLE word list. There are variants (TWL, SOWPODS, OSPD) that allow or disallow certain obscure words. The ENABLE list is the most common baseline.' },
+  { q: 'Can I use this for Words With Friends?', a: 'Words With Friends uses a different (smaller) dictionary. The ENABLE list is a strict superset of most casual word lists, so results should work, but a few WWF-only words might be missing.' },
+];
+---
+<Layout
+  title="FAQ"
+  description="Frequently asked questions about the Word Unscrambler."
+  siteName={siteName}
+  jsonLd={{
+    type: 'FAQPage',
+    data: {
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  }}
+>
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">FAQ</h1>
+    <p class="mt-2 text-neutral-600 dark:text-neutral-400">Common questions about the Word Unscrambler.</p>
+    <div class="mt-10 space-y-4">
+      {faqs.map((f) => (
+        <details class="group rounded-lg border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
+          <summary class="cursor-pointer text-lg font-semibold flex items-center justify-between">
+            {f.q}
+            <span class="text-neutral-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </article>
+</Layout>

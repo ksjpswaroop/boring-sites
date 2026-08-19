@@ -1,0 +1,26 @@
+---
+/**
+ * Disclaimer page. For sites that need site-specific disclaimers
+ * (e.g. "Not affiliated with Wizards of the Coast" for the dragonborn site,
+ * "Not medical advice" for sleep-calculator).
+ */
+export interface Props {
+  siteName: string;
+  items: Array<{ heading: string; body: string }>;
+}
+
+const { siteName, items } = Astro.props;
+---
+<article class="container-prose py-12">
+  <h1 class="text-4xl font-bold">Disclaimers</h1>
+  <p class="mt-2 text-sm text-neutral-500">Site-specific disclaimers for {siteName}.</p>
+
+  <div class="prose mt-8 dark:prose-invert">
+    {items.map((item) => (
+      <>
+        <h2>{item.heading}</h2>
+        <p>{item.body}</p>
+      </>
+    ))}
+  </div>
+</article>

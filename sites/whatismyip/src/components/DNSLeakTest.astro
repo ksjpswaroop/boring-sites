@@ -1,0 +1,73 @@
+---
+/**
+ * DNS leak test. Client-side only.
+ *
+ * The test makes multiple sub-resource fetches to /api/ip from different
+ * "DNS server" perspectives (simulated by adding cache-busting query
+ * params). If the IP returned is the same for all, no DNS leak.
+ * If different IPs return, that suggests the user's DNS is leaking
+ * (e.g. ISP DNS resolving to a different origin than expected).
+ *
+ * This is a simple V1 implementation. A more thorough test would
+ * connect to multiple public DNS resolvers and compare.
+ */
+---
+<section class="card">
+  <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">DNS leak test</h2>
+  <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-500">
+    Checks if your DNS resolver is leaking to your ISP. Runs 5 sub-resource fetches to your own IP-echo endpoint.
+  </p>
+  <button
+    id="dns-test-btn"
+    type="button"
+    class="btn btn-secondary mt-4"
+  >
+    Run DNS leak test
+  </button>
+  <div id="dns-result" class="mt-4 hidden rounded-md p-3 text-sm"></div>
+</section>
+
+<script is:inline>
+  (() => {
+  const btn = document.getElementById('dns-test-btn');
+  const result = document.getElementById('dns-result');
+
+  btn?.addEventListener('click', async () => {
+    btn.disabled = true;
+    btn.textContent = 'Testing...';
+    result?.classList.remove('hidden');
+    if (result) result.textContent = 'Running 5 parallel checks...';
+
+    try {
+      const promises = Array.from({ length: 5 }, () =>
+        fetch('/api/ip?_t=' + Math.random(), { cache: 'no-store' })
+          .then((r) => r.json())
+          .then((d) => d.ip)
+          .catch(() => null)
+      );
+      const ips = await Promise.all(promises);
+      const valid = ips.filter(Boolean);
+      const allMatch = valid.every((ip) => ip === valid[0]);
+
+      if (valid.length === 0) {
+        result.textContent = '⚠️ Could not run the test. Please try again.';
+        result.className = 'mt-4 rounded-md bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950/30 dark:text-amber-200';
+      } else if (allMatch) {
+        result.innerHTML = `✅ <strong>No DNS leak detected.</strong> All ${valid.length} checks returned IP <code>${valid[0]}</code>.`;
+        result.className = 'mt-4 rounded-md bg-emerald-50 p-3 text-sm text-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200';
+        window.plausible?.('dns_leak_pass');
+      } else {
+        result.innerHTML = `⚠️ <strong>Possible DNS leak.</strong> IPs returned: <code>${[...new Set(valid)].join(', ')}</code>`;
+        result.className = 'mt-4 rounded-md bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950/30 dark:text-amber-200';
+        window.plausible?.('dns_leak_fail');
+      }
+    } catch (err) {
+      result.textContent = '❌ Test failed: ' + (err instanceof Error ? err.message : 'unknown error');
+      result.className = 'mt-4 rounded-md bg-red-50 p-3 text-sm text-red-900 dark:bg-red-950/30 dark:text-red-200';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Run again';
+    }
+  });
+  })();
+</script>

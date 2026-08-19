@@ -1,0 +1,572 @@
+[00:00] Every month this boring website gets 11
+[00:02] million visitors and makes about half a
+[00:04] million dollars by doing one simple
+[00:06] thing, unscrambling words. And in this
+[00:09] video, I'm going to show you exactly how
+[00:11] I cloned it without writing a single
+[00:13] line of code in about 15 minutes. I'll
+[00:15] even walk you through how to monetize it
+[00:17] with Google Ads. Now, you might think
+[00:19] you need to be a big brand, sell
+[00:20] products, post loads of articles, or
+[00:23] have a huge social media following to
+[00:25] make this kind of money. But this site
+[00:27] does none of that. It just does one of
+[00:29] the most basic things I've ever seen on
+[00:30] the internet. You type in random
+[00:32] letters, it spits out words. That's
+[00:34] literally it. And here's the crazy part.
+[00:36] There are thousands of boring utility
+[00:38] sites like this quietly making thousands
+[00:41] every single month. This sleep
+[00:42] calculator, $9,000 per month. This what
+[00:45] is my IP address tool, up to $111,000
+[00:49] per month. And a calculator.net,
+[00:51] $825,000
+[00:53] per month. They're all running the same
+[00:55] simple model. And now, with AI, it's
+[00:58] never been more accessible to someone
+[00:59] like you or me. Now, you might be
+[01:01] wondering, "Okay, Jonathan, I get that
+[01:03] AI makes it easy to build the site, but
+[01:05] how do you actually get Google to
+[01:07] recommend it?" That's the part most
+[01:08] videos completely skip over. Well,
+[01:10] that's exactly what I'm going to cover.
+[01:12] I'll show you a foolproof method for
+[01:14] choosing the right utility site to
+[01:16] build. One that can actually rank on
+[01:18] Google because your success is my
+[01:20] success. Welcome back. And if you want
+[01:22] to see more videos where we explore what
+[01:24] one person can build and monetize with
+[01:26] AI, make sure to subscribe, like, and
+[01:28] comment below what you'd like to see
+[01:30] next. And with that said, let's talk
+[01:32] about how this site actually makes
+[01:34] money. And honestly, once you see the
+[01:36] numbers, it's going to change the way
+[01:38] you think about the internet.
+[01:40] >> Astonishing.
+[01:40] >> If you install a free Chrome extension
+[01:42] called SimilarWeb, you will see that
+[01:44] wordunscrambler.me gets between 10 and
+[01:47] 11 million visitors a month. And that's
+[01:49] because people are searching terms like
+[01:51] unscramble words and word unscrambler
+[01:54] millions of times a month. Now, here's
+[01:56] where it gets interesting. Each visitor
+[01:58] views about five pages on average, which
+[02:00] gives us roughly 55 million page views a
+[02:03] month. Now, you might be wondering, what
+[02:05] does that actually mean in dollars? The
+[02:06] site's business model is Google display
+[02:09] ads, like this ad we see here. And
+[02:11] here's something most people get
+[02:13] completely wrong. You might think people
+[02:15] need to actually click the ads for the
+[02:17] site to make money, but that's not the
+[02:19] case. The site gets paid simply for
+[02:21] showing the ad, no clicks needed. So,
+[02:23] how do we figure out exactly how much
+[02:25] it's earning? The that matters is called
+[02:27] RPM, basically how much you earn per
+[02:30] thousand page views. Now, pay attention
+[02:32] here, because this is where it gets
+[02:33] really interesting. For a site like this
+[02:36] that has strong engagement and a lot of
+[02:38] traffic coming from tier one countries
+[02:40] like the United States, that's
+[02:42] realistically somewhere between three
+[02:45] and 12 dollars. If we run the numbers at
+[02:47] nine dollars RPM, that's roughly half a
+[02:50] million dollars a month from a site that
+[02:51] unscrambles words. Just so this is
+[02:53] crystal clear, here's the math. The site
+[02:55] gets about 55 million page views a
+[02:58] month. RPM means earnings per 1,000 page
+[03:01] views. So, if we assume a nine dollar
+[03:03] RPM, we divide 55 million by 1,000 to
+[03:06] get 55,000, then multiply by nine. That
+[03:09] gives us roughly 495,000
+[03:12] dollars per month. If the real RPM is
+[03:15] lower, it earns less. If it's higher, it
+[03:17] earns more. And in a moment, I'll show
+[03:19] you exactly why sites like this are such
+[03:22] a powerful model. So, now you know how
+[03:24] the money works, but here's what makes
+[03:26] these utility sites genuinely genius.
+[03:30] >> Genius.
+[03:31] >> They solve one specific problem
+[03:33] instantly. Someone searches mortgage
+[03:35] calculator, gets their answer in
+[03:37] seconds, and leaves happy. And if
+[03:39] they're happy, Google's happy, and will
+[03:41] keep sending you more traffic. And the
+[03:43] demand? It's huge and evergreen. People
+[03:46] needed a budget calculator 10 years ago,
+[03:49] they need one today, they'll need one in
+[03:51] 2030. Something you build this week
+[03:54] could still be earning years from now.
+[03:56] Now, compare that to content businesses.
+[03:58] With a blog or YouTube channel, you're
+[04:00] constantly creating. It never stops.
+[04:03] With a utility site, you build it once
+[04:06] and it runs indefinitely. Now, you might
+[04:08] be wondering, if this is so good, why
+[04:10] isn't everyone doing it? Well, up until
+[04:12] recently, you had two options. Spend
+[04:15] months or even years learning to code or
+[04:18] hire a developer for a few thousand
+[04:20] dollars per tool. Either way, it was out
+[04:22] of reach for most people. But that's
+[04:24] exactly what's changed. And in a moment,
+[04:26] I'm going to show you the exact process
+[04:28] I use to build one of these sites. No
+[04:30] coding, no developers, no experience
+[04:33] needed. Now, when I say anyone can build
+[04:36] a utility site like this without writing
+[04:38] any code, I genuinely mean that. I've
+[04:40] built multiple sites this way and the
+[04:42] process is the same every time. You just
+[04:44] chat with AI in plain English and it
+[04:46] builds it for you. The tool we're using
+[04:48] today is Hosting a Horizons, an
+[04:50] all-in-one platform that takes your idea
+[04:52] from concept to fully operational
+[04:54] website just by describing what you
+[04:56] want. Now, you might be wondering, is
+[04:58] there a catch? Like, does it actually
+[05:00] work or is it one of those tools that
+[05:02] sounds good but falls apart the moment
+[05:04] you try to do something real? Well,
+[05:06] stick around because you're about to see
+[05:07] me build a complete working utility site
+[05:10] from scratch in this video. But first,
+[05:12] let's get you set up. Go ahead and click
+[05:14] the link in the description. It'll take
+[05:16] you right to Hosting a Horizons. I'm
+[05:18] using the starter plan and here's why it
+[05:20] makes sense. You can launch up to 25
+[05:23] websites, monetize them, sell digital or
+[05:26] physical products, and you get a free
+[05:28] domain for the first year. For what
+[05:30] we're building, that's everything you
+[05:31] need. And right now, they're running a
+[05:33] deal. If you go with the 12-month
+[05:35] option, you'll get a big discount and
+[05:38] you'll see a spot for a coupon code that
+[05:40] gets you an additional 10% off on top of
+[05:42] that. Plus, they have a 30-day
+[05:44] money-back guarantee. So, if you try it
+[05:47] and it's not for you, you just get your
+[05:49] money back. No stress. Once you're
+[05:51] inside, this is where it gets fun
+[05:53] because from here, you can literally
+[05:55] create anything you want just by
+[05:57] describing it. And that's exactly what
+[05:59] we're about to do. So, watch how I
+[06:00] create, step-by-step, a site just like
+[06:03] wordunscrambler.me using Hostinger
+[06:06] Horizons just by chatting with its AI
+[06:09] instead of coding or hiring a web
+[06:10] developer. And I want you to pay close
+[06:12] attention here because what you're about
+[06:14] to see might genuinely surprise you.
+[06:16] Let's get this jam started. So, inside
+[06:19] Hostinger Horizons, everything starts
+[06:21] with a chat box. I'm just going to
+[06:22] describe in plain English what I want
+[06:25] Horizons to build for me. Here's the
+[06:27] prompt. I want to build a simple web app
+[06:29] that is a word unscrambler. The user
+[06:31] types in a group of letters and the word
+[06:33] unscrambler shows all the real English
+[06:36] words that can be made from those
+[06:38] letters and so on. Now, we just hit
+[06:40] enter and Horizons gets to work. And
+[06:43] watch this. After a few minutes, it
+[06:45] already delivers us a working version.
+[06:48] However, it's designed the main function
+[06:50] behind a button click, which isn't
+[06:52] ideal. We want it visible immediately.
+[06:55] And this is where most people would get
+[06:57] stuck, but all we have to do is tell it
+[06:59] what we want fixed. We write, "The
+[07:01] letter box to put letters into should be
+[07:03] available immediately." And in under 2
+[07:06] minutes, it's done. Look how it's
+[07:08] already working perfectly. After putting
+[07:11] in these random letters, it's found 12
+[07:13] words and grouped them by word length.
+[07:16] Now, at this point, this is already
+[07:18] publishable, but here's where it gets
+[07:20] interesting. There are a couple of
+[07:22] things I'd like to improve. The
+[07:23] unscramble button seems very far away
+[07:26] from where the letters are inserted. And
+[07:28] if we compare to the successful site,
+[07:30] the user doesn't have to move their
+[07:32] cursor so far to click it. Besides that,
+[07:35] the site is only using black and green,
+[07:37] which is pretty boring. So, let's just
+[07:39] ask Horizons to fix those things and
+[07:41] watch how it follows our instructions to
+[07:43] the letter, pun intended. This is
+[07:46] looking better. The button feels more
+[07:48] accessible and the site is now using
+[07:50] various colors and it's still working
+[07:52] exactly as intended. Now, you might be
+[07:55] wondering, is that it? Are we done?
+[07:57] Well, almost but not quite because if we
+[07:59] look more closely at what the most
+[08:01] successful sites in this space are
+[08:03] doing, there's one thing they all have
+[08:05] that we're missing. If we look more
+[08:06] closely at the example site, as well as
+[08:09] this other successful site, we can see
+[08:12] they include additional options, which
+[08:14] it turns out are essential for many
+[08:16] common use cases, particularly word
+[08:19] games like Scrabble or Wordle. Our web
+[08:21] app would be lacking without these. If
+[08:24] we had to figure out the code and logic
+[08:26] to build these options, it would be a
+[08:28] real headache. But, all we have to do is
+[08:30] ask Horizons. I just specify what the
+[08:32] additional options should do and again
+[08:35] in a few minutes, that is done. Let's
+[08:38] try it out. We'll say the word has to
+[08:40] start with the E and contain five
+[08:42] letters, which gives us eagle, working
+[08:44] perfectly. And just to make sure, let's
+[08:46] find all words that contain an X. And
+[08:49] there you have it. Fantastic. Just one
+[08:51] last tweak. I prefer the options to not
+[08:53] be visible immediately and let's make
+[08:55] the button stand out more by changing
+[08:57] its color. Done. We'll just check it's
+[09:00] still working and we are ready to
+[09:02] publish. Publishing could not be
+[09:04] simpler. We just go up here to the
+[09:05] publish button and click it. That's it.
+[09:07] We've literally got a live site now.
+[09:09] However, there is one thing you'll want
+[09:11] to change straight away and that's your
+[09:12] domain name because this is what
+[09:14] determines whether Google can actually
+[09:16] find your site. Our site is currently on
+[09:18] a temporary domain, which is not good
+[09:21] for search optimization. What we want is
+[09:23] a domain name that matches what our site
+[09:25] does. So, click here to load the domain
+[09:28] search tool. Surprise, surprise,
+[09:30] wordunscrambled.com
+[09:32] is not available. So, ChatGPT gives me
+[09:34] some alternative suggestions to try. I
+[09:36] like this one, which is available with a
+[09:38] .com, so I'll take it. The domain is now
+[09:41] connected, and despite the fact that it
+[09:42] says it needs more time, let's just try
+[09:44] loading the site anyway in a new browser
+[09:46] tab. And there you go, it's already up
+[09:48] and running. Seven words, fully
+[09:51] functional, and check this out. We can
+[09:53] load it on the phone, and it's perfectly
+[09:55] adapted to my device, and fully
+[09:57] functional. Congratulations, you just
+[09:59] built your first utility site. And now
+[10:01] comes the part that actually turns it
+[10:03] into a business. I'm going to walk you
+[10:05] through setting up Google display ads on
+[10:07] your site step-by-step. And if you
+[10:09] remember the numbers from earlier, page
+[10:11] views, RPM, this is the step that makes
+[10:14] all of that real. The first step is to
+[10:16] go to adsense.google.com and click sign
+[10:18] up. Once you're signed in, write your
+[10:20] site's domain in this field, then click
+[10:23] start using AdSense. Now, you might be
+[10:25] wondering, is this going to be
+[10:26] complicated because AdSense has a
+[10:28] reputation for being a bit of a
+[10:29] headache, but I promise you, with
+[10:31] Horizons, it's about as painless as it
+[10:33] gets. Now, we come to this screen,
+[10:35] showing the next three steps. Your
+[10:37] payment info, how ads will look on your
+[10:39] site, and connecting your site to
+[10:41] AdSense. Click payment info and fill it
+[10:44] out. Then click the explore button to
+[10:46] see how ads will look on your site.
+[10:48] Here, you can preview the locations of
+[10:50] ad spots and remove any you don't want.
+[10:52] However, this isn't working yet because
+[10:54] we need to grab some code and put it in
+[10:56] our site first. And this is the bit that
+[10:58] would normally trip people up, but watch
+[11:00] how simple this is. Click this red get
+[11:03] code button, hit copy, and just ask
+[11:05] Hosting a Horizons to insert the code
+[11:07] for us, then publish changes. Now, come
+[11:10] back to AdSense, check the placements,
+[11:13] and click this icon on any you want to
+[11:15] remove. Switch between mobile and
+[11:17] desktop previews. Click apply to site,
+[11:20] then save. And now for the final step,
+[11:23] connecting the site. Click let's go,
+[11:25] check I've placed the code, and click
+[11:27] verify, and our site is verified, just
+[11:30] like that. All that's left is to request
+[11:32] a review for compliance. Now, here's
+[11:34] something I want to be up front about
+[11:36] because most videos on this topic just
+[11:38] gloss over it. You will need to do a bit
+[11:40] more work on the site before it gets
+[11:41] accepted into AdSense. If we look at our
+[11:44] example site and this other very similar
+[11:46] one also with huge traffic, we see they
+[11:48] have a handful of related tools, some
+[11:51] legal pages, and a bit more content like
+[11:53] an in-depth explanation of what the site
+[11:55] is for. Now, I know what you're
+[11:56] thinking. That sounds like a lot, but
+[11:58] here's the thing. easily done with
+[12:00] Hostinger Horizons. The additional
+[12:02] content and legal pages can be done in a
+[12:04] jiffy. And for the other tools, you just
+[12:06] repeat the same process we already went
+[12:08] through. Right, so you've now got a
+[12:10] fully built monetized utility site. But
+[12:13] before we move on, there's something
+[12:14] important I want to address. I know
+[12:16] you're smart enough to realize that
+[12:18] having ads on your site doesn't
+[12:19] guarantee you'll get income. The income
+[12:22] is generated when you have traffic. And
+[12:23] traffic will only be generated when
+[12:25] Google includes your site at the top of
+[12:27] the search results. And getting ranked
+[12:29] on Google's first page is a whole topic,
+[12:32] no, a whole industry in itself. So, you
+[12:35] might be wondering, is there actually a
+[12:37] simple way to approach this? Or do you
+[12:39] need to become an SEO expert? Well,
+[12:41] actually, there are simple strategies
+[12:43] that can give you the best possible
+[12:45] chance of getting ranked fast, which I
+[12:47] will explain in a minute. Before that, I
+[12:49] just want to add that there is nothing
+[12:51] stopping you publishing multiple simple
+[12:53] tool sites or even multiple similar
+[12:55] tools on the same site, just as our
+[12:57] example word unscrambler site does. That
+[13:00] way, you're not putting all your eggs in
+[13:02] one basket. And at the same time, you're
+[13:04] giving yourself the best chance of
+[13:06] earning as quickly as possible. And this
+[13:08] strategy leads to compound earnings.
+[13:11] Even if you're not earning much with
+[13:12] recently launched sites, if you have
+[13:14] multiple sites, the earnings can start
+[13:16] to increase quickly. If you had four or
+[13:18] five tools earning $100 to $200 each,
+[13:21] for example, you could quickly get to
+[13:23] $1,000 per month. And as I've shown you,
+[13:25] going from idea to published site can be
+[13:28] done in under an hour and often even
+[13:30] faster with Hosting a Horizons. Heck,
+[13:33] you could even publish five on the same
+[13:35] day. And actually, before I show you the
+[13:37] research strategy, Horizons has one more
+[13:39] feature I want to show you that could
+[13:41] earn you passive income because the more
+[13:43] sites you build, the more this one could
+[13:46] work in your favor. And this is
+[13:47] something I really like about Horizons
+[13:49] and it's something most people
+[13:51] completely overlook because every site
+[13:53] you build can become an additional
+[13:55] income stream all on its own, completely
+[13:58] separate from the ad revenue and Google.
+[14:00] And it requires zero extra effort on
+[14:03] your part. It's called remixable
+[14:05] templates. Here's the idea. You build
+[14:06] something with Horizons, a landing page,
+[14:09] a tool, a small app, whatever. Then you
+[14:11] publish it as a template. Now, anyone
+[14:14] can click remix and instantly get their
+[14:16] own copy of it. They can edit it, change
+[14:18] the design, and turn it into their own
+[14:20] project. Now, you might be wondering
+[14:22] what's in it for you. Well, if someone
+[14:24] remixes your template and then signs up
+[14:26] for Horizons, you earn a referral
+[14:28] commission on whatever plan they sign up
+[14:31] for, up to $150 per referral. And all
+[14:33] you have to do to activate it is to come
+[14:36] up here inside your Horizons project and
+[14:38] click let others copy your website and
+[14:41] then allow copying. That's all there is
+[14:43] to it. So, think about what that means.
+[14:46] The more sites you build, the more
+[14:47] templates you can offer. And the more
+[14:49] templates you offer, the more chances
+[14:50] you have of earning that commission
+[14:52] completely passively while you sleep.
+[14:55] So, your projects don't just sit there.
+[14:56] They can become templates that bring in
+[14:58] users and generate passive income for
+[15:00] you. Build once, let others remix it,
+[15:03] and get paid when they launch. And the
+[15:05] more you build, the more that potential
+[15:07] compounds. So, now let's talk about how
+[15:09] to make sure the sites you build
+[15:11] actually get found on Google. Now, what
+[15:14] I'm about to show you is actually
+[15:15] crucial for your success and something
+[15:17] that a lot of videos completely
+[15:19] overlook. And honestly, this is the part
+[15:21] that determines whether your site earns
+[15:23] money or just sits there doing nothing.
+[15:25] >> Do nothing.
+[15:26] >> I'm going to give you a little-known
+[15:28] method for choosing what web app to
+[15:30] build that removes all the headache and
+[15:32] allows you to make a confident choice
+[15:33] that gives you the best chance to get
+[15:35] off to a flying start.
+[15:36] >> Flying? Still flying?
+[15:39] >> First off, let's be clear about what we
+[15:41] want. We do want to find something that
+[15:43] a lot of people are searching for, but
+[15:46] we don't want too much competition from
+[15:48] other sites that Google already trusts.
+[15:51] And this is traditionally done by doing
+[15:53] keyword research, looking at the
+[15:54] popularity and competition for a given
+[15:56] topic with the aim of finding something
+[15:58] popular but easy to rank for. But
+[16:00] really, the best way to know that a
+[16:02] topic is easy to rank for is to look at
+[16:04] Google itself because when the first
+[16:06] page of Google has new sites on it, it
+[16:09] usually means the older, trusted sites
+[16:11] aren't fully answering the search query,
+[16:13] so Google is still looking for better
+[16:15] results. Now, you might be wondering,
+[16:17] how do you actually find those
+[16:19] opportunities without spending hours
+[16:21] trawling through Google results? Well,
+[16:23] you can't just endlessly search random
+[16:26] Google results because you'd be
+[16:27] searching for the proverbial needle in a
+[16:29] haystack. And on the other hand, there's
+[16:31] no tool in existence that will spit out
+[16:34] a guaranteed money-making niche at the
+[16:36] push of a button. The reality is
+[16:38] somewhere in the middle ground. We start
+[16:39] with one broad idea, then use a research
+[16:42] tool to help us find opportunities
+[16:44] within it. There are a lot of keyword
+[16:46] tools out there, and the most popular
+[16:48] ones are pretty pricey. But the most
+[16:50] helpful ones don't just give you piles
+[16:52] of data. They actually tell you which
+[16:54] queries Google is serving new sites for,
+[16:57] saving you endless hours of trawling.
+[16:59] So, let's run through this step by step.
+[17:01] We start with a seed keyword, something
+[17:03] like time, calculator, PDF. I'm going to
+[17:06] try generator. My preferred tool for
+[17:08] this is Clearscope. Enter the seed
+[17:10] keyword, set it to only show easy
+[17:12] keywords with a maximum difficulty of 10
+[17:15] out of 100, then hit research. We'll get
+[17:18] this list of keywords all related to
+[17:20] generator. Now, sort the list by
+[17:22] difficulty so the easiest are shown
+[17:24] first. Then, go through the list and
+[17:27] check any that look like they could be
+[17:28] answered by a web app, like this one
+[17:30] here, phone number generator. And now
+[17:32] for the crucial step, we ask it to
+[17:34] analyze all the Google search results
+[17:36] pages for the queries we selected and to
+[17:39] tell us if it finds any new sites
+[17:41] included in the results. And here's what
+[17:43] we get back. The numbers in the circles
+[17:45] are trustworthiness scores from 0 to
+[17:47] 100, and ones highlighted in blue have a
+[17:50] very low trustworthiness, which is
+[17:52] almost always because they're new. And
+[17:53] without scrolling down, we already see
+[17:55] three queries with new sites ranking on
+[17:58] the first page of Google. So, what this
+[18:00] is actually telling you is that Google
+[18:02] thinks this new site is answering the
+[18:04] query better than more established and
+[18:06] trusted sites, which means there's a gap
+[18:08] and you can potentially fill it. In a
+[18:10] nutshell, a random phone number
+[18:12] generator and a Dragonborn name
+[18:13] generator should rank quickly. And they
+[18:16] both have a decent volume of monthly
+[18:18] searches. Any questions about this? Or
+[18:20] if you want me to do another video just
+[18:21] on this, please leave me a comment
+[18:23] below. Right, before we wrap up, I want
+[18:26] to zoom out for a second because I think
+[18:28] it's important you understand what we've
+[18:30] actually built here today because this
+[18:32] isn't just a word unscrambler, it's a
+[18:33] digital asset. Six months ago, building
+[18:36] something like this meant either
+[18:38] learning to code, which takes months, or
+[18:40] hiring a developer for a few thousand
+[18:43] dollars. For most people, that door was
+[18:45] simply closed.
+[18:47] Now, you just did it in minutes. And
+[18:49] these tools don't expire. A calculator
+[18:51] you build today can still be earning in
+[18:53] 2030 with zero maintenance. And
+[18:56] remember, the best strategy is a
+[18:58] compound strategy. One tool might earn
+[19:01] $20 a month, another might earn 500,
+[19:03] another 5,000. So, don't give yourself
+[19:06] the pressure of aiming for a mega
+[19:08] successful site on your first build.
+[19:10] Don't build one tool, build a portfolio
+[19:12] of sites or a handful of related tools
+[19:15] on one site, each pulling in its own
+[19:16] traffic, each showing ads. Because even
+[19:18] modest earnings stack up fast. Five
+[19:21] tools earning $200 each is $1,000 a
+[19:23] month already. Add one that breaks
+[19:25] through and you're looking at
+[19:26] life-changing income from sites you
+[19:28] built in an afternoon. Now, I think it's
+[19:30] important to bear in mind that only a
+[19:32] small percentage of people know about
+[19:34] this business model and an even smaller
+[19:36] percentage of that percentage will
+[19:38] actually take action on it. And an even
+[19:40] smaller percentage will stick at it if
+[19:43] the first project fails. So, I challenge
+[19:45] you to be one of the few who do profit
+[19:47] from this once-in-a-lifetime
+[19:48] opportunity. And you can be sure of one
+[19:50] thing, the only guarantee of failure is
+[19:52] not trying. The model is proven, the
+[19:54] demand is evergreen, and the barrier to
+[19:56] entry has never been lower. Your first
+[19:59] digital asset is one Horizon session
+[20:01] away. I really hope that was useful to
+[20:03] you. And if you'd like to see more
+[20:05] videos of me building stuff with Hosting
+[20:07] a Horizons, let me know in the comments
+[20:09] below. Don't forget to download the show
+[20:11] notes to this video using the link in
+[20:13] the description below. Thanks for
+[20:15] watching and consider subscribing. I'll
+[20:17] see you in the next one.

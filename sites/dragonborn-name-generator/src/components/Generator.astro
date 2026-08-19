@@ -1,0 +1,189 @@
+---
+/**
+ * The main generator UI. A client-side island that:
+ * 1. Renders race + gender pickers
+ * 2. On click, generates 10 names via shuffle
+ * 3. Saves last selection to localStorage
+ * 4. Tracks Plausible events
+ */
+import { type NamePool } from '../lib/generator';
+
+export interface Props {
+  pools: Record<string, NamePool>;
+  defaultRace?: string;
+  defaultGender?: 'masculine' | 'feminine' | 'neutral';
+}
+
+const { pools, defaultRace = 'dragonborn', defaultGender = 'masculine' } = Astro.props;
+const races = Object.values(pools);
+const initialPool = pools[defaultRace];
+const initialNames: string[] = [];
+---
+<div class="card" id="generator">
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div>
+      <label for="race-select" class="block text-sm font-medium">Race</label>
+      <select
+        id="race-select"
+        class="mt-1 block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-base dark:border-neutral-700 dark:bg-neutral-900"
+      >
+        {races.map((race) => (
+          <option value={race.race} selected={race.race === defaultRace}>{race.displayName}</option>
+        ))}
+      </select>
+    </div>
+    <div>
+      <label for="gender-select" class="block text-sm font-medium">Gender</label>
+      <select
+        id="gender-select"
+        class="mt-1 block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-base dark:border-neutral-700 dark:bg-neutral-900"
+      >
+        <option value="masculine" selected={defaultGender === 'masculine'}>Masculine</option>
+        <option value="feminine" selected={defaultGender === 'feminine'}>Feminine</option>
+        <option value="neutral" selected={defaultGender === 'neutral'}>Gender-neutral</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="mt-6 flex flex-wrap items-center gap-3">
+    <button
+      id="generate-btn"
+      type="button"
+      class="btn btn-primary px-6 py-3 text-base"
+      data-default-pool={defaultRace}
+      data-default-gender={defaultGender}
+    >
+      🎲 Generate 10 Names
+    </button>
+    <button
+      id="reroll-all-btn"
+      type="button"
+      class="btn btn-secondary"
+    >
+      Reroll All
+    </button>
+    <p class="text-sm text-neutral-500" id="result-count"></p>
+  </div>
+
+  <ul id="name-list" class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+    {initialNames.map((name) => (
+      <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
+        <span class="font-medium">{name}</span>
+        <button class="copy-btn text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-name={name} aria-label={`Copy ${name}`}>
+          Copy
+        </button>
+      </li>
+    ))}
+  </ul>
+
+  <p id="empty-state" class="mt-8 hidden text-center text-sm text-neutral-500">
+    Click "Generate" to get 10 names.
+  </p>
+</div>
+
+<script is:inline define:vars={{ pools, defaultRace, defaultGender, initialPool, initialNames }}>
+  // === Client-side generator ===
+  // Uses the same shuffle logic as the server. Pulls pools from inline JSON
+  // (injected by Astro's define:vars), so no second request is needed.
+
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+  function shuffle(arr) {
+    const r = [...arr];
+    for (let i = r.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [r[i], r[j]] = [r[j], r[i]];
+    }
+    return r;
+  }
+
+  function pickN(pool, n) {
+    if (pool.length <= n) return Array.from(new Set(pool));
+    return shuffle(pool).slice(0, n);
+  }
+
+  function getPool() {
+    const race = $('#race-select').value;
+    return pools[race];
+  }
+
+  function getGender() {
+    return $('#gender-select').value;
+  }
+
+  function loadLast(key, fallback) {
+    try {
+      const v = localStorage.getItem('boring-sites:dragonborn:' + key);
+      return v ? JSON.parse(v) : fallback;
+    } catch { return fallback; }
+  }
+  function saveLast(key, value) {
+    try { localStorage.setItem('boring-sites:dragonborn:' + key, JSON.stringify(value)); } catch {}
+  }
+
+  function renderNames(names) {
+    const list = $('#name-list');
+    list.innerHTML = names.map((name) => `
+      <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
+        <span class="font-medium">${name}</span>
+        <button class="copy-btn text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-name="${name}" aria-label="Copy ${name}">
+          Copy
+        </button>
+      </li>
+    `).join('');
+    $('#result-count').textContent = names.length > 0 ? `${names.length} names` : '';
+    $('#empty-state').classList.toggle('hidden', names.length > 0);
+    bindCopyButtons();
+  }
+
+  function bindCopyButtons() {
+    $$('.copy-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const name = btn.getAttribute('data-name');
+        try {
+          await navigator.clipboard.writeText(name);
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 1200);
+          window.plausible?.('copy_name', { props: { race: getPool().race, gender: getGender() } });
+        } catch (err) {
+          // Clipboard might be blocked
+        }
+      });
+    });
+  }
+
+  function generate() {
+    const pool = getPool();
+    const gender = getGender();
+    const candidates = pool.pools[gender] || pool.pools.neutral || [];
+    const names = pickN(candidates, 10);
+    renderNames(names);
+    saveLast('race', pool.race);
+    saveLast('gender', gender);
+    window.plausible?.('generate_click', { props: { race: pool.race, gender } });
+  }
+
+  // Restore last selection
+  const lastRace = loadLast('race', defaultRace);
+  const lastGender = loadLast('gender', defaultGender);
+  $('#race-select').value = lastRace;
+  $('#gender-select').value = lastGender;
+
+  // Wire up
+  $('#generate-btn').addEventListener('click', generate);
+  $('#reroll-all-btn').addEventListener('click', generate);
+  $('#race-select').addEventListener('change', () => {
+    saveLast('race', $('#race-select').value);
+    if ($('#name-list').children.length > 0) generate();
+  });
+  $('#gender-select').addEventListener('change', () => {
+    saveLast('gender', $('#gender-select').value);
+    if ($('#name-list').children.length > 0) generate();
+  });
+
+  // Auto-generate on first visit (so the page never feels empty)
+  // Comment out if you prefer a click-to-generate UX
+  generate();
+</script>

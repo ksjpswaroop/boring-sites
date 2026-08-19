@@ -1,0 +1,80 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../components/NoLogsBanner.astro';
+const siteName = 'What Is My IP';
+const faqs = [
+  {
+    q: 'How do you know my IP without logging it?',
+    a: 'Your browser sends your IP as part of the TCP connection that loads this page. The web server reads it from the x-forwarded-for header, writes it into the HTML you receive, and that\'s the end. The IP never gets stored anywhere. The source code is open on GitHub so you can verify.',
+  },
+  {
+    q: 'What is the difference between IPv4 and IPv6?',
+    a: 'IPv4 is the older format (e.g. 192.168.1.1 or 8.8.8.8). IPv6 is the newer format (e.g. 2001:db8::1). Most people have both. IPv4 is what most websites use; IPv6 is gradually replacing it as we run out of IPv4 addresses.',
+  },
+  {
+    q: 'What is the difference between my public and private IP?',
+    a: 'Your public IP is the address that the rest of the internet sees — what this site shows. Your private IP is the address of your device on your local network (e.g. 192.168.1.x or 10.0.0.x). Private IPs aren\'t routable on the public internet; they only work inside your home or office network.',
+  },
+  {
+    q: 'Why does my IP show as a different country than my physical location?',
+    a: 'Most likely you\'re using a VPN, proxy, or corporate network. The IP is owned by whoever provides your internet egress (your VPN provider, your company, your ISP) — the geolocation reflects the IP\'s registration, not your physical location.',
+  },
+  {
+    q: 'Can someone hack me if they know my IP?',
+    a: 'Knowing someone\'s public IP gives an attacker very little. Modern operating systems and routers don\'t expose services by default. The real risk is if you have an open port, a vulnerable service, or a poorly-configured firewall. If you\'re concerned, run a port scan against yourself and close what you don\'t need.',
+  },
+  {
+    q: 'Why do you need a "no logs" policy? What\'s the harm?',
+    a: 'An IP address is personally identifiable information. Combined with the rest of your browsing, it can be used to track you across sites, build a profile of you, and target you with ads (or worse). Logs are also a target for hackers — companies that store IPs get breached. Not logging is the safest default.',
+  },
+  {
+    q: 'Do you make money from this site?',
+    a: 'Yes, via Google AdSense. We don\'t sell your data, we don\'t run sponsored content, we don\'t have a premium tier. The site is free forever.',
+  },
+  {
+    q: 'Can I see the source code?',
+    a: 'Yes. The full source is on GitHub: github.com/ksjpswaroop/boring-sites. Audit it, fork it, host your own version — whatever.',
+  },
+  {
+    q: 'Why no Google Analytics?',
+    a: 'Google Analytics stores IP addresses. Using it would violate our no-logs policy. Plausible is cookieless and doesn\'t store personal data — that\'s why we use it.',
+  },
+  {
+    q: 'Will the DNS leak test catch every leak?',
+    a: 'No. It\'s a simple heuristic that checks whether multiple sub-resource fetches all return the same IP. A more thorough test would connect to multiple public DNS resolvers and compare. For casual checks this is enough; for security-critical verification, use a dedicated tool.',
+  },
+];
+---
+<Layout
+  title="FAQ"
+  description="Frequently asked questions about What Is My IP, the privacy-first IP lookup tool."
+  siteName={siteName}
+  jsonLd={{
+    type: 'FAQPage',
+    data: {
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  }}
+>
+  <NoLogsBanner />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">FAQ</h1>
+    <p class="mt-2 text-neutral-600 dark:text-neutral-400">Common questions about What Is My IP, the no-logs promise, and the diagnostic checks.</p>
+
+    <div class="mt-10 space-y-4">
+      {faqs.map((f) => (
+        <details class="group rounded-lg border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
+          <summary class="cursor-pointer text-lg font-semibold flex items-center justify-between">
+            {f.q}
+            <span class="text-neutral-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,115 @@
+---
+/**
+ * WebRTC leak test. Client-side only.
+ *
+ * Uses RTCPeerConnection to discover local network IPs that the browser
+ * would expose to a STUN server. If local IPs (e.g. 192.168.x.x) appear,
+ * that's a potential WebRTC leak.
+ *
+ * Standard test. Google STUN server is used for the ICE candidates.
+ */
+---
+<section class="card">
+  <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">WebRTC leak test</h2>
+  <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-500">
+    Detects if your browser is exposing local network IPs via WebRTC.
+  </p>
+  <button
+    id="webrtc-test-btn"
+    type="button"
+    class="btn btn-secondary mt-4"
+  >
+    Run WebRTC leak test
+  </button>
+  <div id="webrtc-result" class="mt-4 hidden rounded-md p-3 text-sm"></div>
+  <div id="webrtc-ips" class="mt-2 hidden">
+    <p class="text-xs text-neutral-500 dark:text-neutral-500">Discovered IPs:</p>
+    <ul id="webrtc-ip-list" class="mt-1 font-mono text-xs"></ul>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+  const btn = document.getElementById('webrtc-test-btn');
+  const result = document.getElementById('webrtc-result');
+  const ipsContainer = document.getElementById('webrtc-ips');
+  const ipsList = document.getElementById('webrtc-ip-list');
+
+  function isLocalIp(ip) {
+    return (
+      ip.startsWith('192.168.') ||
+      ip.startsWith('10.') ||
+      /^172\.(1[6-9]|2\d|3[0-1])\./.test(ip) ||
+      ip.startsWith('fe80:') ||
+      ip === '::1'
+    );
+  }
+
+  btn?.addEventListener('click', async () => {
+    btn.disabled = true;
+    btn.textContent = 'Testing...';
+    result?.classList.remove('hidden');
+    ipsContainer?.classList.add('hidden');
+    if (result) result.textContent = 'Discovering local IPs via WebRTC...';
+
+    const found = [];
+
+    try {
+      const pc = new RTCPeerConnection({
+        iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+      });
+      pc.createDataChannel('');
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      await new Promise((resolve) => {
+        const candidates = new Set();
+        pc.onicecandidate = (event) => {
+          if (event.candidate) {
+            const match = event.candidate.candidate.match(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|[a-f0-9:]+:[a-f0-9:]+)/i);
+            if (match && !candidates.has(match[1])) {
+              candidates.add(match[1]);
+              found.push(match[1]);
+            }
+          } else {
+            resolve();
+          }
+        };
+        // Timeout after 3s
+        setTimeout(() => resolve(), 3000);
+      });
+      pc.close();
+    } catch (err) {
+      result.textContent = '❌ WebRTC test failed: ' + (err instanceof Error ? err.message : 'WebRTC may be disabled');
+      result.className = 'mt-4 rounded-md bg-red-50 p-3 text-sm text-red-900 dark:bg-red-950/30 dark:text-red-200';
+      btn.disabled = false;
+      btn.textContent = 'Run again';
+      return;
+    }
+
+    const localIps = found.filter(isLocalIp);
+    const publicIps = found.filter((ip) => !isLocalIp(ip));
+
+    if (ipsList) {
+      ipsList.innerHTML = found.map((ip) => `<li>${ip} ${isLocalIp(ip) ? '<span class="text-amber-600 dark:text-amber-400">[local]</span>' : '<span class="text-emerald-600 dark:text-emerald-400">[public]</span>'}</li>`).join('');
+    }
+    ipsContainer?.classList.remove('hidden');
+
+    if (localIps.length > 0) {
+      result.innerHTML = `⚠️ <strong>WebRTC leak detected.</strong> Found ${localIps.length} local IP${localIps.length === 1 ? '' : 's'}. Disable WebRTC in your browser to prevent leaks.`;
+      result.className = 'mt-4 rounded-md bg-amber-50 p-3 text-sm text-amber-900 dark:bg-amber-950/30 dark:text-amber-200';
+      window.plausible?.('webrtc_leak_detected');
+    } else if (publicIps.length > 0) {
+      result.innerHTML = `✅ <strong>No WebRTC leak.</strong> Only public IPs discovered (${publicIps.length}).`;
+      result.className = 'mt-4 rounded-md bg-emerald-50 p-3 text-sm text-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-200';
+      window.plausible?.('webrtc_no_leak');
+    } else {
+      result.textContent = 'No IPs discovered. WebRTC may be disabled in your browser.';
+      result.className = 'mt-4 rounded-md bg-neutral-50 p-3 text-sm text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Run again';
+  });
+  })();
+</script>

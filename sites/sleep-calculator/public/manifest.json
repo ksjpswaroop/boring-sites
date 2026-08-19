@@ -1,0 +1,12 @@
+{
+  "name": "Sleep Calculator",
+  "short_name": "Sleep Calc",
+  "description": "Calculate optimal bedtimes and wake times based on 90-min sleep cycles.",
+  "theme_color": "#0A66C2",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,95 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Generator from '../components/Generator.astro';
+
+const siteName = 'Word Unscrambler';
+const description = 'Free word unscrambler: type your letters, get all valid English words. Real-time, mobile-friendly, no signup. Includes Scrabble scores.';
+const url = 'https://wordunscrambler.example.com';
+---
+<Layout
+  title="Word Unscrambler — Type Letters, Get All Words"
+  description={description}
+  siteName={siteName}
+  nav={[
+    { label: 'How it works', href: '#how' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: siteName,
+      description,
+      url,
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  }}
+>
+  <section class="container-wide py-12 sm:py-16">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Word Unscrambler</h1>
+        <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
+          Type your jumbled letters. Get every valid English word. Real-time, with Scrabble scores.
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <Generator />
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-3xl font-bold">How it works</h2>
+        <div class="prose mt-6 dark:prose-invert">
+          <p>
+            The unscrambler runs entirely in your browser. Type your letters; the tool instantly finds every valid English word that can be formed from a subset of those letters (in any order).
+          </p>
+          <p>
+            For each result, you see the word's <strong>length</strong> and <strong>Scrabble score</strong> (NA tournament values). Filter by minimum length, require certain letters, or sort by length or score.
+          </p>
+          <p>
+            The word list is bundled at build time — no API calls, no server roundtrip. Your last input is remembered in your browser.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wide py-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-2xl font-bold">Use cases</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 text-left">
+        <div class="card">
+          <h3 class="font-semibold">🎲 Scrabble / WWF</h3>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Stuck mid-game? Type your rack, see every word you can make.</p>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold">📚 Crosswords &amp; anagrams</h3>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Working a puzzle? Use the must-contain filter to find words that fit.</p>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold">✍️ Writers &amp; word games</h3>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Looking for a word you can't quite remember? Type the letters you know.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-prose text-center">
+      <h2 class="text-2xl font-bold">More from the boring-sites portfolio</h2>
+      <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://dragonbornnames.example.com" class="btn btn-secondary">🐉 Dragonborn Names</a>
+        <a href="https://sleepcalculator.example.com" class="btn btn-secondary">😴 Sleep Calculator</a>
+        <a href="https://whatismyip.example.com" class="btn btn-secondary">🌐 What Is My IP</a>
+        <a href="https://calculator.example.com" class="btn btn-secondary">🧮 Calculators</a>
+        <a href="https://phonenumbergen.example.com" class="btn btn-secondary">📞 Phone Number Generator</a>
+      </div>
+    </div>
+  </section>
+</Layout>

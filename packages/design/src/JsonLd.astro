@@ -1,0 +1,23 @@
+---
+/**
+ * Schema.org JSON-LD component.
+ * Renders structured data for SEO + rich snippets.
+ *
+ * Usage:
+ *   <JsonLd type="WebApplication" data={{ name: "...", description: "..." }} />
+ *   <JsonLd type="FAQPage" data={{ questions: [...] }} />
+ *   <JsonLd type="Article" data={{ headline: "...", author: "..." }} />
+ */
+export interface Props {
+  type: 'WebApplication' | 'FAQPage' | 'Article' | 'HowTo' | 'Organization' | 'WebSite';
+  data: Record<string, unknown>;
+}
+
+const { type, data } = Astro.props;
+const json = {
+  '@context': 'https://schema.org',
+  '@type': type,
+  ...data,
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(json)} />

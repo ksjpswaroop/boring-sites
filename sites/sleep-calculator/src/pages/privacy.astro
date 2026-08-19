@@ -1,0 +1,18 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Privacy from '@boring-sites/legal/privacy.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Sleep Calculator';
+---
+<Layout
+  title="Privacy Policy"
+  description="Privacy policy for the Sleep Calculator."
+  siteName={siteName}
+>
+  <Disclaimer text="Estimates only — not medical advice." />
+  <Privacy
+    siteName={siteName}
+    siteUrl="https://sleepcalculator.example.com"
+    contactEmail="hello@sleepcalculator.example.com"
+  />
+</Layout>

@@ -1,0 +1,84 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../../components/NoLogsBanner.astro';
+const siteName = 'What Is My IP';
+---
+<Layout
+  title="What is an ISP?"
+  description="A plain-English explanation of ISPs: who routes your internet traffic, and what they can see."
+  siteName={siteName}
+  jsonLd={{
+    type: 'Article',
+    data: {
+      headline: 'What is an ISP?',
+      description: 'A plain-English explanation of ISPs and what they can see.',
+      author: { '@type': 'Organization', name: siteName },
+    },
+  }}
+>
+  <NoLogsBanner />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">What is an ISP?</h1>
+    <p class="mt-2 text-sm text-neutral-500">4 min read · Last updated 2026-08-18</p>
+
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        Your <strong>ISP</strong> (Internet Service Provider) is the company that connects your home or office to the internet. In the US, common ones include Comcast, AT&T, Verizon, and T-Mobile. In other countries, the names differ but the role is the same.
+      </p>
+
+      <h2>What your ISP does</h2>
+      <p>
+        Your ISP owns (or rents) the physical infrastructure that carries your internet traffic — fiber, cable, DSL, or cellular. When you load a webpage, your request goes:
+      </p>
+      <ol>
+        <li>From your device to your router</li>
+        <li>From your router to your ISP's network</li>
+        <li>Across the ISP's network to the destination (e.g. this website's server)</li>
+        <li>Back through the ISP's network to your router to your device</li>
+      </ol>
+      <p>
+        The ISP is the middleman for every byte you send or receive.
+      </p>
+
+      <h2>What your ISP can see</h2>
+      <p>
+        Without a VPN, your ISP can see:
+      </p>
+      <ul>
+        <li>Your IP address (they assigned it to you)</li>
+        <li>The IP addresses you connect to (every site you visit, every app you use)</li>
+        <li>The volume of traffic and timing (when you used the internet, how much)</li>
+        <li>DNS queries (which domain names you looked up, unless DNS-over-HTTPS is enabled)</li>
+      </ul>
+      <p>
+        Your ISP <strong>cannot see</strong>, with HTTPS enabled:
+      </p>
+      <ul>
+        <li>The content of the pages you visit (the URL path, the body of requests, the body of responses — all encrypted)</li>
+        <li>What you typed into forms (encrypted)</li>
+        <li>Your passwords (encrypted in transit)</li>
+      </ul>
+
+      <h2>What your ISP can do</h2>
+      <ul>
+        <li><strong>Throttle</strong> your connection for certain types of traffic (most ISPs in the US have net-neutrality rules against this, but enforcement varies)</li>
+        <li><strong>Block</strong> access to specific sites or services (court-ordered, or in some countries, government-mandated)</li>
+        <li><strong>Sell</strong> aggregated browsing data to advertisers (in the US, ISPs have more leeway than websites)</li>
+        <li><strong>Hand over</strong> records to law enforcement with a warrant or subpoena</li>
+      </ul>
+
+      <h2>What you can do about it</h2>
+      <ul>
+        <li><strong>Use HTTPS</strong> for everything (modern browsers warn you when it's not; most sites do)</li>
+        <li><strong>Use DNS-over-HTTPS</strong> (DoH) so your ISP can't see your DNS queries</li>
+        <li><strong>Use a VPN</strong> to hide your traffic from your ISP (but then the VPN provider can see it instead)</li>
+        <li><strong>Use Tor</strong> for stronger anonymity (slow, but no single party can see both your IP and your traffic)</li>
+      </ul>
+
+      <h2>How to find your ISP</h2>
+      <p>
+        Your ISP shows up in the geolocation data attached to your IP. The <a href="/">home page</a> shows your IP; combined with a free geolocation lookup (we don't run one, but there are many), you'd see your ISP's name.
+      </p>
+    </div>
+  </article>
+</Layout>

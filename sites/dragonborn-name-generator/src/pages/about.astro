@@ -1,0 +1,40 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Dragonborn Names';
+---
+<Layout
+  title="About"
+  description="About Dragonborn Names — a fan-made D&D / Skyrim name generator."
+  siteName={siteName}
+  customDisclaimer="Fan-made project. Not affiliated with Wizards of the Coast or Bethesda."
+>
+  <Disclaimer variant="fan-made" />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">About</h1>
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        <strong>Dragonborn Names</strong> is a small, fast, fan-made name generator for D&D 5e, Skyrim, Pathfinder, and other fantasy TTRPG players. It is part of the <a href="https://github.com/ksjpswaroop/boring-sites">boring-sites</a> portfolio — a collection of small utility sites built with the same design system.
+      </p>
+      <h2>Why this exists</h2>
+      <p>
+        Staring at a blank character sheet and trying to name your level-1 Dragonborn Paladin is harder than it should be. This generator gives you 10 names in one click — names inspired by the official D&D 5e and Skyrim naming conventions, but original, so you don't have to feel like you copied a name straight from the sourcebook.
+      </p>
+      <h2>What we don't do</h2>
+      <ul>
+        <li>We don't store your inputs anywhere. Nothing is sent to a server.</li>
+        <li>We don't show personalized ads. We use Google AdSense, which may set cookies for ad personalization — opt out at <a href="https://www.google.com/settings/ads">Google Ads Settings</a>.</li>
+        <li>We don't use trackers. We use Plausible Analytics, which is cookieless and does not collect personal data.</li>
+        <li>We don't sell your data. We don't collect it in the first place.</li>
+      </ul>
+      <h2>Open source</h2>
+      <p>
+        The full source code is available on <a href="https://github.com/ksjpswaroop/boring-sites">GitHub</a>. Audit it, fork it, run it locally, host your own version — whatever.
+      </p>
+      <h2>Credits</h2>
+      <p>
+        Built with <a href="https://astro.build">Astro</a>, <a href="https://tailwindcss.com">Tailwind CSS</a>, and <a href="https://plausible.io">Plausible Analytics</a>. Hosted on <a href="https://vercel.com">Vercel</a>. Name data is hand-curated from publicly available D&D and fantasy naming conventions.
+      </p>
+    </div>
+  </article>
+</Layout>

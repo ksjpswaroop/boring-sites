@@ -1,0 +1,130 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Generator from '../components/Generator.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+
+import dragonbornPool from '../data/dragonborn.json';
+import elfPool from '../data/elf.json';
+import dwarfPool from '../data/dwarf.json';
+import tieflingPool from '../data/tiefling.json';
+import halflingPool from '../data/halfling.json';
+import humanPool from '../data/human.json';
+
+const pools = {
+  dragonborn: dragonbornPool,
+  elf: elfPool,
+  dwarf: dwarfPool,
+  tiefling: tieflingPool,
+  halfling: halflingPool,
+  human: humanPool,
+};
+
+const siteName = 'Dragonborn Names';
+const description = 'Free Dragonborn name generator for D&D 5e, Skyrim, and Pathfinder. Pick a race and gender, get 10 names. Hand-curated, original, transformative.';
+const url = 'https://dragonbornnames.example.com';
+---
+<Layout
+  title="Dragonborn Name Generator — 10 Names at a Time"
+  description={description}
+  siteName={siteName}
+  customDisclaimer="Fan-made project. Not affiliated with Wizards of the Coast or Bethesda. All names are original and transformative."
+  nav={[
+    { label: 'Races', href: '#races' },
+    { label: 'How it works', href: '#how' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: siteName,
+      description,
+      url,
+      applicationCategory: 'MultimediaApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  }}
+>
+  <Disclaimer variant="fan-made" />
+
+  <section class="container-wide py-12 sm:py-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+        Dragonborn Name Generator
+      </h1>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        Pick a race and gender. Get 10 names inspired by D&D 5e, Skyrim, and classic fantasy — original, transformative, and never copied from the sourcebooks.
+      </p>
+    </div>
+
+    <div class="mt-10 mx-auto max-w-3xl">
+      <Generator pools={pools} defaultRace="dragonborn" defaultGender="masculine" />
+    </div>
+  </section>
+
+  <section id="races" class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <h2 class="text-center text-3xl font-bold">All Races</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-neutral-600 dark:text-neutral-400">
+        Six races, hand-curated name pools. Each race has its own naming tradition rooted in D&D 5e lore.
+      </p>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {Object.values(pools).map((pool) => (
+          <a
+            href={`/races/${pool.race}`}
+            class="card group transition-all hover:scale-[1.02] hover:shadow-md"
+          >
+            <h3 class="text-xl font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400">
+              {pool.displayName} Names
+            </h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+              {pool.description}
+            </p>
+            <p class="mt-4 text-sm font-medium text-primary-600 dark:text-primary-400">
+              Generate {pool.displayName} names →
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="container-wide py-16">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-3xl font-bold">How it works</h2>
+      <div class="prose mt-6 dark:prose-invert">
+        <p>
+          Each race has its own hand-curated name pool — between 50 and 100+ names per (race, gender) combination. When you click <strong>Generate</strong>, we use a Fisher-Yates shuffle to pick 10 random unique names from the pool. That's it.
+        </p>
+        <p>
+          Your last (race, gender) selection is remembered in your browser so you can pick up where you left off. We don't log, store, or share any of your input.
+        </p>
+        <h3>Are these names official?</h3>
+        <p>
+          No. The names are <em>inspired by</em> the official D&D 5e and Skyrim naming conventions, but they are original. We use the same phonetic patterns and cultural references without copying from the sourcebooks.
+        </p>
+        <h3>Can I use these for my character?</h3>
+        <p>
+          Yes. All names on this site are original. Use them however you like — for your D&D character, your Skyrim playthrough, your novel, your worldbuilding.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-prose text-center">
+      <h2 class="text-2xl font-bold">More from the boring-sites portfolio</h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+        Small, fast, useful tools. No login. No fluff.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://wordunscrambler.example.com" class="btn btn-secondary">🔤 Word Unscrambler</a>
+        <a href="https://sleepcalculator.example.com" class="btn btn-secondary">😴 Sleep Calculator</a>
+        <a href="https://whatismyip.example.com" class="btn btn-secondary">🌐 What Is My IP</a>
+        <a href="https://calculator.example.com" class="btn btn-secondary">🧮 Calculators</a>
+        <a href="https://phonenumbergen.example.com" class="btn btn-secondary">📞 Phone Number Generator</a>
+      </div>
+    </div>
+  </section>
+</Layout>

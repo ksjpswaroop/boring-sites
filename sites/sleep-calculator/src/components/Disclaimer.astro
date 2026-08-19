@@ -1,0 +1,16 @@
+---
+/**
+ * Sleep-specific disclaimer banner.
+ */
+export interface Props {
+  text?: string;
+}
+
+const { text = 'Estimates only - not medical advice.' } = Astro.props;
+---
+
+<div class="border-b border-primary-100 bg-primary-50 dark:border-primary-900/70 dark:bg-primary-950/30">
+  <div class="container-wide py-2 text-center text-xs text-primary-900 dark:text-primary-100">
+    <strong>{text}</strong>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+import { calculators, getByCategory, getPopular } from '../data/calculators';
+
+const siteName = 'Calculator Collection';
+const description = '20+ free online calculators: mortgage, BMI, tip, GPA, calorie, retirement, and more. No signup, no fluff, no ads between results.';
+const url = 'https://calculator.example.com';
+
+const byCategory = getByCategory();
+const popular = getPopular();
+const totalCount = calculators.length;
+---
+<Layout
+  title="Free Online Calculators"
+  description={description}
+  siteName={siteName}
+  customDisclaimer="Estimates only — not financial, medical, or legal advice."
+  nav={[
+    { label: 'Finance', href: '#finance' },
+    { label: 'Fitness', href: '#fitness' },
+    { label: 'Date & time', href: '#date' },
+    { label: 'Math', href: '#math' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebSite',
+    data: {
+      name: siteName,
+      description,
+      url,
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${url}/?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  }}
+>
+  <Disclaimer />
+
+  <section class="container-wide py-12 sm:py-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+        {totalCount} free online calculators
+      </h1>
+      <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">
+        No login. No fluff. No ads between results. Just the math, fast.
+      </p>
+    </div>
+
+    {popular.length > 0 && (
+      <div class="mt-10">
+        <h2 class="text-xl font-semibold">🔥 Popular</h2>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {popular.map((c) => (
+            <a href={`/calc/${c.slug}`} class="card group transition-all hover:scale-[1.02] hover:shadow-md">
+              <h3 class="text-base font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                {c.icon} {c.title}
+              </h3>
+              <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{c.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+
+  {Object.entries(byCategory).map(([category, items]) => items.length > 0 && (
+    <section id={category.toLowerCase().replace(/\s+/g, '-')} class="border-t border-neutral-200 bg-neutral-50 py-12 dark:border-neutral-800 dark:bg-neutral-900/50">
+      <div class="container-wide">
+        <h2 class="text-2xl font-bold">{category}</h2>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+          {items.length} {category.toLowerCase()} calculator{items.length === 1 ? '' : 's'}
+        </p>
+        <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((c) => (
+            <a href={`/calc/${c.slug}`} class="card group transition-all hover:scale-[1.02] hover:shadow-md">
+              <h3 class="font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400">
+                {c.icon} {c.title}
+              </h3>
+              <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{c.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="container-wide py-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-2xl font-bold">More from the boring-sites portfolio</h2>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+        Small, fast, useful tools. No login. No fluff.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://wordunscrambler.example.com" class="btn btn-secondary">🔤 Word Unscrambler</a>
+        <a href="https://sleepcalculator.example.com" class="btn btn-secondary">😴 Sleep Calculator</a>
+        <a href="https://whatismyip.example.com" class="btn btn-secondary">🌐 What Is My IP</a>
+        <a href="https://phonenumbergen.example.com" class="btn btn-secondary">📞 Phone Number Generator</a>
+        <a href="https://dragonbornnames.example.com" class="btn btn-secondary">🐉 Dragonborn Names</a>
+      </div>
+    </div>
+  </section>
+</Layout>

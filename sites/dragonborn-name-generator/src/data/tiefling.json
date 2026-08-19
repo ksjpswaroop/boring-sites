@@ -1,0 +1,30 @@
+{
+  "race": "tiefling",
+  "displayName": "Tiefling",
+  "description": "Humans touched by infernal heritage. Their names often reflect a virtue, sometimes ironically.",
+  "lore": "Tiefling names typically follow the convention of using a virtue name in a corrupted or translated form, often from Infernal. A tiefling named 'Damakos' might be called 'Damakos the Hidden Blade' or have the childhood name 'Iados'. Many tieflings use a 'common name' alongside their true name — a name that fits in with the culture they grew up in. Tiefling names carry stigma, and many hide them.",
+  "pools": {
+    "masculine": [
+      "Akmenos", "Amnon", "Barakas", "Damakos", "Ekemon", "Iados", "Kairon", "Leucis",
+      "Melech", "Mordai", "Pelaios", "Skamos", "Therai", "Akta", "Bryseis", "Criella",
+      "Damaia", "Ea", "Kallista", "Lerissa", "Makaria", "Nemeia", "Orianna", "Phelaia",
+      "Rieta", "Vasella", "Anakir", "Calderax", "Damien", "Ekemon", "Fenris", "Garm",
+      "Harrow", "Iblis", "Kael", "Levistus", "Mordoc", "Naberius", "Osirak", "Paelias",
+      "Rath", "Skamos", "Therai", "Vaaz", "Xaphra", "Yael", "Zael"
+    ],
+    "feminine": [
+      "Akta", "Anakir", "Bryseis", "Criella", "Damaia", "Ea", "Kallista", "Lerissa",
+      "Makaria", "Nemeia", "Orianna", "Phelaia", "Rieta", "Vasella", "Akmenos", "Amnon",
+      "Barakas", "Damakos", "Ekemon", "Iados", "Kairon", "Leucis", "Melech", "Mordai",
+      "Pelaios", "Skamos", "Therai", "Anya", "Callista", "Dara", "Elara", "Faye",
+      "Isolde", "Jezebel", "Kara", "Lilith", "Mara", "Nyx", "Ophelia", "Ravenna",
+      "Sabrina", "Thessaly", "Vela", "Wren", "Xanthe", "Yara", "Zara", "Zerya"
+    ],
+    "neutral": [
+      "Akmenos", "Damakos", "Melech", "Therai", "Bryseis", "Damaia", "Kallista", "Phelaia",
+      "Damien", "Fenris", "Harrow", "Iblis", "Kael", "Levistus", "Mordoc", "Naberius",
+      "Skamos", "Vaaz", "Xaphra", "Yael", "Anya", "Lilith", "Mara", "Nyx", "Ophelia",
+      "Ravenna", "Thessaly", "Vela", "Wren", "Xanthe"
+    ]
+  }
+}

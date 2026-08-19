@@ -1,0 +1,75 @@
+---
+/**
+ * Site footer. Cross-links the rest of the boring-sites portfolio.
+ * This is the portfolio-level moat — every footer on every site points to the others.
+ */
+export interface Props {
+  siteName: string;
+  customDisclaimer?: string; // Optional site-specific disclaimer (e.g. "Not affiliated with WotC")
+}
+
+const { siteName, customDisclaimer } = Astro.props;
+
+const portfolioSites = [
+  { name: 'Word Unscrambler', href: 'https://wordunscrambler.example.com', emoji: '🔤' },
+  { name: 'Sleep Calculator', href: 'https://sleepcalculator.example.com', emoji: '😴' },
+  { name: 'What Is My IP', href: 'https://whatismyip.example.com', emoji: '🌐' },
+  { name: 'Calculator Collection', href: 'https://calculator.example.com', emoji: '🧮' },
+  { name: 'Phone Number Generator', href: 'https://phonenumbergen.example.com', emoji: '📞' },
+  { name: 'Dragonborn Names', href: 'https://dragonbornnames.example.com', emoji: '🐉' },
+];
+
+const currentYear = new Date().getFullYear();
+---
+<footer class="mt-16 border-t border-neutral-200 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-950">
+  <div class="container-wide py-12">
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <h3 class="text-sm font-semibold">{siteName}</h3>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+          Part of the <strong>boring-sites</strong> portfolio. Small, fast, useful tools.
+        </p>
+        {customDisclaimer && (
+          <p class="mt-3 text-xs italic text-neutral-500 dark:text-neutral-500">
+            {customDisclaimer}
+          </p>
+        )}
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold">Other Boring Tools</h3>
+        <ul class="mt-2 space-y-1 text-sm">
+          {portfolioSites
+            .filter((s) => s.name !== siteName)
+            .map((s) => (
+              <li>
+                <a
+                  href={s.href}
+                  class="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                >
+                  <span class="mr-1">{s.emoji}</span>
+                  {s.name}
+                </a>
+              </li>
+            ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold">Legal</h3>
+        <ul class="mt-2 space-y-1 text-sm">
+          <li><a href="/privacy" class="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Privacy Policy</a></li>
+          <li><a href="/terms" class="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Terms of Service</a></li>
+          <li><a href="/contact" class="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">Contact</a></li>
+          <li><a href="/about" class="text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 border-t border-neutral-200 pt-6 dark:border-neutral-800">
+      <p class="text-xs text-neutral-500 dark:text-neutral-500">
+        © {currentYear} {siteName}. Built with the boring-sites stack (Astro + Tailwind on Vercel).
+      </p>
+    </div>
+  </div>
+</footer>

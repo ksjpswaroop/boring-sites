@@ -1,0 +1,17 @@
+---
+/**
+ * Plausible Analytics include.
+ * Self-host or use Plausible Cloud; set PLAUSIBLE_DOMAIN in env.
+ *
+ * Cookieless, GDPR-compliant, no IP storage. Used across the portfolio.
+ */
+const domain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const src = import.meta.env.PUBLIC_PLAUSIBLE_SRC ?? 'https://plausible.io';
+---
+{src && (
+  <script defer data-domain={domain} src={`${src}/js/script.js`}></script>
+)}
+<script is:inline>
+  // Plausible custom event helper (optional, for tracking generator usage etc.)
+  window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+</script>

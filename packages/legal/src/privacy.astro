@@ -1,0 +1,45 @@
+---
+/**
+ * Privacy Policy page. Boilerplate adapted per site.
+ * V1 is generic; customize the "What we collect" section per site.
+ */
+export interface Props {
+  siteName: string;
+  siteUrl: string;
+  contactEmail: string;
+  customDataCollection?: string; // e.g. "We do not log visitor IPs."
+}
+
+const { siteName, siteUrl, contactEmail, customDataCollection } = Astro.props;
+const lastUpdated = '2026-08-18';
+---
+<article class="container-prose py-12">
+  <h1 class="text-4xl font-bold">Privacy Policy</h1>
+  <p class="mt-2 text-sm text-neutral-500">Last updated: {lastUpdated}</p>
+
+  <div class="prose mt-8 dark:prose-invert">
+    <h2>Who we are</h2>
+    <p>{siteName} is a small utility website operated as part of the boring-sites portfolio. You can reach us at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
+
+    <h2>What we collect</h2>
+    <p>By default, we collect nothing. This site uses <strong>cookieless analytics</strong> (Plausible) that does not set cookies, does not store IP addresses, and does not track you across sites.</p>
+    {customDataCollection && <p>{customDataCollection}</p>}
+
+    <h2>Third parties</h2>
+    <p>We use Google AdSense to display ads. AdSense may set cookies for ad personalization. You can opt out of personalized ads at <a href="https://www.google.com/settings/ads">Google Ads Settings</a>.</p>
+    <p>We use Plausible Analytics. Plausible does not collect personal data. See <a href="https://plausible.io/data-policy">Plausible's data policy</a>.</p>
+
+    <h2>Your rights</h2>
+    <p>If you are in the EU/UK, you have the right to access, correct, or delete any personal data we hold about you. Since we collect essentially nothing, there's usually nothing to delete. But you can still ask.</p>
+    <p>If you are in California, you have similar rights under the CCPA.</p>
+
+    <h2>Children</h2>
+    <p>This site is not directed at children under 13 and we do not knowingly collect data from children.</p>
+
+    <h2>Changes</h2>
+    <p>If we change this policy, we'll update the date at the top. Material changes will be noted on the home page.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Email us at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.</p>
+  </div>
+</article>

@@ -1,0 +1,17 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Terms from '@boring-sites/legal/terms.astro';
+const siteName = 'Phone Number Generator';
+---
+<Layout
+  title="Terms of Service"
+  description="Terms of service for the Phone Number Generator."
+  siteName={siteName}
+>
+  <Terms
+    siteName={siteName}
+    siteUrl="https://phonenumbergen.example.com"
+    contactEmail="hello@phonenumbergen.example.com"
+    customClause="Do not use generated phone numbers to commit fraud, harass anyone, or bypass verification systems that require real numbers."
+  />
+</Layout>

@@ -1,0 +1,32 @@
+{
+  "race": "halfling",
+  "displayName": "Halfling",
+  "description": "Small, lucky, and fiercely home-loving folk. Their names are warm and familiar — usually with a family name attached.",
+  "lore": "Halfling names are typically friendly, even whimsical — short syllables and open vowels. A halfling is almost always known by both a given name and a family name (the 'patronym' is the family, not the father). Family names are often cheerful, descriptive nicknames that became surnames: 'Goodbarrel', 'Tealeaf', 'Underbough'. Halfling women of the same family often share a name; the family name doesn't change with marriage.",
+  "pools": {
+    "masculine": [
+      "Alton", "Ander", "Cade", "Corrin", "Eldon", "Errich", "Finnan", "Garret",
+      "Lindal", "Lyle", "Merric", "Milo", "Osborn", "Perrin", "Reed", "Roscoe",
+      "Wellby", "Bilbo", "Frodo", "Samwise", "Peregrin", "Meriadoc", "Bandobras",
+      "Drogo", "Otho", "Lotho", "Olo", "Theo", "Theodoric", "Adalgrim", "Hob",
+      "Filibert", "Otho", "Hildifons", "Togo", "Polo", "Faramir", "Doderic", "Ilberd",
+      "Bramble", "Tealeaf", "Goodbarrel", "Underhill", "Greenbottle", "Brandybuck",
+      "Gamgee", "Cotton", "Brownlock", "Boffin", "Brockhouse", "Burrowes", "Chubb"
+    ],
+    "feminine": [
+      "Andry", "Bree", "Callie", "Cora", "Euphemia", "Jillian", "Kithri", "Lavinia",
+      "Lidda", "Merla", "Nedda", "Paela", "Portia", "Seraphina", "Shaena", "Trym",
+      "Vani", "Verna", "Esmeralda", "Belba", "Daisy", "Lily", "Marigold", "Mirabella",
+      "Pearl", "Rose", "Tansy", "Menegilda", "Tilly", "Donnamira", "Daisy", "May",
+      "Pansy", "Petunia", "Rowan", "Sage", "Thistle", "Willow", "Clover", "Heather",
+      "Ivy", "Briar", "Fern", "Sorrel", "Bramble", "Apple", "Cinnamon", "Honey",
+      "Ginger", "Jasmine", "Lavender", "Primrose", "Daffodil", "Buttercup", "Poppy"
+    ],
+    "neutral": [
+      "Milo", "Bilbo", "Frodo", "Samwise", "Peregrin", "Theo", "Daisy", "Pearl",
+      "Rose", "Sage", "Willow", "Ivy", "Briar", "Fern", "Clover", "Rowan", "Bramble",
+      "Tilly", "Callie", "Bree", "Cora", "Lavinia", "Portia", "Perrin", "Reed",
+      "Roscoe", "Theo", "Bandobras", "Drogo", "Lotho", "Olo", "Brandybuck", "Gamgee"
+    ]
+  }
+}

@@ -1,0 +1,109 @@
+---
+/**
+ * Base layout for all boring-sites pages.
+ * Includes Header, Footer, theme, meta, OG, JSON-LD, and Plausible.
+ */
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import Plausible from '@boring-sites/analytics/Plausible.astro';
+import './styles.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  siteName: string;
+  siteUrl?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  customDisclaimer?: string;
+  nav?: Array<{ label: string; href: string }>;
+  jsonLd?: {
+    type: 'WebApplication' | 'FAQPage' | 'Article' | 'HowTo' | 'Organization' | 'WebSite';
+    data: Record<string, unknown>;
+  };
+}
+
+const {
+  title,
+  description,
+  siteName,
+  siteUrl,
+  canonical,
+  ogImage,
+  noindex = false,
+  customDisclaimer,
+  nav = [],
+  jsonLd,
+} = Astro.props;
+
+const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+const metadataBase = siteUrl ?? Astro.site?.toString() ?? Astro.url.origin;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, metadataBase).toString();
+const headerHomeHref = siteUrl ?? '/';
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:type" content="website" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0A66C2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#004182" media="(prefers-color-scheme: dark)" />
+
+    <!-- Prevent flash of wrong theme -->
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <!-- Plausible analytics (set site domain via env) -->
+    <Plausible />
+
+    <!-- JSON-LD structured data -->
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': jsonLd.type, ...jsonLd.data })} />
+    )}
+  </head>
+  <body class="min-h-screen bg-white text-neutral-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
+    <Header siteName={siteName} siteUrl={headerHomeHref} nav={nav} />
+    <main>
+      <slot />
+    </main>
+    <Footer siteName={siteName} customDisclaimer={customDisclaimer} />
+  </body>
+</html>

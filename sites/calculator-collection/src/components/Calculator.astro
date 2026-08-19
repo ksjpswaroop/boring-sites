@@ -1,0 +1,233 @@
+---
+/**
+ * The generic Calculator. Renders form, computes result, encodes state in URL.
+ * One component handles all 20 calculators — the config comes from the registry.
+ */
+import type { Calculator, InputDef } from '../data/calculators';
+
+export interface Props {
+  calc: Calculator;
+}
+
+const { calc } = Astro.props;
+
+// Render a default empty result for SSR; real compute happens client-side.
+const initialResult = { primary: [{ label: '—', value: '—' }] };
+---
+<div class="grid gap-6 lg:grid-cols-3">
+  <div class="lg:col-span-2">
+    <form
+      id="calc-form"
+      class="card"
+      data-slug={calc.slug}
+      data-defaults={JSON.stringify(
+        Object.fromEntries(calc.inputs.map((i) => [i.name, i.default ?? '']))
+      )}
+    >
+      <div class="grid gap-4 sm:grid-cols-2">
+        {calc.inputs.map((input) => (
+          <div class={input.width === 'full' ? 'sm:col-span-2' : ''}>
+            <label for={input.name} class="block text-sm font-medium">
+              {input.label}
+            </label>
+            <div class="relative mt-1">
+              {input.unit && (
+                <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-500">
+                  {input.unit}
+                </span>
+              )}
+              {input.type === 'select' ? (
+                <select
+                  id={input.name}
+                  name={input.name}
+                  class={`block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-900 ${input.unit ? 'pl-7' : ''}`}
+                >
+                  {input.options?.map((o) => (
+                    <option value={o.value} selected={String(input.default) === o.value}>{o.label}</option>
+                  ))}
+                </select>
+              ) : input.type === 'textarea' ? (
+                <textarea
+                  id={input.name}
+                  name={input.name}
+                  rows={4}
+                  placeholder={input.placeholder}
+                  class="block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 font-mono text-sm dark:border-neutral-700 dark:bg-neutral-900"
+                >{input.default}</textarea>
+              ) : (
+                <input
+                  type={input.type === 'date' ? 'date' : 'number'}
+                  id={input.name}
+                  name={input.name}
+                  value={input.default}
+                  min={input.min}
+                  max={input.max}
+                  step={input.step}
+                  placeholder={input.placeholder}
+                  class={`block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-900 ${input.unit ? 'pl-7' : ''}`}
+                />
+              )}
+            </div>
+            {input.hint && <p class="mt-1 text-xs text-neutral-500">{input.hint}</p>}
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <button type="button" id="calc-share" class="btn btn-secondary text-sm">
+          🔗 Copy share link
+        </button>
+        <button type="reset" id="calc-reset" class="btn btn-secondary text-sm">
+          Reset
+        </button>
+        <p id="calc-status" class="ml-auto text-sm text-neutral-500" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <section id="calc-result" class="card mt-6" aria-live="polite">
+      <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Result</h2>
+      <div class="mt-3">
+        <p id="result-primary" class="text-3xl font-bold tracking-tight">—</p>
+      </div>
+      <dl id="result-secondary" class="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2"></dl>
+      <p id="result-notes" class="mt-4 hidden text-xs text-neutral-500"></p>
+    </section>
+
+    {calc.howItWorks && (
+      <section class="mt-10">
+        <h2 class="text-2xl font-bold">How this calculator works</h2>
+        <p class="mt-3 text-neutral-700 dark:text-neutral-300">{calc.howItWorks}</p>
+      </section>
+    )}
+
+    {calc.disclaimer && (
+      <p class="mt-6 text-xs italic text-neutral-500">{calc.disclaimer}</p>
+    )}
+  </div>
+
+  <div class="lg:col-span-1">
+    <slot name="sidebar" />
+  </div>
+</div>
+
+<script is:inline define:vars={{ calc }}>
+  // === Client-side calculator ===
+  // Pulls the compute function from /lib/calc.ts via dynamic import.
+  // For V0.1, we ship all 20 compute functions; the script picks the right one
+  // based on the calculator slug from the data-attribute.
+
+  (async () => {
+    const allCalcs = await import('/src/lib/calc.ts');
+    const fn = allCalcs[calc.slug];
+    if (!fn) {
+      console.error('No compute function for', calc.slug);
+      return;
+    }
+
+    const form = document.getElementById('calc-form');
+    const resultPrimary = document.getElementById('result-primary');
+    const resultSecondary = document.getElementById('result-secondary');
+    const resultNotes = document.getElementById('result-notes');
+    const status = document.getElementById('calc-status');
+    const shareBtn = document.getElementById('calc-share');
+    const resetBtn = document.getElementById('calc-reset');
+
+    if (!form || !resultPrimary) return;
+
+    const defaults = JSON.parse(form.dataset.defaults || '{}');
+
+    function readInputs() {
+      const inputs = {};
+      for (const def of calc.inputs) {
+        const el = form.querySelector(`[name="${def.name}"]`);
+        if (!el) continue;
+        inputs[def.name] = el.value;
+      }
+      return inputs;
+    }
+
+    function setStatus(text) {
+      if (status) status.textContent = text;
+    }
+
+    function render(result) {
+      resultPrimary.textContent = result.primary[0]?.value ?? '—';
+      resultSecondary.innerHTML = (result.secondary || [])
+        .map((s) => `<div><dt class="text-neutral-500 dark:text-neutral-500">${s.label}</dt><dd class="mt-1 font-mono">${s.value}</dd></div>`)
+        .join('');
+      if (result.notes && result.notes.length) {
+        resultNotes.innerHTML = result.notes.map((n) => `<p>${n}</p>`).join('');
+        resultNotes.classList.remove('hidden');
+      } else {
+        resultNotes.classList.add('hidden');
+      }
+    }
+
+    function updateUrl(inputs) {
+      const params = new URLSearchParams();
+      for (const [k, v] of Object.entries(inputs)) {
+        if (v === '' || v === null || v === undefined) continue;
+        params.set(k, String(v));
+      }
+      const str = params.toString();
+      const url = str ? `?${str}` : window.location.pathname;
+      window.history.replaceState({}, '', url);
+    }
+
+    function loadFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      for (const def of calc.inputs) {
+        const el = form.querySelector(`[name="${def.name}"]`);
+        if (!el) continue;
+        if (params.has(def.name)) {
+          el.value = params.get(def.name);
+        }
+      }
+    }
+
+    function compute() {
+      const inputs = readInputs();
+      try {
+        const result = fn(inputs);
+        render(result);
+        updateUrl(inputs);
+        setStatus('Computed');
+        window.plausible?.('compute', { props: { calculator: calc.slug } });
+      } catch (err) {
+        setStatus('Error: ' + (err instanceof Error ? err.message : 'compute failed'));
+      }
+    }
+
+    // Live recompute on any input change
+    form.addEventListener('input', compute);
+    form.addEventListener('change', compute);
+
+    // Reset
+    resetBtn?.addEventListener('click', () => {
+      setTimeout(() => {
+        for (const [k, v] of Object.entries(defaults)) {
+          const el = form.querySelector(`[name="${k}"]`);
+          if (el) el.value = String(v);
+        }
+        compute();
+      }, 0);
+    });
+
+    // Share link
+    shareBtn?.addEventListener('click', async () => {
+      const url = window.location.href;
+      try {
+        await navigator.clipboard.writeText(url);
+        setStatus('Link copied to clipboard');
+        setTimeout(() => setStatus(''), 2000);
+        window.plausible?.('share_link', { props: { calculator: calc.slug } });
+      } catch {
+        setStatus('Copy failed — select URL manually');
+      }
+    });
+
+    // Initial: load from URL if present, else from defaults
+    loadFromUrl();
+    compute();
+  })();
+</script>

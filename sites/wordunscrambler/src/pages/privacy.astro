@@ -1,0 +1,16 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Privacy from '@boring-sites/legal/privacy.astro';
+const siteName = 'Word Unscrambler';
+---
+<Layout
+  title="Privacy Policy"
+  description="Privacy policy for the Word Unscrambler."
+  siteName={siteName}
+>
+  <Privacy
+    siteName={siteName}
+    siteUrl="https://wordunscrambler.example.com"
+    contactEmail="hello@wordunscrambler.example.com"
+  />
+</Layout>

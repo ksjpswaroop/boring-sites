@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+.astro/
+.vercel/
+.output/
+
+# environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# editor
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# typescript
+*.tsbuildinfo
+
+# misc
+.cache/
+coverage/

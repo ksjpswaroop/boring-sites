@@ -1,0 +1,84 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../../components/NoLogsBanner.astro';
+const siteName = 'What Is My IP';
+---
+<Layout
+  title="What is an IP address?"
+  description="A plain-English explanation of IP addresses: IPv4, IPv6, public vs private, and how they work."
+  siteName={siteName}
+  jsonLd={{
+    type: 'Article',
+    data: {
+      headline: 'What is an IP address?',
+      description: 'A plain-English explanation of IP addresses: IPv4, IPv6, public vs private, and how they work.',
+      author: { '@type': 'Organization', name: siteName },
+    },
+  }}
+>
+  <NoLogsBanner />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">What is an IP address?</h1>
+    <p class="mt-2 text-sm text-neutral-500">5 min read · Last updated 2026-08-18</p>
+
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        An <strong>IP address</strong> (Internet Protocol address) is a number assigned to every device connected to the internet. It's how the internet knows where to send the data you request — when you load a webpage, the response comes back to your IP address.
+      </p>
+      <p>
+        Think of it like a mailing address for the internet.
+      </p>
+
+      <h2>Two versions: IPv4 and IPv6</h2>
+      <p>
+        There are two formats in use today:
+      </p>
+      <ul>
+        <li><strong>IPv4</strong> looks like <code>192.168.1.1</code> or <code>8.8.8.8</code>. Four numbers, each from 0 to 255. There are about 4.3 billion possible IPv4 addresses, and we've run out.</li>
+        <li><strong>IPv6</strong> looks like <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>. Much longer, much more possible addresses. Gradual rollout.</li>
+      </ul>
+      <p>
+        Most people have both. This site shows whichever your connection provides.
+      </p>
+
+      <h2>Public vs private</h2>
+      <p>
+        Your <strong>public IP</strong> is the address the rest of the internet sees. It's what this site shows. Your ISP assigns it to your router.
+      </p>
+      <p>
+        Your <strong>private IP</strong> is the address of your device on your local network. It looks like <code>192.168.x.x</code> or <code>10.x.x.x</code> or <code>172.16-31.x.x</code>. Private IPs aren't routable on the public internet — they only work inside your home or office.
+      </p>
+      <p>
+        You can have many devices on your home network (laptop, phone, smart TV), each with a different private IP, all sharing the same public IP via a technology called NAT.
+      </p>
+
+      <h2>Static vs dynamic</h2>
+      <p>
+        Most consumer IPs are <strong>dynamic</strong> — your ISP assigns you a different one each time you reconnect, or every few days. Some businesses and servers have <strong>static</strong> IPs that don't change.
+      </p>
+
+      <h2>What can someone do with your IP?</h2>
+      <p>
+        Knowing your IP gives an attacker very little. They can:
+      </p>
+      <ul>
+        <li>Geolocate you roughly (city or region, not street address)</li>
+        <li>Look up your ISP</li>
+        <li>Try to connect to open ports on your network (most home routers block unsolicited inbound traffic)</li>
+      </ul>
+      <p>
+        They can't, just from your IP:
+      </p>
+      <ul>
+        <li>Access your files or devices (unless you've misconfigured something)</li>
+        <li>See your browsing history (that's HTTPS-encrypted between you and the site)</li>
+        <li>Find your exact address (city-level geolocation is the best they get)</li>
+      </ul>
+
+      <h2>How to find your IP</h2>
+      <p>
+        You're looking at it. The big number at the top of <a href="/">the home page</a> is your public IP.
+      </p>
+    </div>
+  </article>
+</Layout>

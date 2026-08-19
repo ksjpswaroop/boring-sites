@@ -1,0 +1,32 @@
+{
+  "race": "elf",
+  "displayName": "Elf",
+  "description": "Graceful, long-lived fey-touched humanoids. Each subrace (High, Wood, Drow) has its own naming tradition.",
+  "lore": "Elven names follow phonetic patterns influenced by the subrace: High Elves use Tolkien-esque flowing syllables (Aelar, Erevan), Wood Elves favor nature-rooted names (Brielle, Thalion), and Drow (dark elves) use sharp, angular names with apostrophes and x's (Vhaeraun, Lolth). Family names are optional; most elves go by a single given name. Childhood names are often given first and replaced in adulthood.",
+  "pools": {
+    "masculine": [
+      "Aelar", "Aerdyl", "Ahvain", "Aramil", "Aranis", "Berrian", "Carric", "Drannor",
+      "Enialis", "Erdan", "Erevan", "Galinndan", "Hadarai", "Heian", "Himoj", "Immeral",
+      "Ivellios", "Korfel", "Lamlis", "Laucian", "Mindartis", "Naal", "Nutae", "Paelias",
+      "Peren", "Quarion", "Riardon", "Rolen", "Soveliss", "Thamior", "Theriatis", "Uthemar",
+      "Vanuath", "Varis", "Aelin", "Caelynn", "Galadon", "Faelar", "Iyrloth", "Mithrandir",
+      "Silvyr", "Thalion", "Vaeril", "Yaeldrin", "Aerith", "Belarian", "Cyradis", "Daeren",
+      "Elanil", "Faelan", "Galadriel", "Haldir", "Iliphar", "Lorandor", "Mythrin"
+    ],
+    "feminine": [
+      "Adrie", "Althaea", "Anastrianna", "Andraste", "Antinua", "Bethrynna", "Birel", "Caelynn",
+      "Drusilia", "Enna", "Felosial", "Ielenia", "Jelenneth", "Keyleth", "Leshanna", "Lia",
+      "Meriele", "Mialee", "Naivara", "Quelenna", "Quillathe", "Sariel", "Shanairra", "Shava",
+      "Silaqui", "Theirastra", "Thia", "Vadania", "Valanthe", "Xanaphia", "Yelinora", "Aerin",
+      "Brielle", "Caladrel", "Eiravel", "Faylin", "Galadriel", "Halia", "Ilyra", "Jheri",
+      "Kyrra", "Liriel", "Mythrin", "Naelani", "Ophira", "Quelessir", "Ravia", "Sylvaine",
+      "Thessaly", "Urmara", "Vaelinora", "Wynne", "Xyntri", "Yasha", "Zerya"
+    ],
+    "neutral": [
+      "Aelar", "Sylvaine", "Erevan", "Faylin", "Iyrloth", "Mythrin", "Thalion", "Vaeril",
+      "Caladrel", "Eiravel", "Lorandor", "Ophira", "Ravia", "Silvyr", "Yasha", "Brielle",
+      "Daeren", "Halia", "Kyrra", "Naelani", "Sariel", "Wynne", "Xyntri", "Zerya", "Ilyra",
+      "Faelan", "Liriel", "Quellessir", "Thessaly", "Vaelinora"
+    ]
+  }
+}

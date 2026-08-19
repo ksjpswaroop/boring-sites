@@ -1,0 +1,44 @@
+---
+/**
+ * User-agent + screen info card. Useful for sysadmins debugging
+ * user-reported issues. Detected client-side (window.navigator).
+ */
+---
+<section class="card">
+  <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Your browser fingerprint</h2>
+  <dl class="mt-4 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+    <div>
+      <dt class="text-neutral-500 dark:text-neutral-500">User-agent</dt>
+      <dd id="ua-string" class="mt-1 break-all font-mono text-xs"></dd>
+    </div>
+    <div>
+      <dt class="text-neutral-500 dark:text-neutral-500">Screen</dt>
+      <dd id="ua-screen" class="mt-1 font-mono text-xs"></dd>
+    </div>
+    <div>
+      <dt class="text-neutral-500 dark:text-neutral-500">Language</dt>
+      <dd id="ua-lang" class="mt-1 font-mono text-xs"></dd>
+    </div>
+    <div>
+      <dt class="text-neutral-500 dark:text-neutral-500">Timezone</dt>
+      <dd id="ua-tz" class="mt-1 font-mono text-xs"></dd>
+    </div>
+  </dl>
+  <p class="mt-4 text-xs text-neutral-500 dark:text-neutral-500">
+    Detected client-side. None of this is sent to a server.
+  </p>
+</section>
+
+<script is:inline>
+  (() => {
+  const set = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value || '—';
+  };
+
+  set('ua-string', navigator.userAgent);
+  set('ua-screen', `${window.screen.width}×${window.screen.height} @ ${window.devicePixelRatio || 1}x`);
+  set('ua-lang', navigator.language);
+  set('ua-tz', Intl.DateTimeFormat().resolvedOptions().timeZone);
+  })();
+</script>

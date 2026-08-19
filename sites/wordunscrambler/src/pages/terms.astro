@@ -1,0 +1,16 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Terms from '@boring-sites/legal/terms.astro';
+const siteName = 'Word Unscrambler';
+---
+<Layout
+  title="Terms of Service"
+  description="Terms of service for the Word Unscrambler."
+  siteName={siteName}
+>
+  <Terms
+    siteName={siteName}
+    siteUrl="https://wordunscrambler.example.com"
+    contactEmail="hello@wordunscrambler.example.com"
+  />
+</Layout>

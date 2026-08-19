@@ -1,0 +1,35 @@
+{
+  "race": "dragonborn",
+  "displayName": "Dragonborn",
+  "description": "Draconic humanoids born of dragon-blooded ancestors. Proud, honor-bound, with elemental breath weapons.",
+  "lore": "Dragonborn are born to clans, each with a distinctive ancestry tied to a chromatic or metallic dragon type. Their names are personal — chosen rather than inherited — and typically end in a syllable that sounds vaguely Draconic. A dragonborn's name is often a wish for a quality they want to embody or a tribute to a hero of their clan.",
+  "pools": {
+    "masculine": [
+      "Akra", "Arjhan", "Balasar", "Bharash", "Dahmrez", "Dathran", "Dremisq", "Erezes",
+      "Farshar", "Faxion", "Fazgri", "Galkar", "Ghesh", "Glintha", "Grax", "Havilar",
+      "Himoj", "Iridian", "Jaxi", "Kava", "Korin", "Kriv", "Laza", "Marek", "Medrash",
+      "Mehen", "Mozik", "Nadarr", "Nox", "Ophinshtalaji", "Pandjed", "Patrin", "Perra",
+      "Phantor", "Pyrak", "Raiann", "Rhogar", "Rukor", "Sarcha", "Shava", "Skarmor",
+      "Tarhun", "Torinn", "Trynn", "Valorean", "Varun", "Vedun", "Vhesh", "Xarghon",
+      "Yebbir", "Zardaar", "Zedaar"
+    ],
+    "feminine": [
+      "Akra", "Armara", "Baraka", "Bevy", "Biri", "Daar", "Davra", "Dren", "Eda",
+      "Eilis", "Faral", "Farideh", "Feldrha", "Fenna", "Genna", "Graviora", "Grym",
+      "Hagar", "Harann", "Hella", "Hirrath", "Inixa", "Ilda", "Jamna", "Jaroth",
+      "Jelenneth", "Jheri", "Joharra", "Kava", "Kesthra", "Kim", "Koori", "Liex",
+      "Lira", "Lorin", "Luma", "Maadi", "Mariona", "Maya", "Mijira", "Minshani",
+      "Mira", "Mishtra", "Nala", "Nallah", "Narai", "Nava", "Nox", "Orrida",
+      "Osanna", "Perra", "Peysara", "Phaela", "Priaria", "Raiann", "Rashka", "Rinoa",
+      "Riva", "Rusila", "Sannan", "Sarath", "Sora", "Stimbra", "Tarin", "Tazi",
+      "Thava", "Thexir", "Tina", "Vadana", "Vakri", "Vrumadi", "Vyrant", "Xarpron",
+      "Xiri", "Yara", "Yeri", "Zofia"
+    ],
+    "neutral": [
+      "Arjhan", "Bharash", "Drahkus", "Fakren", "Himoj", "Iridian", "Kava", "Korin",
+      "Medrash", "Nadarr", "Patrin", "Shava", "Tarhun", "Torinn", "Trynn", "Varun",
+      "Vedun", "Xarghon", "Zedaar", "Akra", "Daar", "Kriv", "Rukor", "Vhesh", "Dremisq",
+      "Sarcha", "Fazgri", "Grax", "Havilar", "Marek"
+    ]
+  }
+}

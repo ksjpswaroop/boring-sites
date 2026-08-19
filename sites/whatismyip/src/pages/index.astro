@@ -1,0 +1,106 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../components/NoLogsBanner.astro';
+import IPCard from '../components/IPCard.astro';
+import UserAgentCard from '../components/UserAgentCard.astro';
+import VPNChecker from '../components/VPNChecker.astro';
+import DNSLeakTest from '../components/DNSLeakTest.astro';
+import WebRTCLeakTest from '../components/WebRTCLeakTest.astro';
+
+export const prerender = false;
+
+const siteName = 'What Is My IP';
+const description = 'See your public IP address instantly. We do not log your IP, do not store it, do not track you. No cookies. No third-party analytics that store data. Open source.';
+const url = 'https://whatismyip.example.com';
+---
+<Layout
+  title="What Is My IP Address?"
+  description={description}
+  siteName={siteName}
+  customDisclaimer="Educational only — not for security-critical decisions. See our privacy policy."
+  nav={[
+    { label: 'Learn', href: '#learn' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: siteName,
+      description,
+      url,
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      featureList: 'IP address lookup, VPN detection, DNS leak test, WebRTC leak test',
+    },
+  }}
+>
+  <NoLogsBanner />
+
+  <section class="container-wide py-10 sm:py-14">
+    <div class="mx-auto max-w-4xl">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">What Is My IP?</h1>
+        <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
+          Your public IP address, plus diagnostic checks. <strong>No logging. No tracking. No cookies.</strong>
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-6">
+        <IPCard />
+        <UserAgentCard />
+      </div>
+
+      <div class="mt-10">
+        <h2 class="text-2xl font-bold">Diagnostic checks</h2>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+          These run entirely in your browser. No data leaves your device.
+        </p>
+        <div class="mt-6 grid gap-6 lg:grid-cols-3">
+          <VPNChecker />
+          <DNSLeakTest />
+          <WebRTCLeakTest />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learn" class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <h2 class="text-center text-3xl font-bold">Learn</h2>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-neutral-600 dark:text-neutral-400">
+        Short, plain-English explainers for the things this site checks.
+      </p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/learn/what-is-an-ip-address" class="card group transition-all hover:scale-[1.02] hover:shadow-md">
+          <h3 class="text-lg font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400">What is an IP address?</h3>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            IPv4, IPv6, public vs private — the basics, in plain English.
+          </p>
+        </a>
+        <a href="/learn/what-is-an-isp" class="card group transition-all hover:scale-[1.02] hover:shadow-md">
+          <h3 class="text-lg font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400">What is an ISP?</h3>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            Who actually routes your internet traffic, and what they can see.
+          </p>
+        </a>
+        <a href="/learn/am-i-using-a-vpn" class="card group transition-all hover:scale-[1.02] hover:shadow-md">
+          <h3 class="text-lg font-semibold group-hover:text-primary-600 dark:group-hover:text-primary-400">Am I using a VPN?</h3>
+          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+            How to tell if your traffic is being routed through a VPN or proxy.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-wide py-16">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-2xl font-bold">How we make money without selling your data</h2>
+      <p class="mt-4 text-neutral-600 dark:text-neutral-400">
+        Google AdSense shows ads. Plausible counts visits (without cookies, without storing IPs). That's it.
+        We don't sell data because we don't have any. <a href="/about" class="underline">Read more</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

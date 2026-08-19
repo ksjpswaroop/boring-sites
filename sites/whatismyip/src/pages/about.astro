@@ -1,0 +1,51 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import NoLogsBanner from '../components/NoLogsBanner.astro';
+const siteName = 'What Is My IP';
+---
+<Layout
+  title="About"
+  description="About What Is My IP — the privacy-first IP lookup tool."
+  siteName={siteName}
+>
+  <NoLogsBanner />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">About</h1>
+    <div class="prose mt-8 dark:prose-invert">
+      <p>
+        <strong>What Is My IP</strong> is a small, privacy-respecting IP lookup tool. It's part of the
+        <a href="https://github.com/ksjpswaroop/boring-sites">boring-sites</a> portfolio — a collection of small utility sites built with the same design system.
+      </p>
+      <h2>The trust claim</h2>
+      <p>
+        The site detects your public IP and displays it. We <strong>do not store it</strong> on any server, in any database, or in any analytics system. The claim is verifiable in three ways:
+      </p>
+      <ol>
+        <li>The <a href="/privacy">privacy policy</a> explicitly states what we don't collect.</li>
+        <li>The <a href="https://github.com/ksjpswaroop/boring-sites">source code is open source</a> — you can audit every byte that runs on the server.</li>
+        <li>The <a href="/faq">FAQ</a> explains the technical setup (Vercel Edge Functions, no DB, no Google Analytics).</li>
+      </ol>
+      <h2>What we use</h2>
+      <ul>
+        <li><strong>Plausible Analytics</strong> — cookieless, GDPR-compliant, no IP storage. We use it to count visits, that's all.</li>
+        <li><strong>Google AdSense</strong> — for ads. AdSense may set cookies for ad personalization. Opt out at <a href="https://www.google.com/settings/ads">Google Ads Settings</a>.</li>
+        <li><strong>No third-party trackers</strong>. No Facebook Pixel, no Google Analytics, no Hotjar, no Mixpanel.</li>
+      </ul>
+      <h2>What we don't use</h2>
+      <ul>
+        <li>No Google Analytics (it stores IPs).</li>
+        <li>No server-side logging of request IPs.</li>
+        <li>No database.</li>
+        <li>No authentication, no accounts, no saved state on our side.</li>
+      </ul>
+      <h2>Why this exists</h2>
+      <p>
+        The category leader (<a href="https://whatismyip.com" rel="nofollow">whatismyip.com</a>) is a 2003-era page with a "share my IP with advertisers" business model. We built this as the alternative: the same utility, with a privacy story that's actually true.
+      </p>
+      <h2>Credits</h2>
+      <p>
+        Built with <a href="https://astro.build">Astro</a> on <a href="https://vercel.com">Vercel</a> Edge Functions. Styled with <a href="https://tailwindcss.com">Tailwind CSS</a>. Analytics by <a href="https://plausible.io">Plausible</a>.
+      </p>
+    </div>
+  </article>
+</Layout>

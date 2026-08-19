@@ -1,0 +1,25 @@
+{
+  "name": "boring-sites",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portfolio of boring utility sites. One brand, one design system, six tools, cross-linked.",
+  "scripts": {
+    "dev": "pnpm --filter dragonborn-name-generator dev",
+    "build": "pnpm -r build",
+    "preview": "pnpm --filter dragonborn-name-generator preview",
+    "astro": "pnpm --filter dragonborn-name-generator astro",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "format": "prettier --write \"**/*.{ts,astro,md,json,css}\""
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1",
+    "prettier": "^3.3.0",
+    "prettier-plugin-astro": "^0.14.0",
+    "prettier-plugin-tailwindcss": "^0.6.0"
+  }
+}

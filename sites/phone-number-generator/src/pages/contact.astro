@@ -1,0 +1,35 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+const siteName = 'Phone Number Generator';
+---
+<Layout
+  title="Contact"
+  description="Contact the Phone Number Generator team."
+  siteName={siteName}
+  customDisclaimer="Numbers are NOT real. Do not use for fraud, harassment, or verification bypass."
+>
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">Contact</h1>
+    <p class="mt-4 text-lg text-neutral-600 dark:text-neutral-400">Email is the fastest way to reach us.</p>
+    <p class="mt-6 text-lg">
+      <a href="mailto:hello@phonenumbergen.example.com" class="font-medium text-primary-600 hover:underline dark:text-primary-400">
+        hello@phonenumbergen.example.com
+      </a>
+    </p>
+    <form class="mt-8 space-y-4" action="mailto:hello@phonenumbergen.example.com" method="post" enctype="text/plain">
+      <div>
+        <label for="name" class="block text-sm font-medium">Name</label>
+        <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-900" />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium">Email</label>
+        <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-900" />
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium">Message</label>
+        <textarea id="message" name="message" rows={6} required class="mt-1 block w-full rounded-md border border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-900"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </article>
+</Layout>

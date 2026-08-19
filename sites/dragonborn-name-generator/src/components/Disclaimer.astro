@@ -1,0 +1,27 @@
+---
+/**
+ * The "not affiliated" disclaimer banner. Persistent on every page.
+ * Compliance-critical for fan projects.
+ */
+export interface Props {
+  variant?: 'fan-made' | 'medical' | 'general' | 'none';
+}
+
+const { variant = 'fan-made' } = Astro.props;
+
+const messages = {
+  'fan-made': '🎲 Fan-made project. Not affiliated with, endorsed by, or sponsored by Wizards of the Coast, Hasbro, or Bethesda. All names are original and transformative.',
+  'medical': '⚠️ Not medical advice. Estimates based on average sleep cycles. Consult a healthcare professional for sleep concerns.',
+  'general': '⚠️ Educational use only. Verify results independently.',
+  'none': '',
+};
+
+const message = messages[variant];
+---
+{message && (
+  <div class="border-b border-amber-200 bg-amber-50 dark:border-amber-800/50 dark:bg-amber-950/20">
+    <div class="container-wide py-2 text-center text-xs text-amber-900 dark:text-amber-200">
+      {message}
+    </div>
+  </div>
+)}

@@ -1,0 +1,50 @@
+---
+/**
+ * VPN / proxy heuristic. Compares the server-detected IP to the
+ * browser-reported timezone. A mismatch is a soft signal that the user
+ * might be on a VPN or proxy. NOT a definitive answer.
+ *
+ * For V1, the heuristic is: show your IP's approximate geo (city) vs
+ * your browser timezone, and let the user interpret. V1.1 will add a
+ * proper IP-to-country database (MaxMind GeoLite2).
+ */
+import { getRequestIp } from '../lib/request';
+
+const ip = getRequestIp(Astro.request);
+---
+<section class="card">
+  <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Are you on a VPN?</h2>
+  <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-500">
+    Compare your IP's geolocation to your browser's timezone. Mismatch → likely a VPN or proxy.
+  </p>
+  <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+    <div>
+      <dt class="text-neutral-500 dark:text-neutral-500">Your IP</dt>
+      <dd class="mt-1 break-all font-mono text-xs">{ip}</dd>
+    </div>
+    <div>
+      <dt class="text-neutral-500 dark:text-neutral-500">Your timezone</dt>
+      <dd id="vpn-tz" class="mt-1 font-mono text-xs">—</dd>
+    </div>
+  </div>
+  <div id="vpn-result" class="mt-4 hidden rounded-md p-3 text-sm"></div>
+  <p class="mt-3 text-xs text-neutral-500 dark:text-neutral-500">
+    <a href="/learn/am-i-using-a-vpn" class="underline hover:no-underline">How this works</a> · <a href="/faq" class="underline hover:no-underline">FAQ</a>
+  </p>
+</section>
+
+<script is:inline>
+  (() => {
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const tzEl = document.getElementById('vpn-tz');
+  if (tzEl) tzEl.textContent = tz;
+
+  // V1.1: integrate MaxMind GeoLite2 for proper country comparison.
+  // For now, just show the timezone and a hint.
+  const result = document.getElementById('vpn-result');
+  if (result) {
+    result.textContent = `Detected timezone: ${tz}. For a more definitive check, run a DNS leak test below.`;
+    result.classList.remove('hidden');
+  }
+  })();
+</script>

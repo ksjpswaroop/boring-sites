@@ -1,0 +1,16 @@
+---
+/**
+ * Calculator disclaimer banner. "Estimates only — not advice."
+ * Persistent on every calculator page.
+ */
+export interface Props {
+  text?: string;
+}
+
+const { text = 'Estimates only — not financial, medical, or legal advice. Verify with a professional before making decisions based on these results.' } = Astro.props;
+---
+<div class="border-b border-amber-200 bg-amber-50 dark:border-amber-800/50 dark:bg-amber-950/20">
+  <div class="container-wide py-2 text-center text-xs text-amber-900 dark:text-amber-200">
+    ⚠️ <strong>{text}</strong>
+  </div>
+</div>

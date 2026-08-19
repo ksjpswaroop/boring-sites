@@ -1,0 +1,25 @@
+---
+/**
+ * The "we don't log" trust banner. The most important component on this site.
+ * Persistent across all pages, prominent at the top.
+ *
+ * Compliance-critical: this site's entire monetization model is built on
+ * the trust claim that visitor IPs are not stored. The banner makes the
+ * claim visible and the design choices elsewhere (cookieless analytics,
+ * no Google Analytics, no DB, no server logs) make it true.
+ */
+---
+<div class="border-b border-emerald-200 bg-emerald-50 dark:border-emerald-800/50 dark:bg-emerald-950/30">
+  <div class="container-wide py-3 text-center text-sm">
+    <span class="inline-flex items-center gap-2 text-emerald-900 dark:text-emerald-200">
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+      <span>
+        <strong>We don't log your IP.</strong>
+        No cookies, no tracking, no analytics that store personal data. Read our
+        <a href="/privacy" class="underline hover:no-underline">privacy policy</a>.
+      </span>
+    </span>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Sleep Calculator';
+const faqs = [
+  { q: 'Is 90 minutes the actual length of a sleep cycle?', a: 'It\'s an average. Real sleep cycles vary from 70 to 120 minutes, and they change through the night (more deep sleep early, more REM late). The 90-minute figure is a useful rule of thumb, not a precise measurement.' },
+  { q: 'Why 14 minutes to fall asleep?', a: 'It\'s the average time for healthy adults. Some people fall asleep in 5 minutes, others take 30. The "time to fall asleep" field on the calculator lets you adjust for your own latency.' },
+  { q: 'Should I aim for 6 cycles?', a: '5–6 cycles (7.5–9 hours) is the typical recommendation for adults. Teenagers often need 8–10 hours. Older adults may need only 7. Use the calculator as a starting point and adjust based on how you feel.' },
+  { q: 'Why do I feel tired after 8 hours of sleep?', a: 'You probably woke up mid-cycle. The calculator helps you find bedtimes that align wake-up time with the end of a cycle. If you consistently wake tired despite getting enough sleep, see a doctor — you might have sleep apnea or another disorder.' },
+  { q: 'Can I set the alarm from the calculator?', a: 'On iOS, the calculator opens the Shortcuts app where you can set an alarm in one tap. On Android, it opens the default Clock app. On desktop, it copies the time to your clipboard.' },
+  { q: 'Does this site work offline?', a: 'Yes. The site is a Progressive Web App. After your first visit, the page works without an internet connection.' },
+  { q: 'Can I install this as an app?', a: 'Yes. On most modern browsers (Chrome, Safari, Edge, Firefox), look for the install icon in the URL bar. On iPhone, use "Add to Home Screen" from the share menu.' },
+];
+---
+<Layout
+  title="FAQ"
+  description="Frequently asked questions about the Sleep Calculator."
+  siteName={siteName}
+  customDisclaimer="Estimates only — not medical advice."
+  jsonLd={{
+    type: 'FAQPage',
+    data: {
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  }}
+>
+  <Disclaimer text="Estimates only — not medical advice." />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">FAQ</h1>
+    <p class="mt-2 text-neutral-600 dark:text-neutral-400">Common questions about sleep cycles and the calculator.</p>
+    <div class="mt-10 space-y-4">
+      {faqs.map((f) => (
+        <details class="group rounded-lg border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
+          <summary class="cursor-pointer text-lg font-semibold flex items-center justify-between">
+            {f.q}
+            <span class="text-neutral-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </article>
+</Layout>

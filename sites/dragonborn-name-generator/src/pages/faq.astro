@@ -1,0 +1,73 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Dragonborn Names';
+const faqs = [
+  {
+    q: 'Are these names from official D&D sourcebooks?',
+    a: 'No. The names are original and inspired by the D&D 5e and Skyrim naming conventions, but not copied from the sourcebooks. They use the same phonetic patterns and cultural references, but every name is generated and curated for this site.',
+  },
+  {
+    q: 'Is this site affiliated with Wizards of the Coast or Bethesda?',
+    a: 'No. This is a fan-made project. We are not affiliated with, endorsed by, or sponsored by Wizards of the Coast, Hasbro, or Bethesda. The D&D and Skyrim names are trademarks of their respective owners.',
+  },
+  {
+    q: 'Can I use these names for my D&D character?',
+    a: 'Yes. All names on this site are original to us. Use them for your D&D character, your Skyrim playthrough, your novel, your worldbuilding — whatever.',
+  },
+  {
+    q: 'Do you save the names I generate?',
+    a: 'No. The generator runs entirely in your browser. The names you see are never sent to a server, never logged, never stored.',
+  },
+  {
+    q: 'Do you show personalized ads?',
+    a: 'We use Google AdSense, which may personalize ads based on your browsing history. You can opt out at Google Ads Settings. We do not run any ad personalization ourselves.',
+  },
+  {
+    q: 'How do you make money?',
+    a: 'Google AdSense ads on every page. We don\'t sell your data, we don\'t run sponsored content, we don\'t have a premium tier. The site is free forever.',
+  },
+  {
+    q: 'Can I suggest a name for one of the pools?',
+    a: 'Not yet. We may add a community submission form in V2. For now, the pools are hand-curated.',
+  },
+  {
+    q: 'Why no female / male / non-binary split for all races?',
+    a: 'We have a Masculine / Feminine / Gender-neutral split for every race. D&D 5e allows any combination of race and gender; the split is just to give the generator a starting point. You can use any name regardless of your character\'s gender.',
+  },
+];
+---
+<Layout
+  title="FAQ"
+  description="Frequently asked questions about Dragonborn Names."
+  siteName={siteName}
+  customDisclaimer="Fan-made project. Not affiliated with Wizards of the Coast or Bethesda."
+  jsonLd={{
+    type: 'FAQPage',
+    data: {
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  }}
+>
+  <Disclaimer variant="fan-made" />
+  <article class="container-prose py-12">
+    <h1 class="text-4xl font-bold">FAQ</h1>
+    <p class="mt-2 text-neutral-600 dark:text-neutral-400">Common questions about Dragonborn Names.</p>
+
+    <div class="mt-10 space-y-6">
+      {faqs.map((f) => (
+        <details class="group rounded-lg border border-neutral-200 bg-white p-5 dark:border-neutral-800 dark:bg-neutral-900">
+          <summary class="cursor-pointer text-lg font-semibold marker:hidden flex items-center justify-between">
+            {f.q}
+            <span class="text-neutral-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-3 text-neutral-700 dark:text-neutral-300">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </article>
+</Layout>

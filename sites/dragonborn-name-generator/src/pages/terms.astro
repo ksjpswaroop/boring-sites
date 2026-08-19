@@ -1,0 +1,19 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import Terms from '@boring-sites/legal/terms.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+const siteName = 'Dragonborn Names';
+---
+<Layout
+  title="Terms of Service"
+  description="Terms of service for Dragonborn Names."
+  siteName={siteName}
+  customDisclaimer="Fan-made project. Not affiliated with Wizards of the Coast or Bethesda."
+>
+  <Disclaimer variant="fan-made" />
+  <Terms
+    siteName={siteName}
+    siteUrl="https://dragonbornnames.example.com"
+    contactEmail="hello@dragonbornnames.example.com"
+  />
+</Layout>

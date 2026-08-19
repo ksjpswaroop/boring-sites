@@ -1,0 +1,155 @@
+---
+/**
+ * Sleep cycle calculator — bidirectional.
+ * Mode 1: "Wake up at HH:MM" → returns optimal bedtimes.
+ * Mode 2: "Go to bed at HH:MM" → returns optimal wake times.
+ */
+---
+<div class="card">
+  <div class="flex flex-wrap items-center gap-2 rounded-lg bg-neutral-100 p-1 dark:bg-neutral-800">
+    <button type="button" id="mode-wake" class="mode-btn flex-1 rounded-md px-4 py-2 text-sm font-medium" data-mode="wake">
+      🌅 I need to wake up at...
+    </button>
+    <button type="button" id="mode-bed" class="mode-btn flex-1 rounded-md px-4 py-2 text-sm font-medium" data-mode="bed">
+      🌙 I'm going to bed at...
+    </button>
+  </div>
+
+  <div class="mt-6">
+    <label for="time-input" id="time-label" class="block text-sm font-medium">Wake-up time</label>
+    <input
+      type="time"
+      id="time-input"
+      class="mt-2 block w-full rounded-md border border-neutral-300 bg-white px-4 py-3 text-2xl dark:border-neutral-700 dark:bg-neutral-900"
+    />
+  </div>
+
+  <div class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+    <button type="button" id="now-btn" class="btn btn-secondary">⏰ Now</button>
+    <label class="flex items-center gap-2">
+      <span class="text-neutral-500">Time to fall asleep:</span>
+      <input type="number" id="fall-asleep" min="0" max="60" value="14" class="w-16 rounded border border-neutral-300 bg-white px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900" />
+      <span class="text-neutral-500">min</span>
+    </label>
+  </div>
+</div>
+
+<div class="mt-8">
+  <h2 id="results-heading" class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Best bedtimes</h2>
+  <ul id="results" class="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2"></ul>
+</div>
+
+<script>
+  // @ts-nocheck
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+  const timeInput = $('#time-input');
+  const timeLabel = $('#time-label');
+  const resultsHeading = $('#results-heading');
+  const nowBtn = $('#now-btn');
+  const fallAsleepEl = $('#fall-asleep');
+  const resultsEl = $('#results');
+  const modeBtns = $$('.mode-btn');
+
+  let mode = 'wake';
+
+  function timeToMin(t) { const [h, m] = t.split(':').map(Number); return h * 60 + m; }
+  function minToTime(m) { const mm = ((m % 1440) + 1440) % 1440; return `${String(Math.floor(mm / 60)).padStart(2, '0')}:${String(mm % 60).padStart(2, '0')}`; }
+  function buildAlarmUrl(time) {
+    const [h, m] = time.split(':').map(Number);
+    const ua = navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(ua)) return { url: 'shortcuts://', label: 'Open Shortcuts' };
+    if (/android/.test(ua)) return { url: `intent:#Intent;action=android.intent.action.SET_ALARM;i.hour=${h};i.minutes=${m};end`, label: 'Set Android alarm' };
+    return { url: '', label: `Copy ${time}` };
+  }
+
+  function compute() {
+    const time = timeInput.value;
+    if (!time) { resultsEl.innerHTML = ''; return; }
+    const fallAsleep = parseInt(fallAsleepEl.value, 10) || 14;
+    const results = [];
+    if (mode === 'wake') {
+      const wakeMin = timeToMin(time);
+      for (let c = 3; c <= 6; c++) {
+        const bedMin = wakeMin - fallAsleep - c * 90;
+        results.push({ cycles: c, hours: c * 1.5, time: minToTime(bedMin) });
+      }
+    } else {
+      const bedMin = timeToMin(time);
+      for (let c = 3; c <= 6; c++) {
+        const wakeMin = bedMin + fallAsleep + c * 90;
+        results.push({ cycles: c, hours: c * 1.5, time: minToTime(wakeMin) });
+      }
+    }
+    // Sort by cycles desc (most sleep first)
+    results.sort((a, b) => b.cycles - a.cycles);
+
+    resultsEl.innerHTML = results.map((r) => {
+      const alarm = buildAlarmUrl(r.time);
+      const label = r.cycles === 6 ? 'Best for 9h' : r.cycles === 5 ? 'Best for 7.5h' : r.cycles === 4 ? 'Best for 6h' : r.cycles === 3 ? 'Best for 4.5h' : `Best for ${r.hours}h`;
+      return `
+        <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-800 dark:bg-neutral-900">
+          <div>
+            <p class="text-2xl font-bold tracking-tight">${r.time}</p>
+            <p class="text-xs text-neutral-500">${label} of sleep</p>
+          </div>
+          <button class="alarm-btn text-sm text-primary-600 hover:underline dark:text-primary-400" data-time="${r.time}" data-url="${alarm.url}">
+            ${alarm.label}
+          </button>
+        </li>`;
+    }).join('');
+
+    document.querySelectorAll('.alarm-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const url = btn.getAttribute('data-url');
+        const time = btn.getAttribute('data-time');
+        if (url) {
+          window.location.href = url;
+        } else {
+          try {
+            await navigator.clipboard.writeText(time);
+            const orig = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = orig; }, 1200);
+          } catch {}
+        }
+        window.plausible?.('set_alarm', { props: { time, mode } });
+      });
+    });
+  }
+
+  function setMode(newMode) {
+    mode = newMode;
+    for (const btn of modeBtns) {
+      const isActive = btn.dataset.mode === mode;
+      btn.classList.toggle('bg-white', isActive);
+      btn.classList.toggle('dark:bg-neutral-900', isActive);
+      btn.classList.toggle('shadow-sm', isActive);
+      btn.classList.toggle('text-primary-600', isActive);
+      btn.classList.toggle('dark:text-primary-400', isActive);
+    }
+    if (mode === 'wake') {
+      timeLabel.textContent = 'Wake-up time';
+      resultsHeading.textContent = 'Best bedtimes';
+    } else {
+      timeLabel.textContent = 'Bedtime';
+      resultsHeading.textContent = 'Best wake times';
+    }
+    compute();
+  }
+
+  for (const btn of modeBtns) {
+    btn.addEventListener('click', () => setMode(btn.dataset.mode));
+  }
+  timeInput.addEventListener('input', compute);
+  fallAsleepEl.addEventListener('input', compute);
+  nowBtn.addEventListener('click', () => {
+    const d = new Date();
+    timeInput.value = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    compute();
+  });
+
+  // Default: 7:00 AM wake-up
+  timeInput.value = '07:00';
+  setMode('wake');
+</script>
