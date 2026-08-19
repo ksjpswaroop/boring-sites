@@ -51,10 +51,9 @@ export function percentage(i: CalcInputs): CalcResult {
   const X = num(i.x);
   const Y = num(i.y);
   let result = 0;
-  let label = '';
-  if (mode === 'pct-of') { result = (X / 100) * Y; label = `${X}% of ${Y}`; }
-  else if (mode === 'is-what-pct') { result = Y === 0 ? 0 : (X / Y) * 100; label = `${X} is what % of ${Y}`; }
-  else if (mode === 'change') { result = Y === 0 ? 0 : ((X - Y) / Y) * 100; label: `${Y} → ${X}`; label = `${Y} → ${X}`; }
+  if (mode === 'pct-of') result = (X / 100) * Y;
+  else if (mode === 'is-what-pct') result = Y === 0 ? 0 : (X / Y) * 100;
+  else if (mode === 'change') result = Y === 0 ? 0 : ((X - Y) / Y) * 100;
   return { primary: [{ label: 'Result', value: mode === 'change' ? fmtPercent(result) : fmtNumber(result) }] };
 }
 

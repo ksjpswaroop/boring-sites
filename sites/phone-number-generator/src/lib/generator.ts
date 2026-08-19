@@ -55,7 +55,6 @@ export const COUNTRIES: Record<Country, CountryConfig> = {
       // UK format: +44 7XXX XXXXXX (mobile) or +44 1XXX XXXXXXX (landline)
       const isMobile = Math.random() < 0.7;
       if (isMobile) {
-        const prefix = ['7'] [Math.floor(Math.random() * 1)];
         const rest = String(Math.floor(Math.random() * 9_000_000)).padStart(7, '0');
         return `+44 7${rest.slice(0, 2)} ${rest.slice(2, 6)} ${rest.slice(6)}`;
       } else {

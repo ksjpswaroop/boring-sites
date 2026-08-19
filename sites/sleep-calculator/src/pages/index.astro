@@ -7,11 +7,6 @@ const siteName = 'Sleep Calculator';
 const description = 'Free sleep cycle calculator: find the best bedtime or wake time based on 90-minute sleep cycles. Set an alarm with one tap. PWA-installable.';
 const url = 'https://sleepcalculator.example.com';
 
-function fmtTime(t: string): string {
-  const parts = t.split(':').map(Number);
-  return `${String(parts[0]).padStart(2, '0')}:${String(parts[1]).padStart(2, '0')}`;
-}
-
 // Pre-render a few "wake up at X" pages for SEO long-tail
 const wakeTimes = ['06:00', '06:30', '07:00', '07:30', '08:00', '08:30', '09:00'];
 ---
