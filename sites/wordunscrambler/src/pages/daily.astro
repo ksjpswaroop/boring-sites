@@ -1,0 +1,43 @@
+---
+import Layout from '@boring-sites/design/Layout.astro';
+import DailyScramble from '../components/DailyScramble.astro';
+
+const siteName = 'Word Unscrambler';
+const description = 'Play the Daily Scramble: a new deterministic word puzzle every day with local streaks and shareable results.';
+const url = 'https://wordunscrambler.example.com/daily';
+---
+<Layout
+  title="Daily Scramble"
+  description={description}
+  siteName={siteName}
+  logoVariant="word-unscrambler"
+  nav={[
+    { label: 'Unscrambler', href: '/' },
+    { label: 'Rush', href: '/rush' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+  jsonLd={{
+    type: 'WebApplication',
+    data: {
+      name: 'Daily Scramble',
+      description,
+      url,
+      applicationCategory: 'GameApplication',
+      operatingSystem: 'Any (web)',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+  }}
+>
+  <section class="container-wide py-12 sm:py-16">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-8">
+        <p class="text-sm font-medium text-primary-700 dark:text-primary-300">Most impactful for return visits</p>
+        <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">Daily Scramble</h1>
+        <p class="mt-3 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
+          One shared daily letter puzzle, saved progress, local streaks, and a share result button.
+        </p>
+      </div>
+      <DailyScramble />
+    </div>
+  </section>
+</Layout>

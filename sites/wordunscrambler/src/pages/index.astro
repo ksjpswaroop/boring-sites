@@ -12,6 +12,8 @@ const url = 'https://wordunscrambler.example.com';
   siteName={siteName}
   logoVariant="word-unscrambler"
   nav={[
+    { label: 'Rush', href: '/rush' },
+    { label: 'Daily', href: '/daily' },
     { label: 'How it works', href: '#how' },
     { label: 'FAQ', href: '/faq' },
   ]}
@@ -38,6 +40,32 @@ const url = 'https://wordunscrambler.example.com';
 
       <div class="mt-8">
         <Generator />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
+    <div class="container-wide">
+      <div class="mx-auto max-w-4xl">
+        <div class="max-w-2xl">
+          <p class="text-sm font-medium text-primary-700 dark:text-primary-300">New word games</p>
+          <h2 class="mt-2 text-3xl font-bold">Two focused ways to play</h2>
+          <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+            I picked the easiest game to ship well and the most impactful game for repeat visits: a timed anagram sprint and a daily shared puzzle.
+          </p>
+        </div>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+          <a href="/rush" class="card block transition hover:border-primary-300 hover:bg-primary-50 dark:hover:border-primary-700 dark:hover:bg-primary-950/40">
+            <p class="text-sm font-medium text-primary-700 dark:text-primary-300">Easiest + replayable</p>
+            <h3 class="mt-2 text-xl font-bold">Anagram Rush</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Race a 90-second timer, submit valid words, score points, and reveal what you missed.</p>
+          </a>
+          <a href="/daily" class="card block transition hover:border-primary-300 hover:bg-primary-50 dark:hover:border-primary-700 dark:hover:bg-primary-950/40">
+            <p class="text-sm font-medium text-primary-700 dark:text-primary-300">Most impactful</p>
+            <h3 class="mt-2 text-xl font-bold">Daily Scramble</h3>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">One deterministic puzzle per day with saved progress, local streaks, hints, and share text.</p>
+          </a>
+        </div>
       </div>
     </div>
   </section>
