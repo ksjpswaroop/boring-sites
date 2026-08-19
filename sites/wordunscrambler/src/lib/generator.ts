@@ -38,34 +38,33 @@ export function solve(letters: string, index: Map<string, string[]>): string[] {
   const normalized = normalizeLetters(letters);
   if (normalized.length < 2) return [];
 
-  // Build a frequency map of the input letters
-  const inputCounts: Record<string, number> = {};
+  const counts: Record<string, number> = {};
   for (const ch of normalized) {
-    inputCounts[ch] = (inputCounts[ch] || 0) + 1;
+    counts[ch] = (counts[ch] || 0) + 1;
   }
 
-  // For every possible subset of lengths 2..N of the input,
-  // look up the signature in the index and filter by letter availability.
-  // Optimization: pre-compute all signatures that ARE possible given the input.
-  const results: string[] = [];
-  for (const [sig, words] of index) {
-    if (sig.length > normalized.length) continue;
-    // Check if sig can be formed from the input letters
-    let ok = true;
-    const sigCounts: Record<string, number> = {};
-    for (const ch of sig) {
-      sigCounts[ch] = (sigCounts[ch] || 0) + 1;
-      if (sigCounts[ch] > (inputCounts[ch] || 0)) {
-        ok = false;
-        break;
+  const lettersByKind = Object.keys(counts).sort();
+  const results = new Set<string>();
+
+  function visit(letterIndex: number, signature: string): void {
+    if (signature.length >= 2) {
+      const bucket = index.get(signature);
+      if (bucket) {
+        for (const word of bucket) results.add(word);
       }
     }
-    if (ok) {
-      for (const w of words) results.push(w);
+
+    if (letterIndex >= lettersByKind.length) return;
+
+    const letter = lettersByKind[letterIndex];
+    const maxCount = counts[letter] || 0;
+    for (let count = 0; count <= maxCount; count++) {
+      visit(letterIndex + 1, signature + letter.repeat(count));
     }
   }
 
-  return results;
+  visit(0, '');
+  return Array.from(results);
 }
 
 /** Scrabble tile score (NA tournament values). */

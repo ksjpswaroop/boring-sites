@@ -4,7 +4,7 @@
  * client-side as the user types, displays results in a sortable, filterable list.
  */
 import words from '../data/words.json';
-import { buildIndex, solve, scrabbleScore, normalizeLetters } from '../lib/generator';
+import { buildIndex } from '../lib/generator';
 
 const wordList: string[] = words as string[];
 const index = buildIndex(wordList);
@@ -53,90 +53,105 @@ const index = buildIndex(wordList);
   <p id="empty-state" class="mt-8 hidden text-center text-sm text-neutral-500">No words found. Try different letters.</p>
 </div>
 
-<script is:inline define:vars={{ indexEntries: Array.from(index.entries()) }}>
-  // Rebuild the index on the client (it was serialized via define:vars)
-  const index = new Map(indexEntries);
+<script is:inline type="application/json" id="word-index-data" set:html={JSON.stringify(Array.from(index.entries()))}></script>
 
-  const $ = (s) => document.querySelector(s);
-  const input = $('#letters-input');
-  const minLenEl = $('#min-length');
-  const mustContainEl = $('#must-contain');
-  const sortModeEl = $('#sort-mode');
-  const resultsEl = $('#results');
-  const resultCountEl = $('#result-count');
-  const emptyEl = $('#empty-state');
+<script>
+  import { solve, scrabbleScore, normalizeLetters } from '../lib/generator';
 
-  function tileScore(w) { return w.toUpperCase().split('').reduce((s, c) => s + ({A:1,E:1,I:1,O:1,U:1,L:1,N:1,S:1,T:1,R:1,D:2,G:2,B:3,C:3,M:3,P:3,F:4,H:4,V:4,W:4,Y:4,K:5,J:8,X:8,Q:10,Z:10}[c] || 0), 0); }
+  const indexData = document.getElementById('word-index-data');
+  const index = new Map<string, string[]>(JSON.parse(indexData?.textContent || '[]'));
 
-  function render() {
-    const raw = input.value;
-    const normalized = raw.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 15);
-    const minLen = parseInt(minLenEl.value, 10) || 2;
-    const mustContain = (mustContainEl.value || '').toUpperCase().replace(/[^A-Z]/g, '');
-    const sortMode = sortModeEl.value;
+  const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
+  const input = $<HTMLInputElement>('#letters-input');
+  const minLenEl = $<HTMLInputElement>('#min-length');
+  const mustContainEl = $<HTMLInputElement>('#must-contain');
+  const sortModeEl = $<HTMLSelectElement>('#sort-mode');
+  const resultsEl = $<HTMLUListElement>('#results');
+  const resultCountEl = $<HTMLElement>('#result-count');
+  const emptyEl = $<HTMLElement>('#empty-state');
 
-    if (normalized.length < 2) {
-      resultsEl.innerHTML = '';
-      emptyEl.classList.add('hidden');
-      resultCountEl.textContent = 'Type at least 2 letters';
-      return;
-    }
+  if (input && minLenEl && mustContainEl && sortModeEl && resultsEl && resultCountEl && emptyEl) {
+    const lettersInput = input;
+    const minLengthInput = minLenEl;
+    const mustContainInput = mustContainEl;
+    const sortSelect = sortModeEl;
+    const resultsList = resultsEl;
+    const resultCount = resultCountEl;
+    const emptyState = emptyEl;
 
-    let results = solve(normalized, index).filter(w => w.length >= minLen);
-    if (mustContain) {
-      const mc = mustContain.split('');
-      results = results.filter(w => mc.every(c => w.includes(c)));
-    }
+    function render() {
+      const raw = lettersInput.value;
+      const normalized = normalizeLetters(raw);
+      const minLen = parseInt(minLengthInput.value, 10) || 2;
+      const mustContain = normalizeLetters(mustContainInput.value || '');
+      const sortMode = sortSelect.value;
 
-    if (sortMode === 'alpha') results.sort();
-    else if (sortMode === 'length') results.sort((a, b) => b.length - a.length || a.localeCompare(b));
-    else if (sortMode === 'score') results.sort((a, b) => tileScore(b) - tileScore(a) || b.length - a.length || a.localeCompare(b));
+      if (lettersInput.value !== normalized) lettersInput.value = normalized;
+      if (mustContainInput.value !== mustContain) mustContainInput.value = mustContain;
 
-    resultCountEl.textContent = results.length === 0
-      ? 'No words found'
-      : `${results.length} word${results.length === 1 ? '' : 's'} found`;
+      if (normalized.length < 2) {
+        resultsList.innerHTML = '';
+        emptyState.classList.add('hidden');
+        resultCount.textContent = 'Type at least 2 letters';
+        return;
+      }
 
-    if (results.length === 0) {
-      resultsEl.innerHTML = '';
-      emptyEl.classList.remove('hidden');
-      return;
-    }
-    emptyEl.classList.add('hidden');
+      let results = solve(normalized, index).filter((word) => word.length >= minLen);
+      if (mustContain) {
+        const requiredLetters = mustContain.split('');
+        results = results.filter((word) => requiredLetters.every((letter) => word.includes(letter)));
+      }
 
-    resultsEl.innerHTML = results.map((w) => {
-      const score = tileScore(w);
-      return `
-        <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-2.5 dark:border-neutral-800 dark:bg-neutral-900">
-          <div>
-            <span class="font-mono font-medium">${w}</span>
-            <span class="ml-2 text-xs text-neutral-500">${w.length}L · ${score}pt</span>
-          </div>
-          <button class="copy-btn text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-word="${w}" aria-label="Copy ${w}">Copy</button>
-        </li>`;
-    }).join('');
+      if (sortMode === 'alpha') results.sort();
+      else if (sortMode === 'length') results.sort((a, b) => b.length - a.length || a.localeCompare(b));
+      else if (sortMode === 'score') results.sort((a, b) => scrabbleScore(b) - scrabbleScore(a) || b.length - a.length || a.localeCompare(b));
 
-    document.querySelectorAll('.copy-btn').forEach((btn) => {
-      btn.addEventListener('click', async () => {
-        const w = btn.getAttribute('data-word');
-        try {
-          await navigator.clipboard.writeText(w);
-          const orig = btn.textContent;
-          btn.textContent = 'Copied!';
-          setTimeout(() => { btn.textContent = orig; }, 1200);
-        } catch {}
+      resultCount.textContent = results.length === 0
+        ? 'No words found'
+        : `${results.length} word${results.length === 1 ? '' : 's'} found`;
+
+      if (results.length === 0) {
+        resultsList.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      resultsList.innerHTML = results.map((word) => {
+        const score = scrabbleScore(word);
+        return `
+          <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-2.5 dark:border-neutral-800 dark:bg-neutral-900">
+            <div>
+              <span class="font-mono font-medium">${word}</span>
+              <span class="ml-2 text-xs text-neutral-500">${word.length}L · ${score}pt</span>
+            </div>
+            <button class="copy-btn text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-word="${word}" aria-label="Copy ${word}">Copy</button>
+          </li>`;
+      }).join('');
+
+      document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const word = btn.getAttribute('data-word');
+          if (!word) return;
+          try {
+            await navigator.clipboard.writeText(word);
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = original; }, 1200);
+          } catch {}
+        });
       });
-    });
+    }
+
+    lettersInput.addEventListener('input', render);
+    minLengthInput.addEventListener('input', render);
+    mustContainInput.addEventListener('input', render);
+    sortSelect.addEventListener('change', render);
+    lettersInput.focus();
+
+    const last = localStorage.getItem('boring-sites:wordunscrambler:letters');
+    if (last) lettersInput.value = last;
+    lettersInput.addEventListener('input', () => localStorage.setItem('boring-sites:wordunscrambler:letters', lettersInput.value));
+    render();
   }
-
-  input.addEventListener('input', render);
-  minLenEl.addEventListener('input', render);
-  mustContainEl.addEventListener('input', render);
-  sortModeEl.addEventListener('change', render);
-  input.focus();
-
-  // Restore last from localStorage
-  const last = localStorage.getItem('boring-sites:wordunscrambler:letters');
-  if (last) { input.value = last; }
-  input.addEventListener('input', () => localStorage.setItem('boring-sites:wordunscrambler:letters', input.value));
-  render();
 </script>
