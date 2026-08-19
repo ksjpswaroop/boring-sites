@@ -1,5 +1,5 @@
 {
-  "buildCommand": "astro build",
+  "buildCommand": "pnpm build",
   "framework": "astro",
   "cleanUrls": true,
   "trailingSlash": false,
