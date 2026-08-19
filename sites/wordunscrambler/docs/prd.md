@@ -34,7 +34,7 @@ Word-game players (Scrabble, Words With Friends, anagram puzzles) get stuck mid-
 
 - Account system / saved lists across devices
 - Multi-language (English only V1)
-- Native mobile app
+- Native mobile app for the web V1. This is superseded for the Apple product by [`apple-app-roadmap.md`](./apple-app-roadmap.md).
 - Direct Scrabble / WWF integration
 - User-generated content or comments
 - Premium tier

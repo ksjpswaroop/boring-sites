@@ -100,7 +100,7 @@ If no results, suggest near-misses: drop one letter, swap two letters.
 - Multi-language word lists — V2
 - User accounts / cross-device sync — V2
 - Direct WWF / Scrabble Go integration — V3
-- Mobile native app — V3
+- Mobile native app — superseded for the Apple product by [`apple-app-roadmap.md`](./apple-app-roadmap.md)
 - Voice input — V3
 - Ad-blocker detection (let the ads be blocked; don't fight it)
 
