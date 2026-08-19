@@ -60,6 +60,11 @@ and export commands above from this directory.
 
 Phase 4 instrumentation is implemented in `WordBridgeApp` with `AnalyticsEvent`, `PrivacyPreservingAnalytics`, `LocalAnalyticsRecorder`, and `RetentionMetricsCalculator`.
 
+`RetentionImprovementPlanner` turns the measured beta signals and feedback inbox
+into a prioritized improvement backlog. The planner keeps monetization closed
+when crashes are present, when retention/replay/share targets are weak, or when
+qualitative TestFlight feedback has not been collected yet.
+
 Allowed event properties:
 
 - Game name.
@@ -96,3 +101,12 @@ Feedback should be triaged into:
 - Game balance: scoring, timer length, hint economy, or replay friction.
 
 Fixes from this loop should land before any ad SDK, ad placement, account system, or paid feature.
+
+Default improvement triggers:
+
+- Crash count above zero: fix stability first.
+- Daily completion below 50%: improve onboarding and daily puzzle flow.
+- Anagram Rush replay below 30%: tune timer length and difficulty.
+- 7-day retention below 20%: rebalance the daily loop and rewards.
+- Share usage is zero: improve share-card timing and copy.
+- No qualitative feedback: collect tester feedback before monetization review.

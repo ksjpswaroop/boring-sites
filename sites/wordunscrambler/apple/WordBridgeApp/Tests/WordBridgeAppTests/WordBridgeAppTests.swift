@@ -347,6 +347,66 @@ final class WordBridgeAppTests: XCTestCase {
         XCTAssertFalse(WordBridgePolicy.hasAds)
     }
 
+    func testRetentionReviewTurnsWeakMetricsIntoImprovementPrioritiesBeforeMonetization() {
+        let weakMetrics = RetentionMetrics(
+            dailyCompletionRate: 0.20,
+            rushReplayRate: 0.10,
+            sevenDayRetentionRate: 0.05,
+            shareUsageCount: 0,
+            crashCount: 2
+        )
+        let feedback = FeedbackInbox(records: [
+            .init(category: .dictionaryQuality, message: "Missing common word", severity: .high),
+            .init(category: .difficulty, message: "Timed rounds feel too hard", severity: .medium)
+        ])
+
+        let review = RetentionImprovementPlanner().review(metrics: weakMetrics, feedback: feedback)
+
+        XCTAssertEqual(review.status, .needsIteration)
+        XCTAssertFalse(review.canConsiderMonetization)
+        XCTAssertEqual(review.improvements.first?.area, .stability)
+        XCTAssertTrue(review.improvements.contains { $0.area == .onboarding })
+        XCTAssertTrue(review.improvements.contains { $0.area == .difficulty })
+        XCTAssertTrue(review.improvements.contains { $0.area == .dictionaryQuality })
+        XCTAssertTrue(review.improvements.contains { $0.area == .gameBalance })
+        XCTAssertTrue(review.improvements.contains { $0.area == .sharing })
+    }
+
+    func testRetentionReviewCanAdvanceOnlyAfterMetricsPassAndBlockingFeedbackIsResolved() {
+        let strongMetrics = RetentionMetrics(
+            dailyCompletionRate: 0.62,
+            rushReplayRate: 0.40,
+            sevenDayRetentionRate: 0.28,
+            shareUsageCount: 8,
+            crashCount: 0
+        )
+        let reviewedFeedback = FeedbackInbox(records: [
+            .init(category: .gameBalance, message: "Daily loop feels solid", severity: .low)
+        ])
+
+        let review = RetentionImprovementPlanner().review(metrics: strongMetrics, feedback: reviewedFeedback)
+
+        XCTAssertEqual(review.status, .readyForMoreTesters)
+        XCTAssertTrue(review.improvements.isEmpty)
+        XCTAssertTrue(review.canConsiderMonetization)
+    }
+
+    func testRetentionReviewRequiresQualitativeFeedbackEvenWhenMetricsPass() {
+        let strongMetrics = RetentionMetrics(
+            dailyCompletionRate: 0.62,
+            rushReplayRate: 0.40,
+            sevenDayRetentionRate: 0.28,
+            shareUsageCount: 8,
+            crashCount: 0
+        )
+
+        let review = RetentionImprovementPlanner().review(metrics: strongMetrics, feedback: FeedbackInbox(records: []))
+
+        XCTAssertEqual(review.status, .needsIteration)
+        XCTAssertFalse(review.canConsiderMonetization)
+        XCTAssertEqual(review.improvements.map(\.area), [.onboarding])
+    }
+
     func testTestFlightPlanDocumentsRequiredLaunchInputs() {
         let plan = TestFlightLaunchPlan.defaultPlan
 

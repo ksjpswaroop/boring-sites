@@ -283,6 +283,189 @@ public enum MonetizationReadinessGate {
     }
 }
 
+public enum RetentionReviewStatus: String, Codable, Equatable, Sendable {
+    case needsIteration
+    case readyForMoreTesters
+}
+
+public enum RetentionImprovementArea: String, Codable, Equatable, Hashable, Sendable {
+    case stability
+    case onboarding
+    case difficulty
+    case dictionaryQuality
+    case gameBalance
+    case sharing
+
+    fileprivate var sortOrder: Int {
+        switch self {
+        case .stability:
+            0
+        case .onboarding:
+            1
+        case .difficulty:
+            2
+        case .dictionaryQuality:
+            3
+        case .gameBalance:
+            4
+        case .sharing:
+            5
+        }
+    }
+}
+
+public struct RetentionImprovement: Codable, Equatable, Sendable {
+    public let area: RetentionImprovementArea
+    public let priority: FeedbackSeverity
+    public let summary: String
+
+    public init(area: RetentionImprovementArea, priority: FeedbackSeverity, summary: String) {
+        self.area = area
+        self.priority = priority
+        self.summary = summary
+    }
+}
+
+public struct RetentionValidationThresholds: Codable, Equatable, Sendable {
+    public let minimumDailyCompletionRate: Double
+    public let minimumRushReplayRate: Double
+    public let minimumSevenDayRetentionRate: Double
+    public let minimumShareUsageCount: Int
+    public let maximumCrashCount: Int
+
+    public init(
+        minimumDailyCompletionRate: Double = 0.50,
+        minimumRushReplayRate: Double = 0.30,
+        minimumSevenDayRetentionRate: Double = 0.20,
+        minimumShareUsageCount: Int = 1,
+        maximumCrashCount: Int = 0
+    ) {
+        self.minimumDailyCompletionRate = minimumDailyCompletionRate
+        self.minimumRushReplayRate = minimumRushReplayRate
+        self.minimumSevenDayRetentionRate = minimumSevenDayRetentionRate
+        self.minimumShareUsageCount = minimumShareUsageCount
+        self.maximumCrashCount = maximumCrashCount
+    }
+}
+
+public struct RetentionValidationReview: Codable, Equatable, Sendable {
+    public let status: RetentionReviewStatus
+    public let metrics: RetentionMetrics
+    public let feedback: FeedbackInbox
+    public let improvements: [RetentionImprovement]
+    public let canConsiderMonetization: Bool
+}
+
+public struct RetentionImprovementPlanner {
+    private let thresholds: RetentionValidationThresholds
+
+    public init(thresholds: RetentionValidationThresholds = .init()) {
+        self.thresholds = thresholds
+    }
+
+    public func review(metrics: RetentionMetrics, feedback: FeedbackInbox) -> RetentionValidationReview {
+        let improvements = prioritizedImprovements(metrics: metrics, feedback: feedback)
+        let canConsiderMonetization = improvements.isEmpty
+            && MonetizationReadinessGate.canConsiderAds(metrics: metrics, feedback: feedback)
+
+        return RetentionValidationReview(
+            status: improvements.isEmpty ? .readyForMoreTesters : .needsIteration,
+            metrics: metrics,
+            feedback: feedback,
+            improvements: improvements,
+            canConsiderMonetization: canConsiderMonetization
+        )
+    }
+
+    private func prioritizedImprovements(metrics: RetentionMetrics, feedback: FeedbackInbox) -> [RetentionImprovement] {
+        var improvements: [RetentionImprovement] = []
+
+        if metrics.crashCount > thresholds.maximumCrashCount {
+            improvements.append(.init(
+                area: .stability,
+                priority: .high,
+                summary: "Fix crashes before expanding TestFlight or considering monetization."
+            ))
+        }
+
+        if metrics.dailyCompletionRate < thresholds.minimumDailyCompletionRate {
+            improvements.append(.init(
+                area: .onboarding,
+                priority: .high,
+                summary: "Improve the first-run and daily puzzle flow until daily completion reaches the validation target."
+            ))
+        }
+
+        if feedback.records.isEmpty {
+            improvements.append(.init(
+                area: .onboarding,
+                priority: .medium,
+                summary: "Collect qualitative TestFlight feedback before making monetization decisions."
+            ))
+        }
+
+        if metrics.rushReplayRate < thresholds.minimumRushReplayRate {
+            improvements.append(.init(
+                area: .difficulty,
+                priority: .medium,
+                summary: "Tune Anagram Rush timing and puzzle difficulty until replay rate reaches the validation target."
+            ))
+        }
+
+        if metrics.sevenDayRetentionRate < thresholds.minimumSevenDayRetentionRate {
+            improvements.append(.init(
+                area: .gameBalance,
+                priority: .high,
+                summary: "Rebalance the daily loop and rewards until 7-day retention reaches the validation target."
+            ))
+        }
+
+        if metrics.shareUsageCount < thresholds.minimumShareUsageCount {
+            improvements.append(.init(
+                area: .sharing,
+                priority: .medium,
+                summary: "Improve share-card timing and copy until sharing is observed in beta usage."
+            ))
+        }
+
+        improvements.append(contentsOf: feedback.records.compactMap(Self.feedbackImprovement))
+
+        return improvements.sorted { lhs, rhs in
+            if lhs.priority != rhs.priority {
+                return lhs.priority > rhs.priority
+            }
+            return lhs.area.sortOrder < rhs.area.sortOrder
+        }
+    }
+
+    private static func feedbackImprovement(_ record: FeedbackRecord) -> RetentionImprovement? {
+        guard record.severity != .low else {
+            return nil
+        }
+
+        return RetentionImprovement(
+            area: RetentionImprovementArea(record.category),
+            priority: record.severity,
+            summary: record.message
+        )
+    }
+}
+
+private extension RetentionImprovementArea {
+    init(_ feedbackCategory: FeedbackCategory) {
+        switch feedbackCategory {
+        case .onboarding:
+            self = .onboarding
+        case .difficulty:
+            self = .difficulty
+        case .dictionaryQuality:
+            self = .dictionaryQuality
+        case .gameBalance:
+            self = .gameBalance
+        }
+    }
+}
+
 public enum TestFlightRequiredInput: String, Codable, Equatable, Hashable, Sendable {
     case appleDistributionCertificate
     case appStoreConnectAppRecord
