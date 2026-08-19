@@ -466,6 +466,72 @@ private extension RetentionImprovementArea {
     }
 }
 
+public struct FeedbackThemeSummary: Codable, Equatable, Sendable {
+    public let category: FeedbackCategory
+    public let count: Int
+    public let highestSeverity: FeedbackSeverity
+
+    public init(category: FeedbackCategory, count: Int, highestSeverity: FeedbackSeverity) {
+        self.category = category
+        self.count = count
+        self.highestSeverity = highestSeverity
+    }
+}
+
+public struct BetaValidationReport: Codable, Equatable, Sendable {
+    public let generatedAt: Date
+    public let status: RetentionReviewStatus
+    public let metrics: RetentionMetrics
+    public let feedbackThemes: [FeedbackThemeSummary]
+    public let improvements: [RetentionImprovementArea]
+    public let canConsiderMonetization: Bool
+}
+
+public struct BetaValidationReportGenerator {
+    private let planner: RetentionImprovementPlanner
+
+    public init(calendar _: Calendar = .current, planner: RetentionImprovementPlanner = .init()) {
+        self.planner = planner
+    }
+
+    public func makeReport(
+        metrics: RetentionMetrics,
+        feedback: FeedbackInbox,
+        generatedAt: Date = Date()
+    ) -> BetaValidationReport {
+        let review = planner.review(metrics: metrics, feedback: feedback)
+
+        return BetaValidationReport(
+            generatedAt: generatedAt,
+            status: review.status,
+            metrics: metrics,
+            feedbackThemes: Self.feedbackThemes(from: feedback),
+            improvements: review.improvements.map(\.area),
+            canConsiderMonetization: review.canConsiderMonetization
+        )
+    }
+
+    private static func feedbackThemes(from feedback: FeedbackInbox) -> [FeedbackThemeSummary] {
+        Dictionary(grouping: feedback.records, by: \.category)
+            .map { category, records in
+                FeedbackThemeSummary(
+                    category: category,
+                    count: records.count,
+                    highestSeverity: records.map(\.severity).max() ?? .low
+                )
+            }
+            .sorted { lhs, rhs in
+                if lhs.highestSeverity != rhs.highestSeverity {
+                    return lhs.highestSeverity > rhs.highestSeverity
+                }
+                if lhs.count != rhs.count {
+                    return lhs.count > rhs.count
+                }
+                return lhs.category.rawValue < rhs.category.rawValue
+            }
+    }
+}
+
 public enum TestFlightRequiredInput: String, Codable, Equatable, Hashable, Sendable {
     case appleDistributionCertificate
     case appStoreConnectAppRecord

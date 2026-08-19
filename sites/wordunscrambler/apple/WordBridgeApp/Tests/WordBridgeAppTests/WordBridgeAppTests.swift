@@ -407,6 +407,37 @@ final class WordBridgeAppTests: XCTestCase {
         XCTAssertEqual(review.improvements.map(\.area), [.onboarding])
     }
 
+    func testBetaValidationReportSummarizesMetricsFeedbackThemesAndOmitsFreeText() throws {
+        let metrics = RetentionMetrics(
+            dailyCompletionRate: 0.42,
+            rushReplayRate: 0.22,
+            sevenDayRetentionRate: 0.12,
+            shareUsageCount: 3,
+            crashCount: 0
+        )
+        let feedback = FeedbackInbox(records: [
+            .init(category: .dictionaryQuality, message: "PRIVATE missing exact word", severity: .high),
+            .init(category: .dictionaryQuality, message: "PRIVATE accepted odd word", severity: .medium),
+            .init(category: .gameBalance, message: "PRIVATE timer detail", severity: .medium)
+        ])
+
+        let report = BetaValidationReportGenerator(calendar: utcCalendar()).makeReport(
+            metrics: metrics,
+            feedback: feedback,
+            generatedAt: Date(timeIntervalSince1970: 1_704_067_200)
+        )
+        let data = try JSONEncoder().encode(report)
+        let encoded = String(decoding: data, as: UTF8.self)
+
+        XCTAssertEqual(report.status, .needsIteration)
+        XCTAssertEqual(report.metrics, metrics)
+        XCTAssertEqual(report.feedbackThemes.map(\.category), [.dictionaryQuality, .gameBalance])
+        XCTAssertEqual(report.feedbackThemes.first?.count, 2)
+        XCTAssertEqual(report.feedbackThemes.first?.highestSeverity, .high)
+        XCTAssertFalse(report.canConsiderMonetization)
+        XCTAssertFalse(encoded.contains("PRIVATE"))
+    }
+
     func testTestFlightPlanDocumentsRequiredLaunchInputs() {
         let plan = TestFlightLaunchPlan.defaultPlan
 

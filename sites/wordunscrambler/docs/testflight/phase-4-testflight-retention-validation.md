@@ -65,6 +65,11 @@ into a prioritized improvement backlog. The planner keeps monetization closed
 when crashes are present, when retention/replay/share targets are weak, or when
 qualitative TestFlight feedback has not been collected yet.
 
+`BetaValidationReportGenerator` creates a privacy-safe review artifact for each
+beta checkpoint. Reports include metric values, feedback theme counts, highest
+severity by theme, improvement areas, and monetization readiness. They do not
+include raw tester comments or raw gameplay inputs.
+
 Allowed event properties:
 
 - Game name.
@@ -90,6 +95,15 @@ Blocked event properties:
 - Feedback themes.
 
 The monetization gate remains closed in V1. Ads may only be considered after retention metrics pass the `MonetizationReadinessGate` and feedback has been reviewed.
+
+Beta checkpoint report contents:
+
+- Generated timestamp.
+- Retention review status.
+- Daily completion, replay, 7-day retention, share, and crash metrics.
+- Feedback theme counts by onboarding, difficulty, dictionary quality, and game balance.
+- Prioritized improvement areas.
+- Monetization readiness flag.
 
 ## Improvement Loop
 
