@@ -1,0 +1,32 @@
+---
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import WordFinder from '../components/WordFinder.astro';
+
+const description = 'Enter the letters you have and find every valid word you can make. Filter by length, required letters, score, and exact anagrams.';
+---
+<LexJoltLayout
+  title="Word Finder – Find Words From Letters"
+  description={description}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Word Finder',
+    url: 'https://lexjolt.com/word-finder',
+    description,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  }}
+>
+  <section class="lexjolt-shell lexjolt-section">
+    <div class="mx-auto max-w-4xl">
+      <p class="lexjolt-eyebrow">Find words from letters</p>
+      <h1 class="lexjolt-h1 mt-2">Word Finder</h1>
+      <p class="lexjolt-lede mt-4">{description}</p>
+      <div class="mt-8">
+        <WordFinder />
+      </div>
+    </div>
+  </section>
+</LexJoltLayout>
+

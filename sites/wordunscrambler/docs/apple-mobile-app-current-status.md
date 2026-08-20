@@ -1,12 +1,12 @@
-# WordBridge Mobile App Current Status
+# LexJolt Mobile App Current Status
 
 **Last updated:** August 20, 2026
-**Scope:** Native SwiftUI Apple app for WordBridge
+**Scope:** Native SwiftUI Apple app for LexJolt
 **Current phase:** Phase 4 - TestFlight and retention validation
 
 ## Current State
 
-The WordBridge native Apple app has a working Swift package core, SwiftUI app
+The LexJolt native Apple app has a working Swift package core, SwiftUI app
 logic, Apple platform target shells, privacy-conscious retention instrumentation,
 feedback triage, monetization gates, and beta validation report generation.
 
@@ -19,7 +19,7 @@ adf39b4 Document TestFlight export signing path
 ## Verified Locally
 
 - `WordGameCore` tests pass: 7 tests.
-- `WordBridgeApp` tests pass: 29 tests.
+- `LexJoltApp` tests pass: 29 tests.
 - iOS Simulator build passes.
 - Mac build passes.
 - TestFlight export options plist validates.
@@ -49,23 +49,23 @@ fails:
 
 ```text
 Your team has no devices from which to generate a provisioning profile.
-No profiles for 'com.boringsites.wordbridge' were found.
+No profiles for 'com.lexjolt.app' were found.
 ```
 
 The useful workaround is to create an unsigned Release archive and let the
 export/upload step handle App Store Connect distribution signing:
 
 ```sh
-cd sites/wordunscrambler/apple/WordBridgeiOS
-xcodebuild -project WordBridgeiOS.xcodeproj -scheme WordBridgeiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/WordBridge.xcarchive CODE_SIGNING_ALLOWED=NO
-xcodebuild -exportArchive -archivePath ./build/WordBridge.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
+cd sites/wordunscrambler/apple/LexJoltiOS
+xcodebuild -project LexJoltiOS.xcodeproj -scheme LexJoltiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/LexJolt.xcarchive CODE_SIGNING_ALLOWED=NO
+xcodebuild -exportArchive -archivePath ./build/LexJolt.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
 ```
 
 The unsigned Release archive succeeds. The export/upload currently reaches App
 Store Connect, then fails because the app record does not exist:
 
 ```text
-IDEDistribution.DistributionAppRecordProviderError.missingApp(bundleId: "com.boringsites.wordbridge")
+IDEDistribution.DistributionAppRecordProviderError.missingApp(bundleId: "com.lexjolt.app")
 ```
 
 ## Next Resume Step
@@ -73,8 +73,8 @@ IDEDistribution.DistributionAppRecordProviderError.missingApp(bundleId: "com.bor
 Create the App Store Connect app record for:
 
 ```text
-Name: WordBridge
-Bundle ID: com.boringsites.wordbridge
+Name: LexJolt
+Bundle ID: com.lexjolt.app
 SKU: wordbridge
 Primary language: English (U.S.)
 ```

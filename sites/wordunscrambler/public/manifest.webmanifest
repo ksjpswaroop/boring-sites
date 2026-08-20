@@ -1,0 +1,24 @@
+{
+  "name": "LexJolt",
+  "short_name": "LexJolt",
+  "description": "Free word tools and games. No signup. No paywall.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F3F6F8",
+  "theme_color": "#0A66C2",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

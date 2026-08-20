@@ -1,0 +1,113 @@
+name: LexJoltiOS
+
+options:
+  bundleIdPrefix: com.lexjolt
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+    watchOS: "10.0"
+    tvOS: "17.0"
+    visionOS: "1.0"
+
+packages:
+  LexJoltApp:
+    path: ../LexJoltApp
+
+targets:
+  LexJoltiOS:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+      - Resources
+    dependencies:
+      - package: LexJoltApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lexjolt.app
+        PRODUCT_NAME: LexJolt
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: LexJolt
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.word-games
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SUPPORTS_MACCATALYST: NO
+      configs:
+        Debug:
+          CODE_SIGNING_ALLOWED: NO
+        Release:
+          CODE_SIGNING_STYLE: Automatic
+          DEVELOPMENT_TEAM: 97ZA7QV77G
+
+  LexJoltMac:
+    type: application
+    platform: macOS
+    sources:
+      - SourcesMac
+    dependencies:
+      - package: LexJoltApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lexjolt.app.mac
+        PRODUCT_NAME: LexJolt
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: LexJolt
+        CODE_SIGNING_ALLOWED: NO
+
+  LexJoltWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - SourcesWatch
+    dependencies:
+      - package: LexJoltApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lexjolt.app.watch
+        PRODUCT_NAME: LexJolt
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: LexJolt
+        CODE_SIGNING_ALLOWED: NO
+
+  LexJoltTV:
+    type: application
+    platform: tvOS
+    sources:
+      - SourcesTV
+    dependencies:
+      - package: LexJoltApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lexjolt.app.tv
+        PRODUCT_NAME: LexJolt
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: LexJolt
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        CODE_SIGNING_ALLOWED: NO
+
+  LexJoltVision:
+    type: application
+    platform: visionOS
+    sources:
+      - SourcesVision
+    dependencies:
+      - package: LexJoltApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lexjolt.app.vision
+        PRODUCT_NAME: LexJolt
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: LexJolt
+        CODE_SIGNING_ALLOWED: NO

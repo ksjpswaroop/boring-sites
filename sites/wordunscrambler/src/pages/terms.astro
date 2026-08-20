@@ -1,17 +1,27 @@
 ---
-import Layout from '@boring-sites/design/Layout.astro';
-import Terms from '@boring-sites/legal/terms.astro';
-const siteName = 'Word Unscrambler';
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import { brand } from '../config/brand';
 ---
-<Layout
-  title="Terms of Service"
-  description="Terms of service for the Word Unscrambler."
-  siteName={siteName}
-  logoVariant="word-unscrambler"
->
-  <Terms
-    siteName={siteName}
-    siteUrl="https://wordunscrambler.example.com"
-    contactEmail="hello@wordunscrambler.example.com"
-  />
-</Layout>
+<LexJoltLayout title="Terms" description="Terms of use for LexJolt.">
+  <article class="lexjolt-shell lexjolt-section">
+    <div class="max-w-3xl">
+      <p class="lexjolt-eyebrow">Terms</p>
+      <h1 class="lexjolt-h1 mt-2">Terms of use</h1>
+      <div class="mt-8 space-y-6 leading-7 text-neutral-700 dark:text-neutral-300">
+        <p>LexJolt is provided as a free word tool and game platform. Use it responsibly and do not attempt to disrupt the service or misuse automated traffic.</p>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">No accounts or payments</h2>
+          <p class="mt-2">LexJolt does not offer user accounts, paid plans, subscriptions, or payment collection in this version.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Word data and definitions</h2>
+          <p class="mt-2">Word lists and definitions may contain obscure, archaic, or unexpected terms. Treat results as word-game assistance, not formal linguistic or legal advice.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Contact</h2>
+          <p class="mt-2">Contact <a class="font-semibold text-primary-700 dark:text-primary-200" href={`mailto:${brand.email}`}>{brand.email}</a> for questions.</p>
+        </section>
+      </div>
+    </div>
+  </article>
+</LexJoltLayout>

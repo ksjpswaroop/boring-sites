@@ -1,0 +1,318 @@
+---
+/**
+ * Deterministic UTC daily word challenge for LexJolt.
+ */
+---
+<section class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+  <div class="lexjolt-card">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <p id="daily-date" class="lexjolt-eyebrow">Daily Jolt</p>
+        <h2 class="mt-1 text-2xl font-bold tracking-tight">Today's Daily Jolt</h2>
+        <p class="mt-2 max-w-2xl text-sm text-neutral-600 dark:text-neutral-400">
+          Find words with the required blue tile. Everyone gets the same puzzle on the same UTC date.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-2 text-center text-sm">
+        <div class="rounded-md border border-neutral-200 px-3 py-2 dark:border-neutral-800">
+          <div id="daily-score" class="mono text-xl font-bold">0</div>
+          <div class="text-xs text-neutral-500">score</div>
+        </div>
+        <div class="rounded-md border border-neutral-200 px-3 py-2 dark:border-neutral-800">
+          <div id="daily-found-count" class="mono text-xl font-bold">0</div>
+          <div class="text-xs text-neutral-500">found</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-sm text-neutral-500">The blue tile is required in every answer.</p>
+      <div id="daily-letters" class="mt-3 flex flex-wrap gap-2" aria-label="Daily Jolt letters"></div>
+    </div>
+
+    <form id="daily-form" class="mt-6 flex flex-col gap-3 sm:flex-row">
+      <label for="daily-input" class="sr-only">Enter a word</label>
+      <input
+        id="daily-input"
+        type="text"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        maxlength="15"
+        placeholder="Type a word"
+        class="lexjolt-input mono min-w-0 flex-1 px-4 py-3 text-lg uppercase"
+      />
+      <button id="daily-submit" type="submit" class="lexjolt-button lexjolt-button-primary px-5 py-3">Submit</button>
+    </form>
+
+    <div class="mt-4 flex flex-wrap items-center gap-3">
+      <button id="daily-hint" type="button" class="lexjolt-button lexjolt-button-secondary">Hint</button>
+      <button id="daily-share" type="button" class="lexjolt-button lexjolt-button-secondary">Copy share result</button>
+      <p id="daily-message" class="text-sm text-neutral-500" aria-live="polite">Minimum length is 4.</p>
+    </div>
+
+    <div class="mt-6 h-3 overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800">
+      <div id="daily-progress" class="h-full rounded-full bg-primary-600 transition-all" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <aside class="space-y-6">
+    <div class="lexjolt-card">
+      <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Today</h2>
+      <dl class="mt-3 grid gap-3 text-sm">
+        <div class="flex items-center justify-between">
+          <dt class="text-neutral-500">Possible words</dt>
+          <dd id="daily-total" class="mono font-semibold">0</dd>
+        </div>
+        <div class="flex items-center justify-between">
+          <dt class="text-neutral-500">Best word</dt>
+          <dd id="daily-best" class="mono font-semibold">-</dd>
+        </div>
+        <div class="flex items-center justify-between">
+          <dt class="text-neutral-500">Current streak</dt>
+          <dd id="daily-streak" class="mono font-semibold">0</dd>
+        </div>
+        <div class="flex items-center justify-between">
+          <dt class="text-neutral-500">Longest streak</dt>
+          <dd id="daily-longest-streak" class="mono font-semibold">0</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="lexjolt-card">
+      <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Found words</h2>
+      <ul id="daily-found" class="mt-3 grid gap-2"></ul>
+      <p id="daily-empty" class="mt-4 text-sm text-neutral-500">No words yet.</p>
+    </div>
+  </aside>
+</section>
+
+<script>
+  import { canBuildWord, dailyJoltPuzzleForDate, loadIndex, normalizeLetters, scrabbleScore, solve, utcDayKey } from '../lib/generator';
+
+  const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
+  const dateEl = $<HTMLElement>('#daily-date');
+  const lettersEl = $<HTMLElement>('#daily-letters');
+  const form = $<HTMLFormElement>('#daily-form');
+  const input = $<HTMLInputElement>('#daily-input');
+  const scoreEl = $<HTMLElement>('#daily-score');
+  const foundCountEl = $<HTMLElement>('#daily-found-count');
+  const totalEl = $<HTMLElement>('#daily-total');
+  const bestEl = $<HTMLElement>('#daily-best');
+  const streakEl = $<HTMLElement>('#daily-streak');
+  const longestStreakEl = $<HTMLElement>('#daily-longest-streak');
+  const foundEl = $<HTMLUListElement>('#daily-found');
+  const emptyEl = $<HTMLElement>('#daily-empty');
+  const messageEl = $<HTMLElement>('#daily-message');
+  const progressEl = $<HTMLElement>('#daily-progress');
+  const hintBtn = $<HTMLButtonElement>('#daily-hint');
+  const shareBtn = $<HTMLButtonElement>('#daily-share');
+
+  if (dateEl && lettersEl && form && input && scoreEl && foundCountEl && totalEl && bestEl && streakEl && longestStreakEl && foundEl && emptyEl && messageEl && progressEl && hintBtn && shareBtn) {
+    const dayKey = utcDayKey(new Date());
+    const puzzle = dailyJoltPuzzleForDate(new Date());
+    const stateKey = 'lexjolt:daily:state';
+    const oldDayKey = `boring-sites:wordunscrambler:daily:${dayKey}`;
+    const oldStreakKey = 'boring-sites:wordunscrambler:daily-streak';
+    let index = new Map<string, string[]>();
+    let answers: string[] = [];
+    let best = '-';
+
+    type DailyState = {
+      current_streak: number;
+      longest_streak: number;
+      completed_date: string;
+      result: Record<string, string[]>;
+      share_status: string;
+    };
+    const defaultState: DailyState = { current_streak: 0, longest_streak: 0, completed_date: '', result: {}, share_status: '' };
+
+    const migrateState = () => {
+      if (localStorage.getItem(stateKey)) return;
+      const oldFound = JSON.parse(localStorage.getItem(oldDayKey) || '[]') as string[];
+      const oldStreak = JSON.parse(localStorage.getItem(oldStreakKey) || '{"lastDay":"","count":0}') as { lastDay: string; count: number };
+      if (oldFound.length || oldStreak.count) {
+        localStorage.setItem(stateKey, JSON.stringify({
+          ...defaultState,
+          current_streak: oldStreak.count || 0,
+          longest_streak: oldStreak.count || 0,
+          completed_date: oldStreak.lastDay || '',
+          result: oldFound.length ? { [dayKey]: oldFound } : {},
+        }));
+      }
+      localStorage.removeItem(oldDayKey);
+      localStorage.removeItem(oldStreakKey);
+    };
+
+    const readState = (): DailyState => {
+      migrateState();
+      try {
+        return { ...defaultState, ...JSON.parse(localStorage.getItem(stateKey) || '{}') };
+      } catch {
+        return defaultState;
+      }
+    };
+
+    const writeState = (state: DailyState) => {
+      localStorage.setItem(stateKey, JSON.stringify(state));
+    };
+
+    const found = new Set<string>(readState().result[dayKey] || []);
+
+    input.disabled = true;
+    hintBtn.disabled = true;
+    shareBtn.disabled = true;
+    messageEl.textContent = 'Loading dictionary...';
+
+    const pointsFor = (word: string) => word.length === 4 ? 1 : word.length + scrabbleScore(word);
+    const isPangram = (word: string) => new Set(puzzle.letters.split('')).size === new Set(word.split('')).size;
+
+    const buildAnswers = () => {
+      answers = solve(puzzle.letters, index)
+        .filter((word) => word.length >= 4 && word.includes(puzzle.required) && canBuildWord(word, puzzle.letters))
+        .sort((a, b) => pointsFor(b) - pointsFor(a) || b.length - a.length || a.localeCompare(b));
+      best = answers[0] || '-';
+    };
+
+    const updateStreak = () => {
+      const state = readState();
+      if (found.size === 0) {
+        streakEl.textContent = String(state.current_streak || 0);
+        longestStreakEl.textContent = String(state.longest_streak || 0);
+        return;
+      }
+      if (state.completed_date === dayKey) {
+        streakEl.textContent = String(state.current_streak || 1);
+        longestStreakEl.textContent = String(state.longest_streak || state.current_streak || 1);
+        return;
+      }
+      const today = new Date(`${dayKey}T00:00:00Z`);
+      const yesterday = new Date(today.getTime() - 86400000).toISOString().slice(0, 10);
+      const nextStreak = state.completed_date === yesterday ? (state.current_streak || 0) + 1 : 1;
+      const next = {
+        ...state,
+        current_streak: nextStreak,
+        longest_streak: Math.max(state.longest_streak || 0, nextStreak),
+        completed_date: dayKey,
+      };
+      writeState(next);
+      streakEl.textContent = String(next.current_streak);
+      longestStreakEl.textContent = String(next.longest_streak);
+    };
+
+    const save = () => {
+      const state = readState();
+      writeState({
+        ...state,
+        result: { ...state.result, [dayKey]: Array.from(found) },
+      });
+      updateStreak();
+    };
+
+    const setMessage = (text: string) => {
+      messageEl.textContent = text;
+    };
+
+    const renderLetters = () => {
+      lettersEl.innerHTML = puzzle.letters.split('').map((letter) => {
+        const required = letter === puzzle.required;
+        return `
+          <span class="${required ? 'lexjolt-tile' : 'lexjolt-tile lexjolt-tile-light'}">${letter}</span>
+        `;
+      }).join('');
+    };
+
+    const renderFound = () => {
+      const words = Array.from(found).sort((a, b) => b.length - a.length || a.localeCompare(b));
+      const score = words.reduce((sum, word) => sum + pointsFor(word), 0);
+      scoreEl.textContent = String(score);
+      foundCountEl.textContent = String(words.length);
+      totalEl.textContent = String(answers.length);
+      bestEl.textContent = best;
+      progressEl.style.width = `${answers.length ? Math.round((words.length / answers.length) * 100) : 0}%`;
+      foundEl.innerHTML = words.map((word) => `
+        <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-3 py-2 dark:border-neutral-800 dark:bg-neutral-900">
+          <span class="mono font-medium">${word}</span>
+          <span class="text-xs text-neutral-500">${isPangram(word) ? 'pangram' : `${pointsFor(word)} pts`}</span>
+        </li>
+      `).join('');
+      emptyEl.classList.toggle('hidden', words.length > 0);
+      if (words.length === answers.length && answers.length > 0) setMessage('Complete. You found every word today.');
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const word = normalizeLetters(input.value);
+      input.value = '';
+      if (word.length < 4) {
+        setMessage('Use at least 4 letters.');
+        return;
+      }
+      if (!word.includes(puzzle.required)) {
+        setMessage(`${word} must include ${puzzle.required}.`);
+        return;
+      }
+      if (!canBuildWord(word, puzzle.letters)) {
+        setMessage(`${word} cannot be made from today's letters.`);
+        return;
+      }
+      if (!answers.includes(word)) {
+        setMessage(`${word} is not in this word list.`);
+        return;
+      }
+      if (found.has(word)) {
+        setMessage(`${word} was already found.`);
+        return;
+      }
+      found.add(word);
+      save();
+      renderFound();
+      setMessage(isPangram(word) ? `${word} uses every letter.` : `Added ${word}.`);
+    });
+
+    input.addEventListener('input', () => {
+      const normalized = normalizeLetters(input.value);
+      if (input.value !== normalized) input.value = normalized;
+    });
+
+    hintBtn.addEventListener('click', () => {
+      const next = answers.find((word) => !found.has(word));
+      if (!next) {
+        setMessage('No hints left. You found everything.');
+        return;
+      }
+      setMessage(`Hint: ${next.length} letters, starts with ${next[0]}.`);
+    });
+
+    shareBtn.addEventListener('click', async () => {
+      const text = `Daily Jolt ${dayKey}: ${found.size}/${answers.length} words, ${scoreEl.textContent} points`;
+      try {
+        await navigator.clipboard.writeText(text);
+        const state = readState();
+        writeState({ ...state, share_status: 'copied' });
+        setMessage('Share result copied.');
+      } catch {
+        setMessage(text);
+      }
+    });
+
+    dateEl.textContent = `Daily Jolt for ${dayKey}`;
+    renderLetters();
+    renderFound();
+    updateStreak();
+    loadIndex()
+      .then((loadedIndex) => {
+        index = loadedIndex;
+        buildAnswers();
+        input.disabled = false;
+        hintBtn.disabled = false;
+        shareBtn.disabled = false;
+        setMessage('Minimum length is 4.');
+        renderFound();
+        input.focus();
+      })
+      .catch(() => {
+        setMessage('Dictionary failed to load. Refresh the page to try again.');
+      });
+  }
+</script>

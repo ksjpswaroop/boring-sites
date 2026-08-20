@@ -1,6 +1,6 @@
 # Phase 4 - TestFlight And Retention Validation
 
-**Product:** WordBridge
+**Product:** LexJolt
 **Goal:** prove people come back before monetization
 **Status:** Instrumentation and launch plan ready; TestFlight upload requires Apple signing and App Store Connect access
 
@@ -19,21 +19,21 @@ Sources:
 These are outside the repo and must be available before launch:
 
 - Apple Developer Program membership.
-- App Store Connect app record for bundle ID `com.boringsites.wordbridge`.
+- App Store Connect app record for bundle ID `com.lexjolt.app`.
 - Apple Distribution signing certificate.
-- App Store provisioning profile or automatic signing access for `com.boringsites.wordbridge`.
+- App Store provisioning profile or automatic signing access for `com.lexjolt.app`.
 - App Store Connect API key or Xcode account session authorized to upload builds.
 - Internal tester group.
 
 ## Local Build Commands
 
-From `sites/wordunscrambler/apple/WordBridgeiOS`:
+From `sites/wordunscrambler/apple/LexJoltiOS`:
 
 ```sh
 xcodegen generate
-xcodebuild -project WordBridgeiOS.xcodeproj -scheme WordBridgeiOS -destination 'generic/platform=iOS Simulator' build
-xcodebuild -project WordBridgeiOS.xcodeproj -scheme WordBridgeiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/WordBridge.xcarchive -allowProvisioningUpdates
-xcodebuild -exportArchive -archivePath ./build/WordBridge.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
+xcodebuild -project LexJoltiOS.xcodeproj -scheme LexJoltiOS -destination 'generic/platform=iOS Simulator' build
+xcodebuild -project LexJoltiOS.xcodeproj -scheme LexJoltiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/LexJolt.xcarchive -allowProvisioningUpdates
+xcodebuild -exportArchive -archivePath ./build/LexJolt.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
 ```
 
 The export options use App Store Connect upload destination, automatic signing,
@@ -44,8 +44,8 @@ first and let the export/upload step perform App Store Connect distribution
 signing:
 
 ```sh
-xcodebuild -project WordBridgeiOS.xcodeproj -scheme WordBridgeiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/WordBridge.xcarchive CODE_SIGNING_ALLOWED=NO
-xcodebuild -exportArchive -archivePath ./build/WordBridge.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
+xcodebuild -project LexJoltiOS.xcodeproj -scheme LexJoltiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/LexJolt.xcarchive CODE_SIGNING_ALLOWED=NO
+xcodebuild -exportArchive -archivePath ./build/LexJolt.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
 ```
 
 ## Current Local Archive Status
@@ -60,23 +60,23 @@ Latest signed archive blocker:
 
 ```text
 Communication with Apple failed: Your team has no devices from which to generate a provisioning profile.
-No profiles for 'com.boringsites.wordbridge' were found.
+No profiles for 'com.lexjolt.app' were found.
 ```
 
 Latest export/upload blocker:
 
 ```text
 exportArchive Error Downloading App Information
-IDEDistribution.DistributionAppRecordProviderError.missingApp(bundleId: "com.boringsites.wordbridge")
+IDEDistribution.DistributionAppRecordProviderError.missingApp(bundleId: "com.lexjolt.app")
 ```
 
 Before the TestFlight upload can run, create or confirm the App Store Connect app
-record for `com.boringsites.wordbridge`, then rerun the unsigned archive and
+record for `com.lexjolt.app`, then rerun the unsigned archive and
 export commands above from this directory.
 
 ## Privacy-Conscious Analytics
 
-Phase 4 instrumentation is implemented in `WordBridgeApp` with `AnalyticsEvent`, `PrivacyPreservingAnalytics`, `LocalAnalyticsRecorder`, and `RetentionMetricsCalculator`.
+Phase 4 instrumentation is implemented in `LexJoltApp` with `AnalyticsEvent`, `PrivacyPreservingAnalytics`, `LocalAnalyticsRecorder`, and `RetentionMetricsCalculator`.
 
 `RetentionImprovementPlanner` turns the measured beta signals and feedback inbox
 into a prioritized improvement backlog. The planner keeps monetization closed

@@ -1,0 +1,28 @@
+---
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import AnagramRush from '../components/AnagramRush.astro';
+
+const description = 'Play Anagram Rush, a 90-second free word game. Start a round, build words from the rack, and review missed words when time is up.';
+---
+<LexJoltLayout
+  title="Anagram Rush – 90-Second Word Game"
+  description={description}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Anagram Rush',
+    url: 'https://lexjolt.com/anagram-rush',
+    description,
+    applicationCategory: 'GameApplication',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  }}
+>
+  <section class="lexjolt-shell lexjolt-section">
+    <div class="mb-8 max-w-3xl">
+      <p class="lexjolt-eyebrow">Timed word game</p>
+      <h1 class="lexjolt-h1 mt-2">Anagram Rush</h1>
+      <p class="lexjolt-lede mt-4">90 seconds. How many words can you find?</p>
+    </div>
+    <AnagramRush />
+  </section>
+</LexJoltLayout>

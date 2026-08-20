@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "dictionary:build": "node scripts/build-word-dictionary.mjs",
+    "test": "node scripts/test-lexjolt.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check",

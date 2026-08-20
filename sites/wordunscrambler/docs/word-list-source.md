@@ -1,6 +1,6 @@
 # Word List Source
 
-WordBridge uses a local, precompiled word list for validation and unscrambling.
+LexJolt uses a local, precompiled word list for validation and unscrambling.
 The web app and Apple app do not call a remote API to decide whether a word is
 valid.
 
@@ -13,7 +13,7 @@ valid.
 - Purpose: open-source word list for game developers and English word games.
 
 The generated app dictionaries are filtered to uppercase alphabetic words from
-2 to 15 letters so they match the current WordBridge input cap and avoid phrases,
+2 to 15 letters so they match the current LexJolt input cap and avoid phrases,
 punctuation, and words the UI cannot enter.
 
 ## Generated Files

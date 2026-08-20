@@ -1,0 +1,84 @@
+---
+import Plausible from '@boring-sites/analytics/Plausible.astro';
+import '@boring-sites/design/styles.css';
+import '../styles/lexjolt.css';
+import { brand } from '../config/brand';
+import LexJoltHeader from '../components/brand/LexJoltHeader.astro';
+import MobileBottomNav from '../components/brand/MobileBottomNav.astro';
+import LexJoltFooter from '../components/brand/LexJoltFooter.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = `${brand.origin}/og.svg`,
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const fullTitle = title === brand.name ? title : `${title} | ${brand.name}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, brand.origin).toString();
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={brand.name} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="theme-color" content="#0A66C2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#004182" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <script is:inline>
+      (function () {
+        const oldTheme = localStorage.getItem('theme');
+        if (oldTheme && !localStorage.getItem('lexjolt:theme')) {
+          localStorage.setItem('lexjolt:theme', oldTheme);
+          localStorage.removeItem('theme');
+        }
+        const theme = localStorage.getItem('lexjolt:theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) document.documentElement.classList.add('dark');
+      })();
+    </script>
+    {plausibleDomain && <Plausible />}
+    {jsonLd && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+  </head>
+  <body class="lexjolt-body">
+    <LexJoltHeader currentPath={Astro.url.pathname} />
+    <main>
+      <slot />
+    </main>
+    <LexJoltFooter />
+    <MobileBottomNav currentPath={Astro.url.pathname} />
+  </body>
+</html>

@@ -1,17 +1,17 @@
-# Apple App Roadmap - WordBridge
+# Apple App Roadmap - LexJolt
 
 **Project:** `sites/wordunscrambler`
-**App concept:** WordBridge
+**App concept:** LexJolt
 **Direction:** Native SwiftUI app for Apple devices
 **V1 monetization:** Free, no ads, no account, no backend
 **V2 monetization:** Ads after retention is proven
-**Status:** Phase 4 retention instrumentation ready; TestFlight upload waiting on the App Store Connect app record for `com.boringsites.wordbridge`
+**Status:** Phase 4 retention instrumentation ready; TestFlight upload waiting on the App Store Connect app record for `com.lexjolt.app`
 
 **Phase 0 decision record:** [`apple-app-phase-0-product-foundation.md`](./apple-app-phase-0-product-foundation.md)
 **Phase 1 implementation:** [`../apple/WordGameCore`](../apple/WordGameCore)
-**Phase 2 implementation:** [`../apple/WordBridgeApp`](../apple/WordBridgeApp)
-**Phase 2 iOS app target:** [`../apple/WordBridgeiOS`](../apple/WordBridgeiOS)
-**Phase 3 ecosystem targets:** `WordBridgeiOS`, `WordBridgeMac`, `WordBridgeWatch`, `WordBridgeTV`, `WordBridgeVision`
+**Phase 2 implementation:** [`../apple/LexJoltApp`](../apple/LexJoltApp)
+**Phase 2 iOS app target:** [`../apple/LexJoltiOS`](../apple/LexJoltiOS)
+**Phase 3 ecosystem targets:** `LexJoltiOS`, `LexJoltMac`, `LexJoltWatch`, `LexJoltTV`, `LexJoltVision`
 **Phase 4 validation plan:** [`testflight/phase-4-testflight-retention-validation.md`](./testflight/phase-4-testflight-retention-validation.md)
 **Current mobile app handoff:** [`apple-mobile-app-current-status.md`](./apple-mobile-app-current-status.md)
 
@@ -46,13 +46,13 @@ V1 should ship as a polished free app with exactly five games:
 | --- | --- | --- |
 | Word Unscrambler | Utility anchor and onboarding path | Current `/` solver |
 | Anagram Rush | Fast replay loop | Current `/rush` game |
-| Daily Scramble | Habit and streak loop | Current `/daily` game |
+| Daily Jolt | Habit and streak loop | Current `/daily` game |
 | Spelling Bee | Letter-set mastery game | New native mode using existing solver |
 | Guess the Word | Shareable guessing game | New native mode using dictionary lookup |
 
 The app starts on a **Today** screen:
 
-- Daily Scramble card with progress, streak, and completion state.
+- Daily Jolt card with progress, streak, and completion state.
 - Continue last game.
 - Quick launch buttons for all five games.
 - Local achievements and current level.
@@ -63,7 +63,7 @@ Game rules:
 
 - **Word Unscrambler:** type letters, see valid words, sort by score/length/alphabetical, view definitions when available.
 - **Anagram Rush:** 90-second rounds, random 7-letter rack, score by Scrabble value plus length bonus, reveal missed words after the round.
-- **Daily Scramble:** deterministic daily puzzle, required center letter, local progress, local streak, share text.
+- **Daily Jolt:** deterministic daily puzzle, required center letter, local progress, local streak, share text.
 - **Spelling Bee:** 7 letters, one required center letter, 4-letter minimum, pangram bonus, ranks from beginner to genius.
 - **Guess the Word:** Wordle-style guessing with dictionary validation, letter feedback, hints earned through play, share result.
 
@@ -129,7 +129,7 @@ Goal: prove retention before monetization.
 
 Phase 1 foundation already exists as the reusable `WordGameCore` Swift package. It ports normalization, dictionary indexing, solving, Scrabble scoring, bundled `words.json` loading, and unit-tested dictionary behavior from the web implementation.
 
-Phase 2 exists as the reusable `WordBridgeApp` SwiftUI package plus the `WordBridgeiOS` app target. It adds the Today shell, five game screens, local progress and persistence, streaks, scores, achievements, share-card copy, daily reminder scheduling, and the V1 policy guarantees: no ads, no login, no backend, no payments, and offline play.
+Phase 2 exists as the reusable `LexJoltApp` SwiftUI package plus the `LexJoltiOS` app target. It adds the Today shell, five game screens, local progress and persistence, streaks, scores, achievements, share-card copy, daily reminder scheduling, and the V1 policy guarantees: no ads, no login, no backend, no payments, and offline play.
 
 Phase 3 adapts the app without changing the core V1 promise:
 
@@ -152,7 +152,7 @@ Phase 4 adds privacy-preserving analytics, retention metrics, feedback triage, a
 
 Success criteria:
 
-- Users complete Daily Scramble repeatedly.
+- Users complete Daily Jolt repeatedly.
 - Anagram Rush produces repeat sessions.
 - Share cards are used.
 - No major dictionary complaints.
@@ -204,9 +204,9 @@ Goal: add durable user value only after the local app works.
 App Store positioning:
 
 - Category: Games, Word.
-- Name: WordBridge.
+- Name: LexJolt.
 - Subtitle candidate: Daily anagrams, streaks, and word puzzles.
-- Primary screenshots: Today screen, Daily Scramble, Anagram Rush, Spelling Bee, Guess the Word.
+- Primary screenshots: Today screen, Daily Jolt, Anagram Rush, Spelling Bee, Guess the Word.
 - App promise: free, offline-friendly word games with no ads in V1.
 
 TestFlight checklist:
@@ -232,7 +232,7 @@ Privacy posture:
 Retention metrics:
 
 - Daily active users.
-- Daily Scramble completion rate.
+- Daily Jolt completion rate.
 - 1-day, 7-day, and 30-day retention.
 - Average games per session.
 - Rush replay rate.
@@ -242,7 +242,7 @@ Retention metrics:
 
 ## 6. Documentation Acceptance Checks
 
-- V1 game list is exactly five games: Word Unscrambler, Anagram Rush, Daily Scramble, Spelling Bee, Guess the Word.
+- V1 game list is exactly five games: Word Unscrambler, Anagram Rush, Daily Jolt, Spelling Bee, Guess the Word.
 - V1 has no ads, backend, accounts, paid features, multiplayer, or cross-device sync.
 - V2 monetization is separated from V1 and avoids gameplay input screens.
 - Every Apple device class has a clear role.

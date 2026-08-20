@@ -1,43 +1,13 @@
 ---
-import Layout from '@boring-sites/design/Layout.astro';
-import AnagramRush from '../components/AnagramRush.astro';
-
-const siteName = 'Word Unscrambler';
-const description = 'Play Anagram Rush: a fast 90-second word game built from the Word Unscrambler dictionary and Scrabble scoring.';
-const url = 'https://wordunscrambler.example.com/rush';
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
 ---
-<Layout
-  title="Anagram Rush"
-  description={description}
-  siteName={siteName}
-  logoVariant="word-unscrambler"
-  nav={[
-    { label: 'Unscrambler', href: '/' },
-    { label: 'Daily', href: '/daily' },
-    { label: 'FAQ', href: '/faq' },
-  ]}
-  jsonLd={{
-    type: 'WebApplication',
-    data: {
-      name: 'Anagram Rush',
-      description,
-      url,
-      applicationCategory: 'GameApplication',
-      operatingSystem: 'Any (web)',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    },
-  }}
->
-  <section class="container-wide py-12 sm:py-16">
-    <div class="mx-auto max-w-5xl">
-      <div class="mb-8">
-        <p class="text-sm font-medium text-primary-700 dark:text-primary-300">Fastest to ship, high replay value</p>
-        <h1 class="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">Anagram Rush</h1>
-        <p class="mt-3 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400">
-          A timed word-finding mode that reuses the same dictionary, score logic, and letter matching as the main unscrambler.
-        </p>
-      </div>
-      <AnagramRush />
+<LexJoltLayout title="Anagram Rush moved" description="The Anagram Rush route has moved to /anagram-rush." canonical="https://lexjolt.com/anagram-rush" noindex>
+  <section class="lexjolt-shell lexjolt-section">
+    <div class="lexjolt-card max-w-xl">
+      <h1 class="text-3xl font-bold">Anagram Rush moved</h1>
+      <p class="mt-3 text-neutral-600 dark:text-neutral-400">Use the production LexJolt route for Anagram Rush.</p>
+      <a class="lexjolt-button lexjolt-button-primary mt-6" href="/anagram-rush">Go to Anagram Rush</a>
     </div>
   </section>
-</Layout>
+  <script is:inline>location.replace('/anagram-rush');</script>
+</LexJoltLayout>

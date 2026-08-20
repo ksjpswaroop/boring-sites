@@ -1,124 +1,80 @@
 ---
-import Layout from '@boring-sites/design/Layout.astro';
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
 import Generator from '../components/Generator.astro';
+import DailyJolt from '../components/DailyJolt.astro';
+import { brand } from '../config/brand';
 
-const siteName = 'Word Unscrambler';
-const description = 'Free word unscrambler: type your letters, get all valid English words. Real-time, mobile-friendly, no signup. Includes Scrabble scores.';
-const url = 'https://wordunscrambler.example.com';
+const description = 'LexJolt is a free word finder, word unscrambler, and anagram game hub. No signup, no paywall, instant local word solving.';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: brand.name,
+    url: brand.origin,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: brand.name,
+    url: brand.origin,
+    email: brand.email,
+  },
+];
 ---
-<Layout
-  title="Word Unscrambler — Type Letters, Get All Words"
-  description={description}
-  siteName={siteName}
-  logoVariant="word-unscrambler"
-  nav={[
-    { label: 'Rush', href: '/rush' },
-    { label: 'Daily', href: '/daily' },
-    { label: 'How it works', href: '#how' },
-    { label: 'FAQ', href: '/faq' },
-  ]}
-  jsonLd={{
-    type: 'WebApplication',
-    data: {
-      name: siteName,
-      description,
-      url,
-      applicationCategory: 'UtilityApplication',
-      operatingSystem: 'Any (web)',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    },
-  }}
->
-  <section class="container-wide py-12 sm:py-16">
-    <div class="mx-auto max-w-4xl">
-      <div class="text-center">
-        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">Word Unscrambler</h1>
-        <p class="mt-3 text-lg text-neutral-600 dark:text-neutral-400">
-          Type your jumbled letters. Get every valid English word. Real-time, with Scrabble scores.
-        </p>
+<LexJoltLayout title="LexJolt – Free Word Finder, Unscrambler & Anagram Games" description={description} jsonLd={jsonLd}>
+  <section class="lexjolt-shell lexjolt-hero">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_440px] lg:items-center">
+      <div>
+        <p class="lexjolt-eyebrow">Free word tools and games</p>
+        <h1 class="lexjolt-h1 mt-3">{brand.tagline}</h1>
+        <p class="lexjolt-lede mt-5 max-w-2xl">{brand.heroDescription}</p>
+        <p class="mt-5 text-sm font-semibold text-neutral-600 dark:text-neutral-300">Free. No signup. Works instantly.</p>
       </div>
-
-      <div class="mt-8">
-        <Generator />
-      </div>
+      <Generator
+        mode="compact"
+        heading="What can you make with these letters?"
+        supportingText="Try A E T P R S, then open the full finder for every result."
+      />
     </div>
   </section>
 
-  <section class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
-    <div class="container-wide">
-      <div class="mx-auto max-w-4xl">
-        <div class="max-w-2xl">
-          <p class="text-sm font-medium text-primary-700 dark:text-primary-300">New word games</p>
-          <h2 class="mt-2 text-3xl font-bold">Two focused ways to play</h2>
-          <p class="mt-3 text-neutral-600 dark:text-neutral-400">
-            I picked the easiest game to ship well and the most impactful game for repeat visits: a timed anagram sprint and a daily shared puzzle.
-          </p>
-        </div>
-        <div class="mt-8 grid gap-6 sm:grid-cols-2">
-          <a href="/rush" class="card block transition hover:border-primary-300 hover:bg-primary-50 dark:hover:border-primary-700 dark:hover:bg-primary-950/40">
-            <p class="text-sm font-medium text-primary-700 dark:text-primary-300">Easiest + replayable</p>
-            <h3 class="mt-2 text-xl font-bold">Anagram Rush</h3>
-            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Race a 90-second timer, submit valid words, score points, and reveal what you missed.</p>
-          </a>
-          <a href="/daily" class="card block transition hover:border-primary-300 hover:bg-primary-50 dark:hover:border-primary-700 dark:hover:bg-primary-950/40">
-            <p class="text-sm font-medium text-primary-700 dark:text-primary-300">Most impactful</p>
-            <h3 class="mt-2 text-xl font-bold">Daily Scramble</h3>
-            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">One deterministic puzzle per day with saved progress, local streaks, hints, and share text.</p>
-          </a>
-        </div>
-      </div>
+  <section class="lexjolt-shell lexjolt-section">
+    <div class="grid gap-5 md:grid-cols-3">
+      <a class="lexjolt-card block transition hover:border-primary-300 hover:bg-primary-50 dark:hover:bg-primary-950/40" href="/word-unscrambler">
+        <p class="lexjolt-eyebrow">Unscramble</p>
+        <h2 class="mt-2 text-xl font-bold">Unscramble a word</h2>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Enter scrambled letters and discover valid words, meanings and pronunciations.</p>
+        <span class="mt-5 inline-flex font-semibold text-primary-700 dark:text-primary-200">Unscramble letters</span>
+      </a>
+      <a class="lexjolt-card block transition hover:border-primary-300 hover:bg-primary-50 dark:hover:bg-primary-950/40" href="/word-finder">
+        <p class="lexjolt-eyebrow">Word Finder</p>
+        <h2 class="mt-2 text-xl font-bold">Find every possible word</h2>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Enter the letters you have and explore all valid combinations.</p>
+        <span class="mt-5 inline-flex font-semibold text-primary-700 dark:text-primary-200">Find words</span>
+      </a>
+      <a class="lexjolt-card block border-primary-200 transition hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-950/40" href="/anagram-rush">
+        <p class="lexjolt-eyebrow">Anagram Rush</p>
+        <h2 class="mt-2 text-xl font-bold">How fast can you think?</h2>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">You have 90 seconds. Build as many valid words as possible.</p>
+        <span class="mt-5 inline-flex font-semibold text-primary-700 dark:text-primary-200">Play Anagram Rush</span>
+      </a>
     </div>
   </section>
 
-  <section id="how" class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
-    <div class="container-wide">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="text-3xl font-bold">How it works</h2>
-        <div class="prose mt-6 dark:prose-invert">
-          <p>
-            The unscrambler runs entirely in your browser. Type your letters; the tool instantly finds every valid English word that can be formed from a subset of those letters (in any order).
-          </p>
-          <p>
-            For each result, you see the word's <strong>length</strong> and <strong>Scrabble score</strong> (NA tournament values). Filter by minimum length, require certain letters, or sort by length or score.
-          </p>
-          <p>
-            The word list is bundled at build time — no API calls, no server roundtrip. Your last input is remembered in your browser.
-          </p>
-        </div>
-      </div>
+  <section class="lexjolt-band lexjolt-section">
+    <div class="lexjolt-shell">
+      <DailyJolt />
     </div>
   </section>
 
-  <section class="container-wide py-16">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="text-2xl font-bold">Use cases</h2>
-      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 text-left">
-        <div class="card">
-          <h3 class="font-semibold">🎲 Scrabble / WWF</h3>
-          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Stuck mid-game? Type your rack, see every word you can make.</p>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold">📚 Crosswords &amp; anagrams</h3>
-          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Working a puzzle? Use the must-contain filter to find words that fit.</p>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold">✍️ Writers &amp; word games</h3>
-          <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Looking for a word you can't quite remember? Type the letters you know.</p>
-        </div>
-      </div>
+  <section class="lexjolt-shell lexjolt-section">
+    <div class="max-w-3xl">
+      <p class="lexjolt-eyebrow">Learning layer</p>
+      <h2 class="lexjolt-h2 mt-2">Don't just find a word. Learn it.</h2>
+      <p class="lexjolt-lede mt-4">
+        Tap any result to inspect the definition, part of speech, pronunciation, and example usage. LexJolt keeps solving local and fast while word information loads only when you ask for it.
+      </p>
     </div>
   </section>
-
-  <section class="border-t border-neutral-200 bg-neutral-50 py-16 dark:border-neutral-800 dark:bg-neutral-900/50">
-    <div class="container-prose text-center">
-      <h2 class="text-2xl font-bold">More from the boring-sites portfolio</h2>
-      <div class="mt-6 flex flex-wrap justify-center gap-3 text-sm">
-        <a href="https://dragonbornnames.example.com" class="btn btn-secondary">🐉 Dragonborn Names</a>
-        <a href="https://sleepcalculator.example.com" class="btn btn-secondary">😴 Sleep Calculator</a>
-        <a href="https://whatismyip.example.com" class="btn btn-secondary">🌐 What Is My IP</a>
-        <a href="https://calculator.example.com" class="btn btn-secondary">🧮 Calculators</a>
-        <a href="https://phonenumbergen.example.com" class="btn btn-secondary">📞 Phone Number Generator</a>
-      </div>
-    </div>
-  </section>
-</Layout>
+</LexJoltLayout>

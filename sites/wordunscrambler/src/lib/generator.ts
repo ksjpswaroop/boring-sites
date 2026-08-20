@@ -77,6 +77,97 @@ export function solve(letters: string, index: Map<string, string[]>): string[] {
   return Array.from(results);
 }
 
+export interface ResultFilterOptions {
+  minLength: number;
+  maxLength: number;
+  mustContain: string;
+  exact: boolean;
+  letters?: string;
+  sort: 'alpha' | 'length' | 'score';
+}
+
+export function filterResults(words: string[], options: ResultFilterOptions): string[] {
+  const minLength = Math.max(2, Math.min(15, options.minLength || 2));
+  const maxLength = Math.max(minLength, Math.min(15, options.maxLength || 15));
+  const required = normalizeLetters(options.mustContain || '');
+  const exactLength = options.exact ? normalizeLetters(options.letters || '').length : 0;
+
+  const filtered = words.filter((word) => {
+    if (word.length < minLength || word.length > maxLength) return false;
+    if (exactLength && word.length !== exactLength) return false;
+    if (required && !required.split('').every((letter) => word.includes(letter))) return false;
+    return true;
+  });
+
+  if (options.sort === 'alpha') filtered.sort();
+  else if (options.sort === 'length') filtered.sort((a, b) => b.length - a.length || a.localeCompare(b));
+  else filtered.sort((a, b) => scrabbleScore(b) - scrabbleScore(a) || b.length - a.length || a.localeCompare(b));
+
+  return filtered;
+}
+
+export interface DailyJoltPuzzle {
+  key: string;
+  letters: string;
+  required: string;
+}
+
+export const DAILY_JOLT_PUZZLES: DailyJoltPuzzle[] = [
+  { key: 'planet-a', letters: 'PLANETS', required: 'A' },
+  { key: 'trains-e', letters: 'TRAINES', required: 'E' },
+  { key: 'roasted-r', letters: 'ROASTED', required: 'R' },
+  { key: 'stainer-t', letters: 'STAINER', required: 'T' },
+  { key: 'cranest-e', letters: 'CRANEST', required: 'E' },
+  { key: 'dealing-d', letters: 'DEALING', required: 'D' },
+  { key: 'monster-o', letters: 'MONSTER', required: 'O' },
+  { key: 'gardens-g', letters: 'GARDENS', required: 'G' },
+  { key: 'silence-e', letters: 'SILENCE', required: 'E' },
+  { key: 'oranges-o', letters: 'ORANGES', required: 'O' },
+  { key: 'rations-n', letters: 'RATIONS', required: 'N' },
+  { key: 'credits-e', letters: 'CREDITS', required: 'E' },
+  { key: 'hearing-r', letters: 'HEARING', required: 'R' },
+  { key: 'leaping-p', letters: 'LEAPING', required: 'P' },
+  { key: 'senator-s', letters: 'SENATOR', required: 'S' },
+  { key: 'relates-l', letters: 'RELATES', required: 'L' },
+  { key: 'actions-t', letters: 'ACTIONS', required: 'T' },
+  { key: 'painter-p', letters: 'PAINTER', required: 'P' },
+  { key: 'reading-r', letters: 'READING', required: 'R' },
+  { key: 'coasted-s', letters: 'COASTED', required: 'S' },
+  { key: 'eastern-a', letters: 'EASTERN', required: 'A' },
+  { key: 'resound-r', letters: 'RESOUND', required: 'R' },
+  { key: 'teacher-t', letters: 'TEACHER', required: 'T' },
+  { key: 'players-p', letters: 'PLAYERS', required: 'P' },
+  { key: 'largest-l', letters: 'LARGEST', required: 'L' },
+  { key: 'cabinet-a', letters: 'CABINET', required: 'A' },
+  { key: 'deposit-e', letters: 'DEPOSIT', required: 'E' },
+  { key: 'nearest-n', letters: 'NEAREST', required: 'N' },
+  { key: 'closing-c', letters: 'CLOSING', required: 'C' },
+  { key: 'measure-m', letters: 'MEASURE', required: 'M' },
+];
+
+export function utcDayKey(date = new Date()): string {
+  return date.toISOString().slice(0, 10);
+}
+
+export function dailyJoltPuzzleForDate(date = new Date()): DailyJoltPuzzle {
+  const dayNumber = Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) / 86400000);
+  return DAILY_JOLT_PUZZLES[dayNumber % DAILY_JOLT_PUZZLES.length];
+}
+
+export function canBuildWord(word: string, letters: string): boolean {
+  const counts: Record<string, number> = {};
+  for (const letter of normalizeLetters(letters)) counts[letter] = (counts[letter] || 0) + 1;
+  for (const letter of normalizeLetters(word)) {
+    counts[letter] = (counts[letter] || 0) - 1;
+    if (counts[letter] < 0) return false;
+  }
+  return true;
+}
+
+export function rushScore(word: string): number {
+  return scrabbleScore(word) + Math.max(0, normalizeLetters(word).length - 3) * 2;
+}
+
 /** Scrabble tile score (NA tournament values). */
 const TILE_SCORES: Record<string, number> = {
   A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, S: 1, T: 1, R: 1,

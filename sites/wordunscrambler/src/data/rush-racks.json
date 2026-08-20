@@ -1,0 +1,3642 @@
+[
+  {
+    "letters": "ABANDON",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 264
+  },
+  {
+    "letters": "ABASHES",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 411
+  },
+  {
+    "letters": "ABATING",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 437
+  },
+  {
+    "letters": "ABATTIS",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 398
+  },
+  {
+    "letters": "ABAXILE",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 382
+  },
+  {
+    "letters": "ABBOTCY",
+    "answer_count": 48,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 436
+  },
+  {
+    "letters": "ABDUCED",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 410
+  },
+  {
+    "letters": "ABETTED",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 365
+  },
+  {
+    "letters": "ABEYANT",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 488
+  },
+  {
+    "letters": "ABIDING",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 341
+  },
+  {
+    "letters": "ABIGAIL",
+    "answer_count": 35,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 234
+  },
+  {
+    "letters": "ABILITY",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 303
+  },
+  {
+    "letters": "ABIOSIS",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 341
+  },
+  {
+    "letters": "ABIOTIC",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 328
+  },
+  {
+    "letters": "ABJURER",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 365
+  },
+  {
+    "letters": "ABOLLAE",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 263
+  },
+  {
+    "letters": "ABOMASA",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 377
+  },
+  {
+    "letters": "ABOULIC",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 365
+  },
+  {
+    "letters": "ABRADED",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 527
+  },
+  {
+    "letters": "ABRADER",
+    "answer_count": 65,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 541
+  },
+  {
+    "letters": "ABSCESS",
+    "answer_count": 40,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 309
+  },
+  {
+    "letters": "ABSORBS",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 515
+  },
+  {
+    "letters": "ABUBBLE",
+    "answer_count": 42,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 380
+  },
+  {
+    "letters": "ABUSIVE",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 440
+  },
+  {
+    "letters": "ABUTTAL",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 309
+  },
+  {
+    "letters": "ABWATTS",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 401
+  },
+  {
+    "letters": "ABYSSAL",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 592
+  },
+  {
+    "letters": "ABYSSES",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 509
+  },
+  {
+    "letters": "ACADEME",
+    "answer_count": 37,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 300
+  },
+  {
+    "letters": "ACADEMY",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 409
+  },
+  {
+    "letters": "ACANTHA",
+    "answer_count": 35,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 297
+  },
+  {
+    "letters": "ACAROID",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 444
+  },
+  {
+    "letters": "ACCEDER",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 522
+  },
+  {
+    "letters": "ACCEDES",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 373
+  },
+  {
+    "letters": "ACCLAIM",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 370
+  },
+  {
+    "letters": "ACCOSTS",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 567
+  },
+  {
+    "letters": "ACCOUNT",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 306
+  },
+  {
+    "letters": "ACCRETE",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 435
+  },
+  {
+    "letters": "ACCRUED",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 500
+  },
+  {
+    "letters": "ACCURST",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 457
+  },
+  {
+    "letters": "ACCUSAL",
+    "answer_count": 36,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 266
+  },
+  {
+    "letters": "ACCUSED",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 458
+  },
+  {
+    "letters": "ACCUSES",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 338
+  },
+  {
+    "letters": "ACERBER",
+    "answer_count": 56,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 475
+  },
+  {
+    "letters": "ACERBIC",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 537
+  },
+  {
+    "letters": "ACETIFY",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 422
+  },
+  {
+    "letters": "ACHIEVE",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 403
+  },
+  {
+    "letters": "ACHOLIA",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 464
+  },
+  {
+    "letters": "ACQUIRE",
+    "answer_count": 55,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 469
+  },
+  {
+    "letters": "ACRASIA",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 282
+  },
+  {
+    "letters": "ACRATIC",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 395
+  },
+  {
+    "letters": "ACREAGE",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 377
+  },
+  {
+    "letters": "ACRONIC",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 504
+  },
+  {
+    "letters": "ACRYLIC",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 414
+  },
+  {
+    "letters": "ACTINIA",
+    "answer_count": 35,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 207
+  },
+  {
+    "letters": "ACTUARY",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 348
+  },
+  {
+    "letters": "ACTUATE",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 242
+  },
+  {
+    "letters": "ADAPTED",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 270
+  },
+  {
+    "letters": "ADDABLE",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 444
+  },
+  {
+    "letters": "ADDEDLY",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 414
+  },
+  {
+    "letters": "ADDENDS",
+    "answer_count": 58,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 387
+  },
+  {
+    "letters": "ADDLING",
+    "answer_count": 64,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 440
+  },
+  {
+    "letters": "ADDUCTS",
+    "answer_count": 58,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 425
+  },
+  {
+    "letters": "ADENINE",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 306
+  },
+  {
+    "letters": "ADENOID",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 391
+  },
+  {
+    "letters": "ADHERED",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 607
+  },
+  {
+    "letters": "ADHIBIT",
+    "answer_count": 35,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 264
+  },
+  {
+    "letters": "ADJOINT",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 468
+  },
+  {
+    "letters": "ADJOURN",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 456
+  },
+  {
+    "letters": "ADJUDGE",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 382
+  },
+  {
+    "letters": "ADJUNCT",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 308
+  },
+  {
+    "letters": "ADJURED",
+    "answer_count": 56,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 455
+  },
+  {
+    "letters": "ADJURER",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 377
+  },
+  {
+    "letters": "ADJUROR",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 311
+  },
+  {
+    "letters": "ADJUSTS",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 343
+  },
+  {
+    "letters": "ADLANDS",
+    "answer_count": 55,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 364
+  },
+  {
+    "letters": "ADMIXED",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 469
+  },
+  {
+    "letters": "ADNEXAL",
+    "answer_count": 58,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 436
+  },
+  {
+    "letters": "ADULTLY",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 299
+  },
+  {
+    "letters": "ADVANCE",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 395
+  },
+  {
+    "letters": "ADWOMAN",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 478
+  },
+  {
+    "letters": "ADZUKIS",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 601
+  },
+  {
+    "letters": "AEGISES",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 328
+  },
+  {
+    "letters": "AENEOUS",
+    "answer_count": 67,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 345
+  },
+  {
+    "letters": "AEONIAN",
+    "answer_count": 40,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 216
+  },
+  {
+    "letters": "AERATOR",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 339
+  },
+  {
+    "letters": "AEROBIA",
+    "answer_count": 58,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 353
+  },
+  {
+    "letters": "AFEARED",
+    "answer_count": 64,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 531
+  },
+  {
+    "letters": "AFFABLE",
+    "answer_count": 37,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 306
+  },
+  {
+    "letters": "AFFAIRE",
+    "answer_count": 48,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 402
+  },
+  {
+    "letters": "AFFAIRS",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 459
+  },
+  {
+    "letters": "AFFIANT",
+    "answer_count": 38,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 273
+  },
+  {
+    "letters": "AFFICHE",
+    "answer_count": 37,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 390
+  },
+  {
+    "letters": "AFFINAL",
+    "answer_count": 38,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 276
+  },
+  {
+    "letters": "AFFIXED",
+    "answer_count": 37,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 393
+  },
+  {
+    "letters": "AFFIXER",
+    "answer_count": 48,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 467
+  },
+  {
+    "letters": "AFFIXES",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 399
+  },
+  {
+    "letters": "AFFLICT",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 389
+  },
+  {
+    "letters": "AFFRAYS",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 402
+  },
+  {
+    "letters": "AFFRONT",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 414
+  },
+  {
+    "letters": "AFGHANI",
+    "answer_count": 48,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 395
+  },
+  {
+    "letters": "AFGHANS",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 562
+  },
+  {
+    "letters": "AFTMOST",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 498
+  },
+  {
+    "letters": "AFTOSAS",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 369
+  },
+  {
+    "letters": "AGAMETE",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 380
+  },
+  {
+    "letters": "AGAPEIC",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 312
+  },
+  {
+    "letters": "AGATIZE",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 330
+  },
+  {
+    "letters": "AGATOID",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 318
+  },
+  {
+    "letters": "AGENIZE",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 418
+  },
+  {
+    "letters": "AGGRADE",
+    "answer_count": 64,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 497
+  },
+  {
+    "letters": "AGILELY",
+    "answer_count": 58,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 436
+  },
+  {
+    "letters": "AGILITY",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 250
+  },
+  {
+    "letters": "AGITATE",
+    "answer_count": 44,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 237
+  },
+  {
+    "letters": "AGITATO",
+    "answer_count": 35,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 192
+  },
+  {
+    "letters": "AGNATIC",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 406
+  },
+  {
+    "letters": "AGRAFFE",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 366
+  },
+  {
+    "letters": "AGRAVIC",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 412
+  },
+  {
+    "letters": "AIKIDOS",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 546
+  },
+  {
+    "letters": "AIRCREW",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 481
+  },
+  {
+    "letters": "AIRDROP",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 440
+  },
+  {
+    "letters": "AIRFARE",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 369
+  },
+  {
+    "letters": "AIRFOIL",
+    "answer_count": 56,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 411
+  },
+  {
+    "letters": "AIRMAIL",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 407
+  },
+  {
+    "letters": "AIRPARK",
+    "answer_count": 38,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 315
+  },
+  {
+    "letters": "AIRSICK",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 557
+  },
+  {
+    "letters": "AIRTRAM",
+    "answer_count": 56,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 379
+  },
+  {
+    "letters": "AIRWAVE",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 498
+  },
+  {
+    "letters": "AIRWAYS",
+    "answer_count": 67,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 525
+  },
+  {
+    "letters": "AJOWANS",
+    "answer_count": 44,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 381
+  },
+  {
+    "letters": "AKRASIA",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 481
+  },
+  {
+    "letters": "ALAMEDA",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 303
+  },
+  {
+    "letters": "ALANINE",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 348
+  },
+  {
+    "letters": "ALANYLS",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 417
+  },
+  {
+    "letters": "ALBATAS",
+    "answer_count": 65,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 508
+  },
+  {
+    "letters": "ALBINAL",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 299
+  },
+  {
+    "letters": "ALBINIC",
+    "answer_count": 42,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 311
+  },
+  {
+    "letters": "ALBITIC",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 387
+  },
+  {
+    "letters": "ALCAICS",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 338
+  },
+  {
+    "letters": "ALCALDE",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 340
+  },
+  {
+    "letters": "ALCAYDE",
+    "answer_count": 64,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 537
+  },
+  {
+    "letters": "ALCHYMY",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 392
+  },
+  {
+    "letters": "ALCOHOL",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 455
+  },
+  {
+    "letters": "ALCOOLS",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 422
+  },
+  {
+    "letters": "ALCOPOP",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 405
+  },
+  {
+    "letters": "ALEWIFE",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 465
+  },
+  {
+    "letters": "ALEXINE",
+    "answer_count": 55,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 434
+  },
+  {
+    "letters": "ALFORJA",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 344
+  },
+  {
+    "letters": "ALIDADE",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 397
+  },
+  {
+    "letters": "ALIDADS",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 353
+  },
+  {
+    "letters": "ALIENEE",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 207
+  },
+  {
+    "letters": "ALIENLY",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 495
+  },
+  {
+    "letters": "ALINING",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 328
+  },
+  {
+    "letters": "ALIQUOT",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 342
+  },
+  {
+    "letters": "ALIYAHS",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 552
+  },
+  {
+    "letters": "ALKALIN",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 368
+  },
+  {
+    "letters": "ALKALIS",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 506
+  },
+  {
+    "letters": "ALKYLIC",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 410
+  },
+  {
+    "letters": "ALLAYED",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 374
+  },
+  {
+    "letters": "ALLAYER",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 495
+  },
+  {
+    "letters": "ALLEGED",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 468
+  },
+  {
+    "letters": "ALLOBAR",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 315
+  },
+  {
+    "letters": "ALLODIA",
+    "answer_count": 40,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 255
+  },
+  {
+    "letters": "ALLONYM",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 529
+  },
+  {
+    "letters": "ALLUDED",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 356
+  },
+  {
+    "letters": "ALLURER",
+    "answer_count": 40,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 228
+  },
+  {
+    "letters": "ALLYING",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 470
+  },
+  {
+    "letters": "ALMEMAR",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 487
+  },
+  {
+    "letters": "ALMSMAN",
+    "answer_count": 64,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 468
+  },
+  {
+    "letters": "ALPACAS",
+    "answer_count": 55,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 466
+  },
+  {
+    "letters": "ALTHAEA",
+    "answer_count": 48,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 321
+  },
+  {
+    "letters": "ALUMNUS",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 450
+  },
+  {
+    "letters": "ALVEOLI",
+    "answer_count": 65,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 510
+  },
+  {
+    "letters": "AMANITA",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 335
+  },
+  {
+    "letters": "AMASSED",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 479
+  },
+  {
+    "letters": "AMATIVE",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 346
+  },
+  {
+    "letters": "AMAUTIK",
+    "answer_count": 53,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 429
+  },
+  {
+    "letters": "AMAZING",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 576
+  },
+  {
+    "letters": "AMBOINA",
+    "answer_count": 69,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 494
+  },
+  {
+    "letters": "AMBOYNA",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 512
+  },
+  {
+    "letters": "AMEBEAN",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 423
+  },
+  {
+    "letters": "AMERCER",
+    "answer_count": 64,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 559
+  },
+  {
+    "letters": "AMESACE",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 468
+  },
+  {
+    "letters": "AMIABLY",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 545
+  },
+  {
+    "letters": "AMINITY",
+    "answer_count": 55,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 420
+  },
+  {
+    "letters": "AMMONAL",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 299
+  },
+  {
+    "letters": "AMMONIA",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 382
+  },
+  {
+    "letters": "AMMONIC",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 569
+  },
+  {
+    "letters": "AMOEBIC",
+    "answer_count": 66,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 568
+  },
+  {
+    "letters": "AMOROSO",
+    "answer_count": 53,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 352
+  },
+  {
+    "letters": "AMPLIFY",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 641
+  },
+  {
+    "letters": "AMPULLA",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 380
+  },
+  {
+    "letters": "AMPUTEE",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 417
+  },
+  {
+    "letters": "AMTRACK",
+    "answer_count": 58,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 523
+  },
+  {
+    "letters": "AMUSIAS",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 431
+  },
+  {
+    "letters": "ANAEMIA",
+    "answer_count": 46,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 327
+  },
+  {
+    "letters": "ANAGOGE",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 265
+  },
+  {
+    "letters": "ANAGRAM",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 332
+  },
+  {
+    "letters": "ANALGIA",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 305
+  },
+  {
+    "letters": "ANALITY",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 447
+  },
+  {
+    "letters": "ANALOGY",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 451
+  },
+  {
+    "letters": "ANALYZE",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 381
+  },
+  {
+    "letters": "ANANKES",
+    "answer_count": 67,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 493
+  },
+  {
+    "letters": "ANAPHOR",
+    "answer_count": 55,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 407
+  },
+  {
+    "letters": "ANARCHY",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 559
+  },
+  {
+    "letters": "ANATOMY",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 532
+  },
+  {
+    "letters": "ANATTOS",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 336
+  },
+  {
+    "letters": "ANCHOVY",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 481
+  },
+  {
+    "letters": "ANCHUSA",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 421
+  },
+  {
+    "letters": "ANCILLA",
+    "answer_count": 39,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 270
+  },
+  {
+    "letters": "ANCONAL",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 318
+  },
+  {
+    "letters": "ANDANTE",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 313
+  },
+  {
+    "letters": "ANELACE",
+    "answer_count": 47,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 309
+  },
+  {
+    "letters": "ANEMONE",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 336
+  },
+  {
+    "letters": "ANGARIA",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 337
+  },
+  {
+    "letters": "ANGINAL",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 421
+  },
+  {
+    "letters": "ANGLING",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 306
+  },
+  {
+    "letters": "ANGUINE",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 371
+  },
+  {
+    "letters": "ANHINGA",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 326
+  },
+  {
+    "letters": "ANILINE",
+    "answer_count": 44,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 255
+  },
+  {
+    "letters": "ANILINS",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 273
+  },
+  {
+    "letters": "ANILITY",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 357
+  },
+  {
+    "letters": "ANIMACY",
+    "answer_count": 57,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 506
+  },
+  {
+    "letters": "ANIMATI",
+    "answer_count": 53,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 366
+  },
+  {
+    "letters": "ANIMISM",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 503
+  },
+  {
+    "letters": "ANIONIC",
+    "answer_count": 36,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 263
+  },
+  {
+    "letters": "ANKLING",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 510
+  },
+  {
+    "letters": "ANLAGEN",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 452
+  },
+  {
+    "letters": "ANNEXES",
+    "answer_count": 45,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 294
+  },
+  {
+    "letters": "ANNUALS",
+    "answer_count": 67,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 426
+  },
+  {
+    "letters": "ANNUITY",
+    "answer_count": 49,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 294
+  },
+  {
+    "letters": "ANNULAR",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 315
+  },
+  {
+    "letters": "ANNULUS",
+    "answer_count": 41,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 237
+  },
+  {
+    "letters": "ANOXIAS",
+    "answer_count": 44,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 307
+  },
+  {
+    "letters": "ANTACID",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 421
+  },
+  {
+    "letters": "ANTHILL",
+    "answer_count": 68,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 462
+  },
+  {
+    "letters": "ANTHRAX",
+    "answer_count": 42,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 307
+  },
+  {
+    "letters": "ANTIAIR",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 336
+  },
+  {
+    "letters": "ANTIFAT",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 273
+  },
+  {
+    "letters": "ANTIGAY",
+    "answer_count": 60,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 391
+  },
+  {
+    "letters": "ANTIJAM",
+    "answer_count": 54,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 399
+  },
+  {
+    "letters": "ANTIMAN",
+    "answer_count": 61,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 415
+  },
+  {
+    "letters": "ANTONYM",
+    "answer_count": 65,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 508
+  },
+  {
+    "letters": "ANURANS",
+    "answer_count": 62,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 372
+  },
+  {
+    "letters": "ANUROUS",
+    "answer_count": 59,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 324
+  },
+  {
+    "letters": "ANXIOUS",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 344
+  },
+  {
+    "letters": "ANYBODY",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 312
+  },
+  {
+    "letters": "ANYWAYS",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 468
+  },
+  {
+    "letters": "AOUDADS",
+    "answer_count": 52,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 349
+  },
+  {
+    "letters": "APANAGE",
+    "answer_count": 44,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 310
+  },
+  {
+    "letters": "APAREJO",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 397
+  },
+  {
+    "letters": "APATITE",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 336
+  },
+  {
+    "letters": "APHASIA",
+    "answer_count": 44,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 353
+  },
+  {
+    "letters": "APHELIA",
+    "answer_count": 63,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 475
+  },
+  {
+    "letters": "APHONIA",
+    "answer_count": 51,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 369
+  },
+  {
+    "letters": "APHTHAE",
+    "answer_count": 50,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 427
+  },
+  {
+    "letters": "APICULI",
+    "answer_count": 43,
+    "max_word_length": 7,
+    "difficulty": "balanced",
+    "possible_score": 353
+  },
+  {
+    "letters": "ABAXIAL",
+    "answer_count": 20,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 174
+  },
+  {
+    "letters": "ABFARAD",
+    "answer_count": 28,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 227
+  },
+  {
+    "letters": "ABOULIA",
+    "answer_count": 34,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 212
+  },
+  {
+    "letters": "ACAJOUS",
+    "answer_count": 25,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 227
+  },
+  {
+    "letters": "ACAPNIA",
+    "answer_count": 29,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 215
+  },
+  {
+    "letters": "ACAUDAL",
+    "answer_count": 25,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 178
+  },
+  {
+    "letters": "ACCIDIE",
+    "answer_count": 25,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 205
+  },
+  {
+    "letters": "ACCRUAL",
+    "answer_count": 29,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 211
+  },
+  {
+    "letters": "ACICULA",
+    "answer_count": 19,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 145
+  },
+  {
+    "letters": "ACIDIFY",
+    "answer_count": 20,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 180
+  },
+  {
+    "letters": "ACIDITY",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 256
+  },
+  {
+    "letters": "ACLINIC",
+    "answer_count": 23,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 179
+  },
+  {
+    "letters": "ACMATIC",
+    "answer_count": 32,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 243
+  },
+  {
+    "letters": "ACTINIC",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 243
+  },
+  {
+    "letters": "ADAGIAL",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 203
+  },
+  {
+    "letters": "ADAMANT",
+    "answer_count": 34,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 239
+  },
+  {
+    "letters": "ADDAXES",
+    "answer_count": 31,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 254
+  },
+  {
+    "letters": "ADDUCED",
+    "answer_count": 28,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 223
+  },
+  {
+    "letters": "AECIDIA",
+    "answer_count": 28,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 218
+  },
+  {
+    "letters": "AFFABLY",
+    "answer_count": 31,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 297
+  },
+  {
+    "letters": "AFFIXAL",
+    "answer_count": 25,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 276
+  },
+  {
+    "letters": "AGGADIC",
+    "answer_count": 27,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 189
+  },
+  {
+    "letters": "AGGADOT",
+    "answer_count": 31,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 183
+  },
+  {
+    "letters": "AGRAPHA",
+    "answer_count": 23,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 188
+  },
+  {
+    "letters": "AIRWARD",
+    "answer_count": 31,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 225
+  },
+  {
+    "letters": "AKVAVIT",
+    "answer_count": 30,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 263
+  },
+  {
+    "letters": "ALBIZIA",
+    "answer_count": 22,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 189
+  },
+  {
+    "letters": "ALFAQUI",
+    "answer_count": 23,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 207
+  },
+  {
+    "letters": "ALKALIC",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 292
+  },
+  {
+    "letters": "ALLELIC",
+    "answer_count": 32,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 215
+  },
+  {
+    "letters": "ALLICIN",
+    "answer_count": 29,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 207
+  },
+  {
+    "letters": "ALLOXAN",
+    "answer_count": 23,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 198
+  },
+  {
+    "letters": "ALLUVIA",
+    "answer_count": 26,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 180
+  },
+  {
+    "letters": "ALLYLIC",
+    "answer_count": 25,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 214
+  },
+  {
+    "letters": "ALMANAC",
+    "answer_count": 32,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 218
+  },
+  {
+    "letters": "ALOOFLY",
+    "answer_count": 30,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 270
+  },
+  {
+    "letters": "AMOEBAE",
+    "answer_count": 31,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 249
+  },
+  {
+    "letters": "ANAGOGY",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 238
+  },
+  {
+    "letters": "ANGAKOK",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 280
+  },
+  {
+    "letters": "ANNEXED",
+    "answer_count": 31,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 227
+  },
+  {
+    "letters": "ANTITAX",
+    "answer_count": 33,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 207
+  },
+  {
+    "letters": "APAGOGE",
+    "answer_count": 29,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 199
+  },
+  {
+    "letters": "APHAGIA",
+    "answer_count": 19,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 147
+  },
+  {
+    "letters": "APHYLLY",
+    "answer_count": 27,
+    "max_word_length": 7,
+    "difficulty": "focused",
+    "possible_score": 270
+  },
+  {
+    "letters": "ABALONE",
+    "answer_count": 74,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 473
+  },
+  {
+    "letters": "ABASERS",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 599
+  },
+  {
+    "letters": "ABASHED",
+    "answer_count": 81,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 695
+  },
+  {
+    "letters": "ABASING",
+    "answer_count": 99,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 697
+  },
+  {
+    "letters": "ABDUCTS",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 775
+  },
+  {
+    "letters": "ABELIAN",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 536
+  },
+  {
+    "letters": "ABETTAL",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 510
+  },
+  {
+    "letters": "ABETTER",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 495
+  },
+  {
+    "letters": "ABIOSES",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 498
+  },
+  {
+    "letters": "ABJURED",
+    "answer_count": 88,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 746
+  },
+  {
+    "letters": "ABLATOR",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 603
+  },
+  {
+    "letters": "ABOMASI",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 656
+  },
+  {
+    "letters": "ABOUGHT",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 650
+  },
+  {
+    "letters": "ABREACT",
+    "answer_count": 88,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 709
+  },
+  {
+    "letters": "ABROACH",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 622
+  },
+  {
+    "letters": "ABSCISE",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 618
+  },
+  {
+    "letters": "ABSENCE",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 620
+  },
+  {
+    "letters": "ABSURDS",
+    "answer_count": 99,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 765
+  },
+  {
+    "letters": "ABULIAS",
+    "answer_count": 70,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 477
+  },
+  {
+    "letters": "ABUTTED",
+    "answer_count": 77,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 574
+  },
+  {
+    "letters": "ABUTTER",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 683
+  },
+  {
+    "letters": "ABYSMAL",
+    "answer_count": 100,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 893
+  },
+  {
+    "letters": "ACALEPH",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 768
+  },
+  {
+    "letters": "ACANTHI",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 677
+  },
+  {
+    "letters": "ACARIDS",
+    "answer_count": 95,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 722
+  },
+  {
+    "letters": "ACARINE",
+    "answer_count": 90,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 664
+  },
+  {
+    "letters": "ACCORDS",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 660
+  },
+  {
+    "letters": "ACEDIAS",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 675
+  },
+  {
+    "letters": "ACERATE",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 530
+  },
+  {
+    "letters": "ACEROLA",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 576
+  },
+  {
+    "letters": "ACETONE",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 575
+  },
+  {
+    "letters": "ACHENES",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 824
+  },
+  {
+    "letters": "ACHIOTE",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 785
+  },
+  {
+    "letters": "ACHIRAL",
+    "answer_count": 70,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 618
+  },
+  {
+    "letters": "ACIFORM",
+    "answer_count": 90,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 761
+  },
+  {
+    "letters": "ACINOUS",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 542
+  },
+  {
+    "letters": "ACQUEST",
+    "answer_count": 90,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 706
+  },
+  {
+    "letters": "ACQUITS",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 618
+  },
+  {
+    "letters": "ACROBAT",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 626
+  },
+  {
+    "letters": "ACROMIA",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 580
+  },
+  {
+    "letters": "ACROTIC",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 582
+  },
+  {
+    "letters": "ACTABLE",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 616
+  },
+  {
+    "letters": "ACTINAL",
+    "answer_count": 78,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 519
+  },
+  {
+    "letters": "ACTINON",
+    "answer_count": 86,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 646
+  },
+  {
+    "letters": "ACULEUS",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 473
+  },
+  {
+    "letters": "ACUTELY",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 669
+  },
+  {
+    "letters": "ACYLATE",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 528
+  },
+  {
+    "letters": "ACYLOIN",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 646
+  },
+  {
+    "letters": "ADAGIOS",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 519
+  },
+  {
+    "letters": "ADAPTOR",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 567
+  },
+  {
+    "letters": "ADDIBLE",
+    "answer_count": 90,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 732
+  },
+  {
+    "letters": "ADDICTS",
+    "answer_count": 84,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 628
+  },
+  {
+    "letters": "ADDRESS",
+    "answer_count": 78,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 554
+  },
+  {
+    "letters": "ADDUCER",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 679
+  },
+  {
+    "letters": "ADDUCES",
+    "answer_count": 75,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 578
+  },
+  {
+    "letters": "ADELGID",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 657
+  },
+  {
+    "letters": "ADENOMA",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 665
+  },
+  {
+    "letters": "ADHERER",
+    "answer_count": 70,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 636
+  },
+  {
+    "letters": "ADIOSES",
+    "answer_count": 95,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 625
+  },
+  {
+    "letters": "ADJOINS",
+    "answer_count": 88,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 621
+  },
+  {
+    "letters": "ADMIRAL",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 640
+  },
+  {
+    "letters": "ADNOUNS",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 534
+  },
+  {
+    "letters": "ADOPTED",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 559
+  },
+  {
+    "letters": "ADOPTEE",
+    "answer_count": 81,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 568
+  },
+  {
+    "letters": "ADSUKIS",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 658
+  },
+  {
+    "letters": "ADULATE",
+    "answer_count": 84,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 500
+  },
+  {
+    "letters": "ADVISED",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 738
+  },
+  {
+    "letters": "AEOLIAN",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 414
+  },
+  {
+    "letters": "AERADIO",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 437
+  },
+  {
+    "letters": "AERATED",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 522
+  },
+  {
+    "letters": "AEROBAT",
+    "answer_count": 95,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 644
+  },
+  {
+    "letters": "AETATIS",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 375
+  },
+  {
+    "letters": "AFFECTS",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 776
+  },
+  {
+    "letters": "AFFINED",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 581
+  },
+  {
+    "letters": "AFFINES",
+    "answer_count": 84,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 651
+  },
+  {
+    "letters": "AFFIRMS",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 627
+  },
+  {
+    "letters": "AFFORDS",
+    "answer_count": 86,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 706
+  },
+  {
+    "letters": "AGAMIDS",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 692
+  },
+  {
+    "letters": "AGAMOUS",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 546
+  },
+  {
+    "letters": "AGARICS",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 617
+  },
+  {
+    "letters": "AGELESS",
+    "answer_count": 96,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 631
+  },
+  {
+    "letters": "AGELONG",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 579
+  },
+  {
+    "letters": "AGENTED",
+    "answer_count": 99,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 618
+  },
+  {
+    "letters": "AGGRESS",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 614
+  },
+  {
+    "letters": "AGLYCON",
+    "answer_count": 75,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 621
+  },
+  {
+    "letters": "AGNIZED",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 782
+  },
+  {
+    "letters": "AGNOMEN",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 644
+  },
+  {
+    "letters": "AGNOSIA",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 558
+  },
+  {
+    "letters": "AGONIZE",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 606
+  },
+  {
+    "letters": "AGOROTH",
+    "answer_count": 78,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 524
+  },
+  {
+    "letters": "AGRAFES",
+    "answer_count": 97,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 684
+  },
+  {
+    "letters": "AHIMSAS",
+    "answer_count": 74,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 627
+  },
+  {
+    "letters": "AIBLINS",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 605
+  },
+  {
+    "letters": "AIRBOAT",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 614
+  },
+  {
+    "letters": "AIRFLOW",
+    "answer_count": 75,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 585
+  },
+  {
+    "letters": "AIRGLOW",
+    "answer_count": 81,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 567
+  },
+  {
+    "letters": "AIRHEAD",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 604
+  },
+  {
+    "letters": "AIRLIFT",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 498
+  },
+  {
+    "letters": "AIRLIKE",
+    "answer_count": 75,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 557
+  },
+  {
+    "letters": "AIRLINE",
+    "answer_count": 90,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 540
+  },
+  {
+    "letters": "AIRLOCK",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 758
+  },
+  {
+    "letters": "AIRPLAY",
+    "answer_count": 75,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 605
+  },
+  {
+    "letters": "AIRPORT",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 523
+  },
+  {
+    "letters": "AIRSHIP",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 665
+  },
+  {
+    "letters": "AIRTIME",
+    "answer_count": 97,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 672
+  },
+  {
+    "letters": "AIRTING",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 556
+  },
+  {
+    "letters": "AIRVACS",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 614
+  },
+  {
+    "letters": "AIRWISE",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 609
+  },
+  {
+    "letters": "AKEBIAS",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 640
+  },
+  {
+    "letters": "AKRATIC",
+    "answer_count": 77,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 624
+  },
+  {
+    "letters": "ALAMODE",
+    "answer_count": 88,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 615
+  },
+  {
+    "letters": "ALANINS",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 495
+  },
+  {
+    "letters": "ALATION",
+    "answer_count": 81,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 474
+  },
+  {
+    "letters": "ALBUMIN",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 699
+  },
+  {
+    "letters": "ALCAIDE",
+    "answer_count": 78,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 575
+  },
+  {
+    "letters": "ALENCON",
+    "answer_count": 74,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 524
+  },
+  {
+    "letters": "ALERTER",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 564
+  },
+  {
+    "letters": "ALEXIAS",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 578
+  },
+  {
+    "letters": "ALFAKIS",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 789
+  },
+  {
+    "letters": "ALIASES",
+    "answer_count": 77,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 477
+  },
+  {
+    "letters": "ALIBIED",
+    "answer_count": 77,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 580
+  },
+  {
+    "letters": "ALIBIES",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 670
+  },
+  {
+    "letters": "ALIMONY",
+    "answer_count": 99,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 797
+  },
+  {
+    "letters": "ALIYOTH",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 603
+  },
+  {
+    "letters": "ALKANET",
+    "answer_count": 96,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 696
+  },
+  {
+    "letters": "ALLEGER",
+    "answer_count": 72,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 482
+  },
+  {
+    "letters": "ALLEGES",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 533
+  },
+  {
+    "letters": "ALLEGRO",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 578
+  },
+  {
+    "letters": "ALLERGY",
+    "answer_count": 100,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 848
+  },
+  {
+    "letters": "ALLIUMS",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 656
+  },
+  {
+    "letters": "ALLONGE",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 563
+  },
+  {
+    "letters": "ALLOVER",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 609
+  },
+  {
+    "letters": "ALLOWED",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 699
+  },
+  {
+    "letters": "ALLOYED",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 611
+  },
+  {
+    "letters": "ALLSEED",
+    "answer_count": 94,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 625
+  },
+  {
+    "letters": "ALLURED",
+    "answer_count": 86,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 568
+  },
+  {
+    "letters": "ALMONDY",
+    "answer_count": 94,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 786
+  },
+  {
+    "letters": "ALMONRY",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 816
+  },
+  {
+    "letters": "ALPHORN",
+    "answer_count": 70,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 548
+  },
+  {
+    "letters": "ALPHYLS",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 816
+  },
+  {
+    "letters": "ALUMINA",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 668
+  },
+  {
+    "letters": "ALUMNAE",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 547
+  },
+  {
+    "letters": "ALYSSUM",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 640
+  },
+  {
+    "letters": "AMADOUS",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 570
+  },
+  {
+    "letters": "AMARONE",
+    "answer_count": 100,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 683
+  },
+  {
+    "letters": "AMASSER",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 683
+  },
+  {
+    "letters": "AMATEUR",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 590
+  },
+  {
+    "letters": "AMATORY",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 603
+  },
+  {
+    "letters": "AMAUTIS",
+    "answer_count": 94,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 624
+  },
+  {
+    "letters": "AMAZONS",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 622
+  },
+  {
+    "letters": "AMBAGES",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 777
+  },
+  {
+    "letters": "AMBLING",
+    "answer_count": 96,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 768
+  },
+  {
+    "letters": "AMBSACE",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 669
+  },
+  {
+    "letters": "AMEBOID",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 729
+  },
+  {
+    "letters": "AMENDED",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 630
+  },
+  {
+    "letters": "AMENTUM",
+    "answer_count": 78,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 515
+  },
+  {
+    "letters": "AMIABLE",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 661
+  },
+  {
+    "letters": "AMMETER",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 605
+  },
+  {
+    "letters": "AMOEBAN",
+    "answer_count": 73,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 543
+  },
+  {
+    "letters": "AMOEBAS",
+    "answer_count": 90,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 721
+  },
+  {
+    "letters": "AMORINI",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 596
+  },
+  {
+    "letters": "AMORINO",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 651
+  },
+  {
+    "letters": "AMOROUS",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 651
+  },
+  {
+    "letters": "AMOTION",
+    "answer_count": 84,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 546
+  },
+  {
+    "letters": "AMPHORA",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 602
+  },
+  {
+    "letters": "AMREETA",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 630
+  },
+  {
+    "letters": "AMTRACS",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 741
+  },
+  {
+    "letters": "AMUSIVE",
+    "answer_count": 88,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 656
+  },
+  {
+    "letters": "AMYLENE",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 726
+  },
+  {
+    "letters": "AMYLOID",
+    "answer_count": 100,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 846
+  },
+  {
+    "letters": "AMYLUMS",
+    "answer_count": 74,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 672
+  },
+  {
+    "letters": "ANAEMIC",
+    "answer_count": 78,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 649
+  },
+  {
+    "letters": "ANALYST",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 648
+  },
+  {
+    "letters": "ANALYTE",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 522
+  },
+  {
+    "letters": "ANARCHS",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 697
+  },
+  {
+    "letters": "ANATASE",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 417
+  },
+  {
+    "letters": "ANCIENT",
+    "answer_count": 87,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 619
+  },
+  {
+    "letters": "ANDIRON",
+    "answer_count": 83,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 533
+  },
+  {
+    "letters": "ANDROID",
+    "answer_count": 77,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 495
+  },
+  {
+    "letters": "ANEARED",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 487
+  },
+  {
+    "letters": "ANELING",
+    "answer_count": 95,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 650
+  },
+  {
+    "letters": "ANEURIN",
+    "answer_count": 70,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 405
+  },
+  {
+    "letters": "ANGINAS",
+    "answer_count": 74,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 464
+  },
+  {
+    "letters": "ANGIOMA",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 618
+  },
+  {
+    "letters": "ANGULAR",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 627
+  },
+  {
+    "letters": "ANIMATO",
+    "answer_count": 86,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 601
+  },
+  {
+    "letters": "ANKUSES",
+    "answer_count": 100,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 807
+  },
+  {
+    "letters": "ANLASES",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 519
+  },
+  {
+    "letters": "ANNATES",
+    "answer_count": 93,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 543
+  },
+  {
+    "letters": "ANNEALS",
+    "answer_count": 79,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 471
+  },
+  {
+    "letters": "ANNELID",
+    "answer_count": 99,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 651
+  },
+  {
+    "letters": "ANNOYED",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 498
+  },
+  {
+    "letters": "ANNOYER",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 534
+  },
+  {
+    "letters": "ANNULET",
+    "answer_count": 77,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 414
+  },
+  {
+    "letters": "ANODIZE",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 741
+  },
+  {
+    "letters": "ANOMALY",
+    "answer_count": 70,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 574
+  },
+  {
+    "letters": "ANONYMS",
+    "answer_count": 92,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 739
+  },
+  {
+    "letters": "ANOPIAS",
+    "answer_count": 96,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 682
+  },
+  {
+    "letters": "ANORAKS",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 818
+  },
+  {
+    "letters": "ANOREXY",
+    "answer_count": 80,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 619
+  },
+  {
+    "letters": "ANTBEAR",
+    "answer_count": 96,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 613
+  },
+  {
+    "letters": "ANTEFIX",
+    "answer_count": 84,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 647
+  },
+  {
+    "letters": "ANTHOID",
+    "answer_count": 98,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 655
+  },
+  {
+    "letters": "ANTIBUG",
+    "answer_count": 95,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 604
+  },
+  {
+    "letters": "ANTICAR",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 609
+  },
+  {
+    "letters": "ANTICLY",
+    "answer_count": 82,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 624
+  },
+  {
+    "letters": "ANTIFLU",
+    "answer_count": 89,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 600
+  },
+  {
+    "letters": "ANTIFOG",
+    "answer_count": 95,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 662
+  },
+  {
+    "letters": "ANTIGUN",
+    "answer_count": 71,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 422
+  },
+  {
+    "letters": "ANTIPOT",
+    "answer_count": 81,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 536
+  },
+  {
+    "letters": "ANTIQUE",
+    "answer_count": 81,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 672
+  },
+  {
+    "letters": "ANTIWAR",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 564
+  },
+  {
+    "letters": "ANTLION",
+    "answer_count": 76,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 429
+  },
+  {
+    "letters": "ANURIAS",
+    "answer_count": 99,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 615
+  },
+  {
+    "letters": "ANXIETY",
+    "answer_count": 74,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 537
+  },
+  {
+    "letters": "APELIKE",
+    "answer_count": 85,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 753
+  },
+  {
+    "letters": "APETALY",
+    "answer_count": 100,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 788
+  },
+  {
+    "letters": "APHASIC",
+    "answer_count": 94,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 894
+  },
+  {
+    "letters": "APHESES",
+    "answer_count": 86,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 782
+  },
+  {
+    "letters": "APHONIC",
+    "answer_count": 91,
+    "max_word_length": 7,
+    "difficulty": "open",
+    "possible_score": 834
+  }
+]

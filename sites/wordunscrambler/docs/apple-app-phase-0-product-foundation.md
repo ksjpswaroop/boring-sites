@@ -1,7 +1,7 @@
-# Phase 0 Product Foundation - WordBridge
+# Phase 0 Product Foundation - LexJolt
 
 **Project:** `sites/wordunscrambler`
-**Product:** WordBridge
+**Product:** LexJolt
 **Platform direction:** Native SwiftUI app for Apple devices
 **Phase goal:** define exactly what V1 is before coding starts
 **Status:** Complete
@@ -10,7 +10,7 @@
 
 ## 1. Locked Product Definition
 
-**App name:** WordBridge
+**App name:** LexJolt
 
 **One-line promise:** a polished free Apple word-games app with five fast games, daily progress, streaks, achievements, and offline-first play.
 
@@ -30,7 +30,7 @@ V1 includes exactly five games:
 | --- | --- | --- |
 | Word Unscrambler | Find every valid word from entered letters | Utility session, usually under 2 minutes |
 | Anagram Rush | Find as many words as possible before time runs out | Timed replay loop |
-| Daily Scramble | Complete one daily required-letter puzzle | Habit loop with streaks |
+| Daily Jolt | Complete one daily required-letter puzzle | Habit loop with streaks |
 | Spelling Bee | Build words from seven letters with a required center letter | Longer puzzle session |
 | Guess the Word | Guess a hidden word with letter feedback and shareable results | Short challenge loop |
 
@@ -43,7 +43,7 @@ Phase 0 defines success around retention and repeated play, not revenue.
 | Metric | V1 signal | Why it matters |
 | --- | --- | --- |
 | 7-day retention | Players return within 7 days of install | Proves the app has a habit loop |
-| Daily Scramble completion rate | Players finish the daily puzzle | Validates the daily reason to return |
+| Daily Jolt completion rate | Players finish the daily puzzle | Validates the daily reason to return |
 | Repeat sessions | Players start more than one game session per day or week | Shows the app is more than a one-time solver |
 | Anagram Rush replay rate | Players replay timed rounds after finishing one | Validates the fast game loop |
 | Share-card usage | Players share completed puzzles or scores | Indicates organic growth potential |
@@ -103,9 +103,9 @@ Watch, TV, and Vision Pro should be treated as companion or adapted experiences 
 
 Phase 0 is complete when these decisions are true:
 
-- App name is confirmed as WordBridge.
-- V1 game list is locked to Word Unscrambler, Anagram Rush, Daily Scramble, Spelling Bee, and Guess the Word.
-- V1 success metrics focus on 7-day retention, Daily Scramble completion, repeat sessions, replay rate, share-card usage, and stability.
+- App name is confirmed as LexJolt.
+- V1 game list is locked to Word Unscrambler, Anagram Rush, Daily Jolt, Spelling Bee, and Guess the Word.
+- V1 success metrics focus on 7-day retention, Daily Jolt completion, repeat sessions, replay rate, share-card usage, and stability.
 - V1 explicitly has no ads, login, backend, or paid features.
 - Initial Apple targets are decided as iPhone first, then iPad/Mac, then Watch/TV/Vision companion modes.
 

@@ -2,36 +2,16 @@
 /**
  * Timed word-finding game using the existing anagram solver.
  */
-const racks = [
-  'PLANETS',
-  'TRAINES',
-  'PARTIES',
-  'ROASTED',
-  'STAINER',
-  'LOPINGS',
-  'CRANEST',
-  'DEALING',
-  'REACTOS',
-  'MONSTER',
-  'GARDENS',
-  'SILENCE',
-  'RESCUEA',
-  'TANGLES',
-  'ORANGES',
-  'RATIONS',
-  'CREDITS',
-  'HEARING',
-  'LEAPING',
-  'SENATOR',
-];
+import racks from '../data/rush-racks.json';
 ---
 
 <section class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-  <div class="card">
+  <div class="lexjolt-card">
     <div class="flex flex-wrap items-center justify-between gap-4">
       <div>
-        <p class="text-sm font-medium text-primary-700 dark:text-primary-300">90-second word sprint</p>
+        <p class="lexjolt-eyebrow">90-second word sprint</p>
         <h2 class="mt-1 text-2xl font-bold tracking-tight">Anagram Rush</h2>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">Make as many words as you can in 90 seconds.</p>
       </div>
       <div class="grid grid-cols-3 gap-2 text-center text-sm">
         <div class="rounded-md border border-neutral-200 px-3 py-2 dark:border-neutral-800">
@@ -70,8 +50,9 @@ const racks = [
     </form>
 
     <div class="mt-4 flex flex-wrap items-center gap-3">
-      <button id="rush-start" type="button" class="btn btn-secondary">Start new round</button>
-      <button id="rush-reveal" type="button" class="btn btn-secondary">Reveal missed words</button>
+      <button id="rush-start" type="button" class="lexjolt-button lexjolt-button-primary">Start Rush</button>
+      <button id="rush-end" type="button" class="lexjolt-button lexjolt-button-secondary" disabled>End round</button>
+      <button id="rush-reveal" type="button" class="lexjolt-button lexjolt-button-secondary" disabled>Review missed words</button>
       <p id="rush-message" class="text-sm text-neutral-500" aria-live="polite">Start a round to begin.</p>
     </div>
 
@@ -79,12 +60,20 @@ const racks = [
   </div>
 
   <aside class="space-y-6">
-    <div class="card">
+    <div class="lexjolt-card">
+      <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Local stats</h2>
+      <dl class="mt-3 grid gap-3 text-sm">
+        <div class="flex items-center justify-between"><dt class="text-neutral-500">Best score</dt><dd id="rush-best-score" class="mono font-semibold">0</dd></div>
+        <div class="flex items-center justify-between"><dt class="text-neutral-500">Best words</dt><dd id="rush-best-count" class="mono font-semibold">0</dd></div>
+        <div class="flex items-center justify-between"><dt class="text-neutral-500">Rounds played</dt><dd id="rush-rounds" class="mono font-semibold">0</dd></div>
+      </dl>
+    </div>
+    <div class="lexjolt-card">
       <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Found words</h2>
       <ul id="rush-found" class="mt-3 grid gap-2"></ul>
       <p id="rush-empty" class="mt-4 text-sm text-neutral-500">No words yet.</p>
     </div>
-    <div class="card">
+    <div class="lexjolt-card">
       <h2 class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Missed words</h2>
       <ul id="rush-missed" class="mt-3 grid gap-2"></ul>
       <p id="rush-missed-empty" class="mt-4 text-sm text-neutral-500">Reveal after the round.</p>
@@ -95,16 +84,17 @@ const racks = [
 <script is:inline type="application/json" id="rush-racks-data" set:html={JSON.stringify(racks)}></script>
 
 <script>
-  import { loadIndex, normalizeLetters, scrabbleScore, solve } from '../lib/generator';
+  import { canBuildWord, loadIndex, normalizeLetters, rushScore, solve } from '../lib/generator';
 
   const racksData = document.getElementById('rush-racks-data');
-  const racks = JSON.parse(racksData?.textContent || '[]') as string[];
+  const racks = JSON.parse(racksData?.textContent || '[]') as Array<{ letters: string; answer_count: number; max_word_length: number; difficulty: string; possible_score: number }>;
 
   const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
   const lettersEl = $<HTMLElement>('#rush-letters');
   const form = $<HTMLFormElement>('#rush-form');
   const input = $<HTMLInputElement>('#rush-input');
   const startBtn = $<HTMLButtonElement>('#rush-start');
+  const endBtn = $<HTMLButtonElement>('#rush-end');
   const revealBtn = $<HTMLButtonElement>('#rush-reveal');
   const submitBtn = $<HTMLButtonElement>('#rush-submit');
   const timeEl = $<HTMLElement>('#rush-time');
@@ -116,14 +106,19 @@ const racks = [
   const missedEmptyEl = $<HTMLElement>('#rush-missed-empty');
   const messageEl = $<HTMLElement>('#rush-message');
   const finalEl = $<HTMLElement>('#rush-final');
+  const bestScoreEl = $<HTMLElement>('#rush-best-score');
+  const bestCountEl = $<HTMLElement>('#rush-best-count');
+  const roundsEl = $<HTMLElement>('#rush-rounds');
 
-  if (lettersEl && form && input && startBtn && revealBtn && submitBtn && timeEl && scoreEl && foundCountEl && foundEl && missedEl && emptyEl && missedEmptyEl && messageEl && finalEl) {
+  if (lettersEl && form && input && startBtn && endBtn && revealBtn && submitBtn && timeEl && scoreEl && foundCountEl && foundEl && missedEl && emptyEl && missedEmptyEl && messageEl && finalEl && bestScoreEl && bestCountEl && roundsEl) {
     const roundSeconds = 90;
+    const statsKey = 'lexjolt:rush:stats';
+    const oldStatsKey = 'boring-sites:wordunscrambler:rush-stats';
     let rack = '';
     let answers: string[] = [];
     let found = new Set<string>();
     let score = 0;
-    let timeLeft = roundSeconds;
+    let endAt = 0;
     let timer: ReturnType<typeof setInterval> | null = null;
     let active = false;
     let index = new Map<string, string[]>();
@@ -135,17 +130,39 @@ const racks = [
     revealBtn.disabled = true;
     messageEl.textContent = 'Loading dictionary...';
 
-    const canBuild = (word: string, letters: string) => {
-      const counts: Record<string, number> = {};
-      for (const letter of letters) counts[letter] = (counts[letter] || 0) + 1;
-      for (const letter of word) {
-        counts[letter] = (counts[letter] || 0) - 1;
-        if (counts[letter] < 0) return false;
+    type RushStats = { best_score: number; best_word_count: number; rounds_played: number; average_score: number; last_played: string; replay_count: number };
+    const defaultStats: RushStats = { best_score: 0, best_word_count: 0, rounds_played: 0, average_score: 0, last_played: '', replay_count: 0 };
+
+    const migrateStats = () => {
+      const oldStats = localStorage.getItem(oldStatsKey);
+      if (oldStats && !localStorage.getItem(statsKey)) {
+        localStorage.setItem(statsKey, oldStats);
+        localStorage.removeItem(oldStatsKey);
       }
-      return true;
     };
 
-    const pointsFor = (word: string) => scrabbleScore(word) + Math.max(0, word.length - 3) * 2;
+    const readStats = (): RushStats => {
+      migrateStats();
+      try {
+        return { ...defaultStats, ...JSON.parse(localStorage.getItem(statsKey) || '{}') };
+      } catch {
+        return defaultStats;
+      }
+    };
+
+    const writeStats = (next: RushStats) => {
+      localStorage.setItem(statsKey, JSON.stringify(next));
+      renderStats();
+    };
+
+    const renderStats = () => {
+      const stats = readStats();
+      bestScoreEl.textContent = String(stats.best_score);
+      bestCountEl.textContent = String(stats.best_word_count);
+      roundsEl.textContent = String(stats.rounds_played);
+    };
+
+    const pointsFor = (word: string) => rushScore(word);
 
     const setMessage = (text: string) => {
       messageEl.textContent = text;
@@ -171,6 +188,10 @@ const racks = [
     };
 
     const renderMissed = () => {
+      if (active) {
+        setMessage('Missed words are available after the round.');
+        return;
+      }
       const missed = answers.filter((word) => !found.has(word));
       missedEl.innerHTML = missed.slice(0, 24).map((word) => `
         <li class="flex items-center justify-between rounded-md border border-neutral-200 bg-white px-3 py-2 dark:border-neutral-800 dark:bg-neutral-900">
@@ -183,15 +204,37 @@ const racks = [
     };
 
     const finishRound = () => {
+      if (!active && finalEl.classList.contains('hidden') === false) return;
       active = false;
       if (timer) clearInterval(timer);
       timer = null;
       input.disabled = true;
       submitBtn.disabled = true;
+      endBtn.disabled = true;
+      revealBtn.disabled = false;
+      startBtn.textContent = 'Play Again';
       finalEl.classList.remove('hidden');
-      finalEl.textContent = `Round complete: ${found.size} of ${answers.length} words found for ${score} points.`;
+      const bestWord = Array.from(found).sort((a, b) => b.length - a.length || pointsFor(b) - pointsFor(a))[0] || '-';
+      finalEl.innerHTML = `
+        <h3 class="text-lg font-bold">Great rush!</h3>
+        <dl class="mt-3 grid gap-2 sm:grid-cols-2">
+          <div><dt class="text-neutral-500">Score</dt><dd class="mono text-xl font-bold">${score}</dd></div>
+          <div><dt class="text-neutral-500">Words found</dt><dd class="mono text-xl font-bold">${found.size}</dd></div>
+          <div><dt class="text-neutral-500">Possible words</dt><dd class="mono text-xl font-bold">${answers.length}</dd></div>
+          <div><dt class="text-neutral-500">Best word</dt><dd class="mono text-xl font-bold">${bestWord}</dd></div>
+        </dl>
+      `;
+      const stats = readStats();
+      const roundsPlayed = stats.rounds_played + 1;
+      writeStats({
+        best_score: Math.max(stats.best_score, score),
+        best_word_count: Math.max(stats.best_word_count, found.size),
+        rounds_played: roundsPlayed,
+        average_score: Math.round(((stats.average_score * stats.rounds_played) + score) / roundsPlayed),
+        last_played: new Date().toISOString(),
+        replay_count: stats.rounds_played > 0 ? stats.replay_count + 1 : stats.replay_count,
+      });
       setMessage('Round complete. Reveal missed words or start again.');
-      renderMissed();
     };
 
     const startRound = () => {
@@ -200,31 +243,34 @@ const racks = [
         return;
       }
 
-      rack = racks[Math.floor(Math.random() * racks.length)];
+      const selected = racks[Math.floor(Math.random() * racks.length)];
+      rack = selected?.letters || 'PLANETS';
       answers = solve(rack, index)
-        .filter((word) => word.length >= 3 && canBuild(word, rack))
+        .filter((word) => word.length >= 3 && canBuildWord(word, rack))
         .sort((a, b) => pointsFor(b) - pointsFor(a) || b.length - a.length || a.localeCompare(b));
       found = new Set();
       score = 0;
-      timeLeft = roundSeconds;
+      endAt = performance.now() + roundSeconds * 1000;
       active = true;
       input.disabled = false;
       submitBtn.disabled = false;
+      endBtn.disabled = false;
+      revealBtn.disabled = true;
       input.value = '';
       finalEl.classList.add('hidden');
       missedEl.innerHTML = '';
       missedEmptyEl.textContent = 'Reveal after the round.';
-      timeEl.textContent = String(timeLeft);
+      timeEl.textContent = String(roundSeconds);
       renderLetters();
       renderFound();
       setMessage(`${answers.length} possible words. Minimum length is 3.`);
       input.focus();
       if (timer) clearInterval(timer);
       timer = setInterval(() => {
-        timeLeft -= 1;
-        timeEl.textContent = String(timeLeft);
-        if (timeLeft <= 0) finishRound();
-      }, 1000);
+        const remaining = Math.max(0, Math.ceil((endAt - performance.now()) / 1000));
+        timeEl.textContent = String(remaining);
+        if (remaining <= 0) finishRound();
+      }, 250);
     };
 
     form.addEventListener('submit', (event) => {
@@ -239,7 +285,7 @@ const racks = [
         setMessage('Use at least 3 letters.');
         return;
       }
-      if (!canBuild(word, rack)) {
+      if (!canBuildWord(word, rack)) {
         setMessage(`${word} cannot be made from these letters.`);
         return;
       }
@@ -264,15 +310,15 @@ const racks = [
       if (input.value !== normalized) input.value = normalized;
     });
     startBtn.addEventListener('click', startRound);
+    endBtn.addEventListener('click', finishRound);
     revealBtn.addEventListener('click', renderMissed);
+    renderStats();
     loadIndex()
       .then((loadedIndex) => {
         index = loadedIndex;
         indexReady = true;
         startBtn.disabled = false;
-        revealBtn.disabled = false;
         setMessage('Start a round to begin.');
-        startRound();
       })
       .catch(() => {
         setMessage('Dictionary failed to load. Refresh the page to try again.');

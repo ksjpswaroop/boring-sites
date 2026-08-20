@@ -1,0 +1,17 @@
+[
+  {
+    "letters": "AETPRS",
+    "requiredWords": ["PASTER"],
+    "scoreRulesVersion": 1
+  },
+  {
+    "letters": "QI",
+    "requiredWords": ["QI"],
+    "scoreRulesVersion": 1
+  },
+  {
+    "letters": "ZZZQQ",
+    "requiredWords": [],
+    "scoreRulesVersion": 1
+  }
+]

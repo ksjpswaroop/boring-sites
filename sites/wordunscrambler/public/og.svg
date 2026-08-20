@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="LexJolt social preview">
+  <rect width="1200" height="630" fill="#F3F6F8"/>
+  <rect x="80" y="82" width="1040" height="466" rx="18" fill="#fff" stroke="#D9E0E6"/>
+  <rect x="132" y="132" width="118" height="118" rx="24" fill="#0A66C2"/>
+  <rect x="152" y="152" width="32" height="32" rx="7" fill="#fff"/>
+  <rect x="202" y="148" width="32" height="32" rx="7" fill="#D7EBFF"/>
+  <rect x="148" y="204" width="32" height="32" rx="7" fill="#B8DCFF"/>
+  <rect x="202" y="200" width="32" height="32" rx="7" fill="#fff"/>
+  <path d="M188 164h12m-16 56h14m-7-54 16 16m-20 38 18-18" fill="none" stroke="#004182" stroke-width="5" stroke-linecap="round"/>
+  <text x="300" y="184" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="#191919">LexJolt</text>
+  <text x="300" y="250" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700" fill="#0A66C2">Find it. Learn it. Play it.</text>
+  <text x="132" y="360" font-family="Inter, Arial, sans-serif" font-size="46" font-weight="800" fill="#191919">Free word tools and games.</text>
+  <text x="132" y="424" font-family="Inter, Arial, sans-serif" font-size="30" fill="#5E5E5E">Unscramble letters, find words, inspect meanings, and play daily challenges.</text>
+  <text x="132" y="498" font-family="JetBrains Mono, ui-monospace, monospace" font-size="28" font-weight="800" fill="#004182">lexjolt.com</text>
+</svg>
+

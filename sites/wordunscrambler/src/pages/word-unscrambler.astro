@@ -1,0 +1,32 @@
+---
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import Generator from '../components/Generator.astro';
+
+const description = 'Enter scrambled letters to find valid English words instantly. Tap a result to learn its pronunciation, part of speech, meaning and usage.';
+---
+<LexJoltLayout
+  title="Word Unscrambler – Unscramble Letters Instantly"
+  description={description}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Word Unscrambler',
+    url: 'https://lexjolt.com/word-unscrambler',
+    description,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  }}
+>
+  <section class="lexjolt-shell lexjolt-section">
+    <div class="mx-auto max-w-4xl">
+      <p class="lexjolt-eyebrow">Unscramble letters instantly</p>
+      <h1 class="lexjolt-h1 mt-2">Word Unscrambler</h1>
+      <p class="lexjolt-lede mt-4">{description}</p>
+      <div class="mt-8">
+        <Generator mode="unscrambler" />
+      </div>
+    </div>
+  </section>
+</LexJoltLayout>
+

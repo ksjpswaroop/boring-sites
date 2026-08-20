@@ -1,11 +1,26 @@
 ---
-/**
- * The word unscrambler. Renders the input box, runs the unscramble engine
- * client-side as the user types, displays results in a sortable, filterable list.
- */
+import WordDetailPanel from './WordDetailPanel.astro';
+
+export interface Props {
+  mode?: 'unscrambler' | 'finder' | 'compact';
+  heading?: string;
+  supportingText?: string;
+}
+
+const {
+  mode = 'unscrambler',
+  heading,
+  supportingText,
+} = Astro.props;
+
+const isCompact = mode === 'compact';
+const inputLabel = mode === 'finder' ? 'Letters you have (up to 15)' : 'Letters to unscramble (up to 15)';
+const placeholder = mode === 'finder' ? 'A E T P R S' : 'AETPRS';
 ---
-<div class="card">
-  <label for="letters-input" class="block text-sm font-medium">Letters to unscramble (up to 15)</label>
+<div class="lexjolt-card">
+  {heading && <h2 class="text-xl font-bold">{heading}</h2>}
+  {supportingText && <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{supportingText}</p>}
+  <label for="letters-input" class="mt-4 block text-sm font-semibold">{inputLabel}</label>
   <div class="relative mt-2">
     <input
       type="text"
@@ -14,30 +29,41 @@
       autocapitalize="characters"
       spellcheck="false"
       maxlength="15"
-      placeholder="e.g. aetprs"
-      class="block w-full rounded-lg border border-neutral-300 bg-white px-4 py-4 text-2xl font-mono tracking-widest uppercase dark:border-neutral-700 dark:bg-neutral-900"
+      placeholder={placeholder}
+      class="lexjolt-input mono block w-full px-4 py-4 text-2xl uppercase"
     />
   </div>
   <p class="mt-2 text-sm text-neutral-500">
     <span id="result-count">Type letters to see results</span>
   </p>
 
-  <div id="filters" class="mt-4 flex flex-wrap items-center gap-3 text-sm">
+  <div id="filters" class:list={['mt-4 flex flex-wrap items-center gap-3 text-sm', { hidden: isCompact }]}>
     <label class="flex items-center gap-2">
       <span class="text-neutral-500">Min length:</span>
-      <input type="number" id="min-length" min="2" max="15" value="2" class="w-16 rounded border border-neutral-300 bg-white px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900" />
-    </label>
-    <label class="flex items-center gap-2">
-      <span class="text-neutral-500">Must contain:</span>
-      <input type="text" id="must-contain" maxlength="15" placeholder="(optional)" class="w-24 rounded border border-neutral-300 bg-white px-2 py-1 font-mono uppercase dark:border-neutral-700 dark:bg-neutral-900" />
+      <input type="number" id="min-length" min="2" max="15" value="2" class="lexjolt-input w-16 px-2 py-1" />
     </label>
     <label class="flex items-center gap-2">
       <span class="text-neutral-500">Sort:</span>
-      <select id="sort-mode" class="rounded border border-neutral-300 bg-white px-2 py-1 dark:border-neutral-700 dark:bg-neutral-900">
-        <option value="alpha">A → Z</option>
-        <option value="length">Length ↓</option>
-        <option value="score" selected>Score ↓</option>
+      <select id="sort-mode" class="lexjolt-select px-2 py-1">
+        <option value="alpha">A to Z</option>
+        <option value="length">Length desc</option>
+        <option value="score" selected>Score desc</option>
       </select>
+    </label>
+    <button id="more-filters-toggle" type="button" class="lexjolt-button lexjolt-button-secondary">More filters</button>
+  </div>
+  <div id="advanced-filters" class:list={['mt-4 hidden grid-cols-1 gap-3 rounded-lg border border-neutral-200 bg-white p-4 text-sm dark:border-neutral-800 dark:bg-neutral-900 sm:grid-cols-3', { '!hidden': isCompact }]}>
+    <label>
+      <span class="block text-neutral-500">Max length</span>
+      <input type="number" id="max-length" min="2" max="15" value="15" class="lexjolt-input mt-1 w-full px-2 py-1" />
+    </label>
+    <label>
+      <span class="block text-neutral-500">Must contain</span>
+      <input type="text" id="must-contain" maxlength="15" placeholder="Optional" class="lexjolt-input mono mt-1 w-full px-2 py-1 uppercase" />
+    </label>
+    <label class="flex items-center gap-2 pt-6">
+      <input type="checkbox" id="exact-anagram" class="h-5 w-5 accent-[#0A66C2]" />
+      <span class="text-neutral-600 dark:text-neutral-300">Use all letters</span>
     </label>
   </div>
 </div>
@@ -48,7 +74,7 @@
     <button
       id="pronunciation-toggle"
       type="button"
-      class="rounded-md border border-neutral-200 px-2 py-1 text-sm text-neutral-500 transition hover:border-primary-400 hover:text-primary-700 dark:border-neutral-800 dark:hover:border-primary-500 dark:hover:text-primary-300"
+      class="lexjolt-button lexjolt-button-secondary text-sm"
       aria-label="Toggle pronunciation audio"
       title="Toggle pronunciation audio"
     >
@@ -57,38 +83,50 @@
   </div>
   <ul id="results" class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3"></ul>
   <p id="empty-state" class="mt-8 hidden text-center text-sm text-neutral-500">No words found. Try different letters.</p>
+  {isCompact && <p class="mt-4"><a id="see-all-results" class="font-semibold text-primary-700 hover:underline dark:text-primary-200" href="/word-finder">See all results</a></p>}
 </div>
 
-<div id="word-info-tooltip" class="word-info-tooltip" role="tooltip" aria-hidden="true"></div>
+<WordDetailPanel />
 
 <script>
-  import { loadIndex, solve, scrabbleScore, normalizeLetters } from '../lib/generator';
+  import { filterResults, loadIndex, solve, scrabbleScore, normalizeLetters } from '../lib/generator';
   import { getWordInfo, type WordInfo } from '../lib/definitions';
   import { initVoices, isMuted, speak, stopSpeaking, toggleMute } from '../lib/speech';
 
   const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
   const input = $<HTMLInputElement>('#letters-input');
   const minLenEl = $<HTMLInputElement>('#min-length');
+  const maxLenEl = $<HTMLInputElement>('#max-length');
   const mustContainEl = $<HTMLInputElement>('#must-contain');
+  const exactEl = $<HTMLInputElement>('#exact-anagram');
   const sortModeEl = $<HTMLSelectElement>('#sort-mode');
+  const moreFiltersToggle = $<HTMLButtonElement>('#more-filters-toggle');
+  const advancedFilters = $<HTMLElement>('#advanced-filters');
   const resultsEl = $<HTMLUListElement>('#results');
   const resultCountEl = $<HTMLElement>('#result-count');
   const emptyEl = $<HTMLElement>('#empty-state');
-  const tooltipEl = $<HTMLElement>('#word-info-tooltip');
+  const detailPanel = $<HTMLElement>('#word-detail-panel');
+  const detailTitle = $<HTMLElement>('#word-detail-title');
+  const detailPhonetic = $<HTMLElement>('#word-detail-phonetic');
+  const detailContent = $<HTMLElement>('#word-detail-content');
+  const detailClose = $<HTMLButtonElement>('#word-detail-close');
+  const detailListen = $<HTMLButtonElement>('#word-detail-listen');
+  const detailCopy = $<HTMLButtonElement>('#word-detail-copy');
+  const detailStatus = $<HTMLElement>('#word-detail-status');
   const pronunciationToggle = $<HTMLButtonElement>('#pronunciation-toggle');
+  const seeAllResults = $<HTMLAnchorElement>('#see-all-results');
 
-  if (input && minLenEl && mustContainEl && sortModeEl && resultsEl && resultCountEl && emptyEl && tooltipEl && pronunciationToggle) {
+  if (input && minLenEl && maxLenEl && mustContainEl && exactEl && sortModeEl && resultsEl && resultCountEl && emptyEl && detailPanel && detailTitle && detailPhonetic && detailContent && detailClose && detailListen && detailCopy && detailStatus && pronunciationToggle) {
     const lettersInput = input;
     const minLengthInput = minLenEl;
+    const maxLengthInput = maxLenEl;
     const mustContainInput = mustContainEl;
+    const exactInput = exactEl;
     const sortSelect = sortModeEl;
     const resultsList = resultsEl;
     const resultCount = resultCountEl;
     const emptyState = emptyEl;
-    const tooltip = tooltipEl;
     const soundToggle = pronunciationToggle;
-    let hoverTimer: ReturnType<typeof setTimeout> | null = null;
-    let closeTimer: ReturnType<typeof setTimeout> | null = null;
     let activeAbort: AbortController | null = null;
     let activeWord = '';
     let index = new Map<string, string[]>();
@@ -97,7 +135,9 @@
     initVoices();
     lettersInput.disabled = true;
     minLengthInput.disabled = true;
+    maxLengthInput.disabled = true;
     mustContainInput.disabled = true;
+    exactInput.disabled = true;
     sortSelect.disabled = true;
     resultCount.textContent = 'Loading dictionary...';
 
@@ -108,105 +148,68 @@
       .replaceAll('"', '&quot;')
       .replaceAll("'", '&#039;');
 
-    const positionTooltip = (anchor: HTMLElement) => {
-      const rect = anchor.getBoundingClientRect();
-      const width = Math.min(360, window.innerWidth - 16);
-      const left = Math.min(Math.max(8, rect.left), window.innerWidth - width - 8);
-      const topBelow = rect.bottom + 8;
-      const topAbove = rect.top - tooltip.offsetHeight - 8;
-      const top = topBelow + tooltip.offsetHeight > window.innerHeight && topAbove > 8 ? topAbove : topBelow;
-
-      tooltip.style.width = `${width}px`;
-      tooltip.style.left = `${left}px`;
-      tooltip.style.top = `${Math.max(8, top)}px`;
-    };
-
-    const setTooltipContent = (html: string) => {
-      tooltip.innerHTML = html;
-      const speakButton = tooltip.querySelector<HTMLButtonElement>('[data-speak-word]');
-      speakButton?.addEventListener('click', () => {
-        const word = speakButton.dataset.speakWord;
-        if (!word) return;
-        speakButton.classList.add('is-speaking');
-        speak(word, () => speakButton.classList.remove('is-speaking'));
-      });
-    };
-
-    const renderInfo = (info: WordInfo | null, word: string) => {
+    const renderInfo = (info: WordInfo | null) => {
       if (!info) {
-        setTooltipContent(`
-          <div class="tooltip-head">
-            <strong>${escapeHtml(word)}</strong>
-            <button type="button" class="tooltip-speak" data-speak-word="${escapeHtml(word)}" aria-label="Pronounce ${escapeHtml(word)}">Speak</button>
-          </div>
-          <p class="tooltip-muted">No definition found for this word.</p>
-        `);
+        detailContent.innerHTML = '<p>Definition temporarily unavailable. The solver still works locally.</p>';
+        detailPhonetic.textContent = 'Pronunciation unavailable';
         return;
       }
 
       const meaningHtml = info.meanings.map((meaning) => `
-        <section class="tooltip-meaning">
-          <div class="tooltip-pos">${escapeHtml(meaning.partOfSpeech)}</div>
+        <section class="border-t border-neutral-200 pt-3 first:border-t-0 first:pt-0 dark:border-neutral-800">
+          <div class="text-xs font-bold uppercase text-primary-700 dark:text-primary-200">${escapeHtml(meaning.partOfSpeech)}</div>
           ${meaning.definitions.map((definition) => `
-            <p class="tooltip-def">${escapeHtml(definition.definition)}</p>
-            ${definition.example ? `<p class="tooltip-example">"${escapeHtml(definition.example)}"</p>` : ''}
+            <p class="mt-2 leading-6">${escapeHtml(definition.definition)}</p>
+            ${definition.example ? `<p class="mt-1 text-neutral-500">Example: ${escapeHtml(definition.example)}</p>` : ''}
           `).join('')}
         </section>
       `).join('');
 
-      setTooltipContent(`
-        <div class="tooltip-head">
-          <div>
-            <strong>${escapeHtml(info.word)}</strong>
-            ${info.phonetic ? `<div class="tooltip-phonetic">${escapeHtml(info.phonetic)}</div>` : '<div class="tooltip-phonetic">Pronunciation unavailable</div>'}
-          </div>
-          <button type="button" class="tooltip-speak" data-speak-word="${escapeHtml(info.word)}" aria-label="Pronounce ${escapeHtml(info.word)}">Speak</button>
-        </div>
-        ${meaningHtml}
-      `);
+      detailPhonetic.textContent = info.phonetic || 'Pronunciation unavailable';
+      detailContent.innerHTML = `<div class="space-y-4">${meaningHtml}</div>`;
     };
 
-    const showTooltip = (anchor: HTMLElement, word: string) => {
+    const openDetail = async (word: string) => {
       activeWord = word;
       activeAbort?.abort();
       activeAbort = new AbortController();
-      if (hoverTimer) clearTimeout(hoverTimer);
-      if (closeTimer) clearTimeout(closeTimer);
-
-      setTooltipContent(`
-        <div class="tooltip-head">
-          <strong>${escapeHtml(word)}</strong>
-          <button type="button" class="tooltip-speak" data-speak-word="${escapeHtml(word)}" aria-label="Pronounce ${escapeHtml(word)}">Speak</button>
-        </div>
-        <p class="tooltip-muted">Looking up pronunciation, meaning, and usage...</p>
-      `);
-      tooltip.classList.add('is-visible');
-      tooltip.setAttribute('aria-hidden', 'false');
-      positionTooltip(anchor);
-
-      hoverTimer = setTimeout(async () => {
-        const info = await getWordInfo(word, activeAbort?.signal);
-        if (activeWord !== word) return;
-        renderInfo(info, word);
-        positionTooltip(anchor);
-      }, 180);
+      detailTitle.textContent = word;
+      detailPhonetic.textContent = 'Looking up pronunciation...';
+      detailContent.innerHTML = '<p>Looking up meaning and usage...</p>';
+      detailStatus.textContent = '';
+      detailPanel.classList.add('is-open');
+      detailPanel.setAttribute('aria-hidden', 'false');
+      const info = await getWordInfo(word, activeAbort.signal);
+      if (activeWord !== word) return;
+      renderInfo(info);
     };
 
-    const hideTooltip = () => {
-      if (closeTimer) clearTimeout(closeTimer);
-      closeTimer = setTimeout(() => {
-        activeAbort?.abort();
-        activeWord = '';
-        tooltip.classList.remove('is-visible');
-        tooltip.setAttribute('aria-hidden', 'true');
-        stopSpeaking();
-      }, 140);
+    const closeDetail = () => {
+      activeAbort?.abort();
+      activeWord = '';
+      detailPanel.classList.remove('is-open');
+      detailPanel.setAttribute('aria-hidden', 'true');
+      stopSpeaking();
     };
 
-    tooltip.addEventListener('mouseenter', () => {
-      if (closeTimer) clearTimeout(closeTimer);
+    detailClose.addEventListener('click', closeDetail);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeDetail();
     });
-    tooltip.addEventListener('mouseleave', hideTooltip);
+    detailListen.addEventListener('click', () => {
+      if (!activeWord) return;
+      detailStatus.textContent = 'Playing pronunciation.';
+      speak(activeWord, () => { detailStatus.textContent = ''; });
+    });
+    detailCopy.addEventListener('click', async () => {
+      if (!activeWord) return;
+      try {
+        await navigator.clipboard.writeText(activeWord);
+        detailStatus.textContent = 'Word copied.';
+      } catch {
+        detailStatus.textContent = activeWord;
+      }
+    });
 
     soundToggle.addEventListener('click', () => {
       const muted = toggleMute();
@@ -226,6 +229,7 @@
       const raw = lettersInput.value;
       const normalized = normalizeLetters(raw);
       const minLen = parseInt(minLengthInput.value, 10) || 2;
+      const maxLen = parseInt(maxLengthInput.value, 10) || 15;
       const mustContain = normalizeLetters(mustContainInput.value || '');
       const sortMode = sortSelect.value;
 
@@ -239,15 +243,15 @@
         return;
       }
 
-      let results = solve(normalized, index).filter((word) => word.length >= minLen);
-      if (mustContain) {
-        const requiredLetters = mustContain.split('');
-        results = results.filter((word) => requiredLetters.every((letter) => word.includes(letter)));
-      }
-
-      if (sortMode === 'alpha') results.sort();
-      else if (sortMode === 'length') results.sort((a, b) => b.length - a.length || a.localeCompare(b));
-      else if (sortMode === 'score') results.sort((a, b) => scrabbleScore(b) - scrabbleScore(a) || b.length - a.length || a.localeCompare(b));
+      const results = filterResults(solve(normalized, index), {
+        minLength: minLen,
+        maxLength: maxLen,
+        mustContain,
+        exact: exactInput.checked,
+        letters: normalized,
+        sort: sortMode === 'alpha' || sortMode === 'length' ? sortMode : 'score',
+      });
+      if (seeAllResults) seeAllResults.href = `/word-finder?letters=${encodeURIComponent(normalized)}`;
 
       resultCount.textContent = results.length === 0
         ? 'No words found'
@@ -264,25 +268,18 @@
         const score = scrabbleScore(word);
         return `
           <li class="word-result flex items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-2.5 transition hover:border-primary-300 hover:bg-primary-50 focus-within:border-primary-400 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-primary-700 dark:hover:bg-primary-950/40" data-word="${word}">
-            <div>
+            <button type="button" class="word-result-button min-h-11 flex-1" data-open-word="${word}" aria-label="Open details for ${word}">
               <span class="font-mono font-medium">${word}</span>
-              <span class="ml-2 text-xs text-neutral-500">${word.length}L · ${score}pt</span>
-            </div>
+              <span class="ml-2 text-xs text-neutral-500">${word.length} letters · ${score} pts</span>
+            </button>
             <button class="copy-btn text-xs text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100" data-word="${word}" aria-label="Copy ${word}">Copy</button>
           </li>`;
       }).join('');
 
-      document.querySelectorAll<HTMLElement>('.word-result').forEach((item) => {
-        const word = item.dataset.word;
+      document.querySelectorAll<HTMLButtonElement>('[data-open-word]').forEach((item) => {
+        const word = item.dataset.openWord;
         if (!word) return;
-        item.addEventListener('mouseenter', () => showTooltip(item, word));
-        item.addEventListener('mouseleave', hideTooltip);
-        item.addEventListener('focusin', () => showTooltip(item, word));
-        item.addEventListener('focusout', hideTooltip);
-        item.addEventListener('click', (event) => {
-          if ((event.target as HTMLElement).closest('.copy-btn')) return;
-          showTooltip(item, word);
-        });
+        item.addEventListener('click', () => openDetail(word));
       });
 
       document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
@@ -301,12 +298,24 @@
 
     lettersInput.addEventListener('input', render);
     minLengthInput.addEventListener('input', render);
+    maxLengthInput.addEventListener('input', render);
     mustContainInput.addEventListener('input', render);
+    exactInput.addEventListener('change', render);
     sortSelect.addEventListener('change', render);
+    moreFiltersToggle?.addEventListener('click', () => {
+      const isHidden = advancedFilters?.classList.toggle('hidden');
+      moreFiltersToggle.textContent = isHidden ? 'More filters' : 'Hide filters';
+      moreFiltersToggle.setAttribute('aria-expanded', String(!isHidden));
+    });
 
-    const last = localStorage.getItem('boring-sites:wordunscrambler:letters');
+    const oldLast = localStorage.getItem('boring-sites:wordunscrambler:letters');
+    if (oldLast && !localStorage.getItem('lexjolt:unscrambler:last-input')) {
+      localStorage.setItem('lexjolt:unscrambler:last-input', oldLast);
+      localStorage.removeItem('boring-sites:wordunscrambler:letters');
+    }
+    const last = localStorage.getItem('lexjolt:unscrambler:last-input');
     if (last) lettersInput.value = last;
-    lettersInput.addEventListener('input', () => localStorage.setItem('boring-sites:wordunscrambler:letters', lettersInput.value));
+    lettersInput.addEventListener('input', () => localStorage.setItem('lexjolt:unscrambler:last-input', lettersInput.value));
 
     loadIndex()
       .then((loadedIndex) => {
@@ -314,7 +323,9 @@
         indexReady = true;
         lettersInput.disabled = false;
         minLengthInput.disabled = false;
+        maxLengthInput.disabled = false;
         mustContainInput.disabled = false;
+        exactInput.disabled = false;
         sortSelect.disabled = false;
         lettersInput.focus();
         render();
@@ -326,129 +337,3 @@
       });
   }
 </script>
-
-<style is:global>
-  .word-info-tooltip {
-    position: fixed;
-    z-index: 60;
-    max-height: min(420px, calc(100vh - 24px));
-    overflow: auto;
-    border: 1px solid rgb(186 230 253);
-    border-radius: 8px;
-    background: rgb(255 255 255);
-    box-shadow: 0 18px 50px rgb(2 29 61 / 0.22);
-    color: rgb(23 23 23);
-    opacity: 0;
-    padding: 14px;
-    pointer-events: none;
-    transform: translateY(4px);
-    transition: opacity 120ms ease, transform 120ms ease;
-  }
-
-  .dark .word-info-tooltip {
-    border-color: rgb(12 74 110);
-    background: rgb(10 10 10);
-    box-shadow: 0 18px 50px rgb(0 0 0 / 0.5);
-    color: rgb(245 245 245);
-  }
-
-  .word-info-tooltip.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .tooltip-head {
-    align-items: flex-start;
-    display: flex;
-    gap: 12px;
-    justify-content: space-between;
-  }
-
-  .tooltip-head strong {
-    color: rgb(10 102 194);
-    font-size: 1rem;
-    letter-spacing: 0;
-  }
-
-  .tooltip-phonetic {
-    color: rgb(82 82 82);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 0.875rem;
-    margin-top: 2px;
-  }
-
-  .dark .tooltip-phonetic {
-    color: rgb(163 163 163);
-  }
-
-  .tooltip-speak {
-    border: 1px solid rgb(10 102 194);
-    border-radius: 6px;
-    color: rgb(10 102 194);
-    flex: 0 0 auto;
-    font-size: 0.75rem;
-    line-height: 1;
-    padding: 6px 8px;
-  }
-
-  .tooltip-speak:hover,
-  .tooltip-speak.is-speaking {
-    background: rgb(238 247 255);
-  }
-
-  .dark .tooltip-speak:hover,
-  .dark .tooltip-speak.is-speaking {
-    background: rgb(6 34 59);
-  }
-
-  .tooltip-muted {
-    color: rgb(82 82 82);
-    font-size: 0.875rem;
-    margin-top: 10px;
-  }
-
-  .dark .tooltip-muted {
-    color: rgb(163 163 163);
-  }
-
-  .tooltip-meaning {
-    border-top: 1px solid rgb(229 229 229);
-    margin-top: 12px;
-    padding-top: 10px;
-  }
-
-  .dark .tooltip-meaning {
-    border-color: rgb(38 38 38);
-  }
-
-  .tooltip-pos {
-    color: rgb(0 65 130);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .dark .tooltip-pos {
-    color: rgb(82 167 245);
-  }
-
-  .tooltip-def {
-    font-size: 0.875rem;
-    line-height: 1.45;
-    margin-top: 5px;
-  }
-
-  .tooltip-example {
-    color: rgb(82 82 82);
-    font-size: 0.82rem;
-    font-style: italic;
-    line-height: 1.4;
-    margin-top: 4px;
-  }
-
-  .dark .tooltip-example {
-    color: rgb(163 163 163);
-  }
-</style>

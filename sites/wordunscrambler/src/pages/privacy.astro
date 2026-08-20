@@ -1,17 +1,31 @@
 ---
-import Layout from '@boring-sites/design/Layout.astro';
-import Privacy from '@boring-sites/legal/privacy.astro';
-const siteName = 'Word Unscrambler';
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import { brand } from '../config/brand';
 ---
-<Layout
-  title="Privacy Policy"
-  description="Privacy policy for the Word Unscrambler."
-  siteName={siteName}
-  logoVariant="word-unscrambler"
->
-  <Privacy
-    siteName={siteName}
-    siteUrl="https://wordunscrambler.example.com"
-    contactEmail="hello@wordunscrambler.example.com"
-  />
-</Layout>
+<LexJoltLayout title="Privacy" description="Privacy policy for LexJolt.">
+  <article class="lexjolt-shell lexjolt-section">
+    <div class="max-w-3xl">
+      <p class="lexjolt-eyebrow">Privacy</p>
+      <h1 class="lexjolt-h1 mt-2">Privacy policy</h1>
+      <div class="mt-8 space-y-6 leading-7 text-neutral-700 dark:text-neutral-300">
+        <p>LexJolt is free and does not require accounts, passwords, payment information, or a premium tier.</p>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Browser storage</h2>
+          <p class="mt-2">LexJolt stores preferences and local play state in your browser, including recent letters, theme preference, local game scores, streaks, and Daily Jolt status.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Analytics</h2>
+          <p class="mt-2">LexJolt may use privacy-conscious Plausible analytics when configured for the production domain. Analytics events must not send the raw letters or words you enter.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Dictionary information</h2>
+          <p class="mt-2">Word solving is local. When you open a word detail, LexJolt may request definitions from an external dictionary service. If that service is unavailable, results still work and definitions show a temporary unavailable message.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Contact</h2>
+          <p class="mt-2">Questions can be sent to <a class="font-semibold text-primary-700 dark:text-primary-200" href={`mailto:${brand.email}`}>{brand.email}</a>.</p>
+        </section>
+      </div>
+    </div>
+  </article>
+</LexJoltLayout>

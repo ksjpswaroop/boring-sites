@@ -1,40 +1,23 @@
 ---
-import Layout from '@boring-sites/design/Layout.astro';
-const siteName = 'Word Unscrambler';
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import { brand } from '../config/brand';
 ---
-<Layout
-  title="About"
-  description="About the Word Unscrambler — a fast, no-signup anagram solver."
-  siteName={siteName}
-  logoVariant="word-unscrambler"
->
-  <article class="container-prose py-12">
-    <h1 class="text-4xl font-bold">About</h1>
-    <div class="prose mt-8 dark:prose-invert">
-      <p>
-        <strong>Word Unscrambler</strong> is a fast, no-signup anagram solver. It's part of the <a href="https://github.com/ksjpswaroop/boring-sites">boring-sites</a> portfolio — small, fast utility sites built with the same design system.
-      </p>
-      <h2>How it works</h2>
-      <p>
-        The tool runs entirely in your browser. The word list is bundled at build time (no API calls, no server roundtrip). When you type letters, the engine:
-      </p>
-      <ol>
-        <li>Normalizes the input (uppercase, A–Z only, max 15 chars)</li>
-        <li>Looks up every word whose sorted-letters signature is a subset of your input</li>
-        <li>Returns results sorted by Scrabble score (or length, or alpha)</li>
-      </ol>
-      <p>
-        <strong>Real-time.</strong> No click-to-submit. The list updates as you type.
-      </p>
-      <h2>What we don't do</h2>
-      <ul>
-        <li>No login, no account, no saved history</li>
-        <li>No server-side processing</li>
-        <li>No tracking beyond cookieless analytics (Plausible)</li>
-        <li>No ads between results</li>
-      </ul>
-      <h2>Open source</h2>
-      <p>The full source is on <a href="https://github.com/ksjpswaroop/boring-sites">GitHub</a>. Audit it, fork it, run it locally.</p>
+<LexJoltLayout title="About" description="Learn about LexJolt, a free collection of fast word tools and games.">
+  <article class="lexjolt-shell lexjolt-section">
+    <div class="max-w-3xl">
+      <p class="lexjolt-eyebrow">About LexJolt</p>
+      <h1 class="lexjolt-h1 mt-2">Fast word tools for finding, learning, and playing.</h1>
+      <div class="mt-8 space-y-5 text-lg leading-8 text-neutral-700 dark:text-neutral-300">
+        <p>LexJolt is a free collection of fast word tools and games designed to help people discover words, understand them, and have fun with language.</p>
+        <p>The product is English-first, local-first, and privacy-conscious. The solver runs in your browser from a bundled word list, so word results stay instant without accounts, payments, or a backend.</p>
+        <p>LexJolt is useful for students, learners, writers, puzzle fans, and word-game players who want a polished utility that also creates a reason to return tomorrow.</p>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {['Free to use', 'No account', 'No payment', 'Local word solver', 'Definitions on demand', 'Built for daily play'].map((item) => (
+          <div class="lexjolt-card text-sm font-semibold text-neutral-700 dark:text-neutral-200">{item}</div>
+        ))}
+      </div>
+      <p class="mt-8 text-sm text-neutral-500">Contact: <a class="font-semibold text-primary-700 dark:text-primary-200" href={`mailto:${brand.email}`}>{brand.email}</a></p>
     </div>
   </article>
-</Layout>
+</LexJoltLayout>

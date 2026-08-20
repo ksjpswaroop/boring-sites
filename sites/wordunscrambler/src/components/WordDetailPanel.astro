@@ -1,0 +1,23 @@
+<section id="word-detail-panel" class="word-detail-panel" role="dialog" aria-modal="false" aria-labelledby="word-detail-title" aria-hidden="true">
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <p class="lexjolt-eyebrow">Word detail</p>
+      <h2 id="word-detail-title" class="mono mt-1 text-2xl font-bold text-primary-700 dark:text-primary-200">Select a word</h2>
+      <p id="word-detail-phonetic" class="mt-1 text-sm text-neutral-500">Pronunciation appears here.</p>
+    </div>
+    <button id="word-detail-close" type="button" class="lexjolt-icon-button" aria-label="Close word detail">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+  <div id="word-detail-content" class="mt-5 text-sm text-neutral-700 dark:text-neutral-200">
+    Tap or press Enter on a word to see pronunciation, meaning and usage.
+  </div>
+  <div class="mt-5 flex flex-wrap gap-3">
+    <button id="word-detail-listen" type="button" class="lexjolt-button lexjolt-button-secondary">Listen</button>
+    <button id="word-detail-copy" type="button" class="lexjolt-button lexjolt-button-secondary">Copy</button>
+  </div>
+  <p id="word-detail-status" class="mt-3 text-sm text-neutral-500" aria-live="polite"></p>
+</section>
+

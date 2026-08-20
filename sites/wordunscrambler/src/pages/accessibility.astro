@@ -1,0 +1,27 @@
+---
+import LexJoltLayout from '../layouts/LexJoltLayout.astro';
+import { brand } from '../config/brand';
+---
+<LexJoltLayout title="Accessibility" description="LexJolt accessibility statement and support contact.">
+  <article class="lexjolt-shell lexjolt-section">
+    <div class="max-w-3xl">
+      <p class="lexjolt-eyebrow">Accessibility</p>
+      <h1 class="lexjolt-h1 mt-2">Accessibility statement</h1>
+      <div class="mt-8 space-y-6 leading-7 text-neutral-700 dark:text-neutral-300">
+        <p>LexJolt targets WCAG 2.2 AA for the production web experience.</p>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">What we support</h2>
+          <p class="mt-2">The interface is built for keyboard operation, visible focus, semantic headings, meaningful labels, touch targets of at least 44 px, reduced-motion preferences, and word details that work without hover.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Known limits</h2>
+          <p class="mt-2">Dictionary definitions come from local fallbacks and an external service. If a definition request fails, the detail panel reports that the definition is temporarily unavailable.</p>
+        </section>
+        <section>
+          <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-50">Feedback</h2>
+          <p class="mt-2">Send accessibility feedback to <a class="font-semibold text-primary-700 dark:text-primary-200" href={`mailto:${brand.email}`}>{brand.email}</a>.</p>
+        </section>
+      </div>
+    </div>
+  </article>
+</LexJoltLayout>
