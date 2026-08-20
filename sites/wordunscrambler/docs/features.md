@@ -76,7 +76,7 @@ User picks 0+ letters that MUST appear in every result. Use case: Scrabble blank
 Show the official Scrabble point value (A=1, B=3, …) next to each word. Source: static tile-score map.
 
 ### F10. Inline definitions
-Click word → expand row to show definition. Source: `dictionaryapi.dev` (free, no key) or precomputed local mini-dict.
+Click word → open the accessible detail panel. Definitions, examples, and pronunciations load from the generated local lexicon first; `dictionaryapi.dev` is an optional fallback for uncovered entries.
 
 ### F11. Per-input landing pages
 Route `/unscramble/<letters>` returns a server-rendered (or statically generated) page with that input pre-filled and results pre-computed. Captures long-tail "unscramble X to make words" queries. Pre-generate top 10K inputs at build time, or on-demand SSR.

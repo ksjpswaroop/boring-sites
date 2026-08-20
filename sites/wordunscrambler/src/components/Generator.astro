@@ -150,7 +150,7 @@ const placeholder = mode === 'finder' ? 'A E T P R S' : 'AETPRS';
 
     const renderInfo = (info: WordInfo | null) => {
       if (!info) {
-        detailContent.innerHTML = '<p>Definition temporarily unavailable. The solver still works locally.</p>';
+        detailContent.innerHTML = '<p>No local definition is included for this word. The solver still works offline.</p>';
         detailPhonetic.textContent = 'Pronunciation unavailable';
         return;
       }

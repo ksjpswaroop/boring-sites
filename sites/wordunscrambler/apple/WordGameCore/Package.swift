@@ -22,7 +22,12 @@ let package = Package(
             name: "WordGameCore",
             resources: [
                 .process("Resources/words.json"),
-                .process("Resources/anagram-index.json")
+                .process("Resources/anagram-index.json"),
+                .process("Resources/lexicon-manifest.json"),
+                .copy("Resources/lexicon.sqlite")
+            ],
+            linkerSettings: [
+                .linkedLibrary("sqlite3")
             ]
         ),
         .testTarget(

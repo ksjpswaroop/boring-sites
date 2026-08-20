@@ -51,17 +51,24 @@ final class WordGameCoreTests: XCTestCase {
 
     func testLoadsBundledWordsJsonAndBuildsReusableDictionary() throws {
         let words = try loadBundledWords()
-        XCTAssertGreaterThan(words.count, 190_000)
+        XCTAssertGreaterThan(words.count, 90_000)
         XCTAssertTrue(words.contains("APPLE"))
         XCTAssertTrue(words.contains("PEAR"))
         XCTAssertTrue(words.contains("QI"))
-        XCTAssertTrue(words.contains("ZA"))
+        XCTAssertFalse(words.contains("ZA"))
         XCTAssertTrue(words.contains("PLEA"))
         XCTAssertTrue(words.contains("TONES"))
         XCTAssertTrue(words.contains("BRIDGE"))
+        XCTAssertTrue(words.contains("SWOOP"))
+        XCTAssertTrue(words.contains("PASTER"))
+        XCTAssertTrue(words.contains("WALKED"))
+        XCTAssertFalse(words.contains("OO"))
+        XCTAssertFalse(words.contains("NASA"))
+        XCTAssertFalse(words.contains("FBI"))
+        XCTAssertFalse(words.contains("AARON"))
 
         let index = try loadBundledIndex()
-        XCTAssertGreaterThan(index.count, 170_000)
+        XCTAssertGreaterThan(index.count, 80_000)
         XCTAssertTrue(index["AELPP"]?.contains("APPLE") == true)
         XCTAssertTrue(index["IQ"]?.contains("QI") == true)
 
@@ -70,5 +77,21 @@ final class WordGameCoreTests: XCTestCase {
         XCTAssertTrue(dictionary.solve("apple").contains("APPLE"))
         XCTAssertTrue(dictionary.solve("tones").contains("TONES"))
         XCTAssertTrue(dictionary.solve("wordbridge").contains("BRIDGE"))
+    }
+
+    func testLoadsBundledSwoopDetailsWithoutNetworkAccess() throws {
+        let lexicon = try LexiconStore.bundled()
+        let info = try XCTUnwrap(lexicon.lookup("SWOOP"))
+
+        XCTAssertEqual(info.word, "SWOOP")
+        XCTAssertTrue(info.phonetic.lowercased().contains("swu"))
+        XCTAssertTrue(info.meanings.contains { $0.partOfSpeech == "noun" || $0.partOfSpeech == "verb" })
+        XCTAssertTrue(info.meanings.flatMap(\.definitions).contains { $0.definition.lowercased().contains("move") })
+        XCTAssertNil(lexicon.lookup("OO"))
+
+        let manifest = try loadBundledLexiconManifest()
+        XCTAssertEqual(manifest.wordCount, try loadBundledWords().count)
+        XCTAssertEqual(manifest.schemaVersion, 1)
+        XCTAssertEqual(manifest.dictionaryHash.count, 64)
     }
 }

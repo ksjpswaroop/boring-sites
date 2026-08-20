@@ -1,6 +1,3 @@
-apple/**/.build
-apple/**/build
-apple/**/*.xcuserdata
-apple/**/DerivedData
+apple
 dist
 node_modules

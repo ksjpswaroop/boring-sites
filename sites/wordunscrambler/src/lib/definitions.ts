@@ -26,103 +26,59 @@ type DictionaryApiResponse = Array<{
   }>;
 }>;
 
-const cache = new Map<string, WordInfo | null>();
+type DetailShard = Record<string, WordInfo>;
 
-const localFallbacks: Record<string, WordInfo> = {
-  ATE: {
-    word: 'ATE',
-    phonetic: '/eIt/',
-    meanings: [{
-      partOfSpeech: 'verb',
-      definitions: [{ definition: 'Past tense of eat.', example: 'She ate breakfast before the game.' }],
-    }],
-    source: 'local',
-  },
-  EAT: {
-    word: 'EAT',
-    phonetic: '/iːt/',
-    meanings: [{
-      partOfSpeech: 'verb',
-      definitions: [{ definition: 'To take food into the mouth and swallow it.', example: 'They eat dinner together every night.' }],
-    }],
-    source: 'local',
-  },
-  TEA: {
-    word: 'TEA',
-    phonetic: '/tiː/',
-    meanings: [{
-      partOfSpeech: 'noun',
-      definitions: [{ definition: 'A hot drink made by infusing dried leaves in water.', example: 'He poured a cup of tea.' }],
-    }],
-    source: 'local',
-  },
-  DOG: {
-    word: 'DOG',
-    phonetic: '/dɔːɡ/',
-    meanings: [{
-      partOfSpeech: 'noun',
-      definitions: [{ definition: 'A domesticated animal often kept as a companion or working animal.', example: 'The dog waited by the door.' }],
-    }],
-    source: 'local',
-  },
-  GOD: {
-    word: 'GOD',
-    phonetic: '/ɡɑːd/',
-    meanings: [{
-      partOfSpeech: 'noun',
-      definitions: [{ definition: 'A being worshiped as having supernatural power.', example: 'The poem refers to a god of thunder.' }],
-    }],
-    source: 'local',
-  },
-  ALL: {
-    word: 'ALL',
-    phonetic: '/ɔːl/',
-    meanings: [{
-      partOfSpeech: 'determiner',
-      definitions: [{ definition: 'The whole amount, quantity, or extent of something.', example: 'All players must check in before noon.' }],
-    }],
-    source: 'local',
-  },
-};
+const wordCache = new Map<string, WordInfo | null>();
+const shardCache = new Map<string, Promise<DetailShard>>();
 
-export function getLocalWordInfo(word: string): WordInfo | null {
-  return localFallbacks[word.toUpperCase()] ?? null;
+function normalizeWord(word: string): string {
+  return word.toUpperCase().replace(/[^A-Z]/g, '');
 }
 
-export async function getWordInfo(word: string, signal?: AbortSignal): Promise<WordInfo | null> {
-  const normalized = word.toUpperCase().replace(/[^A-Z]/g, '');
-  if (!normalized) return null;
-  if (cache.has(normalized)) return cache.get(normalized)!;
+async function loadDetailShard(prefix: string): Promise<DetailShard> {
+  const existing = shardCache.get(prefix);
+  if (existing) return existing;
 
-  const local = getLocalWordInfo(normalized);
-  if (local) {
-    cache.set(normalized, local);
-    return local;
+  const request = fetch(`/word-details/${prefix}.json`)
+    .then(async (response) => {
+      if (response.status === 404) return {};
+      if (!response.ok) throw new Error(`Unable to load local word details: ${response.status}`);
+      return response.json() as Promise<DetailShard>;
+    })
+    .catch((error) => {
+      shardCache.delete(prefix);
+      throw error;
+    });
+  shardCache.set(prefix, request);
+  return request;
+}
+
+export async function getLocalWordInfo(word: string): Promise<WordInfo | null> {
+  const normalized = normalizeWord(word);
+  if (normalized.length < 2) return null;
+  try {
+    const shard = await loadDetailShard(normalized.slice(0, 2).toLowerCase());
+    return shard[normalized] ?? null;
+  } catch {
+    return null;
   }
+}
 
+async function getApiWordInfo(normalized: string, signal?: AbortSignal): Promise<WordInfo | null> {
   try {
     const response = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(normalized.toLowerCase())}`,
       { signal },
     );
-
-    if (!response.ok) {
-      cache.set(normalized, null);
+    if (response.status === 404) {
+      wordCache.set(normalized, null);
       return null;
     }
+    if (!response.ok) return null;
 
     const entries = await response.json() as DictionaryApiResponse;
     const entry = entries[0];
-    if (!entry) {
-      cache.set(normalized, null);
-      return null;
-    }
-
-    const phonetic =
-      entry.phonetic ||
-      entry.phonetics?.find((item) => item.text)?.text ||
-      '';
-    const audioUrl = entry.phonetics?.find((item) => item.audio)?.audio || undefined;
+    if (!entry) return null;
     const meanings = (entry.meanings || [])
       .slice(0, 2)
       .map((meaning) => ({
@@ -130,30 +86,36 @@ export async function getWordInfo(word: string, signal?: AbortSignal): Promise<W
         definitions: (meaning.definitions || [])
           .filter((definition) => definition.definition)
           .slice(0, 2)
-          .map((definition) => ({
-            definition: definition.definition!,
-            example: definition.example,
-          })),
+          .map((definition) => ({ definition: definition.definition!, example: definition.example })),
       }))
       .filter((meaning) => meaning.definitions.length > 0);
+    if (!meanings.length) return null;
 
-    if (meanings.length === 0) {
-      cache.set(normalized, null);
-      return null;
-    }
-
-    const info: WordInfo = {
+    return {
       word: (entry.word || normalized).toUpperCase(),
-      phonetic,
-      audioUrl,
+      phonetic: entry.phonetic || entry.phonetics?.find((item) => item.text)?.text || '',
+      audioUrl: entry.phonetics?.find((item) => item.audio)?.audio || undefined,
       meanings,
       source: 'api',
     };
-    cache.set(normalized, info);
-    return info;
   } catch (error) {
     if (error instanceof DOMException && error.name === 'AbortError') return null;
-    cache.set(normalized, null);
     return null;
   }
+}
+
+export async function getWordInfo(word: string, signal?: AbortSignal): Promise<WordInfo | null> {
+  const normalized = normalizeWord(word);
+  if (!normalized) return null;
+  if (wordCache.has(normalized)) return wordCache.get(normalized)!;
+
+  const local = await getLocalWordInfo(normalized);
+  if (local) {
+    wordCache.set(normalized, local);
+    return local;
+  }
+
+  const api = await getApiWordInfo(normalized, signal);
+  if (api) wordCache.set(normalized, api);
+  return api;
 }

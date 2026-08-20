@@ -32,6 +32,18 @@
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
+    },
+    {
+      "source": "/anagram-index.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=31536000, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/word-details/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=31536000, stale-while-revalidate=86400" }
+      ]
     }
   ]
 }

@@ -13,10 +13,11 @@ import { brand } from '../config/brand';
         <p>LexJolt is useful for students, learners, writers, puzzle fans, and word-game players who want a polished utility that also creates a reason to return tomorrow.</p>
       </div>
       <div class="mt-8 grid gap-4 sm:grid-cols-2">
-        {['Free to use', 'No account', 'No payment', 'Local word solver', 'Definitions on demand', 'Built for daily play'].map((item) => (
+        {['Free to use', 'No account', 'No payment', 'Local word solver', 'Local word details', 'Built for daily play'].map((item) => (
           <div class="lexjolt-card text-sm font-semibold text-neutral-700 dark:text-neutral-200">{item}</div>
         ))}
       </div>
+      <p class="mt-8 text-sm leading-6 text-neutral-500">Lexical data is derived from Open English WordNet 2025 (CC BY 4.0), SCOWL, and the CMU Pronouncing Dictionary.</p>
       <p class="mt-8 text-sm text-neutral-500">Contact: <a class="font-semibold text-primary-700 dark:text-primary-200" href={`mailto:${brand.email}`}>{brand.email}</a></p>
     </div>
   </article>

@@ -53,21 +53,18 @@ pnpm --filter wordunscrambler dev
 
 For 7-letter input, this returns results in < 50ms. The word list is bundled at build time — no API calls.
 
-### The starter word list
+### Production lexicon
 
-`src/data/words.json` ships with ~1,000 common English words as a V0.1 starter. For production, replace with the full ENABLE word list (~172K words):
-
-```bash
-curl -o src/data/words.json https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt
-# Then format as JSON array (e.g. `["a","ah",...]`)
-```
-
-Or use a curated Scrabble-valid list (~100K words from TWL06). Either ships in the bundle (~1.5MB gzipped).
+The generated dictionary combines pinned Open English WordNet, SCOWL, and CMU
+Pronouncing Dictionary sources. It excludes proper names and acronyms while
+shipping definitions and pronunciations locally. See
+[`docs/word-list-source.md`](docs/word-list-source.md) for the acceptance policy,
+source licenses, and deterministic build command.
 
 ### V1.1 backlog
 
 - Per-letter SEO landing pages (e.g. `/unscramble/aetprs`) pre-rendered for top 10K inputs
-- Inline definitions (call `dictionaryapi.dev` or bundle a small dict)
+- Expand local definition and pronunciation coverage
 - Open solver API at `/api/solve?letters=aetprs`
 - i18n (Spanish, French, German word lists)
 

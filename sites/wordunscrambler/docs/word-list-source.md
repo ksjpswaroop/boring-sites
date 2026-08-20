@@ -4,17 +4,27 @@ LexJolt uses a local, precompiled word list for validation and unscrambling.
 The web app and Apple app do not call a remote API to decide whether a word is
 valid.
 
-## Current Source
+## Sources
 
-- Source: [Wordnik Wordlist](https://github.com/wordnik/wordlist)
-- Source file: `wordlist-20210729.txt`
-- Raw source URL: `https://raw.githubusercontent.com/wordnik/wordlist/main/wordlist-20210729.txt`
-- License: [MIT](https://github.com/wordnik/wordlist/blob/main/LICENSE)
-- Purpose: open-source word list for game developers and English word games.
+- [Open English WordNet 2025](https://en-word.net/downloads), CC BY 4.0,
+  provides the core lemmas, parts of speech, definitions, examples, forms, and
+  available IPA pronunciations.
+- [SCOWL v2](https://github.com/en-wl/wordlist), an MIT-like/BSD-compatible
+  collection pinned to the commit recorded in the generated manifest, provides
+  standard American-English inflections and function words at size 60.
+- [CMU Pronouncing Dictionary](https://github.com/cmusphinx/cmudict), whose
+  commercial and research use is unrestricted with attribution requested,
+  fills pronunciation gaps.
 
-The generated app dictionaries are filtered to uppercase alphabetic words from
-2 to 15 letters so they match the current LexJolt input cap and avoid phrases,
-punctuation, and words the UI cannot enter.
+The compiler preserves source casing and accepts lowercase alphabetic entries
+from 2 to 15 letters. Proper names, uppercase acronyms, abbreviations,
+standalone prefixes and suffixes, punctuation, numbers, and explicit denylist
+entries are excluded. Lexicalized words such as `RADAR`, `LASER`, and `SCUBA`
+remain because their source entries are ordinary lowercase dictionary words.
+
+The downloaded files in `/Users/swaroop/Downloads` are useful for coverage
+comparison but are not production sources because they combine common words
+with names, acronyms, obsolete terms, punctuation, and numbers.
 
 ## Generated Files
 
@@ -28,8 +38,18 @@ Generated files:
 
 - `src/data/words.json`
 - `public/anagram-index.json`
+- `public/word-details/<prefix>.json`
+- `src/data/lexicon-manifest.json`
 - `apple/WordGameCore/Sources/WordGameCore/Resources/words.json`
 - `apple/WordGameCore/Sources/WordGameCore/Resources/anagram-index.json`
+- `apple/WordGameCore/Sources/WordGameCore/Resources/lexicon.sqlite`
+- `apple/WordGameCore/Sources/WordGameCore/Resources/lexicon-manifest.json`
 
-Definitions remain separate and are fetched on demand from the existing
-definition flow. The validation dictionary is local and offline-capable.
+Dictionary generation requires Node.js 22, Git, Python 3, Make, SQLite, and
+Unzip. Sources are pinned by release, commit, and SHA-256 checksum. The regular
+web and Vercel builds consume committed generated assets and do not download or
+compile dictionary sources.
+
+Definitions are loaded from same-origin two-letter shards. The external
+dictionary service is an optional fallback only; temporary service failures do
+not affect solving or locally bundled details.

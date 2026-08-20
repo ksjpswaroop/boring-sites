@@ -1,0 +1,30 @@
+{
+  "accepted": [
+    "APPLE",
+    "LASER",
+    "PASTER",
+    "QI",
+    "RADAR",
+    "SCUBA",
+    "SWOOP",
+    "TEA",
+    "WALKED"
+  ],
+  "rejected": [
+    "AARON",
+    "FBI",
+    "HTTP",
+    "NASA",
+    "OO",
+    "URL",
+    "ZA",
+    "ZZZ"
+  ],
+  "details": {
+    "SWOOP": {
+      "phoneticIncludes": "swu",
+      "partOfSpeech": ["noun", "verb"],
+      "definitionIncludes": "move"
+    }
+  }
+}
