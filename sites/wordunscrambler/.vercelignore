@@ -1,0 +1,6 @@
+apple/**/.build
+apple/**/build
+apple/**/*.xcuserdata
+apple/**/DerivedData
+dist
+node_modules
