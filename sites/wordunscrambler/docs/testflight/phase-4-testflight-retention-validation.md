@@ -36,25 +36,43 @@ xcodebuild -project WordBridgeiOS.xcodeproj -scheme WordBridgeiOS -destination '
 xcodebuild -exportArchive -archivePath ./build/WordBridge.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
 ```
 
-The export options use App Store Connect upload destination and automatic signing.
+The export options use App Store Connect upload destination, automatic signing,
+and team `97ZA7QV77G`.
+
+If Xcode attempts development signing during archive, create an unsigned archive
+first and let the export/upload step perform App Store Connect distribution
+signing:
+
+```sh
+xcodebuild -project WordBridgeiOS.xcodeproj -scheme WordBridgeiOS -destination 'generic/platform=iOS' -configuration Release archive -archivePath ./build/WordBridge.xcarchive CODE_SIGNING_ALLOWED=NO
+xcodebuild -exportArchive -archivePath ./build/WordBridge.xcarchive -exportOptionsPlist Config/TestFlightExportOptions.plist -exportPath ./build/TestFlight -allowProvisioningUpdates
+```
 
 ## Current Local Archive Status
 
-Local Release signing is configured for automatic signing with team `97ZA7QV77G`.
-The simulator and Mac builds pass locally, but the iOS device archive cannot be
-completed until the Apple account has a usable provisioning path for
-`com.boringsites.wordbridge`.
+Local Release signing is configured for automatic signing with team `97ZA7QV77G`,
+and the system has Apple Development, Apple Distribution, and Developer ID
+Application signing identities for that account. The simulator and Mac builds
+pass locally. A signed archive still asks for an iOS development profile, but
+an unsigned Release archive succeeds with `CODE_SIGNING_ALLOWED=NO`.
 
-Latest local archive blocker:
+Latest signed archive blocker:
 
 ```text
 Communication with Apple failed: Your team has no devices from which to generate a provisioning profile.
 No profiles for 'com.boringsites.wordbridge' were found.
 ```
 
+Latest export/upload blocker:
+
+```text
+exportArchive Error Downloading App Information
+IDEDistribution.DistributionAppRecordProviderError.missingApp(bundleId: "com.boringsites.wordbridge")
+```
+
 Before the TestFlight upload can run, create or confirm the App Store Connect app
-record and signing profile for `com.boringsites.wordbridge`, then rerun the archive
-and export commands above from this directory.
+record for `com.boringsites.wordbridge`, then rerun the unsigned archive and
+export commands above from this directory.
 
 ## Privacy-Conscious Analytics
 

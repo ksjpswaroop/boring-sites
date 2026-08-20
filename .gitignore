@@ -9,6 +9,7 @@ dist/
 .output/
 .build/
 .swiftpm/
+build/
 
 # environment
 .env
