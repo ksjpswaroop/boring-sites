@@ -30,6 +30,16 @@ export function buildIndex(words: readonly string[]): Map<string, string[]> {
   return index;
 }
 
+export async function loadIndex(path = '/anagram-index.json'): Promise<Map<string, string[]>> {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Unable to load word index: ${response.status}`);
+  }
+
+  const data = await response.json() as Record<string, string[]>;
+  return new Map(Object.entries(data));
+}
+
 /**
  * Given a string of input letters, return all dictionary words that can
  * be formed from a subset of those letters (in any order).

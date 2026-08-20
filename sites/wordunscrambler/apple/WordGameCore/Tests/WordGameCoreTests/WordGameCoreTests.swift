@@ -51,12 +51,24 @@ final class WordGameCoreTests: XCTestCase {
 
     func testLoadsBundledWordsJsonAndBuildsReusableDictionary() throws {
         let words = try loadBundledWords()
-        XCTAssertGreaterThan(words.count, 1_000)
-        XCTAssertTrue(words.contains("apple"))
-        XCTAssertTrue(words.contains("pear"))
+        XCTAssertGreaterThan(words.count, 190_000)
+        XCTAssertTrue(words.contains("APPLE"))
+        XCTAssertTrue(words.contains("PEAR"))
+        XCTAssertTrue(words.contains("QI"))
+        XCTAssertTrue(words.contains("ZA"))
+        XCTAssertTrue(words.contains("PLEA"))
+        XCTAssertTrue(words.contains("TONES"))
+        XCTAssertTrue(words.contains("BRIDGE"))
+
+        let index = try loadBundledIndex()
+        XCTAssertGreaterThan(index.count, 170_000)
+        XCTAssertTrue(index["AELPP"]?.contains("APPLE") == true)
+        XCTAssertTrue(index["IQ"]?.contains("QI") == true)
 
         let dictionary = try WordDictionary.bundled()
-        XCTAssertEqual(dictionary.index["AELPP"], ["APPLE"])
+        XCTAssertTrue(dictionary.index["AELPP"]?.contains("APPLE") == true)
         XCTAssertTrue(dictionary.solve("apple").contains("APPLE"))
+        XCTAssertTrue(dictionary.solve("tones").contains("TONES"))
+        XCTAssertTrue(dictionary.solve("wordbridge").contains("BRIDGE"))
     }
 }

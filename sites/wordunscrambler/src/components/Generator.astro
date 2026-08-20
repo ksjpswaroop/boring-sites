@@ -3,11 +3,6 @@
  * The word unscrambler. Renders the input box, runs the unscramble engine
  * client-side as the user types, displays results in a sortable, filterable list.
  */
-import words from '../data/words.json';
-import { buildIndex } from '../lib/generator';
-
-const wordList: string[] = words as string[];
-const index = buildIndex(wordList);
 ---
 <div class="card">
   <label for="letters-input" class="block text-sm font-medium">Letters to unscramble (up to 15)</label>
@@ -66,15 +61,10 @@ const index = buildIndex(wordList);
 
 <div id="word-info-tooltip" class="word-info-tooltip" role="tooltip" aria-hidden="true"></div>
 
-<script is:inline type="application/json" id="word-index-data" set:html={JSON.stringify(Array.from(index.entries()))}></script>
-
 <script>
-  import { solve, scrabbleScore, normalizeLetters } from '../lib/generator';
+  import { loadIndex, solve, scrabbleScore, normalizeLetters } from '../lib/generator';
   import { getWordInfo, type WordInfo } from '../lib/definitions';
   import { initVoices, isMuted, speak, stopSpeaking, toggleMute } from '../lib/speech';
-
-  const indexData = document.getElementById('word-index-data');
-  const index = new Map<string, string[]>(JSON.parse(indexData?.textContent || '[]'));
 
   const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
   const input = $<HTMLInputElement>('#letters-input');
@@ -101,8 +91,15 @@ const index = buildIndex(wordList);
     let closeTimer: ReturnType<typeof setTimeout> | null = null;
     let activeAbort: AbortController | null = null;
     let activeWord = '';
+    let index = new Map<string, string[]>();
+    let indexReady = false;
 
     initVoices();
+    lettersInput.disabled = true;
+    minLengthInput.disabled = true;
+    mustContainInput.disabled = true;
+    sortSelect.disabled = true;
+    resultCount.textContent = 'Loading dictionary...';
 
     const escapeHtml = (value: string) => value
       .replaceAll('&', '&amp;')
@@ -220,6 +217,12 @@ const index = buildIndex(wordList);
     soundToggle.setAttribute('aria-pressed', String(!isMuted()));
 
     function render() {
+      if (!indexReady) {
+        resultsList.innerHTML = '';
+        emptyState.classList.add('hidden');
+        return;
+      }
+
       const raw = lettersInput.value;
       const normalized = normalizeLetters(raw);
       const minLen = parseInt(minLengthInput.value, 10) || 2;
@@ -300,12 +303,27 @@ const index = buildIndex(wordList);
     minLengthInput.addEventListener('input', render);
     mustContainInput.addEventListener('input', render);
     sortSelect.addEventListener('change', render);
-    lettersInput.focus();
 
     const last = localStorage.getItem('boring-sites:wordunscrambler:letters');
     if (last) lettersInput.value = last;
     lettersInput.addEventListener('input', () => localStorage.setItem('boring-sites:wordunscrambler:letters', lettersInput.value));
-    render();
+
+    loadIndex()
+      .then((loadedIndex) => {
+        index = loadedIndex;
+        indexReady = true;
+        lettersInput.disabled = false;
+        minLengthInput.disabled = false;
+        mustContainInput.disabled = false;
+        sortSelect.disabled = false;
+        lettersInput.focus();
+        render();
+      })
+      .catch(() => {
+        resultCount.textContent = 'Dictionary failed to load';
+        emptyState.textContent = 'Refresh the page to try loading the dictionary again.';
+        emptyState.classList.remove('hidden');
+      });
   }
 </script>
 

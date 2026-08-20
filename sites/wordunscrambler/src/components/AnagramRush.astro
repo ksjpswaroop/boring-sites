@@ -2,11 +2,6 @@
 /**
  * Timed word-finding game using the existing anagram solver.
  */
-import words from '../data/words.json';
-import { buildIndex } from '../lib/generator';
-
-const wordList: string[] = words as string[];
-const index = buildIndex(wordList);
 const racks = [
   'PLANETS',
   'TRAINES',
@@ -97,15 +92,12 @@ const racks = [
   </aside>
 </section>
 
-<script is:inline type="application/json" id="rush-index-data" set:html={JSON.stringify(Array.from(index.entries()))}></script>
 <script is:inline type="application/json" id="rush-racks-data" set:html={JSON.stringify(racks)}></script>
 
 <script>
-  import { normalizeLetters, scrabbleScore, solve } from '../lib/generator';
+  import { loadIndex, normalizeLetters, scrabbleScore, solve } from '../lib/generator';
 
-  const indexData = document.getElementById('rush-index-data');
   const racksData = document.getElementById('rush-racks-data');
-  const index = new Map<string, string[]>(JSON.parse(indexData?.textContent || '[]'));
   const racks = JSON.parse(racksData?.textContent || '[]') as string[];
 
   const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
@@ -134,6 +126,14 @@ const racks = [
     let timeLeft = roundSeconds;
     let timer: ReturnType<typeof setInterval> | null = null;
     let active = false;
+    let index = new Map<string, string[]>();
+    let indexReady = false;
+
+    input.disabled = true;
+    submitBtn.disabled = true;
+    startBtn.disabled = true;
+    revealBtn.disabled = true;
+    messageEl.textContent = 'Loading dictionary...';
 
     const canBuild = (word: string, letters: string) => {
       const counts: Record<string, number> = {};
@@ -195,6 +195,11 @@ const racks = [
     };
 
     const startRound = () => {
+      if (!indexReady) {
+        setMessage('Dictionary is still loading.');
+        return;
+      }
+
       rack = racks[Math.floor(Math.random() * racks.length)];
       answers = solve(rack, index)
         .filter((word) => word.length >= 3 && canBuild(word, rack))
@@ -260,6 +265,17 @@ const racks = [
     });
     startBtn.addEventListener('click', startRound);
     revealBtn.addEventListener('click', renderMissed);
-    startRound();
+    loadIndex()
+      .then((loadedIndex) => {
+        index = loadedIndex;
+        indexReady = true;
+        startBtn.disabled = false;
+        revealBtn.disabled = false;
+        setMessage('Start a round to begin.');
+        startRound();
+      })
+      .catch(() => {
+        setMessage('Dictionary failed to load. Refresh the page to try again.');
+      });
   }
 </script>

@@ -21,7 +21,8 @@ let package = Package(
         .target(
             name: "WordGameCore",
             resources: [
-                .process("Resources/words.json")
+                .process("Resources/words.json"),
+                .process("Resources/anagram-index.json")
             ]
         ),
         .testTarget(

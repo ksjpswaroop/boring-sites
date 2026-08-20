@@ -2,11 +2,6 @@
 /**
  * Deterministic daily word challenge. Static-friendly: date + seed decide the puzzle.
  */
-import words from '../data/words.json';
-import { buildIndex } from '../lib/generator';
-
-const wordList: string[] = words as string[];
-const index = buildIndex(wordList);
 const puzzles = [
   { letters: 'PLANETS', required: 'A' },
   { letters: 'TRAINES', required: 'E' },
@@ -111,17 +106,14 @@ const puzzles = [
   </aside>
 </section>
 
-<script is:inline type="application/json" id="daily-index-data" set:html={JSON.stringify(Array.from(index.entries()))}></script>
 <script is:inline type="application/json" id="daily-puzzles-data" set:html={JSON.stringify(puzzles)}></script>
 
 <script>
-  import { normalizeLetters, scrabbleScore, solve } from '../lib/generator';
+  import { loadIndex, normalizeLetters, scrabbleScore, solve } from '../lib/generator';
 
   type Puzzle = { letters: string; required: string };
 
-  const indexData = document.getElementById('daily-index-data');
   const puzzlesData = document.getElementById('daily-puzzles-data');
-  const index = new Map<string, string[]>(JSON.parse(indexData?.textContent || '[]'));
   const puzzles = JSON.parse(puzzlesData?.textContent || '[]') as Puzzle[];
 
   const $ = <T extends Element>(selector: string) => document.querySelector<T>(selector);
@@ -149,6 +141,14 @@ const puzzles = [
     const storageKey = `boring-sites:wordunscrambler:daily:${dayKey}`;
     const streakKey = 'boring-sites:wordunscrambler:daily-streak';
     const found = new Set<string>(JSON.parse(localStorage.getItem(storageKey) || '[]'));
+    let index = new Map<string, string[]>();
+    let answers: string[] = [];
+    let best = '-';
+
+    input.disabled = true;
+    hintBtn.disabled = true;
+    shareBtn.disabled = true;
+    messageEl.textContent = 'Loading dictionary...';
 
     const canBuild = (word: string, letters: string) => {
       const counts: Record<string, number> = {};
@@ -162,10 +162,13 @@ const puzzles = [
 
     const pointsFor = (word: string) => word.length === 4 ? 1 : word.length + scrabbleScore(word);
     const isPangram = (word: string) => new Set(puzzle.letters.split('')).size === new Set(word.split('')).size;
-    const answers = solve(puzzle.letters, index)
-      .filter((word) => word.length >= 4 && word.includes(puzzle.required) && canBuild(word, puzzle.letters))
-      .sort((a, b) => pointsFor(b) - pointsFor(a) || b.length - a.length || a.localeCompare(b));
-    const best = answers[0] || '-';
+
+    const buildAnswers = () => {
+      answers = solve(puzzle.letters, index)
+        .filter((word) => word.length >= 4 && word.includes(puzzle.required) && canBuild(word, puzzle.letters))
+        .sort((a, b) => pointsFor(b) - pointsFor(a) || b.length - a.length || a.localeCompare(b));
+      best = answers[0] || '-';
+    };
 
     const readStreak = () => {
       try {
@@ -285,6 +288,19 @@ const puzzles = [
     renderLetters();
     renderFound();
     updateStreak();
-    input.focus();
+    loadIndex()
+      .then((loadedIndex) => {
+        index = loadedIndex;
+        buildAnswers();
+        input.disabled = false;
+        hintBtn.disabled = false;
+        shareBtn.disabled = false;
+        setMessage('Minimum length is 4.');
+        renderFound();
+        input.focus();
+      })
+      .catch(() => {
+        setMessage('Dictionary failed to load. Refresh the page to try again.');
+      });
   }
 </script>

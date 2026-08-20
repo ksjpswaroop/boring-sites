@@ -2,7 +2,9 @@ import Foundation
 
 public enum WordGameCoreError: Error, Equatable {
     case missingBundledWords
+    case missingBundledIndex
     case invalidBundledWords
+    case invalidBundledIndex
 }
 
 public func normalizeLetters(_ input: String) -> String {
@@ -113,6 +115,25 @@ public func loadBundledWords(bundle: Bundle) throws -> [String] {
     return words
 }
 
+public func loadBundledIndex() throws -> [String: [String]] {
+    try loadBundledIndex(bundle: .module)
+}
+
+public func loadBundledIndex(bundle: Bundle) throws -> [String: [String]] {
+    guard let url = bundle.url(forResource: "anagram-index", withExtension: "json") else {
+        throw WordGameCoreError.missingBundledIndex
+    }
+
+    let data = try Data(contentsOf: url)
+    let index = try JSONDecoder().decode([String: [String]].self, from: data)
+
+    guard !index.isEmpty else {
+        throw WordGameCoreError.invalidBundledIndex
+    }
+
+    return index
+}
+
 public struct WordDictionary: Equatable {
     public let words: [String]
     public let index: [String: [String]]
@@ -122,12 +143,20 @@ public struct WordDictionary: Equatable {
         self.index = buildIndex(words)
     }
 
+    public init(words: [String], index: [String: [String]]) {
+        self.words = words
+        self.index = index
+    }
+
     public static func bundled() throws -> WordDictionary {
         try bundled(bundle: .module)
     }
 
     public static func bundled(bundle: Bundle) throws -> WordDictionary {
-        WordDictionary(words: try loadBundledWords(bundle: bundle))
+        WordDictionary(
+            words: try loadBundledWords(bundle: bundle),
+            index: try loadBundledIndex(bundle: bundle)
+        )
     }
 
     public func solve(_ letters: String) -> [String] {

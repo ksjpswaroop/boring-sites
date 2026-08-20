@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "dictionary:build": "node scripts/build-word-dictionary.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check",
