@@ -5,7 +5,7 @@
 **Direction:** Native SwiftUI app for Apple devices
 **V1 monetization:** Free, no ads, no account, no backend
 **V2 monetization:** Ads after retention is proven
-**Status:** Phase 4 retention instrumentation ready; TestFlight upload waiting on Apple signing/App Store Connect access
+**Status:** Phase 4 retention instrumentation ready; TestFlight upload waiting on the App Store Connect app record for `com.boringsites.wordbridge`
 
 **Phase 0 decision record:** [`apple-app-phase-0-product-foundation.md`](./apple-app-phase-0-product-foundation.md)
 **Phase 1 implementation:** [`../apple/WordGameCore`](../apple/WordGameCore)
@@ -13,6 +13,7 @@
 **Phase 2 iOS app target:** [`../apple/WordBridgeiOS`](../apple/WordBridgeiOS)
 **Phase 3 ecosystem targets:** `WordBridgeiOS`, `WordBridgeMac`, `WordBridgeWatch`, `WordBridgeTV`, `WordBridgeVision`
 **Phase 4 validation plan:** [`testflight/phase-4-testflight-retention-validation.md`](./testflight/phase-4-testflight-retention-validation.md)
+**Current mobile app handoff:** [`apple-mobile-app-current-status.md`](./apple-mobile-app-current-status.md)
 
 ---
 
