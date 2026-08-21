@@ -1217,8 +1217,96 @@ private extension GameCompletion {
     }
 }
 
+public enum LexJoltTheme {
+    public static let brandBlue = Color(red: 10 / 255, green: 102 / 255, blue: 194 / 255)
+    public static let navy = Color(red: 0, green: 65 / 255, blue: 130 / 255)
+    public static let sky = Color(red: 112 / 255, green: 181 / 255, blue: 249 / 255)
+    public static let paleBlue = Color(red: 215 / 255, green: 235 / 255, blue: 1)
+
+    public static func accent(for colorScheme: ColorScheme) -> Color {
+        colorScheme == .dark ? sky : brandBlue
+    }
+}
+
+public struct LexJoltBrandMark: View {
+    private let size: CGFloat
+
+    public init(size: CGFloat = 72) {
+        self.size = size
+    }
+
+    public var body: some View {
+        ZStack {
+            brandTile("L", x: 0.22, y: 0.23, fill: .white)
+            brandTile("E", x: 0.76, y: 0.18, fill: LexJoltTheme.paleBlue)
+            brandTile("X", x: 0.18, y: 0.77, fill: LexJoltTheme.sky.opacity(0.72))
+            brandTile("J", x: 0.78, y: 0.75, fill: .white)
+
+            Image(systemName: "bolt.fill")
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(LexJoltTheme.navy)
+                .frame(width: size * 0.22, height: size * 0.34)
+                .rotationEffect(.degrees(8))
+        }
+        .frame(width: size, height: size)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("LexJolt")
+    }
+
+    private func brandTile(_ letter: String, x: CGFloat, y: CGFloat, fill: Color) -> some View {
+        Text(letter)
+            .font(.system(size: size * 0.18, weight: .black, design: .rounded))
+            .foregroundStyle(LexJoltTheme.navy)
+            .frame(width: size * 0.38, height: size * 0.38)
+            .background(fill)
+            .clipShape(RoundedRectangle(cornerRadius: size * 0.075))
+            .overlay {
+                RoundedRectangle(cornerRadius: size * 0.075)
+                    .stroke(LexJoltTheme.navy, lineWidth: max(2, size * 0.025))
+            }
+            .position(x: size * x, y: size * y)
+    }
+}
+
+public struct LexJoltSplashView: View {
+    @State private var isEnergized = false
+
+    public init() {}
+
+    public var body: some View {
+        ZStack {
+            LexJoltTheme.brandBlue
+                .ignoresSafeArea()
+
+            VStack(spacing: 24) {
+                LexJoltBrandMark(size: 168)
+                    .scaleEffect(isEnergized ? 1 : 0.88)
+                    .opacity(isEnergized ? 1 : 0.72)
+
+                VStack(spacing: 8) {
+                    Text("LexJolt")
+                        .font(.system(size: 42, weight: .black, design: .rounded))
+                        .foregroundStyle(.white)
+                    Text("Find it. Learn it. Play it.")
+                        .font(.headline)
+                        .foregroundStyle(LexJoltTheme.paleBlue)
+                }
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("lexjolt.splash")
+        .onAppear {
+            withAnimation(.spring(response: 0.55, dampingFraction: 0.72)) {
+                isEnergized = true
+            }
+        }
+    }
+}
+
 public struct LexJoltRootView: View {
     @StateObject private var viewModel: LexJoltViewModel
+    @Environment(\.colorScheme) private var colorScheme
 
     @MainActor
     public init(viewModel: LexJoltViewModel = LexJoltViewModel()) {
@@ -1229,6 +1317,7 @@ public struct LexJoltRootView: View {
         NavigationStack {
             TodayView(viewModel: viewModel)
         }
+        .tint(LexJoltTheme.accent(for: colorScheme))
     }
 }
 
@@ -1244,7 +1333,7 @@ public struct LexJoltUniversalRootView: View {
     public var body: some View {
         #if os(iOS)
         if horizontalSizeClass == .regular {
-            IPadDashboardView(model: IPadDashboardModel(progress: viewModel.progress))
+            IPadDashboardView(viewModel: viewModel)
         } else {
             LexJoltRootView(viewModel: viewModel)
         }
@@ -1256,35 +1345,55 @@ public struct LexJoltUniversalRootView: View {
 
 public struct TodayView: View {
     @ObservedObject private var viewModel: LexJoltViewModel
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     public init(viewModel: LexJoltViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
-        List {
-            Section {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("LexJolt")
-                        .font(.largeTitle.bold())
-                    Text("\(viewModel.progress.currentStreak)-day streak")
-                        .foregroundStyle(.secondary)
-                    Text("\(viewModel.progress.completedSessions) sessions completed")
-                        .foregroundStyle(.secondary)
-                }
-                .padding(.vertical, 8)
-            }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                HStack(spacing: 16) {
+                    LexJoltBrandMark(size: 76)
+                        .padding(8)
+                        .background(LexJoltTheme.brandBlue)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
 
-            Section("Play") {
-                ForEach(viewModel.games) { game in
-                    NavigationLink(value: game) {
-                        Label(game.title, systemImage: game.systemImage)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("LexJolt")
+                            .font(.largeTitle.bold())
+                        Text(viewModel.todayTitle)
+                            .font(.subheadline.weight(.medium))
+                            .foregroundStyle(.secondary)
                     }
                 }
-            }
 
-            if !viewModel.progress.bestScores.isEmpty {
-                Section("Best Scores") {
+                statusPanel
+                .padding(.vertical, 14)
+                .background(LexJoltTheme.paleBlue.opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                Text("Play")
+                    .font(.title2.bold())
+
+                ForEach(viewModel.games) { game in
+                    NavigationLink(value: game) {
+                        gameRow(game)
+                        .frame(minHeight: 56)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(Color.secondary.opacity(0.08))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("game.\(game.rawValue)")
+                }
+
+                if !viewModel.progress.bestScores.isEmpty {
+                    Text("Best Scores")
+                        .font(.title2.bold())
                     ForEach(
                         viewModel.progress.bestScores
                             .sorted { $0.key.title < $1.key.title },
@@ -1298,35 +1407,121 @@ public struct TodayView: View {
                         }
                     }
                 }
-            }
 
-            if !viewModel.progress.achievements.isEmpty {
-                Section("Achievements") {
-                    ForEach(viewModel.progress.achievements.sorted(), id: \.self) { achievement in
-                        Label(achievement.replacingOccurrences(of: "_", with: " "), systemImage: "rosette")
-                    }
-                }
-            }
-
-            Section("Reminder") {
                 Button {
                     Task {
                         try? await viewModel.scheduleDailyReminder()
                     }
                 } label: {
                     Label("Daily puzzle reminder", systemImage: "bell")
+                        .frame(maxWidth: .infinity, minHeight: 44)
                 }
+                .buttonStyle(.bordered)
+                .accessibilityIdentifier("daily.reminder")
             }
-
-            Section("V1 Promise") {
-                Label("Offline play", systemImage: "wifi.slash")
-                Label("No ads", systemImage: "hand.raised")
-                Label("No login or payments", systemImage: "person.crop.circle.badge.xmark")
-            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 16)
+            .frame(maxWidth: 720)
+            .frame(maxWidth: .infinity)
         }
-        .navigationTitle(viewModel.todayTitle)
+        .background(Color.secondary.opacity(0.035))
+        .lexJoltInlineNavigationTitle()
+        .accessibilityIdentifier("lexjolt.today")
         .navigationDestination(for: LexJoltGame.self) { game in
             GameRouteView(game: game)
+        }
+    }
+
+    @ViewBuilder
+    private var statusPanel: some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 12) {
+                statusMetric(value: "\(viewModel.progress.currentStreak)", label: "Day streak")
+                Divider()
+                statusMetric(value: "\(viewModel.progress.completedSessions)", label: "Sessions")
+                Divider()
+                statusMetric(value: "\(viewModel.progress.achievements.count)", label: "Badges")
+            }
+            .padding(.horizontal, 16)
+        } else {
+            HStack(spacing: 0) {
+                statusMetric(value: "\(viewModel.progress.currentStreak)", label: "Day streak")
+                Divider().frame(height: 44)
+                statusMetric(value: "\(viewModel.progress.completedSessions)", label: "Sessions")
+                Divider().frame(height: 44)
+                statusMetric(value: "\(viewModel.progress.achievements.count)", label: "Badges")
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func gameRow(_ game: LexJoltGame) -> some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    gameIcon(game)
+                    Spacer()
+                    disclosureIcon
+                }
+                gameTitle(game)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        } else {
+            HStack(spacing: 14) {
+                gameIcon(game)
+                gameTitle(game)
+                Spacer()
+                disclosureIcon
+            }
+        }
+    }
+
+    private func gameIcon(_ game: LexJoltGame) -> some View {
+        Image(systemName: game.systemImage)
+            .font(.title3.weight(.semibold))
+            .foregroundStyle(.white)
+            .frame(width: 44, height: 44)
+            .background(LexJoltTheme.brandBlue)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+
+    private func gameTitle(_ game: LexJoltGame) -> some View {
+        Text(game.title)
+            .font(.headline)
+            .foregroundStyle(.primary)
+    }
+
+    private var disclosureIcon: some View {
+        Image(systemName: "chevron.right")
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(.tertiary)
+    }
+
+    @ViewBuilder
+    private func statusMetric(value: String, label: String) -> some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            HStack(alignment: .firstTextBaseline, spacing: 12) {
+                Text(value)
+                    .font(.title3.bold())
+                    .foregroundStyle(LexJoltTheme.accent(for: colorScheme))
+                    .frame(minWidth: 36, alignment: .trailing)
+                Text(label)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityElement(children: .combine)
+        } else {
+            VStack(spacing: 3) {
+                Text(value)
+                    .font(.title3.bold())
+                    .foregroundStyle(LexJoltTheme.accent(for: colorScheme))
+                Text(label)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity)
+            .accessibilityElement(children: .combine)
         }
     }
 }
@@ -1358,94 +1553,124 @@ public struct GameRouteView: View {
 }
 
 public struct IPadDashboardView: View {
-    private let model: IPadDashboardModel
+    @ObservedObject private var viewModel: LexJoltViewModel
+    @State private var selectedGame: LexJoltGame = .dailyScramble
+    @Environment(\.colorScheme) private var colorScheme
 
-    public init(model: IPadDashboardModel) {
-        self.model = model
+    public init(viewModel: LexJoltViewModel) {
+        self.viewModel = viewModel
     }
 
     public var body: some View {
         NavigationSplitView {
-            List(LexJoltCatalog.v1Games) { game in
-                Label(game.title, systemImage: game.systemImage)
-            }
-            .navigationTitle("Games")
-        } detail: {
-            VStack(alignment: .leading, spacing: 16) {
-                Text(model.selectedGame.title)
-                    .font(.largeTitle.bold())
-                Text(model.statsSummary)
-                    .foregroundStyle(.secondary)
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 160))]) {
-                    ForEach(model.stats) { stat in
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(stat.game.title)
-                                .font(.headline)
-                            Text("Best \(stat.bestScore)")
-                                .font(.title3.bold())
-                            Text("\(stat.sessions) sessions")
-                                .foregroundStyle(.secondary)
+            List {
+                Section {
+                    HStack(spacing: 12) {
+                        LexJoltBrandMark(size: 54)
+                            .padding(6)
+                            .background(LexJoltTheme.brandBlue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        Text("LexJolt")
+                            .font(.title2.bold())
+                    }
+                }
+
+                Section("Games") {
+                    ForEach(LexJoltCatalog.v1Games) { game in
+                        Button {
+                            selectedGame = game
+                        } label: {
+                            Label(game.title, systemImage: game.systemImage)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
                         }
-                        .padding()
-                        .background(.thinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .buttonStyle(.plain)
+                        .listRowBackground(selectedGame == game ? LexJoltTheme.paleBlue : Color.clear)
+                        .accessibilityIdentifier("game.\(game.rawValue)")
                     }
                 }
             }
-            .padding()
-            .navigationTitle("Dashboard")
+            .navigationTitle("Play")
+        } detail: {
+            NavigationStack {
+                GameRouteView(game: selectedGame)
+            }
         }
+        .tint(LexJoltTheme.accent(for: colorScheme))
+        .accessibilityIdentifier("lexjolt.ipad")
     }
 }
 
 public struct MacDashboardView: View {
     private let model: MacDashboardModel
+    @State private var selectedGame: LexJoltGame?
 
     public init(model: MacDashboardModel) {
         self.model = model
+        _selectedGame = State(initialValue: nil)
     }
 
     public var body: some View {
         NavigationSplitView {
-            List(LexJoltCatalog.v1Games) { game in
-                Label(game.title, systemImage: game.systemImage)
-            }
-            .navigationTitle("LexJolt")
-        } detail: {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("Keyboard Dashboard")
-                    .font(.largeTitle.bold())
-                Text("\(model.defaultSessionMinutes)-minute focus sessions")
-                    .foregroundStyle(.secondary)
-
-                Section("Shortcuts") {
-                    ForEach(model.shortcuts, id: \.self) { shortcut in
-                        HStack {
-                            Text(shortcut.action)
-                            Spacer()
-                            Text((shortcut.modifiers.map(\.rawValue) + [shortcut.key]).joined(separator: " + "))
-                                .foregroundStyle(.secondary)
+            List {
+                Section("Games") {
+                    ForEach(LexJoltCatalog.v1Games) { game in
+                        Button {
+                            selectedGame = game
+                        } label: {
+                            Label(game.title, systemImage: game.systemImage)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .contentShape(Rectangle())
                         }
+                        .buttonStyle(.plain)
+                        .listRowBackground(selectedGame == game ? LexJoltTheme.paleBlue : Color.clear)
+                        .accessibilityIdentifier("game.\(game.rawValue)")
                     }
                 }
-
-                Section("History") {
-                    if model.history.isEmpty {
-                        Text("No completed sessions yet.")
+            }
+            .navigationTitle("LexJolt")
+            .navigationSplitViewColumnWidth(min: 220, ideal: 240, max: 300)
+        } detail: {
+            NavigationStack {
+                if let selectedGame {
+                    GameRouteView(game: selectedGame)
+                } else {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Keyboard Dashboard")
+                            .font(.largeTitle.bold())
+                        Text("\(model.defaultSessionMinutes)-minute focus sessions")
                             .foregroundStyle(.secondary)
-                    } else {
-                        ForEach(Array(model.history.enumerated()), id: \.offset) { _, completion in
-                            HStack {
-                                Text(completion.game.title)
-                                Spacer()
-                                Text("\(completion.score)")
+
+                        Section("Shortcuts") {
+                            ForEach(model.shortcuts, id: \.self) { shortcut in
+                                HStack {
+                                    Text(shortcut.action)
+                                    Spacer()
+                                    Text((shortcut.modifiers.map(\.rawValue) + [shortcut.key]).joined(separator: " + "))
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+
+                        Section("History") {
+                            if model.history.isEmpty {
+                                Text("No completed sessions yet.")
                                     .foregroundStyle(.secondary)
+                            } else {
+                                ForEach(Array(model.history.enumerated()), id: \.offset) { _, completion in
+                                    HStack {
+                                        Text(completion.game.title)
+                                        Spacer()
+                                        Text("\(completion.score)")
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
                             }
                         }
                     }
+                    .padding()
                 }
             }
-            .padding()
         }
     }
 }
@@ -1530,7 +1755,7 @@ public struct AppleEcosystemRootView: View {
     public var body: some View {
         switch role {
         case .iPad:
-            IPadDashboardView(model: IPadDashboardModel(progress: viewModel.progress))
+            IPadDashboardView(viewModel: viewModel)
         case .mac:
             MacDashboardView(model: MacDashboardModel())
         case .watch:
@@ -1555,15 +1780,18 @@ public struct WordUnscramblerScreen: View {
     public init() {}
 
     public var body: some View {
+        let normalizedLetters = normalizeLetters(letters)
         let results = game.results(for: letters)
 
         Form {
             TextField("Letters", text: $letters)
                 .lexJoltCharacterInput()
+                .accessibilityIdentifier("unscrambler.input")
 
             if results.isEmpty {
-                Text("No words found yet.")
+                Text(normalizedLetters.isEmpty ? "Enter two or more letters." : "No words can be formed from these letters.")
                     .foregroundStyle(.secondary)
+                    .accessibilityIdentifier("unscrambler.empty")
             } else {
                 Section("Results") {
                     ForEach(results.prefix(40)) { result in
@@ -1575,43 +1803,137 @@ public struct WordUnscramblerScreen: View {
                         }
                     }
                 }
+                .accessibilityIdentifier("unscrambler.results")
             }
         }
     }
 }
 
 public struct AnagramRushScreen: View {
+    private enum Phase: Equatable {
+        case ready
+        case active(endsAt: Date)
+        case finished
+    }
+
+    private static let roundDuration: TimeInterval = 90
+
     @State private var entry = ""
     @State private var game = AnagramRushGame(
         dictionary: LexJoltPreviewData.dictionary(),
         rack: "PLEA"
     )
-    @State private var message = "Rack: PLEA"
+    @State private var phase: Phase = .ready
+    @State private var message = "Find as many words as you can."
 
     public init() {}
 
     public var body: some View {
-        Form {
-            Text("90 seconds")
-                .font(.title.bold())
-            Text(message)
-                .foregroundStyle(.secondary)
-            Text("Score: \(game.totalScore)")
-            TextField("Enter a word", text: $entry)
-                .lexJoltCharacterInput()
-            Button("Submit") {
-                let result = game.submit(entry)
-                switch result {
-                case .accepted(let score):
-                    message = "+\(score)"
-                case .duplicate:
-                    message = "Already found"
-                case .invalid:
-                    message = "Not in this rack"
+        TimelineView(.periodic(from: .now, by: 0.25)) { context in
+            let secondsRemaining = remainingSeconds(at: context.date)
+
+            Form {
+                Section {
+                    HStack {
+                        Label("\(secondsRemaining)", systemImage: "timer")
+                            .font(.title.bold())
+                            .monospacedDigit()
+                            .accessibilityLabel("\(secondsRemaining) seconds remaining")
+                        Spacer()
+                        Text("Score \(game.totalScore)")
+                            .font(.headline)
+                    }
                 }
-                entry = ""
+
+                switch phase {
+                case .ready:
+                    Text("90-second round")
+                        .font(.title2.bold())
+                    Text(message)
+                        .foregroundStyle(.secondary)
+                    Button {
+                        startRound()
+                    } label: {
+                        Label("Start Round", systemImage: "play.fill")
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("rush.start")
+
+                case .active:
+                    Text("P L E A")
+                        .font(.system(.largeTitle, design: .monospaced, weight: .bold))
+                        .frame(maxWidth: .infinity)
+                        .accessibilityLabel("Rack P L E A")
+                    Text(message)
+                        .foregroundStyle(.secondary)
+                    TextField("Enter a word", text: $entry)
+                        .lexJoltCharacterInput()
+                        .accessibilityIdentifier("rush.input")
+                    Button("Submit") {
+                        submitRushWord()
+                    }
+                    .disabled(normalizeLetters(entry).isEmpty)
+                    .accessibilityIdentifier("rush.submit")
+
+                case .finished:
+                    ContentUnavailableView(
+                        "Round Complete",
+                        systemImage: "flag.checkered",
+                        description: Text("Final score: \(game.totalScore)")
+                    )
+                    Button {
+                        resetRound()
+                    } label: {
+                        Label("Play Again", systemImage: "arrow.clockwise")
+                            .frame(maxWidth: .infinity, minHeight: 44)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .accessibilityIdentifier("rush.replay")
+                }
+            }
+            .onChange(of: secondsRemaining) { _, newValue in
+                if newValue == 0, case .active = phase {
+                    phase = .finished
+                    entry = ""
+                }
             }
         }
+    }
+
+    private func remainingSeconds(at date: Date) -> Int {
+        switch phase {
+        case .ready:
+            Int(Self.roundDuration)
+        case .active(let endsAt):
+            max(0, Int(ceil(endsAt.timeIntervalSince(date))))
+        case .finished:
+            0
+        }
+    }
+
+    private func startRound() {
+        phase = .active(endsAt: Date().addingTimeInterval(Self.roundDuration))
+        message = "Rack ready. Go."
+    }
+
+    private func submitRushWord() {
+        let result = game.submit(entry)
+        switch result {
+        case .accepted(let score):
+            message = "+\(score) points"
+        case .duplicate:
+            message = "Already found"
+        case .invalid:
+            message = "Not valid for this rack"
+        }
+        entry = ""
+    }
+
+    private func resetRound() {
+        game = AnagramRushGame(dictionary: LexJoltPreviewData.dictionary(), rack: "PLEA")
+        phase = .ready
+        message = "Find as many words as you can."
     }
 }
 
@@ -1635,6 +1957,7 @@ public struct DailyScrambleScreen: View {
                 .foregroundStyle(.secondary)
             TextField("Word", text: $entry)
                 .lexJoltCharacterInput()
+                .accessibilityIdentifier("daily.input")
             Button("Check") {
                 let normalized = normalizeLetters(entry)
                 if game.accepts(normalized), !foundWords.contains(normalized) {
@@ -1645,8 +1968,10 @@ public struct DailyScrambleScreen: View {
                 }
                 entry = ""
             }
+            .accessibilityIdentifier("daily.submit")
             Text(message)
                 .foregroundStyle(.secondary)
+                .accessibilityIdentifier("daily.message")
             if !foundWords.isEmpty {
                 Section("Found") {
                     ForEach(foundWords, id: \.self) { word in
@@ -1662,6 +1987,7 @@ public struct DailyScrambleScreen: View {
 public struct SpellingBeeScreen: View {
     @State private var entry = ""
     @State private var score = 0
+    @State private var foundWords: Set<String> = []
     @State private var message = "Use P in every word."
     private let game = SpellingBeeGame(
         dictionary: LexJoltPreviewData.dictionary(),
@@ -1679,19 +2005,25 @@ public struct SpellingBeeScreen: View {
             Text("Score: \(score)")
             TextField("Word", text: $entry)
                 .lexJoltCharacterInput()
+                .accessibilityIdentifier("spelling.input")
             Button("Check") {
                 let normalized = normalizeLetters(entry)
-                if game.accepts(normalized) {
+                if foundWords.contains(normalized) {
+                    message = "Already found"
+                } else if game.accepts(normalized) {
                     let earned = game.score(normalized)
                     score += earned
+                    foundWords.insert(normalized)
                     message = "+\(earned)"
                 } else {
                     message = "Not valid"
                 }
                 entry = ""
             }
+            .accessibilityIdentifier("spelling.submit")
             Text(message)
                 .foregroundStyle(.secondary)
+                .accessibilityIdentifier("spelling.message")
         }
     }
 }
@@ -1713,6 +2045,7 @@ public struct GuessTheWordScreen: View {
                 .font(.title.bold())
             TextField("Guess", text: $guess)
                 .lexJoltCharacterInput()
+                .accessibilityIdentifier("guess.input")
             Button("Submit Guess") {
                 let normalized = normalizeLetters(guess)
                 if game.isValidGuess(normalized) {
@@ -1723,8 +2056,10 @@ public struct GuessTheWordScreen: View {
                 }
                 guess = ""
             }
+            .accessibilityIdentifier("guess.submit")
             Text(message)
                 .foregroundStyle(.secondary)
+                .accessibilityIdentifier("guess.message")
             ForEach(rows, id: \.0) { row in
                 HStack {
                     Text(row.0)
@@ -1748,6 +2083,15 @@ public struct LexJoltAppScene: App {
 }
 
 private extension View {
+    @ViewBuilder
+    func lexJoltInlineNavigationTitle() -> some View {
+        #if os(iOS)
+        navigationBarTitleDisplayMode(.inline)
+        #else
+        self
+        #endif
+    }
+
     @ViewBuilder
     func lexJoltCharacterInput() -> some View {
         #if os(iOS)

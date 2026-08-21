@@ -7,226 +7,186 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1AB0575C57BE23F732337249 /* LexJoltVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F28429B8050AD7456813CF /* LexJoltVisionApp.swift */; };
-		29D5ED2801A9FF432C60A1D0 /* LexJoltTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D447BDC0EB7AB0A13285729 /* LexJoltTVApp.swift */; };
-		50BBD4D5226795E4C4FDC018 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 0418536E1B3FCF01CEF2B6D4 /* LexJoltApp */; };
-		7E540AB6E6B5E06E84093CEC /* LexJoltMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120563B148A98CF6D10FE9A6 /* LexJoltMacApp.swift */; };
-		84602AF3E699A1390804C78F /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = B76C1A72D191B3881C238451 /* LexJoltApp */; };
-		854E2A7022211120998D972B /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 59F8DB9E773E72C3E044629B /* LexJoltApp */; };
-		9E3090442199510C80CA0E3A /* LexJoltWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C1F8FB7E8AFF7699914AD1 /* LexJoltWatchApp.swift */; };
-		A1C7BF330E1D7C25F46390F8 /* LexJoltiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BAF35909D4E01D7576F0E6 /* LexJoltiOSApp.swift */; };
-		BDB04318000DDAA648821533 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 02F7ACF2D8F91A8F7AD4A8E2 /* LexJoltApp */; };
-		E66C883867BDCD971D6A5748 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = B8C22A401596D4825B1DFF0F /* LexJoltApp */; };
-		E701E178A25FE1D424F84566 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3AFEC54BEF2E5C8A9C69A744 /* PrivacyInfo.xcprivacy */; };
+		130B2010DEE69801983588C6 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 6358E02AFFCEEB37D65418FF /* LexJoltApp */; };
+		350A3428DCEBF99710BEF292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F10CCC9917CFB4105D361B1 /* LaunchScreen.storyboard */; };
+		41F3BC532486FF78FBB3A19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C1388B3159B5FBAC14A80 /* Assets.xcassets */; };
+		5E5D46D5DAB791F36815D127 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = C492A473BBEEAC5F225EEB34 /* LexJoltApp */; };
+		6C955BACC1F963E9B306C495 /* LexJoltTVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629A20E2B6AB2A7D26C603CB /* LexJoltTVApp.swift */; };
+		76F19324B38B47FAB516512B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EDA7024FB8085B05685FF315 /* PrivacyInfo.xcprivacy */; };
+		9FBCDCBB2035C91C68E010C1 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 38C7990F43565C76B6FC2754 /* LexJoltApp */; };
+		ACE5A583026BAC0C447CADE1 /* LexJoltVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFED36AFE5128D8BD4FD92 /* LexJoltVisionApp.swift */; };
+		AEDFB23CF4C75BA9B59FE11F /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 09E47C3948E82F7EC588B2AA /* LexJoltApp */; };
+		BFC0820D84DBFB264E3D704F /* LexJoltWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710865ABDEE935EB42C38870 /* LexJoltWatchApp.swift */; };
+		DA74EE8330625BE61BC0417E /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 39A63E782CE2DA2122A12E2C /* LexJoltApp */; };
+		DD64C0C48B9EB3449A9AA298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01BC6ECB59DEFBF408C57DC /* Assets.xcassets */; };
+		DEB2089CF2393787B92FC39C /* LexJoltMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C675D6FCFA47723204F56C /* LexJoltMacApp.swift */; };
+		E98E87C68AF12289CC162940 /* LexJoltiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F456B8A25DE2708F5FF31F /* LexJoltiOSApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		120563B148A98CF6D10FE9A6 /* LexJoltMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltMacApp.swift; sourceTree = "<group>"; };
-		252EEE0B71F12E9E425081A3 /* LexJoltMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LexJoltMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		306FEAA3FC3F06C3AD200061 /* LexJoltWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LexJoltWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AFEC54BEF2E5C8A9C69A744 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		3D447BDC0EB7AB0A13285729 /* LexJoltTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltTVApp.swift; sourceTree = "<group>"; };
-		60BAF35909D4E01D7576F0E6 /* LexJoltiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltiOSApp.swift; sourceTree = "<group>"; };
-		89F28429B8050AD7456813CF /* LexJoltVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltVisionApp.swift; sourceTree = "<group>"; };
-		D3C1F8FB7E8AFF7699914AD1 /* LexJoltWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltWatchApp.swift; sourceTree = "<group>"; };
-		E2F1B4556662E0EFC77BF582 /* LexJoltiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F04127F6512CA7E7C66582B3 /* LexJoltApp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LexJoltApp; path = ../LexJoltApp; sourceTree = SOURCE_ROOT; };
-		F4950E6E83CAD4300625752E /* LexJoltTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F568A6CA3C3F9B7B0C0257DB /* LexJoltVision.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E7CBD74B079B70841A3A72 /* LexJoltVision.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F10CCC9917CFB4105D361B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30C675D6FCFA47723204F56C /* LexJoltMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltMacApp.swift; sourceTree = "<group>"; };
+		433FA8B9FCA9717386146279 /* LexJoltTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDFED36AFE5128D8BD4FD92 /* LexJoltVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltVisionApp.swift; sourceTree = "<group>"; };
+		629A20E2B6AB2A7D26C603CB /* LexJoltTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltTVApp.swift; sourceTree = "<group>"; };
+		710865ABDEE935EB42C38870 /* LexJoltWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltWatchApp.swift; sourceTree = "<group>"; };
+		76F456B8A25DE2708F5FF31F /* LexJoltiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltiOSApp.swift; sourceTree = "<group>"; };
+		8C1581CC41D639B5D3860129 /* LexJoltMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LexJoltMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C1C1388B3159B5FBAC14A80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BAF84B474DC6C98EC817B9C0 /* LexJoltApp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LexJoltApp; path = ../LexJoltApp; sourceTree = SOURCE_ROOT; };
+		D01BC6ECB59DEFBF408C57DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DFF99501E7261453FBC4CD36 /* LexJoltWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LexJoltWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDA7024FB8085B05685FF315 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FC500C14D5203451EADF9214 /* LexJoltiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		47BE96BF4011038257CCAE83 /* Frameworks */ = {
+		5719AC15A51E755D14B4EECB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50BBD4D5226795E4C4FDC018 /* LexJoltApp in Frameworks */,
+				5E5D46D5DAB791F36815D127 /* LexJoltApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		606CC3287D98EB2977E1273D /* Frameworks */ = {
+		ADB64A2CA1D4EE0AFFD3C387 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDB04318000DDAA648821533 /* LexJoltApp in Frameworks */,
+				130B2010DEE69801983588C6 /* LexJoltApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		715134BE997564EA4C96CF8B /* Frameworks */ = {
+		CBEB0EC892213939AFEDE82F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84602AF3E699A1390804C78F /* LexJoltApp in Frameworks */,
+				DA74EE8330625BE61BC0417E /* LexJoltApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		88AE99ED98276602907736A2 /* Frameworks */ = {
+		D4AB39A88B2A28F26536F320 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E66C883867BDCD971D6A5748 /* LexJoltApp in Frameworks */,
+				9FBCDCBB2035C91C68E010C1 /* LexJoltApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F59270D90ED27623BCD2B6E9 /* Frameworks */ = {
+		E215C1DFB8589F9EB5789500 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				854E2A7022211120998D972B /* LexJoltApp in Frameworks */,
+				AEDFB23CF4C75BA9B59FE11F /* LexJoltApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1AAAEC7033C88F5E1E923619 = {
+		1095B5DF029BF10023624EE3 /* ResourcesMac */ = {
 			isa = PBXGroup;
 			children = (
-				3E5BAAD0A83F94C638ECCF12 /* Packages */,
-				1ACAA333D91E9EFEBD8EE007 /* Resources */,
-				BE312068AF1845040C7AB491 /* Sources */,
-				D6964FE1D5887176EA87916D /* SourcesMac */,
-				5EB12D28E7F091F441DBC55D /* SourcesTV */,
-				328C6EA12F2F13B34D0E9C3D /* SourcesVision */,
-				EF25F14AACDEE7D1A77D7D7F /* SourcesWatch */,
-				C74A586A117D59351BE598AE /* Products */,
+				9C1C1388B3159B5FBAC14A80 /* Assets.xcassets */,
 			);
+			path = ResourcesMac;
 			sourceTree = "<group>";
 		};
-		1ACAA333D91E9EFEBD8EE007 /* Resources */ = {
+		49C599C61B510961604D70EC /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				3AFEC54BEF2E5C8A9C69A744 /* PrivacyInfo.xcprivacy */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		328C6EA12F2F13B34D0E9C3D /* SourcesVision */ = {
-			isa = PBXGroup;
-			children = (
-				89F28429B8050AD7456813CF /* LexJoltVisionApp.swift */,
-			);
-			path = SourcesVision;
-			sourceTree = "<group>";
-		};
-		3E5BAAD0A83F94C638ECCF12 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				F04127F6512CA7E7C66582B3 /* LexJoltApp */,
+				BAF84B474DC6C98EC817B9C0 /* LexJoltApp */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
 		};
-		5EB12D28E7F091F441DBC55D /* SourcesTV */ = {
+		662720055E4D8E8A8362EEDE /* SourcesMac */ = {
 			isa = PBXGroup;
 			children = (
-				3D447BDC0EB7AB0A13285729 /* LexJoltTVApp.swift */,
-			);
-			path = SourcesTV;
-			sourceTree = "<group>";
-		};
-		BE312068AF1845040C7AB491 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				60BAF35909D4E01D7576F0E6 /* LexJoltiOSApp.swift */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		C74A586A117D59351BE598AE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E2F1B4556662E0EFC77BF582 /* LexJoltiOS.app */,
-				252EEE0B71F12E9E425081A3 /* LexJoltMac.app */,
-				F4950E6E83CAD4300625752E /* LexJoltTV.app */,
-				F568A6CA3C3F9B7B0C0257DB /* LexJoltVision.app */,
-				306FEAA3FC3F06C3AD200061 /* LexJoltWatch.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D6964FE1D5887176EA87916D /* SourcesMac */ = {
-			isa = PBXGroup;
-			children = (
-				120563B148A98CF6D10FE9A6 /* LexJoltMacApp.swift */,
+				30C675D6FCFA47723204F56C /* LexJoltMacApp.swift */,
 			);
 			path = SourcesMac;
 			sourceTree = "<group>";
 		};
-		EF25F14AACDEE7D1A77D7D7F /* SourcesWatch */ = {
+		C822BFF2707EFA0482E2C9EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D3C1F8FB7E8AFF7699914AD1 /* LexJoltWatchApp.swift */,
+				FC500C14D5203451EADF9214 /* LexJoltiOS.app */,
+				8C1581CC41D639B5D3860129 /* LexJoltMac.app */,
+				433FA8B9FCA9717386146279 /* LexJoltTV.app */,
+				03E7CBD74B079B70841A3A72 /* LexJoltVision.app */,
+				DFF99501E7261453FBC4CD36 /* LexJoltWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C8AFAED10AEE374A9530C309 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D01BC6ECB59DEFBF408C57DC /* Assets.xcassets */,
+				0F10CCC9917CFB4105D361B1 /* LaunchScreen.storyboard */,
+				EDA7024FB8085B05685FF315 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D5278A909F20E67F22E5FC9F = {
+			isa = PBXGroup;
+			children = (
+				49C599C61B510961604D70EC /* Packages */,
+				C8AFAED10AEE374A9530C309 /* Resources */,
+				1095B5DF029BF10023624EE3 /* ResourcesMac */,
+				EAD8C3A1F4F6E5A8B83D4AF1 /* Sources */,
+				662720055E4D8E8A8362EEDE /* SourcesMac */,
+				F563E7DFDC55B1E9BA2219A0 /* SourcesTV */,
+				E97F54153B9122C5B7921845 /* SourcesVision */,
+				F1D7E7DBEC3BD9434D0221AC /* SourcesWatch */,
+				C822BFF2707EFA0482E2C9EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E97F54153B9122C5B7921845 /* SourcesVision */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFED36AFE5128D8BD4FD92 /* LexJoltVisionApp.swift */,
+			);
+			path = SourcesVision;
+			sourceTree = "<group>";
+		};
+		EAD8C3A1F4F6E5A8B83D4AF1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				76F456B8A25DE2708F5FF31F /* LexJoltiOSApp.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F1D7E7DBEC3BD9434D0221AC /* SourcesWatch */ = {
+			isa = PBXGroup;
+			children = (
+				710865ABDEE935EB42C38870 /* LexJoltWatchApp.swift */,
 			);
 			path = SourcesWatch;
+			sourceTree = "<group>";
+		};
+		F563E7DFDC55B1E9BA2219A0 /* SourcesTV */ = {
+			isa = PBXGroup;
+			children = (
+				629A20E2B6AB2A7D26C603CB /* LexJoltTVApp.swift */,
+			);
+			path = SourcesTV;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		492094950F1FBE3A6A6C02CA /* LexJoltVision */ = {
+		370A45D975E63A4651F5D397 /* LexJoltWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F1F6402019BBE594FD6567F /* Build configuration list for PBXNativeTarget "LexJoltVision" */;
+			buildConfigurationList = 3B3D6EB6E17355FC38A0F6AC /* Build configuration list for PBXNativeTarget "LexJoltWatch" */;
 			buildPhases = (
-				E21FC72756C8EE54488CF792 /* Sources */,
-				606CC3287D98EB2977E1273D /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LexJoltVision;
-			packageProductDependencies = (
-				02F7ACF2D8F91A8F7AD4A8E2 /* LexJoltApp */,
-			);
-			productName = LexJoltVision;
-			productReference = F568A6CA3C3F9B7B0C0257DB /* LexJoltVision.app */;
-			productType = "com.apple.product-type.application";
-		};
-		4DF749CB8389802CD2742923 /* LexJoltMac */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4518A90601F0D3A7E98E2ECB /* Build configuration list for PBXNativeTarget "LexJoltMac" */;
-			buildPhases = (
-				8AEC207BFFBBD0E51E35BD3A /* Sources */,
-				F59270D90ED27623BCD2B6E9 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LexJoltMac;
-			packageProductDependencies = (
-				59F8DB9E773E72C3E044629B /* LexJoltApp */,
-			);
-			productName = LexJoltMac;
-			productReference = 252EEE0B71F12E9E425081A3 /* LexJoltMac.app */;
-			productType = "com.apple.product-type.application";
-		};
-		76BB905EA9D79D001138BDBF /* LexJoltTV */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AFE4599F81D78FE77DFFC3A7 /* Build configuration list for PBXNativeTarget "LexJoltTV" */;
-			buildPhases = (
-				647C07D847D4B3FFFE6FAEC5 /* Sources */,
-				88AE99ED98276602907736A2 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LexJoltTV;
-			packageProductDependencies = (
-				B8C22A401596D4825B1DFF0F /* LexJoltApp */,
-			);
-			productName = LexJoltTV;
-			productReference = F4950E6E83CAD4300625752E /* LexJoltTV.app */;
-			productType = "com.apple.product-type.application";
-		};
-		78EDD167E234BFD9F066464E /* LexJoltWatch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0A95BDA6338A6EC39AE09302 /* Build configuration list for PBXNativeTarget "LexJoltWatch" */;
-			buildPhases = (
-				D0330ECBF955C558AD33F364 /* Sources */,
-				715134BE997564EA4C96CF8B /* Frameworks */,
+				20B02161E121876CDEB5F82F /* Sources */,
+				CBEB0EC892213939AFEDE82F /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,19 +194,19 @@
 			);
 			name = LexJoltWatch;
 			packageProductDependencies = (
-				B76C1A72D191B3881C238451 /* LexJoltApp */,
+				39A63E782CE2DA2122A12E2C /* LexJoltApp */,
 			);
 			productName = LexJoltWatch;
-			productReference = 306FEAA3FC3F06C3AD200061 /* LexJoltWatch.app */;
+			productReference = DFF99501E7261453FBC4CD36 /* LexJoltWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D869D22F429634C1F1DF05E7 /* LexJoltiOS */ = {
+		937CC582E56A86005647C0C1 /* LexJoltiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC6FFA4641A9BACB0FE2F30C /* Build configuration list for PBXNativeTarget "LexJoltiOS" */;
+			buildConfigurationList = 94DC32A443E0306559F483E3 /* Build configuration list for PBXNativeTarget "LexJoltiOS" */;
 			buildPhases = (
-				934140AA447D841E3243FC62 /* Sources */,
-				CCB0E5441FE03C09F2A94FF6 /* Resources */,
-				47BE96BF4011038257CCAE83 /* Frameworks */,
+				32921371E3DAE97F6244F833 /* Sources */,
+				085637D29B67F9388CA3F62C /* Resources */,
+				5719AC15A51E755D14B4EECB /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,16 +214,74 @@
 			);
 			name = LexJoltiOS;
 			packageProductDependencies = (
-				0418536E1B3FCF01CEF2B6D4 /* LexJoltApp */,
+				C492A473BBEEAC5F225EEB34 /* LexJoltApp */,
 			);
 			productName = LexJoltiOS;
-			productReference = E2F1B4556662E0EFC77BF582 /* LexJoltiOS.app */;
+			productReference = FC500C14D5203451EADF9214 /* LexJoltiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB6E4509FCAB0162FE5DF565 /* LexJoltMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CD0B1CD459E50E8FEC72018 /* Build configuration list for PBXNativeTarget "LexJoltMac" */;
+			buildPhases = (
+				C82EB1F728E3BC83A8937EF2 /* Sources */,
+				4162B742CB8887E28AA20D49 /* Resources */,
+				ADB64A2CA1D4EE0AFFD3C387 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LexJoltMac;
+			packageProductDependencies = (
+				6358E02AFFCEEB37D65418FF /* LexJoltApp */,
+			);
+			productName = LexJoltMac;
+			productReference = 8C1581CC41D639B5D3860129 /* LexJoltMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB8E384AF50EAC2EC87BFD02 /* LexJoltVision */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7696A8DF07D6FF9EB6CE012 /* Build configuration list for PBXNativeTarget "LexJoltVision" */;
+			buildPhases = (
+				313CE0E24CA8AB969D5D4ECB /* Sources */,
+				E215C1DFB8589F9EB5789500 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LexJoltVision;
+			packageProductDependencies = (
+				09E47C3948E82F7EC588B2AA /* LexJoltApp */,
+			);
+			productName = LexJoltVision;
+			productReference = 03E7CBD74B079B70841A3A72 /* LexJoltVision.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FBF49B7FF5DDF874BBC6DABA /* LexJoltTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EBA83B128B6D3D4C46F9153 /* Build configuration list for PBXNativeTarget "LexJoltTV" */;
+			buildPhases = (
+				E21E40B9625A3F7986A4B696 /* Sources */,
+				D4AB39A88B2A28F26536F320 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LexJoltTV;
+			packageProductDependencies = (
+				38C7990F43565C76B6FC2754 /* LexJoltApp */,
+			);
+			productName = LexJoltTV;
+			productReference = 433FA8B9FCA9717386146279 /* LexJoltTV.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0C330FDAC60EBC203D64E70D /* Project object */ = {
+		7AB4305BD2FD5CB59F4A1A65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
@@ -271,88 +289,145 @@
 				TargetAttributes = {
 				};
 			};
-			buildConfigurationList = 7E3FEC16FBDB7F0E972E7CD2 /* Build configuration list for PBXProject "LexJoltiOS" */;
+			buildConfigurationList = D48ECF841F328E1AC1EEBF50 /* Build configuration list for PBXProject "LexJoltiOS" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
 			);
-			mainGroup = 1AAAEC7033C88F5E1E923619;
+			mainGroup = D5278A909F20E67F22E5FC9F;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DD16626BDC40EFB1BF9F7382 /* XCLocalSwiftPackageReference "../LexJoltApp" */,
+				0CA706618F7805D29C6C7466 /* XCLocalSwiftPackageReference "../LexJoltApp" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = C74A586A117D59351BE598AE /* Products */;
+			productRefGroup = C822BFF2707EFA0482E2C9EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4DF749CB8389802CD2742923 /* LexJoltMac */,
-				76BB905EA9D79D001138BDBF /* LexJoltTV */,
-				492094950F1FBE3A6A6C02CA /* LexJoltVision */,
-				78EDD167E234BFD9F066464E /* LexJoltWatch */,
-				D869D22F429634C1F1DF05E7 /* LexJoltiOS */,
+				AB6E4509FCAB0162FE5DF565 /* LexJoltMac */,
+				FBF49B7FF5DDF874BBC6DABA /* LexJoltTV */,
+				BB8E384AF50EAC2EC87BFD02 /* LexJoltVision */,
+				370A45D975E63A4651F5D397 /* LexJoltWatch */,
+				937CC582E56A86005647C0C1 /* LexJoltiOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CCB0E5441FE03C09F2A94FF6 /* Resources */ = {
+		085637D29B67F9388CA3F62C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E701E178A25FE1D424F84566 /* PrivacyInfo.xcprivacy in Resources */,
+				DD64C0C48B9EB3449A9AA298 /* Assets.xcassets in Resources */,
+				350A3428DCEBF99710BEF292 /* LaunchScreen.storyboard in Resources */,
+				76F19324B38B47FAB516512B /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4162B742CB8887E28AA20D49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41F3BC532486FF78FBB3A19E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		647C07D847D4B3FFFE6FAEC5 /* Sources */ = {
+		20B02161E121876CDEB5F82F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29D5ED2801A9FF432C60A1D0 /* LexJoltTVApp.swift in Sources */,
+				BFC0820D84DBFB264E3D704F /* LexJoltWatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8AEC207BFFBBD0E51E35BD3A /* Sources */ = {
+		313CE0E24CA8AB969D5D4ECB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E540AB6E6B5E06E84093CEC /* LexJoltMacApp.swift in Sources */,
+				ACE5A583026BAC0C447CADE1 /* LexJoltVisionApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		934140AA447D841E3243FC62 /* Sources */ = {
+		32921371E3DAE97F6244F833 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C7BF330E1D7C25F46390F8 /* LexJoltiOSApp.swift in Sources */,
+				E98E87C68AF12289CC162940 /* LexJoltiOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D0330ECBF955C558AD33F364 /* Sources */ = {
+		C82EB1F728E3BC83A8937EF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E3090442199510C80CA0E3A /* LexJoltWatchApp.swift in Sources */,
+				DEB2089CF2393787B92FC39C /* LexJoltMacApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E21FC72756C8EE54488CF792 /* Sources */ = {
+		E21E40B9625A3F7986A4B696 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AB0575C57BE23F732337249 /* LexJoltVisionApp.swift in Sources */,
+				6C955BACC1F963E9B306C495 /* LexJoltTVApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		1D0F6503375D12D6189B0861 /* Release */ = {
+		100E2CFBC298A90CBA661A03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97ZA7QV77G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app;
+				PRODUCT_NAME = LexJolt;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		12286D138CB5063A34476757 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.watch;
+				PRODUCT_NAME = LexJolt;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		1BF551555CECABC95114D338 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -372,34 +447,62 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
-			name = Release;
+			name = Debug;
 		};
-		37583389593D64436C376EA2 /* Release */ = {
+		4E9DE3506335A330B010987B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.watch;
-				PRODUCT_NAME = LexJolt;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-			};
-			name = Release;
-		};
-		4DD4DB1D52143CDFE9BF1FD1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_ENTITLEMENTS = Config/LexJoltMac.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.mac;
+				PRODUCT_NAME = LexJolt;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		50B745DCE3F44F7BD6FA8FE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.vision;
+				PRODUCT_NAME = LexJolt;
+				SDKROOT = xros;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Release;
+		};
+		5F19ADA81A707853861F3CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Config/LexJoltMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97ZA7QV77G;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -411,66 +514,27 @@
 			};
 			name = Release;
 		};
-		4E4903E10218C5C566898636 /* Release */ = {
+		765F28660ABA71790E2AB86C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-				TVOS_DEPLOYMENT_TARGET = 17.0;
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
-				XROS_DEPLOYMENT_TARGET = 1.0;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.vision;
+				PRODUCT_NAME = LexJolt;
+				SDKROOT = xros;
+				TARGETED_DEVICE_FAMILY = 7;
 			};
-			name = Release;
+			name = Debug;
 		};
-		50033FFD03BAE224EC00F40B /* Debug */ = {
+		843863FA9AEB15F0372ED02D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -536,36 +600,7 @@
 			};
 			name = Debug;
 		};
-		9D27124A8C9CAF9B83A61CD7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_STYLE = Automatic;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 97ZA7QV77G;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app;
-				PRODUCT_NAME = LexJolt;
-				SDKROOT = iphoneos;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		B75A3F1978E4EA2B9CBDEC3B /* Debug */ = {
+		894FABE3D2459442A7FDC87B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -573,42 +608,20 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.vision;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.watch;
 				PRODUCT_NAME = LexJolt;
-				SDKROOT = xros;
-				TARGETED_DEVICE_FAMILY = 7;
-			};
-			name = Debug;
-		};
-		D3EA8C2C2CB46F1A7A1E3230 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.vision;
-				PRODUCT_NAME = LexJolt;
-				SDKROOT = xros;
-				TARGETED_DEVICE_FAMILY = 7;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
 			};
 			name = Release;
 		};
-		D5A9E429C31AA4B0064B5BA3 /* Debug */ = {
+		9E44E912E26BF3BB2F41D5BC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -617,9 +630,9 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -633,27 +646,7 @@
 			};
 			name = Debug;
 		};
-		E379E1B1B1A6408B11303D32 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.mac;
-				PRODUCT_NAME = LexJolt;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		EA96D4A263E63B8AE43FCC73 /* Debug */ = {
+		B4BDBE4F871FEB51D51BB66B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
@@ -673,78 +666,120 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
-			name = Debug;
+			name = Release;
 		};
-		F197FC3D19E7F122EE39014E /* Debug */ = {
+		C117D1F9B055181D65D34786 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.watch;
-				PRODUCT_NAME = LexJolt;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 17.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A95BDA6338A6EC39AE09302 /* Build configuration list for PBXNativeTarget "LexJoltWatch" */ = {
+		3B3D6EB6E17355FC38A0F6AC /* Build configuration list for PBXNativeTarget "LexJoltWatch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F197FC3D19E7F122EE39014E /* Debug */,
-				37583389593D64436C376EA2 /* Release */,
+				12286D138CB5063A34476757 /* Debug */,
+				894FABE3D2459442A7FDC87B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		0F1F6402019BBE594FD6567F /* Build configuration list for PBXNativeTarget "LexJoltVision" */ = {
+		6EBA83B128B6D3D4C46F9153 /* Build configuration list for PBXNativeTarget "LexJoltTV" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B75A3F1978E4EA2B9CBDEC3B /* Debug */,
-				D3EA8C2C2CB46F1A7A1E3230 /* Release */,
+				1BF551555CECABC95114D338 /* Debug */,
+				B4BDBE4F871FEB51D51BB66B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		4518A90601F0D3A7E98E2ECB /* Build configuration list for PBXNativeTarget "LexJoltMac" */ = {
+		94DC32A443E0306559F483E3 /* Build configuration list for PBXNativeTarget "LexJoltiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E379E1B1B1A6408B11303D32 /* Debug */,
-				4DD4DB1D52143CDFE9BF1FD1 /* Release */,
+				9E44E912E26BF3BB2F41D5BC /* Debug */,
+				100E2CFBC298A90CBA661A03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		7E3FEC16FBDB7F0E972E7CD2 /* Build configuration list for PBXProject "LexJoltiOS" */ = {
+		9CD0B1CD459E50E8FEC72018 /* Build configuration list for PBXNativeTarget "LexJoltMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				50033FFD03BAE224EC00F40B /* Debug */,
-				4E4903E10218C5C566898636 /* Release */,
+				4E9DE3506335A330B010987B /* Debug */,
+				5F19ADA81A707853861F3CFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		AFE4599F81D78FE77DFFC3A7 /* Build configuration list for PBXNativeTarget "LexJoltTV" */ = {
+		D48ECF841F328E1AC1EEBF50 /* Build configuration list for PBXProject "LexJoltiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA96D4A263E63B8AE43FCC73 /* Debug */,
-				1D0F6503375D12D6189B0861 /* Release */,
+				843863FA9AEB15F0372ED02D /* Debug */,
+				C117D1F9B055181D65D34786 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		BC6FFA4641A9BACB0FE2F30C /* Build configuration list for PBXNativeTarget "LexJoltiOS" */ = {
+		D7696A8DF07D6FF9EB6CE012 /* Build configuration list for PBXNativeTarget "LexJoltVision" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D5A9E429C31AA4B0064B5BA3 /* Debug */,
-				9D27124A8C9CAF9B83A61CD7 /* Release */,
+				765F28660ABA71790E2AB86C /* Debug */,
+				50B745DCE3F44F7BD6FA8FE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -752,34 +787,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		DD16626BDC40EFB1BF9F7382 /* XCLocalSwiftPackageReference "../LexJoltApp" */ = {
+		0CA706618F7805D29C6C7466 /* XCLocalSwiftPackageReference "../LexJoltApp" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../LexJoltApp;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		02F7ACF2D8F91A8F7AD4A8E2 /* LexJoltApp */ = {
+		09E47C3948E82F7EC588B2AA /* LexJoltApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LexJoltApp;
 		};
-		0418536E1B3FCF01CEF2B6D4 /* LexJoltApp */ = {
+		38C7990F43565C76B6FC2754 /* LexJoltApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LexJoltApp;
 		};
-		59F8DB9E773E72C3E044629B /* LexJoltApp */ = {
+		39A63E782CE2DA2122A12E2C /* LexJoltApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LexJoltApp;
 		};
-		B76C1A72D191B3881C238451 /* LexJoltApp */ = {
+		6358E02AFFCEEB37D65418FF /* LexJoltApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LexJoltApp;
 		};
-		B8C22A401596D4825B1DFF0F /* LexJoltApp */ = {
+		C492A473BBEEAC5F225EEB34 /* LexJoltApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LexJoltApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 0C330FDAC60EBC203D64E70D /* Project object */;
+	rootObject = 7AB4305BD2FD5CB59F4A1A65 /* Project object */;
 }
