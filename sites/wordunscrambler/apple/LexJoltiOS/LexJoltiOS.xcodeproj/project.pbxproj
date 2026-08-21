@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		130B2010DEE69801983588C6 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 6358E02AFFCEEB37D65418FF /* LexJoltApp */; };
+		22CC785568E0EBEDCF3809AC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EDA7024FB8085B05685FF315 /* PrivacyInfo.xcprivacy */; };
 		350A3428DCEBF99710BEF292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F10CCC9917CFB4105D361B1 /* LaunchScreen.storyboard */; };
 		41F3BC532486FF78FBB3A19E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C1388B3159B5FBAC14A80 /* Assets.xcassets */; };
 		5E5D46D5DAB791F36815D127 /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = C492A473BBEEAC5F225EEB34 /* LexJoltApp */; };
@@ -17,22 +18,30 @@
 		ACE5A583026BAC0C447CADE1 /* LexJoltVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFED36AFE5128D8BD4FD92 /* LexJoltVisionApp.swift */; };
 		AEDFB23CF4C75BA9B59FE11F /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 09E47C3948E82F7EC588B2AA /* LexJoltApp */; };
 		BFC0820D84DBFB264E3D704F /* LexJoltWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710865ABDEE935EB42C38870 /* LexJoltWatchApp.swift */; };
+		CC2E1F43C3B69CF5F11FEA95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FD191880F6BA9C56BCBA4A0 /* Assets.xcassets */; };
+		D944FF87543941868A5EEC7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CBE96D3828409B744DD4B20 /* Assets.xcassets */; };
+		D94531DDC3834EEF205B23BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E0506F24937137F4A1D3EF0 /* Assets.xcassets */; };
 		DA74EE8330625BE61BC0417E /* LexJoltApp in Frameworks */ = {isa = PBXBuildFile; productRef = 39A63E782CE2DA2122A12E2C /* LexJoltApp */; };
+		DA8C481EC1367FDC559D5868 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EDA7024FB8085B05685FF315 /* PrivacyInfo.xcprivacy */; };
 		DD64C0C48B9EB3449A9AA298 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01BC6ECB59DEFBF408C57DC /* Assets.xcassets */; };
 		DEB2089CF2393787B92FC39C /* LexJoltMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C675D6FCFA47723204F56C /* LexJoltMacApp.swift */; };
+		E03B9CEDBDCA30825CB11F33 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EDA7024FB8085B05685FF315 /* PrivacyInfo.xcprivacy */; };
 		E98E87C68AF12289CC162940 /* LexJoltiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F456B8A25DE2708F5FF31F /* LexJoltiOSApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		03E7CBD74B079B70841A3A72 /* LexJoltVision.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F10CCC9917CFB4105D361B1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0FD191880F6BA9C56BCBA4A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30C675D6FCFA47723204F56C /* LexJoltMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltMacApp.swift; sourceTree = "<group>"; };
 		433FA8B9FCA9717386146279 /* LexJoltTV.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LexJoltTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E0506F24937137F4A1D3EF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FDFED36AFE5128D8BD4FD92 /* LexJoltVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltVisionApp.swift; sourceTree = "<group>"; };
 		629A20E2B6AB2A7D26C603CB /* LexJoltTVApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltTVApp.swift; sourceTree = "<group>"; };
 		710865ABDEE935EB42C38870 /* LexJoltWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltWatchApp.swift; sourceTree = "<group>"; };
 		76F456B8A25DE2708F5FF31F /* LexJoltiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexJoltiOSApp.swift; sourceTree = "<group>"; };
 		8C1581CC41D639B5D3860129 /* LexJoltMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LexJoltMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CBE96D3828409B744DD4B20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C1C1388B3159B5FBAC14A80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAF84B474DC6C98EC817B9C0 /* LexJoltApp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LexJoltApp; path = ../LexJoltApp; sourceTree = SOURCE_ROOT; };
 		D01BC6ECB59DEFBF408C57DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +102,14 @@
 			path = ResourcesMac;
 			sourceTree = "<group>";
 		};
+		21D6183FC4CA6CB72B145B84 /* ResourcesVision */ = {
+			isa = PBXGroup;
+			children = (
+				5E0506F24937137F4A1D3EF0 /* Assets.xcassets */,
+			);
+			path = ResourcesVision;
+			sourceTree = "<group>";
+		};
 		49C599C61B510961604D70EC /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +124,14 @@
 				30C675D6FCFA47723204F56C /* LexJoltMacApp.swift */,
 			);
 			path = SourcesMac;
+			sourceTree = "<group>";
+		};
+		978F0D10DD15DEF9B572E11A /* ResourcesWatch */ = {
+			isa = PBXGroup;
+			children = (
+				8CBE96D3828409B744DD4B20 /* Assets.xcassets */,
+			);
+			path = ResourcesWatch;
 			sourceTree = "<group>";
 		};
 		C822BFF2707EFA0482E2C9EB /* Products */ = {
@@ -137,6 +162,9 @@
 				49C599C61B510961604D70EC /* Packages */,
 				C8AFAED10AEE374A9530C309 /* Resources */,
 				1095B5DF029BF10023624EE3 /* ResourcesMac */,
+				E55AB381A1F9AD9BE0D58CFA /* ResourcesTV */,
+				21D6183FC4CA6CB72B145B84 /* ResourcesVision */,
+				978F0D10DD15DEF9B572E11A /* ResourcesWatch */,
 				EAD8C3A1F4F6E5A8B83D4AF1 /* Sources */,
 				662720055E4D8E8A8362EEDE /* SourcesMac */,
 				F563E7DFDC55B1E9BA2219A0 /* SourcesTV */,
@@ -144,6 +172,14 @@
 				F1D7E7DBEC3BD9434D0221AC /* SourcesWatch */,
 				C822BFF2707EFA0482E2C9EB /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		E55AB381A1F9AD9BE0D58CFA /* ResourcesTV */ = {
+			isa = PBXGroup;
+			children = (
+				0FD191880F6BA9C56BCBA4A0 /* Assets.xcassets */,
+			);
+			path = ResourcesTV;
 			sourceTree = "<group>";
 		};
 		E97F54153B9122C5B7921845 /* SourcesVision */ = {
@@ -186,6 +222,7 @@
 			buildConfigurationList = 3B3D6EB6E17355FC38A0F6AC /* Build configuration list for PBXNativeTarget "LexJoltWatch" */;
 			buildPhases = (
 				20B02161E121876CDEB5F82F /* Sources */,
+				14A69BAFDFA45F83F859BAD3 /* Resources */,
 				CBEB0EC892213939AFEDE82F /* Frameworks */,
 			);
 			buildRules = (
@@ -245,6 +282,7 @@
 			buildConfigurationList = D7696A8DF07D6FF9EB6CE012 /* Build configuration list for PBXNativeTarget "LexJoltVision" */;
 			buildPhases = (
 				313CE0E24CA8AB969D5D4ECB /* Sources */,
+				12286EBD6D54DB7A2FC897A0 /* Resources */,
 				E215C1DFB8589F9EB5789500 /* Frameworks */,
 			);
 			buildRules = (
@@ -264,6 +302,7 @@
 			buildConfigurationList = 6EBA83B128B6D3D4C46F9153 /* Build configuration list for PBXNativeTarget "LexJoltTV" */;
 			buildPhases = (
 				E21E40B9625A3F7986A4B696 /* Sources */,
+				2BCAA3E4B851A51D3FE6E629 /* Resources */,
 				D4AB39A88B2A28F26536F320 /* Frameworks */,
 			);
 			buildRules = (
@@ -323,6 +362,33 @@
 				DD64C0C48B9EB3449A9AA298 /* Assets.xcassets in Resources */,
 				350A3428DCEBF99710BEF292 /* LaunchScreen.storyboard in Resources */,
 				76F19324B38B47FAB516512B /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12286EBD6D54DB7A2FC897A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94531DDC3834EEF205B23BE /* Assets.xcassets in Resources */,
+				22CC785568E0EBEDCF3809AC /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14A69BAFDFA45F83F859BAD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D944FF87543941868A5EEC7D /* Assets.xcassets in Resources */,
+				E03B9CEDBDCA30825CB11F33 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BCAA3E4B851A51D3FE6E629 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC2E1F43C3B69CF5F11FEA95 /* Assets.xcassets in Resources */,
+				DA8C481EC1367FDC559D5868 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,10 +480,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGNING_ALLOWED = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
+				INFOPLIST_KEY_WKWatchOnly = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.watch;
 				PRODUCT_NAME = LexJolt;
@@ -430,12 +499,14 @@
 		1BF551555CECABC95114D338 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGNING_ALLOWED = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -475,10 +546,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97ZA7QV77G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,10 +593,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGNING_ALLOWED = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -604,10 +682,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGNING_ALLOWED = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97ZA7QV77G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
+				INFOPLIST_KEY_WKWatchOnly = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lexjolt.app.watch;
 				PRODUCT_NAME = LexJolt;
@@ -649,12 +731,15 @@
 		B4BDBE4F871FEB51D51BB66B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 97ZA7QV77G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = LexJolt;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -78,6 +78,8 @@ targets:
     platform: watchOS
     sources:
       - SourcesWatch
+      - ResourcesWatch
+      - path: Resources/PrivacyInfo.xcprivacy
     dependencies:
       - package: LexJoltApp
     settings:
@@ -87,14 +89,25 @@ targets:
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
         GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         INFOPLIST_KEY_CFBundleDisplayName: LexJolt
-        CODE_SIGNING_ALLOWED: NO
+        INFOPLIST_KEY_WKWatchOnly: YES
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.word-games
+      configs:
+        Debug:
+          CODE_SIGNING_ALLOWED: NO
+        Release:
+          CODE_SIGNING_STYLE: Automatic
+          DEVELOPMENT_TEAM: 97ZA7QV77G
 
   LexJoltTV:
     type: application
     platform: tvOS
     sources:
       - SourcesTV
+      - ResourcesTV
+      - path: Resources/PrivacyInfo.xcprivacy
     dependencies:
       - package: LexJoltApp
     settings:
@@ -104,15 +117,25 @@ targets:
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
         GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         INFOPLIST_KEY_CFBundleDisplayName: LexJolt
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.word-games
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        CODE_SIGNING_ALLOWED: NO
+      configs:
+        Debug:
+          CODE_SIGNING_ALLOWED: NO
+        Release:
+          CODE_SIGNING_STYLE: Automatic
+          DEVELOPMENT_TEAM: 97ZA7QV77G
 
   LexJoltVision:
     type: application
     platform: visionOS
     sources:
       - SourcesVision
+      - ResourcesVision
+      - path: Resources/PrivacyInfo.xcprivacy
     dependencies:
       - package: LexJoltApp
     settings:
@@ -122,5 +145,14 @@ targets:
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
         GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         INFOPLIST_KEY_CFBundleDisplayName: LexJolt
-        CODE_SIGNING_ALLOWED: NO
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.word-games
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+      configs:
+        Debug:
+          CODE_SIGNING_ALLOWED: NO
+        Release:
+          CODE_SIGNING_STYLE: Automatic
+          DEVELOPMENT_TEAM: 97ZA7QV77G

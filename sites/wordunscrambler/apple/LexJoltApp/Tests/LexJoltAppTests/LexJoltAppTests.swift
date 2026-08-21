@@ -240,9 +240,12 @@ final class LexJoltAppTests: XCTestCase {
         )
 
         XCTAssertEqual(incomplete.streakText, "3-day streak")
+        XCTAssertEqual(incomplete.streakCount, 3)
         XCTAssertEqual(incomplete.reminderTitle, "Daily Jolt")
         XCTAssertEqual(incomplete.completionStatus, .notComplete)
+        XCTAssertFalse(incomplete.isDailyComplete)
         XCTAssertEqual(complete.completionStatus, .complete)
+        XCTAssertTrue(complete.isDailyComplete)
     }
 
     func testTVPartyModeSupportsGuessingAndTimedWordRounds() {
@@ -252,12 +255,13 @@ final class LexJoltAppTests: XCTestCase {
         XCTAssertEqual(model.roundSeconds, 90)
         XCTAssertEqual(model.inputMode, .remoteFriendly)
         XCTAssertTrue(model.largeScreenPrompt.contains("LexJolt"))
+        XCTAssertEqual(model.primaryActionTitle, "Start 90-second round")
     }
 
     func testVisionSpatialBoardCreatesDepthBasedTileLayout() {
-        let board = VisionSpatialTileBoardConcept(letters: "BRIDGE")
+        let board = VisionSpatialTileBoardConcept(letters: "LEXJOLT")
 
-        XCTAssertEqual(board.tiles.map(\.letter), ["B", "R", "I", "D", "G", "E"])
+        XCTAssertEqual(board.tiles.map(\.letter), ["L", "E", "X", "J", "O", "L", "T"])
         XCTAssertEqual(board.presentation, .spatialBoard)
         XCTAssertEqual(board.tiles.first?.position.z, 0)
         XCTAssertGreaterThan(board.tiles.last?.position.z ?? 0, 0)

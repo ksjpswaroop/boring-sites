@@ -726,17 +726,21 @@ public enum DailyCompletionStatus: String, Codable, Equatable, Sendable {
 }
 
 public struct WatchCompanionModel: Codable, Equatable, Sendable {
+    public let streakCount: Int
     public let streakText: String
     public let reminderTitle: String
     public let completionStatus: DailyCompletionStatus
+    public let isDailyComplete: Bool
     public let sessionsText: String
 
     public init(progress: LexJoltProgress, isDailyComplete: Bool) {
+        self.streakCount = progress.currentStreak
         self.streakText = progress.currentStreak == 1
             ? "1-day streak"
             : "\(progress.currentStreak)-day streak"
         self.reminderTitle = "Daily Jolt"
         self.completionStatus = isDailyComplete ? .complete : .notComplete
+        self.isDailyComplete = isDailyComplete
         self.sessionsText = "\(progress.completedSessions) sessions"
     }
 }
@@ -750,6 +754,7 @@ public struct TVPartyModeModel: Codable, Equatable, Sendable {
     public let roundSeconds: Int
     public let inputMode: TVInputMode
     public let largeScreenPrompt: String
+    public var primaryActionTitle: String { "Start \(roundSeconds)-second round" }
 
     public init(roundSeconds: Int = 90) {
         self.supportedGames = [.guessTheWord, .anagramRush]
@@ -1120,6 +1125,9 @@ public final class LocalNotificationReminderScheduler: DailyReminderScheduling {
     }
 
     public func scheduleDailyPuzzleReminder(hour: Int, minute: Int) async throws {
+        #if os(tvOS)
+        return
+        #else
         let granted = try await center.requestAuthorization(options: [.alert, .sound, .badge])
         guard granted else { return }
 
@@ -1134,12 +1142,13 @@ public final class LocalNotificationReminderScheduler: DailyReminderScheduling {
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(
-            identifier: "wordbridge.daily-scramble",
+            identifier: "lexjolt.daily-jolt",
             content: content,
             trigger: trigger
         )
 
         try await center.add(request)
+        #endif
     }
 }
 
@@ -1309,7 +1318,11 @@ public struct LexJoltRootView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     @MainActor
-    public init(viewModel: LexJoltViewModel = LexJoltViewModel()) {
+    public init(
+        viewModel: LexJoltViewModel = LexJoltViewModel(
+            reminderScheduler: LocalNotificationReminderScheduler()
+        )
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
@@ -1326,7 +1339,11 @@ public struct LexJoltUniversalRootView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
     @MainActor
-    public init(viewModel: LexJoltViewModel = LexJoltViewModel()) {
+    public init(
+        viewModel: LexJoltViewModel = LexJoltViewModel(
+            reminderScheduler: LocalNotificationReminderScheduler()
+        )
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
 
@@ -1613,6 +1630,23 @@ public struct MacDashboardView: View {
     public var body: some View {
         NavigationSplitView {
             List {
+                Section {
+                    HStack(spacing: 12) {
+                        LexJoltBrandMark(size: 46)
+                            .padding(5)
+                            .background(LexJoltTheme.brandBlue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("LexJolt")
+                                .font(.headline)
+                            Text("Word games")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .accessibilityElement(children: .combine)
+                }
+
                 Section("Games") {
                     ForEach(LexJoltCatalog.v1Games) { game in
                         Button {
@@ -1677,68 +1711,246 @@ public struct MacDashboardView: View {
 
 public struct WatchCompanionView: View {
     private let model: WatchCompanionModel
+    private let scheduleReminder: () async -> Bool
+    @State private var reminderScheduled = false
 
-    public init(model: WatchCompanionModel) {
+    public init(
+        model: WatchCompanionModel,
+        scheduleReminder: @escaping () async -> Bool = { true }
+    ) {
         self.model = model
+        self.scheduleReminder = scheduleReminder
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("LexJolt")
-                .font(.headline)
-            Text(model.streakText)
-                .font(.title3.bold())
-            Text(model.completionStatus == .complete ? "Daily complete" : "Daily open")
-            Text(model.reminderTitle)
-                .foregroundStyle(.secondary)
+        ScrollView {
+            VStack(spacing: 12) {
+                HStack(spacing: 8) {
+                    LexJoltBrandMark(size: 34)
+                        .padding(4)
+                        .background(LexJoltTheme.brandBlue)
+                        .clipShape(RoundedRectangle(cornerRadius: 7))
+                    Text("LexJolt")
+                        .font(.headline)
+                    Spacer(minLength: 0)
+                }
+
+                ZStack {
+                    Circle()
+                        .stroke(Color.secondary.opacity(0.2), lineWidth: 8)
+                    Circle()
+                        .trim(from: 0, to: min(Double(model.streakCount) / 7, 1))
+                        .stroke(
+                            LexJoltTheme.sky,
+                            style: StrokeStyle(lineWidth: 8, lineCap: .round)
+                        )
+                        .rotationEffect(.degrees(-90))
+                    VStack(spacing: 0) {
+                        Text("\(model.streakCount)")
+                            .font(.title2.bold())
+                        Text("day streak")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .frame(width: 96, height: 96)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel(model.streakText)
+
+                HStack(spacing: 8) {
+                    Image(systemName: model.isDailyComplete ? "checkmark.circle.fill" : "bolt.circle.fill")
+                        .foregroundStyle(model.isDailyComplete ? Color.green : LexJoltTheme.sky)
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(model.reminderTitle)
+                            .font(.headline)
+                        Text(model.isDailyComplete ? "Complete today" : "Ready to play")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer(minLength: 0)
+                }
+                .padding(10)
+                .background(Color.secondary.opacity(0.12))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                Button {
+                    Task {
+                        reminderScheduled = await scheduleReminder()
+                    }
+                } label: {
+                    Label(
+                        reminderScheduled ? "Reminder on" : "Remind me",
+                        systemImage: reminderScheduled ? "bell.fill" : "bell"
+                    )
+                    .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(LexJoltTheme.brandBlue)
+                .accessibilityIdentifier("watch.reminder")
+
+                Text(model.sessionsText)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 6)
         }
+        .accessibilityIdentifier("lexjolt.watch")
     }
 }
 
 public struct TVPartyModeView: View {
     private let model: TVPartyModeModel
+    @State private var selectedGame: LexJoltGame = .guessTheWord
+    @State private var isRoundLive = false
 
     public init(model: TVPartyModeModel = TVPartyModeModel()) {
         self.model = model
     }
 
     public var body: some View {
-        VStack(spacing: 32) {
-            Text(model.largeScreenPrompt)
-                .font(.largeTitle.bold())
-            Text("\(model.roundSeconds)-second rounds")
-                .font(.title)
-            HStack(spacing: 48) {
-                ForEach(model.supportedGames) { game in
-                    Label(game.title, systemImage: game.systemImage)
+        ZStack {
+            Color.black.ignoresSafeArea()
+
+            VStack(spacing: 42) {
+                HStack(spacing: 24) {
+                    LexJoltBrandMark(size: 112)
+                        .padding(14)
+                        .background(LexJoltTheme.brandBlue)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("LexJolt")
+                            .font(.system(size: 64, weight: .black, design: .rounded))
+                        Text("Party Mode")
+                            .font(.title2)
+                            .foregroundStyle(LexJoltTheme.sky)
+                    }
+                    Spacer()
+                    Label("\(model.roundSeconds) sec", systemImage: "timer")
                         .font(.title2.bold())
+                        .foregroundStyle(.secondary)
                 }
+
+                VStack(spacing: 12) {
+                    Text(isRoundLive ? selectedGame.title : model.largeScreenPrompt)
+                        .font(.largeTitle.bold())
+                    Text(isRoundLive ? "Round live. Pass the remote when time is up." : "Choose a game, then start together.")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                }
+
+                HStack(spacing: 30) {
+                    ForEach(model.supportedGames) { game in
+                        Button {
+                            selectedGame = game
+                            isRoundLive = false
+                        } label: {
+                            Label(game.title, systemImage: game.systemImage)
+                                .font(.title2.bold())
+                                .frame(minWidth: 300, minHeight: 86)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(
+                            selectedGame == game
+                                ? LexJoltTheme.brandBlue
+                                : Color.white.opacity(0.2)
+                        )
+                        .accessibilityIdentifier("tv.game.\(game.rawValue)")
+                    }
+                }
+
+                Button {
+                    isRoundLive.toggle()
+                } label: {
+                    Label(
+                        isRoundLive ? "End round" : model.primaryActionTitle,
+                        systemImage: isRoundLive ? "stop.fill" : "play.fill"
+                    )
+                    .font(.title2.bold())
+                    .frame(minWidth: 410, minHeight: 88)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(isRoundLive ? Color.red : LexJoltTheme.brandBlue)
+                .accessibilityIdentifier("tv.round.toggle")
             }
+            .padding(80)
+            .frame(maxWidth: 1500)
         }
-        .padding(80)
+        .foregroundStyle(.white)
+        .accessibilityIdentifier("lexjolt.tv")
     }
 }
 
 public struct VisionSpatialTileBoardView: View {
     private let concept: VisionSpatialTileBoardConcept
+    @State private var isExpanded = false
 
     public init(concept: VisionSpatialTileBoardConcept) {
         self.concept = concept
     }
 
     public var body: some View {
-        ZStack {
-            ForEach(concept.tiles) { tile in
-                Text(tile.letter)
-                    .font(.largeTitle.bold())
-                    .frame(width: 64, height: 64)
-                    .background(.thinMaterial)
+        VStack(spacing: 36) {
+            HStack(spacing: 18) {
+                LexJoltBrandMark(size: 82)
+                    .padding(10)
+                    .background(LexJoltTheme.brandBlue)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .offset(x: tile.position.x, y: tile.position.y)
-                    .shadow(radius: tile.position.z / 8)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("LexJolt")
+                        .font(.largeTitle.bold())
+                    Text("Spatial Word Board")
+                        .font(.title3)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+
+            ZStack {
+                ForEach(concept.tiles) { tile in
+                    Text(tile.letter)
+                        .font(.system(size: 44, weight: .black, design: .rounded))
+                        .foregroundStyle(LexJoltTheme.navy)
+                        .frame(width: 84, height: 84)
+                        .background(tile.index.isMultiple(of: 2) ? Color.white : LexJoltTheme.paleBlue)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(LexJoltTheme.navy, lineWidth: 3)
+                        }
+                        .offset(
+                            x: (tile.position.x - 216) * (isExpanded ? 1.12 : 1),
+                            y: tile.position.y + (isExpanded && tile.index.isMultiple(of: 2) ? -18 : 0)
+                        )
+                        .shadow(color: .black.opacity(0.18), radius: 12, y: 8)
+                }
+            }
+            .frame(height: 190)
+            .frame(maxWidth: .infinity)
+            .background(.thinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+
+            HStack(spacing: 18) {
+                Label("Daily Jolt", systemImage: "calendar")
+                    .font(.headline)
+                Label("Word Board", systemImage: "square.grid.3x3.fill")
+                    .font(.headline)
+                Spacer()
+                Button {
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.76)) {
+                        isExpanded.toggle()
+                    }
+                } label: {
+                    Label(isExpanded ? "Gather tiles" : "Spread tiles", systemImage: "arrow.left.and.right")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(LexJoltTheme.brandBlue)
+                .accessibilityIdentifier("vision.tiles.toggle")
             }
         }
-        .padding()
+        .padding(40)
+        .frame(minWidth: 820, minHeight: 520)
+        .accessibilityIdentifier("lexjolt.vision")
     }
 }
 
@@ -1747,7 +1959,12 @@ public struct AppleEcosystemRootView: View {
     @StateObject private var viewModel: LexJoltViewModel
 
     @MainActor
-    public init(role: AppleDeviceRole, viewModel: LexJoltViewModel = LexJoltViewModel()) {
+    public init(
+        role: AppleDeviceRole,
+        viewModel: LexJoltViewModel = LexJoltViewModel(
+            reminderScheduler: LocalNotificationReminderScheduler()
+        )
+    ) {
         self.role = role
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -1763,12 +1980,20 @@ public struct AppleEcosystemRootView: View {
                 model: WatchCompanionModel(
                     progress: viewModel.progress,
                     isDailyComplete: false
-                )
+                ),
+                scheduleReminder: {
+                    do {
+                        try await viewModel.scheduleDailyReminder()
+                        return true
+                    } catch {
+                        return false
+                    }
+                }
             )
         case .tv:
             TVPartyModeView()
         case .vision:
-            VisionSpatialTileBoardView(concept: VisionSpatialTileBoardConcept(letters: "BRIDGE"))
+            VisionSpatialTileBoardView(concept: VisionSpatialTileBoardConcept(letters: "LEXJOLT"))
         }
     }
 }
@@ -1979,7 +2204,12 @@ public struct DailyScrambleScreen: View {
                     }
                 }
             }
+            #if os(tvOS)
+            Text("Found \(foundWords.count) words today")
+                .foregroundStyle(.secondary)
+            #else
             ShareLink(item: "I found \(foundWords.count) words in today's LexJolt Daily Jolt.")
+            #endif
         }
     }
 }

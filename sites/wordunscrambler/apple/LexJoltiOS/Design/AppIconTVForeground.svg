@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 768">
+  <g transform="translate(126 118) scale(.52)" stroke="#004182" stroke-width="18">
+    <rect x="164" y="166" width="280" height="280" rx="54" fill="#FFFFFF"/>
+    <rect x="570" y="132" width="280" height="280" rx="54" fill="#D7EBFF"/>
+    <rect x="132" y="578" width="280" height="280" rx="54" fill="#B8DCFF"/>
+    <rect x="578" y="568" width="280" height="280" rx="54" fill="#FFFFFF"/>
+    <path d="m463 312 104 104-72 72 88 88-115 115" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="38"/>
+  </g>
+  <g fill="#004182" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="800" text-anchor="middle">
+    <text x="284" y="304">L</text>
+    <text x="496" y="286">E</text>
+    <text x="268" y="520">X</text>
+    <text x="500" y="514">J</text>
+  </g>
+  <text x="680" y="366" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="118" font-weight="800">LexJolt</text>
+  <text x="686" y="438" fill="#D7EBFF" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="600">Find it. Learn it. Play it.</text>
+</svg>

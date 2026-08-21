@@ -4,7 +4,7 @@ import XCTest
 final class WordGameCoreTests: XCTestCase {
     func testNormalizeLettersUppercasesFiltersAndCapsAtFifteenLetters() {
         XCTAssertEqual(normalizeLetters("a b-c!123Defghijklmnop"), "ABCDEFGHIJKLMNO")
-        XCTAssertEqual(normalizeLetters("WordBridge"), "WORDBRIDGE")
+        XCTAssertEqual(normalizeLetters("LexJolt"), "LEXJOLT")
         XCTAssertEqual(normalizeLetters("åçéXYZ"), "XYZ")
         XCTAssertEqual(normalizeLetters(""), "")
     }
@@ -44,7 +44,7 @@ final class WordGameCoreTests: XCTestCase {
 
     func testScrabbleScoreUsesNorthAmericanTileValuesAndIgnoresNonLetters() {
         XCTAssertEqual(scrabbleScore("quiz"), 22)
-        XCTAssertEqual(scrabbleScore("WordBridge"), 18)
+        XCTAssertEqual(scrabbleScore("LexJolt"), 21)
         XCTAssertEqual(scrabbleScore("a-b!"), 4)
         XCTAssertEqual(scrabbleScore(""), 0)
     }
@@ -76,7 +76,7 @@ final class WordGameCoreTests: XCTestCase {
         XCTAssertTrue(dictionary.index["AELPP"]?.contains("APPLE") == true)
         XCTAssertTrue(dictionary.solve("apple").contains("APPLE"))
         XCTAssertTrue(dictionary.solve("tones").contains("TONES"))
-        XCTAssertTrue(dictionary.solve("wordbridge").contains("BRIDGE"))
+        XCTAssertTrue(dictionary.solve("lexjolt").contains("JOLT"))
     }
 
     func testLoadsBundledSwoopDetailsWithoutNetworkAccess() throws {
