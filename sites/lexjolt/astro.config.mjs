@@ -3,7 +3,10 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://lexjolt.com',
+  // Canonicals and the sitemap are built from this, so it must be the domain the site is actually
+  // served from. The default is the brand domain; override per deployment with PUBLIC_SITE_URL
+  // (Vercel preview builds, a subdomain, or a rename) instead of editing code.
+  site: process.env.PUBLIC_SITE_URL ?? 'https://lexjolt.com',
   output: 'static',
   integrations: [
     tailwind({ applyBaseStyles: false }),
