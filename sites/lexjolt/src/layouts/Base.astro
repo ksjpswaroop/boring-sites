@@ -22,7 +22,10 @@ export interface Props {
 
 const { title, description, canonical, noindex = false, jsonLd } = Astro.props;
 const fullTitle = title === brand.name ? title : `${title} | ${brand.name}`;
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, brand.origin).toString();
+// Astro.site comes from astro.config (which honours PUBLIC_SITE_URL); brand.origin is only the
+// fallback. Building the canonical from a hardcoded brand constant is how a deployment ends up
+// declaring a domain it is not served from.
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? brand.origin).toString();
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
 const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
