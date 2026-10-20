@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { brand } from '../config/brand';
+---
+<Base title="Contact" description="Report a wrong number, request a calculator, or ask how a score was computed.">
+  <div class="lexjolt-shell lj-page" style="max-width:680px">
+    <p class="lexjolt-eyebrow">Contact</p>
+    <h1 class="lexjolt-h1">Tell us a number is wrong</h1>
+    <p class="lj-lede-sm">
+      The most useful message is a calculator name, the inputs you used, the answer you got, and the
+      answer you expected. That is a bug report we can turn into a test.
+    </p>
+
+    <div class="lj-card" style="margin-top:20px">
+      <p class="lj-kicker">Email</p>
+      <p style="font-size:18px"><a href={`mailto:${brand.email}`}>{brand.email}</a></p>
+      <p class="lj-note" style="margin-top:8px">
+        One person reads this. If you are asking for a calculator, say what decision it would settle —
+        that is what decides whether it gets built.
+      </p>
+    </div>
+
+    <h2 class="lexjolt-h2" style="margin-top:28px">Faster than email</h2>
+    <p class="lj-lede-sm">
+      Many answers are already on the site: the <a href="/about">About page</a> explains how the
+      numbers are made, and each <a href="/niches">niche page</a> states its measurements and its policy
+      source. If a page does not answer your question, that gap is itself worth reporting.
+    </p>
+  </div>
+</Base>

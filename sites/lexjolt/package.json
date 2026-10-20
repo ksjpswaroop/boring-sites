@@ -1,0 +1,33 @@
+{
+  "name": "lexjolt",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "astro check",
+    "lint": "astro check",
+    "data": "python3 tools/export_from_engine.py && python3 tools/export_niches.py",
+    "videos": "python3 tools/make_calc_videos.py",
+    "parity": "node tools/parity.mjs",
+    "verify": "node tools/verify_site.mjs",
+    "smoke": "node tools/smoke_browser.mjs",
+    "gate": "astro build && node tools/verify_site.mjs && node tools/smoke_browser.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.0",
+    "@astrojs/sitemap": "3.2.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@boring-sites/analytics": "workspace:*",
+    "@boring-sites/design": "workspace:*",
+    "@boring-sites/legal": "workspace:*",
+    "astro": "^4.16.0",
+    "chart.js": "^4.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0"
+  }
+}

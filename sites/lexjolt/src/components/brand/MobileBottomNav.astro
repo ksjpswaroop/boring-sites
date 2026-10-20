@@ -1,0 +1,32 @@
+---
+import { brand } from '../../config/brand';
+
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+<nav class="lexjolt-mobile-nav" aria-label="Primary mobile">
+  {brand.nav.map((item) => (
+    <a href={item.href} class:list={['lexjolt-mobile-nav-link', { 'is-active': isActive(item.href) }]}>
+      <span class="lexjolt-mobile-icon" aria-hidden="true">
+        {item.icon === 'search' && (
+          <svg viewBox="0 0 24 24"><path d="m20 20-4.2-4.2m1.2-5A6.2 6.2 0 1 1 4.5 11a6.2 6.2 0 0 1 12.5 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        )}
+        {item.icon === 'timer' && (
+          <svg viewBox="0 0 24 24"><path d="M10 2h4m-2 8v4l3 2m4-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        )}
+        {item.icon === 'calendar' && (
+          <svg viewBox="0 0 24 24"><path d="M7 3v3m10-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        )}
+        {item.icon === 'tiles' && (
+          <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+        )}
+      </span>
+      <span>{item.shortLabel}</span>
+    </a>
+  ))}
+</nav>
+

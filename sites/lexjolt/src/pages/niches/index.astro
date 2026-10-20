@@ -1,0 +1,182 @@
+---
+import Base from '../../layouts/Base.astro';
+import { niches, rules, DIMENSIONS, DIMENSION_LABEL, DIMENSION_WHY, bandClass, bandLabel, source } from '../../lib/niches';
+
+const sorted = [...niches].sort((a, b) => b.score - a.score);
+const measured = niches[0].metrics.n_on_topic;
+const totalViews = niches.reduce((n, x) => n + x.metrics.median_views, 0);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Measured faceless-content niches',
+  itemListElement: sorted.map((n, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: n.label,
+    url: `https://lexjolt.com/niches/${n.slug}`,
+  })),
+};
+---
+<Base
+  title="Niche Lab: niches scored on data, not vibes"
+  description="Ten candidate content niches measured from real YouTube search results: median views, how much attention goes to small channels, top-3 concentration, incumbent depth. Scored on six weighted dimensions, with the rules published."
+  jsonLd={jsonLd}
+>
+  <div class="lexjolt-shell lj-page">
+    <header class="lj-page-head">
+      <p class="lexjolt-eyebrow">Niche Lab</p>
+      <h1 class="lexjolt-h1">A niche is a number, not a feeling</h1>
+      <p class="lj-lede-sm">
+        Ten candidates, each measured from the top results of two search phrases: how many views the
+        median video gets, how much of that attention lands on channels under
+        {rules.small_channel_subs.toLocaleString('en-US')} subscribers, how concentrated the niche is,
+        and how deep the incumbents' catalogs run. Six dimensions, weights published, no hidden score.
+      </p>
+      <div class="lj-stat-row">
+        <div class="lj-stat"><b>{niches.length}</b><span>niches measured</span></div>
+        <div class="lj-stat"><b>{measured}–{niches[0].metrics.n_results}</b><span>results each</span></div>
+        <div class="lj-stat"><b>{DIMENSIONS.length}</b><span>weighted dimensions</span></div>
+        <div class="lj-stat"><b>v{rules.version}</b><span>rules version</span></div>
+      </div>
+    </header>
+
+    <section class="lexjolt-section">
+      <h2 class="lexjolt-h2">The board</h2>
+      <div class="lj-table-scroll">
+        <table class="lj-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Niche</th><th class="num">Score</th><th>Band</th>
+              <th class="num">Median views</th><th class="num">Small-channel attention</th>
+              <th class="num">Top-3 share</th><th class="num">Incumbent videos</th><th>Policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((n, i) => (
+              <tr>
+                <td class="num">{i + 1}</td>
+                <td><a href={`/niches/${n.slug}`}><b>{n.label}</b></a></td>
+                <td class="num">{n.score.toFixed(2)}</td>
+                <td><span class={`lj-pill ${bandClass(n.band)}`}>{bandLabel(n.band)}</span></td>
+                <td class="num">{Math.round(n.metrics.median_views).toLocaleString('en-US')}</td>
+                <td class="num">{(100 * n.metrics.small_channel_views_share).toFixed(0)}%</td>
+                <td class="num">{(100 * n.metrics.top3_view_share).toFixed(0)}%</td>
+                <td class="num">{Math.round(n.metrics.median_videos).toLocaleString('en-US')}</td>
+                <td>{n.policy_risk}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="lj-note" style="margin-top:10px">
+        Read the attention column before the views column. A 5M-view niche where 12% of the attention
+        reaches small channels is someone else's niche with a big number attached.
+        Source: {source}.
+      </p>
+    </section>
+
+    <section class="lexjolt-section">
+      <h2 class="lexjolt-h2">The six dimensions</h2>
+      <div class="lj-grid lj-grid-3">
+        {DIMENSIONS.map((d) => (
+          <div class="lj-card">
+            <p class="lj-kicker">{DIMENSION_LABEL[d]} · weight {(rules.weights[d] * 100).toFixed(0)}%</p>
+            <p>{DIMENSION_WHY[d]}</p>
+          </div>
+        ))}
+      </div>
+      <p class="lj-note" style="margin-top:12px">
+        An unmeasured dimension drops its term and keeps its weight in the denominator, so a gap costs
+        score rather than paying for it. Policy risk caps one dimension (repeatability) and never the
+        whole score — a rule change raises production cost, it does not delete demand.
+      </p>
+    </section>
+
+    <section class="lexjolt-section">
+      <h2 class="lexjolt-h2">Score your own niche</h2>
+      <p class="lj-lede-sm">
+        Put in the same six numbers the scan reads. The arithmetic is the scanner's own, running in
+        your browser — the page and the report cannot disagree about a grade.
+      </p>
+      <form id="scorer" class="lj-card" style="margin-top:14px">
+        <div class="lj-grid lj-grid-3">
+          <label class="lj-field"><span>Median views</span>
+            <input type="number" name="median_views" value="15000" min="0" step="100" /></label>
+          <label class="lj-field"><span>Small channels under 150K<span class="lj-unit">share of channels</span></span>
+            <input type="number" name="small_channel_share" value="85" min="0" max="100" step="1" /></label>
+          <label class="lj-field"><span>Small-channel attention<span class="lj-unit">share of views</span></span>
+            <input type="number" name="small_channel_views_share" value="80" min="0" max="100" step="1" /></label>
+          <label class="lj-field"><span>Top-3 share of views</span>
+            <input type="number" name="top3_view_share" value="55" min="0" max="100" step="1" /></label>
+          <label class="lj-field"><span>Median incumbent videos</span>
+            <input type="number" name="median_videos" value="400" min="1" step="10" /></label>
+          <label class="lj-field"><span>Our repeatability (0–10)</span>
+            <input type="number" name="repeatability" value="8" min="0" max="10" step="1" /></label>
+          <label class="lj-field"><span>Policy risk</span>
+            <select name="policy_risk">
+              <option value="low">low</option>
+              <option value="medium" selected>medium</option>
+              <option value="high">high</option>
+            </select>
+          </label>
+          <label class="lj-field"><span>On-topic share of results</span>
+            <input type="number" name="on_topic_share" value="90" min="0" max="100" step="1" /></label>
+        </div>
+      </form>
+
+      <div class="lj-calc" style="margin-top:16px">
+        <div class="lj-result" id="scorer-result" aria-live="polite"></div>
+        <div class="lj-card">
+          <p class="lj-kicker">Dimension scores</p>
+          <div id="scorer-dims"></div>
+          <p class="lj-note" style="margin-top:12px">
+            Bands: {(rules.bands.strong).toFixed(1)}+ strong, {(rules.bands.worth).toFixed(1)}+ worth
+            testing, below that thin. These are our thresholds, published so you can argue with them.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    import { scoreNiche, DIMENSION_LABEL, bandLabel } from '../../lib/niches';
+
+    const form = document.getElementById('scorer') as HTMLFormElement | null;
+    const out = document.getElementById('scorer-result');
+    const dimBox = document.getElementById('scorer-dims');
+    if (form && out && dimBox) {
+      const run = () => {
+        const v = (n: string) => Number((form.elements.namedItem(n) as HTMLInputElement).value) / 100;
+        const r = scoreNiche({
+          median_views: Number((form.elements.namedItem('median_views') as HTMLInputElement).value),
+          small_channel_share: v('small_channel_share'),
+          small_channel_views_share: v('small_channel_views_share'),
+          top3_view_share: v('top3_view_share'),
+          median_videos: Number((form.elements.namedItem('median_videos') as HTMLInputElement).value),
+          repeatability: Number((form.elements.namedItem('repeatability') as HTMLInputElement).value),
+          on_topic_share: v('on_topic_share'),
+          policy_risk: (form.elements.namedItem('policy_risk') as HTMLSelectElement).value,
+        });
+        const cls = r.band === 'strong' ? 'good' : r.band === 'worth testing' ? '' : 'bad';
+        out.innerHTML = `<div class="lj-result-label">Niche score</div>
+          <div class="lj-result-value">${r.score.toFixed(2)}<span style="font-size:18px;color:var(--lj-muted)"> / 10</span></div>
+          <p class="lj-result-sub"><span class="lj-pill ${cls}">${bandLabel(r.band)}</span></p>
+          ${r.caps.repeatability ? `<p class="lj-note" style="margin-top:8px">${r.caps.repeatability}</p>` : ''}
+          ${r.caps.on_topic ? `<p class="lj-note" style="margin-top:8px">${r.caps.on_topic}</p>` : ''}`;
+        dimBox.innerHTML = Object.entries(r.dims)
+          .map(([k, d]) => {
+            const pctv = d === null ? 0 : (d / 10) * 100;
+            return `<div style="margin-bottom:10px">
+              <div style="display:flex;justify-content:space-between;font-size:13px">
+                <span>${DIMENSION_LABEL[k]}</span><b>${d === null ? '—' : d.toFixed(1)}</b></div>
+              <div style="background:var(--lj-border);border-radius:99px;height:7px;margin-top:3px">
+                <div style="background:var(--lj-blue-500);border-radius:99px;height:7px;width:${pctv}%"></div></div>
+            </div>`;
+          })
+          .join('');
+      };
+      form.addEventListener('input', run);
+      run();
+    }
+  </script>
+</Base>

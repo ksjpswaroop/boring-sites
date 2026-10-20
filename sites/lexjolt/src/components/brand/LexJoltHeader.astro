@@ -1,0 +1,56 @@
+---
+import { brand } from '../../config/brand';
+import LexJoltLogo from './LexJoltLogo.astro';
+
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const isActive = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
+---
+<header class="lexjolt-header">
+  <div class="lexjolt-shell lexjolt-header-inner">
+    <a href="/" class="lexjolt-home" aria-label="LexJolt home">
+      <LexJoltLogo />
+    </a>
+    <nav class="lexjolt-desktop-nav" aria-label="Primary">
+      {brand.nav.map((item) => (
+        <a href={item.href} class:list={['lexjolt-nav-link', { 'is-active': isActive(item.href) }]}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <button id="theme-toggle" class="lexjolt-icon-button" type="button" aria-label="Toggle theme" title="Theme">
+      <svg class="theme-icon-light" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.4 6.4-1.4-1.4M7 7 5.6 5.6m12.8 0L17 7M7 17l-1.4 1.4M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+      <svg class="theme-icon-dark" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 14.2A7.7 7.7 0 0 1 9.8 4 8 8 0 1 0 20 14.2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  const oldTheme = localStorage.getItem('theme');
+  if (oldTheme && !localStorage.getItem('lexjolt:theme')) {
+    localStorage.setItem('lexjolt:theme', oldTheme);
+    localStorage.removeItem('theme');
+  }
+
+  function applyTheme() {
+    const stored = localStorage.getItem('lexjolt:theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.classList.toggle('dark', stored === 'dark' || (!stored && prefersDark));
+  }
+
+  applyTheme();
+  toggle?.addEventListener('click', () => {
+    const isDark = root.classList.toggle('dark');
+    localStorage.setItem('lexjolt:theme', isDark ? 'dark' : 'light');
+  });
+</script>
+

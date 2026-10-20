@@ -1,0 +1,141 @@
+---
+/**
+ * One calculator, rendered from the catalogue. The inputs come from the arg specs, the default
+ * answer is computed at build time (so the number is in the HTML), and the same module recomputes
+ * it in the browser on every keystroke.
+ *
+ * Percent arguments are the one place the UI must not be a mirror: the engine stores 0.065, and a
+ * person types 6.5. The field shows 6.5, the payload divides by 100. `data-scale` is where that
+ * lives, and tools/verify_site.mjs checks the default answer against the Python golden vector.
+ */
+import type { CalcSpec } from '../lib/cre/coerce';
+import { runCalc } from '../lib/cre';
+import { resultHtml } from '../lib/render';
+import { formatArg } from '../lib/format';
+
+export interface Props {
+  spec: CalcSpec;
+}
+
+const { spec } = Astro.props;
+const initial = runCalc(spec.name, {});
+const defaults = Object.fromEntries(spec.args.map((a) => [a.name, a.default]));
+
+function displayValue(v: unknown): string {
+  return v === null || v === undefined ? '' : String(v);
+}
+
+function displayPercent(v: unknown): string {
+  if (typeof v !== 'number') return '';
+  return String(Math.round(v * 100 * 10000) / 10000);
+}
+---
+<form class="lj-card" id="calc-form" data-calc={spec.name} data-spec={JSON.stringify(spec)}>
+  <div class="lj-grid lj-grid-2">
+    {spec.args.map((arg) => {
+      const isPercent = arg.type === 'percent';
+      const numVal = isPercent ? displayPercent(arg.default) : arg.default;
+      return (
+        <label class="lj-field">
+          <span>{arg.label}{arg.unit && <span class="lj-unit">{arg.unit}</span>}</span>
+          {arg.type === 'choice' ? (
+            <select name={arg.name} data-kind="choice">
+              {(arg.choices ?? []).map((c) => (
+                <option value={c} selected={c === arg.default}>{c}</option>
+              ))}
+            </select>
+          ) : arg.type === 'pairs' ? (
+            <textarea name={arg.name} data-kind="pairs" rows="3"
+              placeholder="1000000:0.055, 400000:0.0725">{(arg.default as unknown as string) ?? ''}</textarea>
+          ) : arg.type === 'numbers' ? (
+            <input name={arg.name} data-kind="numbers" type="text"
+              value={Array.isArray(arg.default) ? arg.default.join(', ') : ''} placeholder="comma separated" />
+          ) : (
+            <input
+              name={arg.name}
+              data-kind={arg.type}
+              data-scale={isPercent ? '100' : '1'}
+              type="number"
+              inputmode="decimal"
+              value={displayValue(numVal)}
+              min={arg.min !== null && arg.min !== undefined ? (isPercent ? arg.min * 100 : arg.min) : undefined}
+              max={arg.max !== null && arg.max !== undefined ? (isPercent ? arg.max * 100 : arg.max) : undefined}
+              step={arg.step ? (isPercent ? arg.step * 100 : arg.step) : 'any'}
+            />
+          )}
+          {arg.help && <span class="lj-help">{arg.help}</span>}
+        </label>
+      );
+    })}
+  </div>
+  <p class="lj-note" style="margin-top:4px">
+    Defaults are a worked example, not advice. Every field is editable and the answer updates as you type.
+  </p>
+</form>
+
+<aside class="lj-result" id="calc-result" aria-live="polite" set:html={resultHtml(initial)}></aside>
+
+<script>
+  import { runCalc } from '../lib/cre';
+  import { resultHtml } from '../lib/render';
+
+  const form = document.getElementById('calc-form') as HTMLFormElement | null;
+  const panel = document.getElementById('calc-result');
+  if (form && panel) {
+    const name = form.dataset.calc as string;
+    const slug = name.replace(/_/g, '-');
+
+    const collect = (): Record<string, unknown> => {
+      const values: Record<string, unknown> = {};
+      new URLSearchParams(window.location.search).forEach((v, k) => {
+        if (k !== 'utm_source') values[k] = v;
+      });
+      form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]').forEach((el) => {
+        const kind = el.dataset.kind ?? 'number';
+        const scale = Number(el.dataset.scale ?? '1');
+        const raw = el.value;
+        if (kind === 'percent' || kind === 'money' || kind === 'number' || kind === 'years' || kind === 'int') {
+          const n = Number(raw);
+          values[el.name] = raw === '' ? undefined : n / scale;
+        } else {
+          values[el.name] = raw;
+        }
+      });
+      return values;
+    };
+
+    const update = (push: boolean) => {
+      const values = collect();
+      const result = runCalc(name, values);
+      panel.innerHTML = resultHtml(result);
+      const q = new URLSearchParams();
+      for (const [k, v] of Object.entries(result.inputs)) {
+        if (typeof v === 'number') {
+          const arg = (form.dataset.spec ? JSON.parse(form.dataset.spec) : { args: [] }).args.find(
+            (a: { name: string }) => a.name === k
+          );
+          q.set(k, String(arg?.type === 'percent' ? Math.round(v * 100 * 10000) / 10000 : v));
+        }
+      }
+      const url = `${window.location.pathname}?${q.toString()}`;
+      if (push) history.replaceState({}, '', url);
+    };
+
+    form.addEventListener('input', () => update(true));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      update(true);
+    });
+
+    // A shared link carries the inputs: restore them before the first compute.
+    const params = new URLSearchParams(window.location.search);
+    if ([...params.keys()].length) {
+      form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]').forEach((el) => {
+        const v = params.get(el.name);
+        if (v !== null) el.value = v;
+      });
+      update(false);
+    }
+    void slug;
+  }
+</script>

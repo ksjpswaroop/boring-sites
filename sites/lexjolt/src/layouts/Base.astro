@@ -1,0 +1,59 @@
+---
+/**
+ * The page shell: head, header, footer, analytics. Every page goes through this, so the canonical
+ * URL, the JSON-LD and the theme toggle cannot drift between pages.
+ */
+import Plausible from '@boring-sites/analytics/Plausible.astro';
+import '@boring-sites/design/styles.css';
+import '../styles/lexjolt.css';
+import '../styles/site.css';
+import { brand } from '../config/brand';
+import LexJoltHeader from '../components/brand/LexJoltHeader.astro';
+import MobileBottomNav from '../components/brand/MobileBottomNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const { title, description, canonical, noindex = false, jsonLd } = Astro.props;
+const fullTitle = title === brand.name ? title : `${title} | ${brand.name}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, brand.origin).toString();
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={brand.name} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0A66C2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#004182" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {blocks.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
+    {plausibleDomain && <Plausible domain={plausibleDomain} />}
+  </head>
+  <body class="lexjolt-body">
+    <LexJoltHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+    <MobileBottomNav />
+  </body>
+</html>

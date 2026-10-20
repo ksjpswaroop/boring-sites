@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+import { niches, byId, rules, DIMENSIONS, DIMENSION_LABEL, DIMENSION_WHY, bandClass, bandLabel } from '../../lib/niches';
+
+export function getStaticPaths() {
+  return niches.map((n) => ({ params: { slug: n.slug }, props: { n } }));
+}
+
+const { n } = Astro.props;
+const m = n.metrics;
+const rows = [
+  ['Median views per video', Math.round(m.median_views).toLocaleString('en-US')],
+  ['75th-percentile views', Math.round(m.p75_views).toLocaleString('en-US')],
+  ['Views per subscriber', m.views_per_sub.toFixed(2) + '×'],
+  ['Channels under 150K subs', (100 * m.small_channel_share).toFixed(0) + '%'],
+  ['Their share of the views', (100 * m.small_channel_views_share).toFixed(0) + '%'],
+  ['Top-3 channels’ share of views', (100 * m.top3_view_share).toFixed(0) + '%'],
+  ['Median incumbent videos', Math.round(m.median_videos).toLocaleString('en-US')],
+  ['Distinct channels in results', String(m.distinct_channels)],
+  ['On-topic share', (100 * m.on_topic_share).toFixed(0) + '%'],
+  ['Median video length', Math.round(m.median_duration_s / 60) + ' min'],
+];
+const others = niches.filter((x) => x.id !== n.id).sort((a, b) => b.score - a.score).slice(0, 3);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AnalysisNewsArticle',
+  headline: `${n.label}: niche analysis`,
+  description: n.verdict,
+  about: n.match.join(', '),
+};
+---
+<Base title={`${n.label} — niche analysis`} description={n.verdict} jsonLd={jsonLd}>
+  <div class="lexjolt-shell lj-page">
+    <nav class="lj-crumbs" aria-label="Breadcrumb"><a href="/niches">Niche Lab</a> / {n.label}</nav>
+
+    <header class="lj-page-head">
+      <p class="lexjolt-eyebrow">{n.band === 'thin' ? 'Pass' : 'Candidate'} · policy risk {n.policy_risk}</p>
+      <h1 class="lexjolt-h1">{n.label}</h1>
+      <div class="lj-stat-row">
+        <div class="lj-stat"><b>{n.score.toFixed(2)}</b><span>score / 10 · <span class={`lj-pill ${bandClass(n.band)}`}>{bandLabel(n.band)}</span></span></div>
+        <div class="lj-stat"><b>{(100 * m.small_channel_views_share).toFixed(0)}%</b><span>attention to small channels</span></div>
+        <div class="lj-stat"><b>{Math.round(m.median_views).toLocaleString('en-US')}</b><span>median views</span></div>
+        <div class="lj-stat"><b>{(100 * m.top3_view_share).toFixed(0)}%</b><span>top-3 concentration</span></div>
+      </div>
+    </header>
+
+    <div class="lj-calc">
+      <div>
+        <section class="lj-card" style="margin-bottom:16px">
+          <p class="lj-kicker">The measurement</p>
+          <p style="font-size:15px;line-height:1.6;color:var(--lj-text)">{n.verdict}</p>
+        </section>
+
+        <section class="lj-card" style="margin-bottom:16px">
+          <p class="lj-kicker">The call</p>
+          <p style="font-size:15px;line-height:1.6;color:var(--lj-text)">{n.call}</p>
+          {n.action && <p class="lj-note" style="margin-top:10px"><b>First move:</b> {n.action}</p>}
+        </section>
+
+        <section class="lj-card" style="margin-bottom:16px">
+          <p class="lj-kicker">Policy risk: {n.policy_risk}</p>
+          <p>{n.policy_note}</p>
+          <p class="lj-note" style="margin-top:8px">{n.policy_source}</p>
+          {n.caps.repeatability && <p class="lj-note" style="margin-top:6px">Effect on the score: {n.caps.repeatability}</p>}
+        </section>
+
+        <section class="lj-card">
+          <p class="lj-kicker">What we would have to make</p>
+          <p>{n.supply}</p>
+          {n.match.length > 0 && (
+            <p class="lj-note" style="margin-top:8px">On the shelf already: {n.match.join(', ')}.</p>
+          )}
+          <p class="lj-note" style="margin-top:10px">
+            <a href={`/ideas?niche=${n.slug}`}>See the video ideas for this niche →</a>
+          </p>
+        </section>
+      </div>
+
+      <aside>
+        <div class="lj-card" style="margin-bottom:16px">
+          <p class="lj-kicker">Dimension scores</p>
+          {DIMENSIONS.map((d) => {
+            const v = n.dims[d];
+            return (
+              <div style="margin:10px 0">
+                <div style="display:flex;justify-content:space-between;font-size:13px">
+                  <span>{DIMENSION_LABEL[d]} <span class="lj-note">({(rules.weights[d] * 100).toFixed(0)}%)</span></span>
+                  <b>{v === null || v === undefined ? '—' : Number(v).toFixed(1)}</b>
+                </div>
+                <div style="background:var(--lj-border);border-radius:99px;height:7px;margin-top:3px">
+                  <div style="background:var(--lj-blue-500);border-radius:99px;height:7px;width:{((v ?? 0) / 10) * 100}%"></div>
+                </div>
+                <p class="lj-note" style="margin-top:4px">{DIMENSION_WHY[d]}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div class="lj-card" style="margin-bottom:16px">
+          <p class="lj-kicker">Every measured number</p>
+          <dl>
+            {rows.map(([k, v]) => (
+              <div style="display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--lj-border);padding:6px 0;font-size:13px">
+                <dt style="color:var(--lj-muted)">{k}</dt><dd style="margin:0">{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="lj-note" style="margin-top:10px">Queries: {n.queries.map((q) => `“${q}”`).join(', ')}</p>
+        </div>
+
+        <div class="lj-card">
+          <p class="lj-kicker">Compare</p>
+          <ul class="lj-list">
+            {others.map((o) => (
+              <li>
+                <a href={`/niches/${o.slug}`}>{o.label}</a>
+                <span class="lj-sub">{o.score.toFixed(2)} · {bandLabel(o.band)}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="lj-note" style="margin-top:8px"><a href="/niches">The whole board →</a></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,3307 @@
+{
+ "groups": [
+  "Valuation",
+  "Financing",
+  "Income",
+  "Returns",
+  "Tax",
+  "Commercial",
+  "Market"
+ ],
+ "calculators": [
+  {
+   "name": "cap_rate",
+   "label": "Cap rate",
+   "group": "Valuation",
+   "description": "The yield on an unlevered purchase: NOI divided by price.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 40000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 500000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Cap rate",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "value_from_cap_rate",
+   "label": "Value at a target cap rate",
+   "group": "Valuation",
+   "description": "What a buyer using a different cap rate would pay for the same income.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 40000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "cap",
+     "label": "Target cap rate",
+     "type": "percent",
+     "default": 0.065,
+     "min": 0.02,
+     "max": 0.2,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Implied value",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "gross_rent_multiplier",
+   "label": "Gross rent multiplier",
+   "group": "Valuation",
+   "description": "Price divided by gross annual rent. Lower is cheaper; it ignores expenses entirely.",
+   "args": [
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 500000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "gross_annual_rent",
+     "label": "Gross annual rent",
+     "type": "money",
+     "default": 48000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Multiple",
+   "result_format": "multiple",
+   "notes": ""
+  },
+  {
+   "name": "price_to_rent",
+   "label": "Price-to-rent ratio",
+   "group": "Valuation",
+   "description": "Months of rent it takes to buy the property. Above 240 months, renting is usually right.",
+   "args": [
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 500000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "monthly_rent",
+     "label": "Monthly rent",
+     "type": "money",
+     "default": 4000,
+     "min": 0,
+     "max": 100000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Months of rent",
+   "result_format": "number",
+   "notes": ""
+  },
+  {
+   "name": "one_percent_rule",
+   "label": "The 1% rule",
+   "group": "Valuation",
+   "description": "Monthly rent as a share of price. At or above 1% a deal usually carries itself.",
+   "args": [
+    {
+     "name": "monthly_rent",
+     "label": "Monthly rent",
+     "type": "money",
+     "default": 1500,
+     "min": 0,
+     "max": 100000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 200000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Rent / price",
+   "result_format": "percent",
+   "notes": "A blunt screen. It ignores taxes, insurance and the condition of the roof."
+  },
+  {
+   "name": "fifty_percent_rule",
+   "label": "The 50% rule",
+   "group": "Valuation",
+   "description": "The expenses half of a small rental, before the mortgage. A quick sanity check on a rent roll.",
+   "args": [
+    {
+     "name": "gross_monthly_rent",
+     "label": "Gross monthly rent",
+     "type": "money",
+     "default": 2000,
+     "min": 0,
+     "max": 100000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Operating expenses",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "gross_rent_multiplier_band",
+   "label": "Is this price in the market's range?",
+   "group": "Valuation",
+   "description": "Compare against the gross-rent multiple your market actually trades at.",
+   "args": [
+    {
+     "name": "price",
+     "label": "Asking price",
+     "type": "money",
+     "default": 500000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "gross_annual_rent",
+     "label": "Gross annual rent",
+     "type": "money",
+     "default": 48000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Multiple",
+   "result_format": "multiple",
+   "notes": ""
+  },
+  {
+   "name": "monthly_payment",
+   "label": "Monthly mortgage payment",
+   "group": "Financing",
+   "description": "Principal and interest on an amortising loan.",
+   "args": [
+    {
+     "name": "principal",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Monthly payment",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "payment_from_months",
+   "label": "Payment for a fixed term",
+   "group": "Financing",
+   "description": "The same loan quoted in months rather than years.",
+   "args": [
+    {
+     "name": "principal",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "months",
+     "label": "Term in months",
+     "type": "int",
+     "default": 360,
+     "min": 12,
+     "max": 480,
+     "step": 12,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Monthly payment",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "loan_from_payment",
+   "label": "How much can I borrow?",
+   "group": "Financing",
+   "description": "The loan a given monthly payment supports.",
+   "args": [
+    {
+     "name": "payment",
+     "label": "What I can pay monthly",
+     "type": "money",
+     "default": 2500,
+     "min": 0,
+     "max": 200000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Loan amount",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "loan_constant",
+   "label": "Loan constant",
+   "group": "Financing",
+   "description": "Annual debt service as a share of the loan. Compare it to the cap rate to see whether leverage helps or hurts.",
+   "args": [
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Debt service / loan",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "total_interest",
+   "label": "Total interest over the life of the loan",
+   "group": "Financing",
+   "description": "Interest paid in total, and what paying extra saves.",
+   "args": [
+    {
+     "name": "principal",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "extra_principal",
+     "label": "Extra principal each month",
+     "type": "money",
+     "default": 0,
+     "min": 0,
+     "max": 20000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Total interest",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "interest_saved_by_extra",
+   "label": "What one extra payment a month saves",
+   "group": "Financing",
+   "description": "Interest saved and time cut from the loan.",
+   "args": [
+    {
+     "name": "principal",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "extra_principal",
+     "label": "Extra principal each month",
+     "type": "money",
+     "default": 200,
+     "min": 0,
+     "max": 20000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Interest saved",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "balance_after",
+   "label": "Loan balance after n months",
+   "group": "Financing",
+   "description": "What you would still owe at a given point \u2014 the number the refinance depends on.",
+   "args": [
+    {
+     "name": "principal",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "months_elapsed",
+     "label": "Months held",
+     "type": "int",
+     "default": 60,
+     "min": 0,
+     "max": 480,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Remaining balance",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "pmi_monthly",
+   "label": "PMI",
+   "group": "Financing",
+   "description": "Private mortgage insurance, charged while the loan is above 80% of value.",
+   "args": [
+    {
+     "name": "loan_amount",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 360000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 450000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_pmi_rate",
+     "label": "Annual PMI rate",
+     "type": "percent",
+     "default": 0.0075,
+     "min": 0,
+     "max": 0.03,
+     "step": 0.0005,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Monthly PMI",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "months_until_pmi_drops",
+   "label": "Months until PMI falls away",
+   "group": "Financing",
+   "description": "Assumes the value does not move. Appreciation gets you there sooner; a reappraisal proves it.",
+   "args": [
+    {
+     "name": "principal",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 360000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 450000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "threshold_ltv",
+     "label": "LTV threshold",
+     "type": "percent",
+     "default": 0.8,
+     "min": 0.5,
+     "max": 1.0,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Months",
+   "result_format": "number",
+   "notes": ""
+  },
+  {
+   "name": "points_cost",
+   "label": "Cost of discount points",
+   "group": "Financing",
+   "description": "One point is one per cent of the loan.",
+   "args": [
+    {
+     "name": "loan_amount",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "points",
+     "label": "Points",
+     "type": "number",
+     "default": 1.0,
+     "min": 0,
+     "max": 5,
+     "step": 0.25,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Cost",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "rate_buydown_payback",
+   "label": "Months to break even on a rate buydown",
+   "group": "Financing",
+   "description": "How long the lower payment takes to repay the points, and whether you will hold that long.",
+   "args": [
+    {
+     "name": "loan_amount",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 375000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "base_rate",
+     "label": "Rate without points",
+     "type": "percent",
+     "default": 0.075,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "bought_rate",
+     "label": "Rate with points",
+     "type": "percent",
+     "default": 0.07,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "points",
+     "label": "Points paid",
+     "type": "number",
+     "default": 1.5,
+     "min": 0,
+     "max": 5,
+     "step": 0.25,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Monthly saving",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "blended_rate",
+   "label": "Blended rate across loans",
+   "group": "Financing",
+   "description": "The single rate that costs the same as a set of loans.",
+   "args": [
+    {
+     "name": "loans",
+     "label": "Capital stack as amount:rate pairs (e.g. 300000:0.065,100000:0.095)",
+     "type": "pairs",
+     "default": "300000:0.065,100000:0.095",
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "keys": [
+      "amount",
+      "rate"
+     ]
+    }
+   ],
+   "result_label": "Blended rate",
+   "result_format": "percent",
+   "notes": "Senior debt at 6.5% plus seller financing at 9.5% is a common stack."
+  },
+  {
+   "name": "gross_potential_rent",
+   "label": "Gross potential rent",
+   "group": "Income",
+   "description": "A full year of rent with every unit occupied and every tenant paying.",
+   "args": [
+    {
+     "name": "units",
+     "label": "Units",
+     "type": "int",
+     "default": 4,
+     "min": 0,
+     "max": 2000,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "monthly_rent_per_unit",
+     "label": "Monthly rent per unit",
+     "type": "money",
+     "default": 1500,
+     "min": 0,
+     "max": 20000,
+     "step": 25,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Annual rent",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "effective_gross_income",
+   "label": "Effective gross income",
+   "group": "Income",
+   "description": "What the building actually collects: rent less vacancy and bad debt, plus fees and parking.",
+   "args": [
+    {
+     "name": "gross_rent",
+     "label": "Gross potential rent",
+     "type": "money",
+     "default": 72000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "vacancy_pct",
+     "label": "Vacancy",
+     "type": "percent",
+     "default": 0.07,
+     "min": 0,
+     "max": 0.5,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "credit_loss_pct",
+     "label": "Credit loss",
+     "type": "percent",
+     "default": 0.01,
+     "min": 0,
+     "max": 0.2,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "other_annual_income",
+     "label": "Other income",
+     "type": "money",
+     "default": 6000,
+     "min": 0,
+     "max": 1000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "EGI",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "operating_expenses",
+   "label": "Operating expenses, itemised",
+   "group": "Income",
+   "description": "The lines a lender's underwriter would look for, rather than one opaque number.",
+   "args": [
+    {
+     "name": "egi",
+     "label": "Effective gross income",
+     "type": "money",
+     "default": 72000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "units",
+     "label": "Units",
+     "type": "int",
+     "default": 4,
+     "min": 0,
+     "max": 2000,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "sqft",
+     "label": "Square feet",
+     "type": "number",
+     "default": 4000,
+     "min": 0,
+     "max": 2000000,
+     "step": 100,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "property_tax",
+     "label": "Property tax",
+     "type": "money",
+     "default": 9000,
+     "min": 0,
+     "max": 2000000,
+     "step": 250,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "insurance",
+     "label": "Insurance",
+     "type": "money",
+     "default": 4500,
+     "min": 0,
+     "max": 1000000,
+     "step": 250,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "management_pct",
+     "label": "Management",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0,
+     "max": 0.2,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "maintenance_per_unit_year",
+     "label": "Maintenance per unit",
+     "type": "money",
+     "default": 500,
+     "min": 0,
+     "max": 20000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "replacements_per_unit_year",
+     "label": "Replacement reserve per unit",
+     "type": "money",
+     "default": 400,
+     "min": 0,
+     "max": 20000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "payroll",
+     "label": "Payroll",
+     "type": "money",
+     "default": 0,
+     "min": 0,
+     "max": 2000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "utilities",
+     "label": "Utilities",
+     "type": "money",
+     "default": 0,
+     "min": 0,
+     "max": 2000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Total operating expenses",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "expense_ratio",
+   "label": "Operating expense ratio",
+   "group": "Income",
+   "description": "Expenses as a share of collections. Compare against the benchmark for the asset class.",
+   "args": [
+    {
+     "name": "total_opex",
+     "label": "Total operating expenses",
+     "type": "money",
+     "default": 33000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "egi",
+     "label": "Effective gross income",
+     "type": "money",
+     "default": 72000,
+     "min": 1,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Expense ratio",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "noi",
+   "label": "Net operating income",
+   "group": "Income",
+   "description": "The number the cap rate is applied to, before debt service and before tax.",
+   "args": [
+    {
+     "name": "egi",
+     "label": "Effective gross income",
+     "type": "money",
+     "default": 72000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "total_opex",
+     "label": "Total operating expenses",
+     "type": "money",
+     "default": 33000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "NOI",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "breakeven_occupancy",
+   "label": "Break-even occupancy",
+   "group": "Income",
+   "description": "How full the building has to be to pay its bills and the mortgage. A cushion, in a single number.",
+   "args": [
+    {
+     "name": "gross_potential_rent",
+     "label": "Gross potential rent",
+     "type": "money",
+     "default": 72000,
+     "min": 1,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "total_opex",
+     "label": "Operating expenses including taxes",
+     "type": "money",
+     "default": 28000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_debt_service",
+     "label": "Annual debt service",
+     "type": "money",
+     "default": 24000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Break-even occupancy",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "dscr",
+   "label": "Debt service coverage ratio",
+   "group": "Returns",
+   "description": "NOI over debt service. Lenders want 1.25 on commercial and 1.15 on a DSCR rental loan.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 40000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_debt_service",
+     "label": "Annual debt service",
+     "type": "money",
+     "default": 32000,
+     "min": 1,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "DSCR",
+   "result_format": "multiple",
+   "notes": ""
+  },
+  {
+   "name": "debt_yield",
+   "label": "Debt yield",
+   "group": "Returns",
+   "description": "The lender's own yield: NOI over loan. Usually 9% to 10% on commercial debt.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 40000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "loan_amount",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 300000,
+     "min": 1,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Debt yield",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "cash_on_cash",
+   "label": "Cash-on-cash return",
+   "group": "Returns",
+   "description": "Cash flow on the cash you put in. The number that decides whether the deal is worth doing.",
+   "args": [
+    {
+     "name": "annual_cashflow",
+     "label": "Annual pre-tax cash flow",
+     "type": "money",
+     "default": 6000,
+     "min": -500000,
+     "max": 5000000,
+     "step": 250,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "cash_invested",
+     "label": "Cash invested",
+     "type": "money",
+     "default": 100000,
+     "min": 1,
+     "max": 50000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Cash-on-cash",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "cash_invested",
+   "label": "Total cash to close",
+   "group": "Returns",
+   "description": "Everything that leaves your account before the first rent cheque.",
+   "args": [
+    {
+     "name": "down_payment",
+     "label": "Down payment",
+     "type": "money",
+     "default": 100000,
+     "min": 0,
+     "max": 50000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "closing_costs",
+     "label": "Closing costs",
+     "type": "money",
+     "default": 8000,
+     "min": 0,
+     "max": 1000000,
+     "step": 250,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "rehab_cost",
+     "label": "Rehab",
+     "type": "money",
+     "default": 15000,
+     "min": 0,
+     "max": 2000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "points_paid",
+     "label": "Loan points",
+     "type": "money",
+     "default": 3000,
+     "min": 0,
+     "max": 500000,
+     "step": 250,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Cash invested",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "payback_years",
+   "label": "Years to get your cash back",
+   "group": "Returns",
+   "description": "Undiscounted payback. Crude, and still the fastest way to compare two deals.",
+   "args": [
+    {
+     "name": "initial_investment",
+     "label": "Cash invested",
+     "type": "money",
+     "default": 100000,
+     "min": 1,
+     "max": 50000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_cashflow",
+     "label": "Annual pre-tax cash flow",
+     "type": "money",
+     "default": 8000,
+     "min": 0,
+     "max": 5000000,
+     "step": 250,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Years",
+   "result_format": "years",
+   "notes": ""
+  },
+  {
+   "name": "equity_multiple",
+   "label": "Equity multiple",
+   "group": "Returns",
+   "description": "Every dollar out divided by every dollar in, across the whole hold.",
+   "args": [
+    {
+     "name": "total_distributions",
+     "label": "Total cash returned",
+     "type": "money",
+     "default": 250000,
+     "min": 0,
+     "max": 100000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "total_invested",
+     "label": "Total cash invested",
+     "type": "money",
+     "default": 100000,
+     "min": 1,
+     "max": 50000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Multiple",
+   "result_format": "multiple",
+   "notes": ""
+  },
+  {
+   "name": "average_annual_return",
+   "label": "Compound annual return from a multiple",
+   "group": "Returns",
+   "description": "The compound annual rate that turns your money into a multiple over the hold \u2014 a 2.5x over ten years is 9.6% a year, not the 15% that dividing by ten would suggest.",
+   "args": [
+    {
+     "name": "multiple",
+     "label": "Equity multiple",
+     "type": "number",
+     "default": 2.5,
+     "min": 0.1,
+     "max": 20,
+     "step": 0.05,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Years held",
+     "type": "years",
+     "default": 10,
+     "min": 0.5,
+     "max": 50,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Compound annual return (CAGR)",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "total_return",
+   "label": "Total return with appreciation and paydown",
+   "group": "Returns",
+   "description": "The three engines of a rental added up: cash flow, appreciation, and the tenant paying down your loan.",
+   "args": [
+    {
+     "name": "cumulative_cashflow",
+     "label": "Cash flow over the hold",
+     "type": "money",
+     "default": 60000,
+     "min": -1000000,
+     "max": 100000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "appreciation",
+     "label": "Appreciation",
+     "type": "money",
+     "default": 150000,
+     "min": -50000000,
+     "max": 100000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "principal_paydown",
+     "label": "Principal paid down",
+     "type": "money",
+     "default": 80000,
+     "min": 0,
+     "max": 100000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "initial_equity",
+     "label": "Initial equity",
+     "type": "money",
+     "default": 100000,
+     "min": 1,
+     "max": 50000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Total return",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "irr",
+   "label": "Internal rate of return",
+   "group": "Returns",
+   "description": "The discount rate at which the deal is worth exactly what you paid. Use the sign convention: money out is negative.",
+   "args": [
+    {
+     "name": "cashflows",
+     "label": "Cash flows, year 0 first (e.g. -100000,8000,8000,180000)",
+     "type": "numbers",
+     "default": [
+      -100000,
+      8000,
+      8000,
+      8000,
+      180000
+     ],
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "min_length": 2
+    }
+   ],
+   "result_label": "IRR",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "npv",
+   "label": "Net present value",
+   "group": "Returns",
+   "description": "What the deal is worth to you today at your own cost of capital.",
+   "args": [
+    {
+     "name": "rate",
+     "label": "Discount rate",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0.0,
+     "max": 0.5,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "cashflows",
+     "label": "Cash flows, year 0 first",
+     "type": "numbers",
+     "default": [
+      -100000,
+      8000,
+      8000,
+      180000
+     ],
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "min_length": 2
+    }
+   ],
+   "result_label": "NPV",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "mirr",
+   "label": "Modified IRR",
+   "group": "Returns",
+   "description": "IRR with cash flow reinvested at a rate you can actually get, and financing at a rate you can actually borrow at.",
+   "args": [
+    {
+     "name": "cashflows",
+     "label": "Cash flows, year 0 first",
+     "type": "numbers",
+     "default": [
+      -100000,
+      8000,
+      8000,
+      180000
+     ],
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "min_length": 2
+    },
+    {
+     "name": "finance_rate",
+     "label": "Cost of borrowing",
+     "type": "percent",
+     "default": 0.07,
+     "min": 0,
+     "max": 0.3,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "reinvest_rate",
+     "label": "Reinvestment rate",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 0.3,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "MIRR",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "depreciable_basis",
+   "label": "Depreciable basis",
+   "group": "Tax",
+   "description": "The part of the purchase you are allowed to depreciate. Land is never depreciable, and the assessment roll is the best evidence of the split.",
+   "args": [
+    {
+     "name": "purchase_price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 500000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "land_pct",
+     "label": "Land share of price",
+     "type": "percent",
+     "default": 0.2,
+     "min": 0,
+     "max": 1.0,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "closing_costs",
+     "label": "Closing costs",
+     "type": "money",
+     "default": 10000,
+     "min": 0,
+     "max": 1000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "capital_improvements",
+     "label": "Capital improvements",
+     "type": "money",
+     "default": 20000,
+     "min": 0,
+     "max": 5000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Depreciable basis",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "straight_line_annual",
+   "label": "Annual straight-line depreciation",
+   "group": "Tax",
+   "description": "27.5 years for residential, 39 for commercial. A paper loss that shelters real cash flow.",
+   "args": [
+    {
+     "name": "basis",
+     "label": "Depreciable basis",
+     "type": "money",
+     "default": 420000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Recovery period",
+     "type": "years",
+     "default": 27.5,
+     "min": 1,
+     "max": 40,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Annual depreciation",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "annual_depreciation",
+   "label": "First-year depreciation with mid-month convention",
+   "group": "Tax",
+   "description": "Property placed in service mid-month gets only part of the first year, and a corresponding tail at the end.",
+   "args": [
+    {
+     "name": "basis",
+     "label": "Depreciable basis",
+     "type": "money",
+     "default": 420000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Recovery period",
+     "type": "years",
+     "default": 27.5,
+     "min": 1,
+     "max": 40,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "placed_in_service_month",
+     "label": "Month placed in service",
+     "type": "int",
+     "default": 7,
+     "min": 1,
+     "max": 12,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "First-year depreciation",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "depreciation_taken_over_hold",
+   "label": "Depreciation over the hold",
+   "group": "Tax",
+   "description": "The cumulative deduction, which is also the unrecaptured section 1250 gain you will owe tax on at sale.",
+   "args": [
+    {
+     "name": "basis",
+     "label": "Depreciable basis",
+     "type": "money",
+     "default": 420000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Recovery period",
+     "type": "years",
+     "default": 27.5,
+     "min": 1,
+     "max": 40,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "placed_in_service_month",
+     "label": "Month placed in service",
+     "type": "int",
+     "default": 7,
+     "min": 1,
+     "max": 12,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "hold_years",
+     "label": "Years held",
+     "type": "int",
+     "default": 10,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Depreciation claimed",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "cost_segregation_benefit",
+   "label": "Cost segregation benefit",
+   "group": "Tax",
+   "description": "A study that moves part of the building into five- and seven-year property so it can be written off now. The benefit is real only if you have the income to shield.",
+   "args": [
+    {
+     "name": "building_basis",
+     "label": "Building basis",
+     "type": "money",
+     "default": 2000000,
+     "min": 0,
+     "max": 100000000,
+     "step": 10000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "reallocated_pct",
+     "label": "Share reallocated to short life",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0.05,
+     "max": 0.5,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "bonus_depreciation_rate",
+     "label": "Bonus depreciation rate",
+     "type": "percent",
+     "default": 1.0,
+     "min": 0,
+     "max": 1.0,
+     "step": 0.1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ordinary_rate",
+     "label": "Marginal tax rate",
+     "type": "percent",
+     "default": 0.37,
+     "min": 0.1,
+     "max": 0.55,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "horizon_years",
+     "label": "Years to measure over",
+     "type": "int",
+     "default": 10,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Tax deferred",
+   "result_format": "money",
+   "notes": "Watch the depreciation recapture on the way out \u2014 this borrows from your exit, it does not forgive."
+  },
+  {
+   "name": "sale_gain_components",
+   "label": "What you owe when you sell",
+   "group": "Tax",
+   "description": "The gain split into its parts, because they are taxed at different rates.",
+   "args": [
+    {
+     "name": "sale_price",
+     "label": "Sale price",
+     "type": "money",
+     "default": 700000,
+     "min": 0,
+     "max": 100000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "selling_costs",
+     "label": "Selling costs",
+     "type": "money",
+     "default": 42000,
+     "min": 0,
+     "max": 5000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "purchase_price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 500000,
+     "min": 0,
+     "max": 100000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "capital_improvements",
+     "label": "Capital improvements",
+     "type": "money",
+     "default": 40000,
+     "min": 0,
+     "max": 10000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "depreciation_claimed",
+     "label": "Depreciation claimed",
+     "type": "money",
+     "default": 150000,
+     "min": 0,
+     "max": 10000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Gain components",
+   "result_format": "object",
+   "notes": ""
+  },
+  {
+   "name": "capital_gains_tax",
+   "label": "Capital gains tax on a sale",
+   "group": "Tax",
+   "description": "Depreciation you claimed is taxed back at up to 25%, which is why a cost segregation study is a loan against your exit rather than a gift.",
+   "args": [
+    {
+     "name": "s1245_recapture",
+     "label": "Section 1245 recapture",
+     "type": "money",
+     "default": 0,
+     "min": 0,
+     "max": 10000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "unrecaptured_1250_gain",
+     "label": "Unrecaptured section 1250 gain",
+     "type": "money",
+     "default": 150000,
+     "min": 0,
+     "max": 10000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "long_term_capital_gain",
+     "label": "Long-term capital gain",
+     "type": "money",
+     "default": 80000,
+     "min": 0,
+     "max": 10000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ordinary_rate",
+     "label": "Ordinary rate",
+     "type": "percent",
+     "default": 0.24,
+     "min": 0.1,
+     "max": 0.55,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ltcg_rate",
+     "label": "Long-term capital gains rate",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 0.3,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "state_rate",
+     "label": "State rate",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 0.15,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Tax due",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "niit",
+   "label": "Net investment income tax",
+   "group": "Tax",
+   "description": "The 3.8% surtax on investment income above the threshold. Passive rental income counts.",
+   "args": [
+    {
+     "name": "net_investment_income",
+     "label": "Net investment income",
+     "type": "money",
+     "default": 80000,
+     "min": 0,
+     "max": 10000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "magi",
+     "label": "Modified AGI",
+     "type": "money",
+     "default": 300000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "NIIT due",
+   "result_format": "money",
+   "notes": "It also pushes you over the threshold where passive losses stop being deductible."
+  },
+  {
+   "name": "passive_loss_allowed",
+   "label": "Passive loss I can actually deduct",
+   "group": "Tax",
+   "description": "The $25,000 allowance, phased out between $100,000 and $150,000 of income. Above that, losses suspend and wait.",
+   "args": [
+    {
+     "name": "rental_loss",
+     "label": "Rental loss",
+     "type": "money",
+     "default": 20000,
+     "min": 0,
+     "max": 2000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "magi",
+     "label": "Modified AGI",
+     "type": "money",
+     "default": 120000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Deductible now",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "qbi_deduction",
+   "label": "Qualified business income deduction",
+   "group": "Tax",
+   "description": "Up to 20% of rental income, if the rental rises to the level of a trade or business. The 250-hour test is the usual route.",
+   "args": [
+    {
+     "name": "qualified_business_income",
+     "label": "Qualified rental income",
+     "type": "money",
+     "default": 40000,
+     "min": 0,
+     "max": 5000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "taxable_income_before_qbi",
+     "label": "Taxable income before QBI",
+     "type": "money",
+     "default": 300000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Deduction",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "section_121_exclusion",
+   "label": "Section 121 exclusion",
+   "group": "Tax",
+   "description": "The gain you can exclude on a home you lived in two of the last five years. House hackers should plan around it.",
+   "args": [
+    {
+     "name": "filing_status",
+     "label": "Filing status (single or mfj)",
+     "type": "choice",
+     "default": "mfj",
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "choices": [
+      "mfj",
+      "single"
+     ]
+    },
+    {
+     "name": "years_occupied",
+     "label": "Years lived in",
+     "type": "years",
+     "default": 5,
+     "min": 0,
+     "max": 40,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Excluded gain",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "section_1031_deferral",
+   "label": "Section 1031 deferral",
+   "group": "Tax",
+   "description": "Sell one property and buy another, and the tax waits. This is the single most powerful tool in the sample for compounding equity instead of paying for the privilege of selling.",
+   "args": [
+    {
+     "name": "total_gain",
+     "label": "Total gain",
+     "type": "money",
+     "default": 250000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "unrecaptured_1250_gain",
+     "label": "Unrecaptured 1250 gain",
+     "type": "money",
+     "default": 150000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ordinary_rate",
+     "label": "Ordinary rate",
+     "type": "percent",
+     "default": 0.24,
+     "min": 0.1,
+     "max": 0.55,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ltcg_rate",
+     "label": "Long-term capital gains rate",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 0.3,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Tax deferred",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "opportunity_zone_deferral",
+   "label": "Qualified opportunity zone",
+   "group": "Tax",
+   "description": "Defer the gain and, on the original rules, step up the basis. Confirm current law before relying on the exclusion at ten years.",
+   "args": [
+    {
+     "name": "capital_gain",
+     "label": "Capital gain",
+     "type": "money",
+     "default": 250000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years_held",
+     "label": "Years held in the fund",
+     "type": "years",
+     "default": 10,
+     "min": 0,
+     "max": 30,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Tax deferred",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "step_up_basis_benefit",
+   "label": "Step-up in basis at death",
+   "group": "Tax",
+   "description": "The reason generational wealth in property is different: gains you never realise are never taxed, and your heirs start again from the value at your death.",
+   "args": [
+    {
+     "name": "unrealized_gain",
+     "label": "Unrealized appreciation",
+     "type": "money",
+     "default": 500000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "deferred_recapture",
+     "label": "Deferred depreciation",
+     "type": "money",
+     "default": 200000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ordinary_rate",
+     "label": "Ordinary rate",
+     "type": "percent",
+     "default": 0.24,
+     "min": 0.1,
+     "max": 0.55,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ltcg_rate",
+     "label": "Long-term capital gains rate",
+     "type": "percent",
+     "default": 0.15,
+     "min": 0,
+     "max": 0.3,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "state_rate",
+     "label": "State rate",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 0.15,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Tax avoided",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "estate_tax",
+   "label": "Federal estate tax",
+   "group": "Tax",
+   "description": "Forty per cent above the exemption, and property is illiquid, which is why the estate tax is really a liquidity problem.",
+   "args": [
+    {
+     "name": "estate_value",
+     "label": "Estate value",
+     "type": "money",
+     "default": 15000000,
+     "min": 0,
+     "max": 500000000,
+     "step": 100000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "filing_status",
+     "label": "Filing status (single or mfj)",
+     "type": "choice",
+     "default": "mfj",
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "choices": [
+      "mfj",
+      "single"
+     ]
+    },
+    {
+     "name": "exemption_used",
+     "label": "Exemption already used",
+     "type": "money",
+     "default": 0,
+     "min": 0,
+     "max": 100000000,
+     "step": 100000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Estate tax",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "gift_and_annual_exclusion",
+   "label": "Annual gift exclusion",
+   "group": "Tax",
+   "description": "Giving away $19,000 a year per recipient costs nothing and compounds outside your estate.",
+   "args": [
+    {
+     "name": "annual_gifts",
+     "label": "Gifts given",
+     "type": "int",
+     "default": 8,
+     "min": 0,
+     "max": 200,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Years",
+     "type": "int",
+     "default": 10,
+     "min": 1,
+     "max": 50,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Gifted free of gift tax",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "tax_assumptions",
+   "label": "Current tax assumptions",
+   "group": "Tax",
+   "description": "Every rate and limit the engine uses, in one place, with the date it was checked.",
+   "args": [],
+   "result_label": "Assumptions",
+   "result_format": "object",
+   "notes": ""
+  },
+  {
+   "name": "size_loan",
+   "label": "How much will the lender give me?",
+   "group": "Commercial",
+   "description": "Loan proceeds are set by the tightest of three tests \u2014 loan-to-value, debt service coverage, and debt yield. Which one binds tells you what the deal is really about.",
+   "args": [
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 4000000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 300000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "ltv",
+     "label": "Maximum LTV",
+     "type": "percent",
+     "default": 0.65,
+     "min": 0.1,
+     "max": 0.9,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "min_dscr",
+     "label": "Minimum DSCR",
+     "type": "number",
+     "default": 1.25,
+     "min": 1.0,
+     "max": 2.0,
+     "step": 0.05,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "min_debt_yield",
+     "label": "Minimum debt yield",
+     "type": "percent",
+     "default": 0.1,
+     "min": 0.02,
+     "max": 0.2,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0625,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "amort_years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Loan amount",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "max_loan_by_dscr",
+   "label": "Loan by DSCR test",
+   "group": "Commercial",
+   "description": "The loan whose debt service the income covers, with the required cushion.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 300000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "min_dscr",
+     "label": "Minimum DSCR",
+     "type": "number",
+     "default": 1.25,
+     "min": 1.0,
+     "max": 2.0,
+     "step": 0.05,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0625,
+     "min": 0.001,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "amort_years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Maximum loan",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "max_loan_by_debt_yield",
+   "label": "Loan by debt yield test",
+   "group": "Commercial",
+   "description": "The lender's floor on return regardless of the interest rate, which is why it binds hardest when rates are low.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 300000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "min_debt_yield",
+     "label": "Minimum debt yield",
+     "type": "percent",
+     "default": 0.1,
+     "min": 0.02,
+     "max": 0.2,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Maximum loan",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "dscr_after_rate_move",
+   "label": "What a rate move does to coverage",
+   "group": "Commercial",
+   "description": "Coverage at a higher rate. On floating-rate debt this is the question that decides whether you can hold through a bad year.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 300000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "loan",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 2500000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "base_rate",
+     "label": "Rate today",
+     "type": "percent",
+     "default": 0.0625,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "amort_years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 1,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "rate_delta",
+     "label": "Rate move",
+     "type": "percent",
+     "default": 0.01,
+     "min": -0.05,
+     "max": 0.1,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "DSCR at the new rate",
+   "result_format": "multiple",
+   "notes": ""
+  },
+  {
+   "name": "yield_on_cost",
+   "label": "Yield on cost",
+   "group": "Commercial",
+   "description": "Stabilised income over everything you spent, capital included. In a value-add, this is the number that has to beat the exit cap rate.",
+   "args": [
+    {
+     "name": "stabilized_noi",
+     "label": "Stabilised NOI",
+     "type": "money",
+     "default": 400000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "total_cost",
+     "label": "Total cost including capital",
+     "type": "money",
+     "default": 4500000,
+     "min": 1,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Yield on cost",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "development_spread",
+   "label": "Development spread",
+   "group": "Commercial",
+   "description": "The gap a developer is paid for taking construction risk. Below 150 basis points, the risk is not being paid for.",
+   "args": [
+    {
+     "name": "yield_on_cost_value",
+     "label": "Yield on cost",
+     "type": "percent",
+     "default": 0.085,
+     "min": 0.02,
+     "max": 0.25,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "exit_cap_rate",
+     "label": "Exit cap rate",
+     "type": "percent",
+     "default": 0.065,
+     "min": 0.02,
+     "max": 0.25,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Spread",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "value_add_analysis",
+   "label": "Value-add: what the capital is worth",
+   "group": "Commercial",
+   "description": "The whole value-add story in one screen: what you spend, what the income becomes, what it sells for, and the spread you were paid for the work.",
+   "args": [
+    {
+     "name": "purchase_price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 3000000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "capex",
+     "label": "Capital budget",
+     "type": "money",
+     "default": 600000,
+     "min": 0,
+     "max": 50000000,
+     "step": 25000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "stabilized_noi",
+     "label": "Stabilised NOI",
+     "type": "money",
+     "default": 320000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "exit_cap_rate",
+     "label": "Exit cap rate",
+     "type": "percent",
+     "default": 0.07,
+     "min": 0.02,
+     "max": 0.25,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "hold_years",
+     "label": "Hold",
+     "type": "years",
+     "default": 3,
+     "min": 0.5,
+     "max": 15,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Profit",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "cash_out_refinance",
+   "label": "Cash-out refinance",
+   "group": "Commercial",
+   "description": "Pulling your capital back out without selling \u2014 the move that turns one property into two. It also raises the debt service you have to cover.",
+   "args": [
+    {
+     "name": "noi_value",
+     "label": "Net operating income",
+     "type": "money",
+     "default": 400000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "exit_cap_rate",
+     "label": "Cap rate for value",
+     "type": "percent",
+     "default": 0.065,
+     "min": 0.02,
+     "max": 0.25,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "refi_ltv",
+     "label": "New LTV",
+     "type": "percent",
+     "default": 0.7,
+     "min": 0.1,
+     "max": 0.9,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "existing_balance",
+     "label": "Existing loan balance",
+     "type": "money",
+     "default": 2000000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "refi_rate",
+     "label": "New rate",
+     "type": "percent",
+     "default": 0.0625,
+     "min": 0.0,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Cash out",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "equity_waterfall",
+   "label": "Partnership waterfall",
+   "group": "Commercial",
+   "description": "How cash splits between the money and the work, tier by tier, after the preferred return.",
+   "args": [
+    {
+     "name": "distributable_cash",
+     "label": "Cash to distribute",
+     "type": "money",
+     "default": 200000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "lp_contribution",
+     "label": "Limited partner capital",
+     "type": "money",
+     "default": 1000000,
+     "min": 0,
+     "max": 100000000,
+     "step": 10000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "gp_contribution",
+     "label": "Sponsor capital",
+     "type": "money",
+     "default": 100000,
+     "min": 0,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "preferred_return",
+     "label": "Preferred return",
+     "type": "percent",
+     "default": 0.08,
+     "min": 0,
+     "max": 0.25,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Years",
+     "type": "years",
+     "default": 1,
+     "min": 0.25,
+     "max": 30,
+     "step": 0.25,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Distribution",
+   "result_format": "object",
+   "notes": ""
+  },
+  {
+   "name": "sources_and_uses",
+   "label": "Sources and uses",
+   "group": "Commercial",
+   "description": "Where every dollar comes from and where every dollar goes. Lenders and partners both start here.",
+   "args": [
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 4000000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "closing_costs",
+     "label": "Closing costs",
+     "type": "money",
+     "default": 60000,
+     "min": 0,
+     "max": 5000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "capex",
+     "label": "Capital budget",
+     "type": "money",
+     "default": 200000,
+     "min": 0,
+     "max": 50000000,
+     "step": 25000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "loan",
+     "label": "Loan proceeds",
+     "type": "money",
+     "default": 2600000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "loan_fees",
+     "label": "Loan fees",
+     "type": "money",
+     "default": 26000,
+     "min": 0,
+     "max": 5000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "working_capital",
+     "label": "Working capital",
+     "type": "money",
+     "default": 50000,
+     "min": 0,
+     "max": 5000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Uses",
+   "result_format": "object",
+   "notes": ""
+  },
+  {
+   "name": "walt",
+   "label": "Weighted average lease term",
+   "group": "Commercial",
+   "description": "How long the income is contractually locked. Short WALT means the exit cap rate should be wider.",
+   "args": [
+    {
+     "name": "leases",
+     "label": "Leases as years_remaining:annual_rent pairs (e.g. 2:120000,5:80000)",
+     "type": "pairs",
+     "default": "2:120000,5:80000,8:60000",
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "keys": [
+      "years_remaining",
+      "annual_rent"
+     ]
+    }
+   ],
+   "result_label": "WALT",
+   "result_format": "years",
+   "notes": ""
+  },
+  {
+   "name": "lease_rollover_exposure",
+   "label": "Rent rolling over",
+   "group": "Commercial",
+   "description": "The share of income that has to be re-let inside a window \u2014 the risk a lender will ask about.",
+   "args": [
+    {
+     "name": "leases",
+     "label": "Leases as years_remaining:annual_rent pairs",
+     "type": "pairs",
+     "default": "2:120000,5:80000,8:60000",
+     "min": null,
+     "max": null,
+     "step": null,
+     "unit": "",
+     "help": "",
+     "keys": [
+      "years_remaining",
+      "annual_rent"
+     ]
+    },
+    {
+     "name": "within_years",
+     "label": "Within how many years",
+     "type": "years",
+     "default": 3,
+     "min": 0.5,
+     "max": 20,
+     "step": 0.5,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Exposure",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "nnn_effective_rent",
+   "label": "Net effective rent on an NNN lease",
+   "group": "Commercial",
+   "description": "What the landlord actually keeps after leakage in the CAM reconciliation. Recoveries leak.",
+   "args": [
+    {
+     "name": "base_rent",
+     "label": "Base rent",
+     "type": "money",
+     "default": 120000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "recoverable_opex",
+     "label": "Recoverable operating expenses",
+     "type": "money",
+     "default": 30000,
+     "min": 0,
+     "max": 5000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "recovery_ratio",
+     "label": "Recovery ratio",
+     "type": "percent",
+     "default": 1.0,
+     "min": 0,
+     "max": 1.5,
+     "step": 0.05,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "management_fee_on_recovery",
+     "label": "Management fee on recoveries",
+     "type": "percent",
+     "default": 0.0,
+     "min": 0,
+     "max": 0.2,
+     "step": 0.01,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Effective rent",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "stabilized_occupancy_needed",
+   "label": "Occupancy needed to cover debt",
+   "group": "Commercial",
+   "description": "The occupancy the building must hold to service its debt, before any cushion.",
+   "args": [
+    {
+     "name": "total_opex",
+     "label": "Operating expenses",
+     "type": "money",
+     "default": 400000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "debt_service_annual",
+     "label": "Annual debt service",
+     "type": "money",
+     "default": 320000,
+     "min": 0,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "gross_potential_rent",
+     "label": "Gross potential rent",
+     "type": "money",
+     "default": 900000,
+     "min": 1,
+     "max": 20000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Occupancy needed",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "loan_to_cost",
+   "label": "Loan to cost",
+   "group": "Commercial",
+   "description": "For construction and value-add, cost is the right denominator rather than value.",
+   "args": [
+    {
+     "name": "loan",
+     "label": "Loan amount",
+     "type": "money",
+     "default": 2600000,
+     "min": 0,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "total_project_cost",
+     "label": "Total project cost",
+     "type": "money",
+     "default": 4300000,
+     "min": 1,
+     "max": 200000000,
+     "step": 50000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Loan to cost",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "expense_stop_rent",
+   "label": "Expense stop rent",
+   "group": "Commercial",
+   "description": "The increase over the base year that the tenant pays on top of rent.",
+   "args": [
+    {
+     "name": "base_year_opex",
+     "label": "Base-year operating expenses",
+     "type": "money",
+     "default": 80000,
+     "min": 0,
+     "max": 5000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "current_opex",
+     "label": "Current operating expenses",
+     "type": "money",
+     "default": 95000,
+     "min": 0,
+     "max": 5000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "tenant_share",
+     "label": "Tenant share",
+     "type": "percent",
+     "default": 1.0,
+     "min": 0,
+     "max": 1.0,
+     "step": 0.05,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Recoverable",
+   "result_format": "money",
+   "notes": ""
+  },
+  {
+   "name": "rent_to_income",
+   "label": "Rent as a share of area income",
+   "group": "Market",
+   "description": "Above 30% and the rent is at the limit of what the neighbourhood can absorb.",
+   "args": [
+    {
+     "name": "annual_rent",
+     "label": "Annual rent",
+     "type": "money",
+     "default": 24000,
+     "min": 0,
+     "max": 5000000,
+     "step": 500,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "median_household_income",
+     "label": "Median household income",
+     "type": "money",
+     "default": 85000,
+     "min": 1,
+     "max": 2000000,
+     "step": 1000,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Rent to income",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "cap_rate_spread_to_treasury",
+   "label": "Cap rate spread over Treasuries",
+   "group": "Market",
+   "description": "Why cap rates sit where they do: the spread over the risk-free rate is what a buyer demands for taking property risk.",
+   "args": [
+    {
+     "name": "cap",
+     "label": "Cap rate",
+     "type": "percent",
+     "default": 0.065,
+     "min": 0.01,
+     "max": 0.25,
+     "step": 0.0025,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Spread",
+   "result_format": "percent",
+   "notes": ""
+  },
+  {
+   "name": "monthly_carry",
+   "label": "What this house costs me a month",
+   "group": "Market",
+   "description": "The monthly gap between owning and renting it out. Negative means the tenant is covering it.",
+   "args": [
+    {
+     "name": "price",
+     "label": "Purchase price",
+     "type": "money",
+     "default": 420000,
+     "min": 1000,
+     "max": 50000000,
+     "step": 5000,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "down_pct",
+     "label": "Down payment",
+     "type": "percent",
+     "default": 0.25,
+     "min": 0.05,
+     "max": 1.0,
+     "step": 0.05,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "annual_rate",
+     "label": "Interest rate",
+     "type": "percent",
+     "default": 0.0725,
+     "min": 0.001,
+     "max": 0.2,
+     "step": 0.00125,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "years",
+     "label": "Amortisation",
+     "type": "years",
+     "default": 30,
+     "min": 5,
+     "max": 40,
+     "step": 1,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "monthly_tax",
+     "label": "Monthly property tax",
+     "type": "money",
+     "default": 700,
+     "min": 0,
+     "max": 20000,
+     "step": 25,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "monthly_insurance",
+     "label": "Monthly insurance",
+     "type": "money",
+     "default": 175,
+     "min": 0,
+     "max": 20000,
+     "step": 25,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "monthly_rent",
+     "label": "Monthly rent",
+     "type": "money",
+     "default": 2600,
+     "min": 0,
+     "max": 100000,
+     "step": 50,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "vacancy_pct",
+     "label": "Vacancy",
+     "type": "percent",
+     "default": 0.05,
+     "min": 0,
+     "max": 0.5,
+     "step": 0.005,
+     "unit": "",
+     "help": ""
+    },
+    {
+     "name": "monthly_maintenance",
+     "label": "Monthly maintenance and reserves",
+     "type": "money",
+     "default": 250,
+     "min": 0,
+     "max": 20000,
+     "step": 25,
+     "unit": "",
+     "help": ""
+    }
+   ],
+   "result_label": "Monthly cost to you",
+   "result_format": "money",
+   "notes": "Excludes tax effects and appreciation, both of which are real and neither of which pays this month's mortgage."
+  }
+ ]
+}

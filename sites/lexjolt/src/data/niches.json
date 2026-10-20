@@ -1,0 +1,585 @@
+{
+ "rules": {
+  "weights": {
+   "demand": 0.2,
+   "breakout": 0.2,
+   "openness": 0.2,
+   "repeatability": 0.2,
+   "spread": 0.1,
+   "incumbent": 0.1
+  },
+  "scales": {
+   "demand_log10_views": [
+    4.0,
+    7.0
+   ],
+   "breakout_log10_ratio": [
+    -1.0,
+    0.7
+   ],
+   "openness_share": [
+    0.0,
+    1.0
+   ],
+   "spread_inverse_top3": [
+    0.0,
+    1.0
+   ],
+   "repeatability": [
+    0.0,
+    10.0
+   ],
+   "incumbent_log10_videos": [
+    1.0,
+    3.3
+   ]
+  },
+  "bands": {
+   "strong": 6.5,
+   "worth": 5.0
+  },
+  "policy_caps": {
+   "high": 4,
+   "medium": 7,
+   "low": 10
+  },
+  "small_channel_subs": 150000,
+  "min_on_topic_share": 0.6,
+  "version": 2
+ },
+ "source": "niche_scan.py v2, 20 results per query phrase, channel data cached",
+ "niches": [
+  {
+   "id": "contractor",
+   "slug": "contractor",
+   "label": "Contractor estimating",
+   "score": 5.7,
+   "band": "worth testing",
+   "dims": {
+    "demand": 0.6,
+    "breakout": 8.6,
+    "openness": 9.7,
+    "spread": 4.4,
+    "incumbent": 2.8,
+    "repeatability": 6.0
+   },
+   "metrics": {
+    "median_views": 15032.75,
+    "p75_views": 41443.0,
+    "max_views": 270839.0,
+    "views_per_sub": 0.39,
+    "small_channel_share": 0.972,
+    "small_channel_views_share": 0.855,
+    "median_subs": 29555.0,
+    "median_videos": 444.5,
+    "median_duration_s": 1942.5,
+    "shorts_share": 0.0,
+    "subs_known_share": 0.95,
+    "on_topic_share": 0.975,
+    "n_results": 40,
+    "n_on_topic": 39,
+    "distinct_channels": 20,
+    "top3_view_share": 0.558,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "low",
+   "policy_note": "Trade education, unregulated.",
+   "policy_source": "n/a",
+   "supply": "no dataset, but the arithmetic is simple and re-derivable",
+   "queries": [
+    "construction estimating",
+    "contractor takeoff"
+   ],
+   "match": [
+    "estimating",
+    "takeoff",
+    "contractor",
+    "construction",
+    "bid"
+   ],
+   "verdict": "Worth testing, score 5.70 of 10. The median video in the top 39 results has 15,032 views; 86% of those views go to channels under 150,000 subscribers, and 97% of the channels are that small. The top three channels take 56% of the views, and the median incumbent has published 444 videos. Content supply scores 6/10 (uncapped); policy risk is low.",
+   "call": "The best door in the set. Trades content is made by tradespeople with cameras, not by studios -- but the wall is ours, not the market's: no estimating dataset on the shelf yet, so weekly output starts with building one.",
+   "action": "Post one estimating rule per week, filmed as a screen recording of the sheet. Kill line: five posts, none past 1,000 views."
+  },
+  {
+   "id": "cre-math",
+   "slug": "cre-math",
+   "label": "Commercial real estate math",
+   "score": 5.52,
+   "band": "worth testing",
+   "dims": {
+    "demand": 0.0,
+    "breakout": 8.6,
+    "openness": 8.6,
+    "spread": 4.2,
+    "incumbent": 2.7,
+    "repeatability": 7.0
+   },
+   "metrics": {
+    "median_views": 9421.5,
+    "p75_views": 34825.0,
+    "max_views": 171445.5,
+    "views_per_sub": 0.1,
+    "small_channel_share": 0.856,
+    "small_channel_views_share": 0.862,
+    "median_subs": 58125.0,
+    "median_videos": 479.0,
+    "median_duration_s": 852.0,
+    "shorts_share": 0.028,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.875,
+    "n_results": 40,
+    "n_on_topic": 35,
+    "distinct_channels": 26,
+    "top3_view_share": 0.583,
+    "surfaces": 2
+   },
+   "caps": {
+    "repeatability": "policy_risk=medium caps 10 -> 7"
+   },
+   "policy_risk": "medium",
+   "policy_note": "Finance education. No persona, arithmetic only, never a recommendation.",
+   "policy_source": "YouTube inauthentic-content clarification, 2026-07-16; AI-persona/sensitive-topic rule",
+   "supply": "72 deterministic calculators + the deal book already built",
+   "queries": [
+    "cap rate explained",
+    "commercial real estate underwriting"
+   ],
+   "match": [
+    "cap rate",
+    "underwriting",
+    "noi",
+    "dscr",
+    "commercial real estate"
+   ],
+   "verdict": "Worth testing, score 5.52 of 10. The median video in the top 35 results has 9,421 views; 86% of those views go to channels under 150,000 subscribers, and 86% of the channels are that small. The top three channels take 58% of the views, and the median incumbent has published 479 videos. Content supply scores 7/10 (capped at policy_risk=medium caps 10 -> 7 by policy); policy risk is medium.",
+   "call": "The only niche where the supply already exists. Every reel transcribes from a calculator we ship, and the door is as open as the trades. Policy is the one tax on it, and a cited number is how you pay it.",
+   "action": "One calculator per reel, narrated over the actual number. This is the channel the existing engine already feeds."
+  },
+  {
+   "id": "msp-it",
+   "slug": "msp-it",
+   "label": "MSP / IT services",
+   "score": 5.03,
+   "band": "worth testing",
+   "dims": {
+    "demand": 4.4,
+    "breakout": 6.8,
+    "openness": 7.0,
+    "spread": 2.8,
+    "incumbent": 1.0,
+    "repeatability": 5.0
+   },
+   "metrics": {
+    "median_views": 207580.5,
+    "p75_views": 217997.0,
+    "max_views": 278567.0,
+    "views_per_sub": 0.775,
+    "small_channel_share": 0.7,
+    "small_channel_views_share": 0.683,
+    "median_subs": 152560.0,
+    "median_videos": 1152.5,
+    "median_duration_s": 1125.75,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.625,
+    "n_results": 40,
+    "n_on_topic": 25,
+    "distinct_channels": 20,
+    "top3_view_share": 0.722,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "low",
+   "policy_note": "Business education, no regulated content.",
+   "policy_source": "n/a",
+   "supply": "no MSP dataset of ours",
+   "queries": [
+    "managed service provider",
+    "start an it business"
+   ],
+   "match": [
+    "managed service",
+    "msp",
+    "it",
+    "client",
+    "support"
+   ],
+   "verdict": "Worth testing, score 5.03 of 10. The median video in the top 25 results has 207,580 views; 68% of those views go to channels under 150,000 subscribers, and 70% of the channels are that small. The top three channels take 72% of the views, and the median incumbent has published 1,152 videos. Content supply scores 5/10 (uncapped); policy risk is low.",
+   "call": "Real demand and a genuinely open door, but a hard ceiling: the top three channels take most of the views. A good second channel, a hard first one.",
+   "action": "Angle on pricing and margin, not tooling \u2014 tooling is where the incumbents are strongest."
+  },
+  {
+   "id": "multifamily",
+   "slug": "multifamily",
+   "label": "Multifamily investing / syndication",
+   "score": 5.02,
+   "band": "worth testing",
+   "dims": {
+    "demand": 2.0,
+    "breakout": 6.3,
+    "openness": 8.2,
+    "spread": 2.7,
+    "incumbent": 0.4,
+    "repeatability": 7.0
+   },
+   "metrics": {
+    "median_views": 40415.75,
+    "p75_views": 54752.5,
+    "max_views": 67159.5,
+    "views_per_sub": 0.611,
+    "small_channel_share": 0.822,
+    "small_channel_views_share": 0.628,
+    "median_subs": 40400.0,
+    "median_videos": 1590.5,
+    "median_duration_s": 687.0,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.575,
+    "n_results": 40,
+    "n_on_topic": 23,
+    "distinct_channels": 14,
+    "top3_view_share": 0.731,
+    "surfaces": 2
+   },
+   "caps": {
+    "on_topic": "on-topic share 0.57 < 0.60 -> query mismatch, demand not trusted"
+   },
+   "policy_risk": "medium",
+   "policy_note": "Same finance rules; sponsor content draws more 'advice' framing.",
+   "policy_source": "YouTube AI-persona/sensitive-topic rule",
+   "supply": "deal book + underwriting calculators cover most of it",
+   "queries": [
+    "multifamily syndication",
+    "apartment investing for beginners"
+   ],
+   "match": [
+    "multifamily",
+    "syndication",
+    "apartment",
+    "investor"
+   ],
+   "verdict": "Worth testing, score 5.02 of 10. The median video in the top 23 results has 40,415 views; 63% of those views go to channels under 150,000 subscribers, and 82% of the channels are that small. The top three channels take 73% of the views, and the median incumbent has published 1,590 videos. Content supply scores 7/10 (uncapped); policy risk is medium.",
+   "call": "The obvious niche, which is the problem. Content here competes with brands that post daily and have done for years, and the incumbent wall is the deepest measured.",
+   "action": "Only worth entering with a data angle the incumbents do not have (per-metro numbers, not opinions)."
+  },
+  {
+   "id": "fractional-cfo",
+   "slug": "fractional-cfo",
+   "label": "Fractional CFO / bookkeeping",
+   "score": 4.82,
+   "band": "thin",
+   "dims": {
+    "demand": 2.4,
+    "breakout": 6.0,
+    "openness": 7.9,
+    "spread": 2.3,
+    "incumbent": 3.2,
+    "repeatability": 5.0
+   },
+   "metrics": {
+    "median_views": 53429.5,
+    "p75_views": 139273.0,
+    "max_views": 658339.5,
+    "views_per_sub": 0.664,
+    "small_channel_share": 0.789,
+    "small_channel_views_share": 0.603,
+    "median_subs": 55147.5,
+    "median_videos": 368.0,
+    "median_duration_s": 905.5,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.975,
+    "n_results": 40,
+    "n_on_topic": 39,
+    "distinct_channels": 22,
+    "top3_view_share": 0.77,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "medium",
+   "policy_note": "Tax/accounting lines drift into advice; keep to mechanics.",
+   "policy_source": "general platform advice policy",
+   "supply": "finance arithmetic overlaps our calculators",
+   "queries": [
+    "fractional cfo",
+    "bookkeeping for small business"
+   ],
+   "match": [
+    "cfo",
+    "bookkeeping",
+    "accounting",
+    "small business"
+   ],
+   "verdict": "Thin, score 4.82 of 10. The median video in the top 39 results has 53,429 views; 60% of those views go to channels under 150,000 subscribers, and 79% of the channels are that small. The top three channels take 77% of the views, and the median incumbent has published 368 videos. Content supply scores 5/10 (uncapped); policy risk is medium.",
+   "call": "Enterable in principle, small in practice. The attention share is fine; the market underneath it is thin.",
+   "action": "Test with three posts on one narrow question (pricing a retainer) before committing."
+  },
+  {
+   "id": "job-search",
+   "slug": "job-search",
+   "label": "Job search / resumes",
+   "score": 4.09,
+   "band": "thin",
+   "dims": {
+    "demand": 6.0,
+    "breakout": 2.2,
+    "openness": 4.4,
+    "spread": 4.1,
+    "incumbent": 1.8,
+    "repeatability": 5.0
+   },
+   "metrics": {
+    "median_views": 617753.0,
+    "p75_views": 2998012.0,
+    "max_views": 12737915.0,
+    "views_per_sub": 0.851,
+    "small_channel_share": 0.436,
+    "small_channel_views_share": 0.222,
+    "median_subs": 573250.0,
+    "median_videos": 773.5,
+    "median_duration_s": 621.25,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.925,
+    "n_results": 40,
+    "n_on_topic": 37,
+    "distinct_channels": 26,
+    "top3_view_share": 0.594,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "medium",
+   "policy_note": "Employment advice drifts to guarantee-adjacent claims; keep it to process, not outcomes.",
+   "policy_source": "general platform advice policy",
+   "supply": "CareerAI Pro is in flight; no dataset on the shelf yet",
+   "queries": [
+    "resume tips",
+    "job interview questions and answers"
+   ],
+   "match": [
+    "resume",
+    "interview",
+    "job",
+    "hiring",
+    "career"
+   ],
+   "verdict": "Thin, score 4.09 of 10. The median video in the top 37 results has 617,753 views; 22% of those views go to channels under 150,000 subscribers, and 44% of the channels are that small. The top three channels take 59% of the views, and the median incumbent has published 773 videos. Content supply scores 5/10 (uncapped); policy risk is medium.",
+   "call": "Huge audience, closed door. The term belongs to career brands with teams, and small channels are not where the views are.",
+   "action": "Skip as a first channel; the attention is not available at small scale."
+  },
+  {
+   "id": "medical-billing",
+   "slug": "medical-billing",
+   "label": "Medical billing / coding",
+   "score": 3.92,
+   "band": "thin",
+   "dims": {
+    "demand": 1.5,
+    "breakout": 4.5,
+    "openness": 6.7,
+    "spread": 3.4,
+    "incumbent": 2.3,
+    "repeatability": 4.0
+   },
+   "metrics": {
+    "median_views": 28066.25,
+    "p75_views": 122535.0,
+    "max_views": 368412.0,
+    "views_per_sub": 0.546,
+    "small_channel_share": 0.672,
+    "small_channel_views_share": 0.452,
+    "median_subs": 93050.0,
+    "median_videos": 594.0,
+    "median_duration_s": 903.0,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.975,
+    "n_results": 40,
+    "n_on_topic": 39,
+    "distinct_channels": 19,
+    "top3_view_share": 0.656,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "high",
+   "policy_note": "Healthcare claims; adjacent to medical advice rules even when purely administrative.",
+   "policy_source": "YouTube medical-misinformation policy",
+   "supply": "no corpus of ours",
+   "queries": [
+    "medical billing",
+    "cpt coding"
+   ],
+   "match": [
+    "billing",
+    "cpt",
+    "coding",
+    "medical",
+    "claim"
+   ],
+   "verdict": "Thin, score 3.92 of 10. The median video in the top 39 results has 28,066 views; 45% of those views go to channels under 150,000 subscribers, and 67% of the channels are that small. The top three channels take 66% of the views, and the median incumbent has published 594 videos. Content supply scores 4/10 (uncapped); policy risk is high.",
+   "call": "A specialist niche with real numbers and moderate openness, held back by policy: billing advice is regulated, and a wrong post is a liability rather than a bad video.",
+   "action": "Only with a compliance reviewer. Otherwise the policy cap is doing you a favour."
+  },
+  {
+   "id": "stick-figure",
+   "slug": "stick-figure",
+   "label": "Stick-figure animation (the video's niche)",
+   "score": 3.52,
+   "band": "thin",
+   "dims": {
+    "demand": 9.1,
+    "breakout": 1.2,
+    "openness": 3.2,
+    "spread": 0.5,
+    "incumbent": 3.6,
+    "repeatability": 2.0
+   },
+   "metrics": {
+    "median_views": 5477007.25,
+    "p75_views": 27714785.5,
+    "max_views": 152216402.5,
+    "views_per_sub": 6.306,
+    "small_channel_share": 0.325,
+    "small_channel_views_share": 0.118,
+    "median_subs": 745000.0,
+    "median_videos": 290.5,
+    "median_duration_s": 654.0,
+    "shorts_share": 0.033,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.575,
+    "n_results": 40,
+    "n_on_topic": 23,
+    "distinct_channels": 16,
+    "top3_view_share": 0.954,
+    "surfaces": 2
+   },
+   "caps": {
+    "on_topic": "on-topic share 0.57 < 0.60 -> query mismatch, demand not trusted"
+   },
+   "policy_risk": "high",
+   "policy_note": "Templated characters in the same situation is the named shape in the 2026-07-16 clarification.",
+   "policy_source": "YouTube inauthentic-content clarification, 2026-07-16",
+   "supply": "none \u2014 the look is a commodity, the writing and catalog are not",
+   "queries": [
+    "stick figure animation",
+    "animated story"
+   ],
+   "match": [
+    "stick",
+    "animation",
+    "animated",
+    "story"
+   ],
+   "verdict": "Thin, score 3.52 of 10. The median video in the top 23 results has 5,477,007 views; 12% of those views go to channels under 150,000 subscribers, and 32% of the channels are that small. The top three channels take 95% of the views, and the median incumbent has published 290 videos. Content supply scores 2/10 (uncapped); policy risk is high.",
+   "call": "The trap in its purest form: the biggest view count in the set is the incumbent's, not the niche's, and almost none of the attention reaches a small channel.",
+   "action": "Skip. Competing here means competing with a 13M-subscriber catalog."
+  },
+  {
+   "id": "personal-finance",
+   "slug": "personal-finance",
+   "label": "Personal finance / budgeting",
+   "score": 3.46,
+   "band": "thin",
+   "dims": {
+    "demand": 5.2,
+    "breakout": 1.6,
+    "openness": 2.1,
+    "spread": 6.3,
+    "incumbent": 2.6,
+    "repeatability": 4.0
+   },
+   "metrics": {
+    "median_views": 355007.0,
+    "p75_views": 888727.0,
+    "max_views": 2813953.0,
+    "views_per_sub": 0.546,
+    "small_channel_share": 0.208,
+    "small_channel_views_share": 0.159,
+    "median_subs": 750750.0,
+    "median_videos": 498.75,
+    "median_duration_s": 748.5,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 0.95,
+    "n_results": 40,
+    "n_on_topic": 38,
+    "distinct_channels": 31,
+    "top3_view_share": 0.366,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "high",
+   "policy_note": "YMYL money advice plus AI-persona restrictions; highest enforcement surface.",
+   "policy_source": "YouTube AI-persona/sensitive-topic rule (financial advice)",
+   "supply": "none of our own \u2014 we would be reciting someone else's curriculum",
+   "queries": [
+    "how to budget your money",
+    "index funds explained"
+   ],
+   "match": [
+    "budget",
+    "index fund",
+    "money",
+    "saving",
+    "invest"
+   ],
+   "verdict": "Thin, score 3.46 of 10. The median video in the top 38 results has 355,007 views; 16% of those views go to channels under 150,000 subscribers, and 21% of the channels are that small. The top three channels take 37% of the views, and the median incumbent has published 498 videos. Content supply scores 4/10 (uncapped); policy risk is high.",
+   "call": "Big audience, no door, and the highest policy exposure measured. The worst combination available.",
+   "action": "Skip as a first channel: closed attention plus maximum policy risk."
+  },
+  {
+   "id": "ai-tools",
+   "slug": "ai-tools",
+   "label": "AI tools for business",
+   "score": 2.96,
+   "band": "thin",
+   "dims": {
+    "demand": 4.0,
+    "breakout": 0.3,
+    "openness": 2.0,
+    "spread": 3.3,
+    "incumbent": 1.6,
+    "repeatability": 6.0
+   },
+   "metrics": {
+    "median_views": 158671.0,
+    "p75_views": 490816.5,
+    "max_views": 3490137.5,
+    "views_per_sub": 0.216,
+    "small_channel_share": 0.2,
+    "small_channel_views_share": 0.029,
+    "median_subs": 886500.0,
+    "median_videos": 837.25,
+    "median_duration_s": 941.75,
+    "shorts_share": 0.0,
+    "subs_known_share": 1.0,
+    "on_topic_share": 1.0,
+    "n_results": 40,
+    "n_on_topic": 40,
+    "distinct_channels": 31,
+    "top3_view_share": 0.667,
+    "surfaces": 2
+   },
+   "caps": {},
+   "policy_risk": "low",
+   "policy_note": "No sensitive-topic restriction; the risk here is saturation, not policy.",
+   "policy_source": "n/a",
+   "supply": "we run the tools daily, but so does everyone else",
+   "queries": [
+    "ai tools for business",
+    "chatgpt tutorial"
+   ],
+   "match": [
+    "ai",
+    "chatgpt",
+    "tool",
+    "automation"
+   ],
+   "verdict": "Thin, score 2.96 of 10. The median video in the top 40 results has 158,671 views; 3% of those views go to channels under 150,000 subscribers, and 20% of the channels are that small. The top three channels take 67% of the views, and the median incumbent has published 837 videos. Content supply scores 6/10 (uncapped); policy risk is low.",
+   "call": "The most closed niche in the scan. Every result is a funded channel with a content team, and the attention share says so.",
+   "action": "Skip. 3% attention share is the clearest closed-door signal in the scan."
+  }
+ ]
+}

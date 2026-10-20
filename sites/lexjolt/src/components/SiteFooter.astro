@@ -1,0 +1,38 @@
+---
+import { brand } from '../config/brand';
+import LexJoltLogo from './brand/LexJoltLogo.astro';
+const year = new Date().getFullYear();
+---
+<footer class="lexjolt-footer">
+  <div class="lexjolt-shell lexjolt-footer-grid">
+    <div>
+      <a href="/" class="lexjolt-footer-brand" aria-label="LexJolt home"><LexJoltLogo /></a>
+      <p class="lj-foot-note">{brand.tagline}</p>
+      <p class="lj-foot-note">{brand.description}</p>
+    </div>
+    <div>
+      <h2>Calculators</h2>
+      <a href="/calculators">All 72</a>
+      <a href="/calculators#calc-list">By group</a>
+      <a href="/videos">A video for each</a>
+      <a href="/about">How the numbers are made</a>
+    </div>
+    <div>
+      <h2>Studio</h2>
+      <a href="/niches">Niche Lab</a>
+      <a href="/ideas">Video ideas</a>
+      <a href="/videos">Rendered videos</a>
+    </div>
+    <div>
+      <h2>About</h2>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+  <div class="lexjolt-shell lexjolt-footer-bottom">
+    <span>© {year} {brand.name}. Free tools, no signup.</span>
+    <span>Numbers are for decisions, not offers.</span>
+  </div>
+</footer>

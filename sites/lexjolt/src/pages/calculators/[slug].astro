@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import CalculatorForm from '../../components/CalculatorForm.astro';
+import { catalog, byName, byGroup, runCalc } from '../../lib/cre';
+import { formatValue } from '../../lib/format';
+import videosJson from '../../data/videos.json';
+
+export function getStaticPaths() {
+  return catalog.calculators.map((spec) => ({
+    params: { slug: spec.name.replace(/_/g, '-') },
+    props: { spec },
+  }));
+}
+
+const { spec } = Astro.props;
+const initial = runCalc(spec.name, {});
+const answer = initial.error ? null : formatValue(initial.result, spec.result_format);
+const slug = spec.name.replace(/_/g, '-');
+const related = byGroup[spec.group].filter((c) => c.name !== spec.name).slice(0, 4);
+const video = (videosJson.videos as Array<{ calculator: string; file: string; duration_s: number | null }>).find(
+  (v) => v.calculator === spec.name
+);
+const url = `https://lexjolt.com/calculators/${slug}`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: spec.label,
+  url,
+  applicationCategory: 'FinanceApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  description: spec.description,
+};
+---
+<Base
+  title={spec.label}
+  description={`${spec.description} Enter your numbers and get the answer instantly — free, no signup, arithmetic shown.`}
+  jsonLd={jsonLd}
+>
+  <div class="lexjolt-shell lj-page">
+    <nav class="lj-crumbs" aria-label="Breadcrumb">
+      <a href="/calculators">Calculators</a> / <a href="/calculators">{spec.group}</a> / {spec.label}
+    </nav>
+
+    <header class="lj-page-head">
+      <p class="lexjolt-eyebrow">{spec.group}</p>
+      <h1 class="lexjolt-h1">{spec.label}</h1>
+      <p class="lj-lede-sm">{spec.description}</p>
+    </header>
+
+    <div class="lj-calc">
+      <CalculatorForm spec={spec} />
+
+      <aside>
+        <div class="lj-card" style="margin-bottom:16px">
+          <p class="lj-kicker">At the defaults</p>
+          <h3 style="font-size:26px;margin:4px 0 2px">{answer ?? '—'}</h3>
+          <p>{spec.result_label} from the example inputs. Change any field to recompute.</p>
+        </div>
+
+        {spec.notes && (
+          <div class="lj-card" style="margin-bottom:16px">
+            <p class="lj-kicker">Read this with the number</p>
+            <p>{spec.notes}</p>
+          </div>
+        )}
+
+        {video && (
+          <div class="lj-card" style="margin-bottom:16px">
+            <p class="lj-kicker">30-second video</p>
+            <video src={video.file} controls preload="none" playsinline
+              style="border-radius:10px;width:100%;margin-top:8px;max-width:240px"></video>
+            <p style="margin-top:8px"><a href="/videos">All {videosJson.videos.length} videos →</a></p>
+          </div>
+        )}
+
+        {related.length > 0 && (
+          <div class="lj-card">
+            <p class="lj-kicker">Nearby</p>
+            <ul class="lj-list">
+              {related.map((c) => (
+                <li>
+                  <a href={`/calculators/${c.name.replace(/_/g, '-')}`}>{c.label}</a>
+                  <span class="lj-sub">{c.result_label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+
+    <hr class="lj-hr" />
+    <section>
+      <h2 class="lexjolt-h2">The arithmetic, stated plainly</h2>
+      <p class="lj-lede-sm">{spec.description}</p>
+      <p class="lj-note" style="margin-top:10px">
+        The number above is computed in your browser by the same function that produced
+        {answer ? ` ${answer}` : ' the default answer'} on the server. Nothing you type leaves the page.
+      </p>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ideas, groups, nicheOptions } from '../../lib/ideas';
+import { niches } from '../../lib/niches';
+
+const params = Astro.url.searchParams;
+const presetNiche = params.get('niche') ?? '';
+const counts = {
+  calc: ideas.filter((i) => i.family === 'calc').length,
+  niche: ideas.filter((i) => i.family === 'niche').length,
+  cross: ideas.filter((i) => i.family === 'cross').length,
+};
+const byNiche = new Map(niches.map((n) => [n.slug, n.label]));
+---
+<Base
+  title="Video ideas, each with its number"
+  description={`${ideas.length} short-video ideas built from the calculators' own arithmetic and the Niche Lab's own measurements. Filter by calculator group or niche; every idea links to the page that proves its number.`}
+>
+  <div class="lexjolt-shell lj-page">
+    <header class="lj-page-head">
+      <p class="lexjolt-eyebrow">Idea studio</p>
+      <h1 class="lexjolt-h1">{ideas.length} ideas, each with a number behind it</h1>
+      <p class="lj-lede-sm">
+        An idea here is not a vibe. It names a calculator or a measured niche, states the number the
+        video opens with, and links to the page that produces it. If the arithmetic changes, the idea
+        changes with it — which is the only way an idea list stays honest after week one.
+      </p>
+      <div class="lj-stat-row">
+        <div class="lj-stat"><b>{ideas.length}</b><span>ideas</span></div>
+        <div class="lj-stat"><b>{counts.calc}</b><span>from calculators</span></div>
+        <div class="lj-stat"><b>{counts.niche}</b><span>from niches</span></div>
+        <div class="lj-stat"><b>{counts.cross}</b><span>crossovers</span></div>
+      </div>
+    </header>
+
+    <div class="lj-filter">
+      <input type="search" id="idea-search" placeholder="Search an idea, a number, a topic…" aria-label="Search ideas" />
+      <select id="idea-family" aria-label="Filter by source">
+        <option value="">Every source</option>
+        <option value="calc">Calculators</option>
+        <option value="niche">Niche Lab</option>
+        <option value="cross">Crossovers</option>
+      </select>
+      <select id="idea-group" aria-label="Filter by calculator group">
+        <option value="">Every group</option>
+        {groups.map((g) => <option value={g}>{g}</option>)}
+      </select>
+      <select id="idea-niche" aria-label="Filter by niche">
+        <option value="">Every niche</option>
+        {nicheOptions.map((n) => <option value={n.slug} selected={n.slug === presetNiche}>{n.label}</option>)}
+      </select>
+      <span class="lj-note" id="idea-count">{ideas.length} shown</span>
+    </div>
+
+    <p class="lj-note" id="idea-empty" hidden>Nothing matches that filter. Try clearing the niche.</p>
+
+    <div class="lj-grid lj-grid-3" id="idea-list">
+      {ideas.map((i) => (
+        <article class="lj-card" data-idea
+          data-family={i.family}
+          data-group={i.group ?? ''}
+          data-niche={i.niche ?? ''}
+          data-text={`${i.title} ${i.hook} ${i.why}`.toLowerCase()}>
+          <p class="lj-kicker">
+            {i.family === 'calc' ? 'From a calculator' : i.family === 'niche' ? 'From the Niche Lab' : 'Crossover'}
+            {i.group ? ` · ${i.group}` : ''}
+          </p>
+          <h3>{i.title}</h3>
+          <p style="margin-top:6px">{i.hook}</p>
+          <p class="lj-note" style="margin-top:10px"><b>Why it works:</b> {i.why}</p>
+          <p class="lj-note" style="margin-top:8px">
+            {i.format} · {i.duration}
+            {i.niche ? ` · ${byNiche.get(i.niche) ?? i.niche}` : ''}
+          </p>
+          <p style="margin-top:10px;font-size:13px">
+            {i.calc && <a href={`/calculators/${i.calc.replace(/_/g, '-')}`}>Open the calculator →</a>}
+            {!i.calc && i.niche && <a href={`/niches/${i.niche}`}>Open the analysis →</a>}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-idea]'));
+    const search = document.getElementById('idea-search') as HTMLInputElement | null;
+    const family = document.getElementById('idea-family') as HTMLSelectElement | null;
+    const group = document.getElementById('idea-group') as HTMLSelectElement | null;
+    const niche = document.getElementById('idea-niche') as HTMLSelectElement | null;
+    const count = document.getElementById('idea-count');
+    const empty = document.getElementById('idea-empty');
+
+    const apply = () => {
+      const q = (search?.value ?? '').trim().toLowerCase();
+      let shown = 0;
+      for (const c of cards) {
+        const ok =
+          (!q || (c.dataset.text ?? '').includes(q)) &&
+          (!family?.value || c.dataset.family === family.value) &&
+          (!group?.value || c.dataset.group === group.value) &&
+          (!niche?.value || c.dataset.niche === niche.value);
+        c.hidden = !ok;
+        if (ok) shown++;
+      }
+      if (count) count.textContent = `${shown} shown`;
+      if (empty) empty.hidden = shown !== 0;
+    };
+
+    [search, family, group, niche].forEach((el) => el?.addEventListener('input', apply));
+    if (niche?.value) apply();
+  </script>
+</Base>

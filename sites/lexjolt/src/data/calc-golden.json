@@ -1,0 +1,3995 @@
+{
+ "vectors": [
+  {
+   "name": "cap_rate",
+   "values": {
+    "noi_value": 40000,
+    "price": 500000
+   },
+   "inputs": {
+    "noi_value": 40000.0,
+    "price": 500000.0
+   },
+   "result": 0.08
+  },
+  {
+   "name": "cap_rate",
+   "values": {
+    "noi_value": 3100000.0,
+    "price": 31000380.0
+   },
+   "inputs": {
+    "noi_value": 3100000.0,
+    "price": 31000380.0
+   },
+   "result": 0.09999877420857421
+  },
+  {
+   "name": "cap_rate",
+   "values": {
+    "noi_value": 1550000.0,
+    "price": 15500690.0
+   },
+   "inputs": {
+    "noi_value": 1550000.0,
+    "price": 15500690.0
+   },
+   "result": 0.09999554858525653
+  },
+  {
+   "name": "value_from_cap_rate",
+   "values": {
+    "noi_value": 40000,
+    "cap": 0.065
+   },
+   "inputs": {
+    "noi_value": 40000.0,
+    "cap": 0.065
+   },
+   "result": 615384.6153846154
+  },
+  {
+   "name": "value_from_cap_rate",
+   "values": {
+    "noi_value": 3100000.0,
+    "cap": 0.1316
+   },
+   "inputs": {
+    "noi_value": 3100000.0,
+    "cap": 0.1316
+   },
+   "result": 23556231.003039513
+  },
+  {
+   "name": "value_from_cap_rate",
+   "values": {
+    "noi_value": 1550000.0,
+    "cap": 0.0758
+   },
+   "inputs": {
+    "noi_value": 1550000.0,
+    "cap": 0.0758
+   },
+   "result": 20448548.812664907
+  },
+  {
+   "name": "gross_rent_multiplier",
+   "values": {
+    "price": 500000,
+    "gross_annual_rent": 48000
+   },
+   "inputs": {
+    "price": 500000.0,
+    "gross_annual_rent": 48000.0
+   },
+   "result": 10.416666666666666
+  },
+  {
+   "name": "gross_rent_multiplier",
+   "values": {
+    "price": 31000380.0,
+    "gross_annual_rent": 3100000.0
+   },
+   "inputs": {
+    "price": 31000380.0,
+    "gross_annual_rent": 3100000.0
+   },
+   "result": 10.000122580645161
+  },
+  {
+   "name": "gross_rent_multiplier",
+   "values": {
+    "price": 15500690.0,
+    "gross_annual_rent": 1550000.0
+   },
+   "inputs": {
+    "price": 15500690.0,
+    "gross_annual_rent": 1550000.0
+   },
+   "result": 10.000445161290322
+  },
+  {
+   "name": "price_to_rent",
+   "values": {
+    "price": 500000,
+    "monthly_rent": 4000
+   },
+   "inputs": {
+    "price": 500000.0,
+    "monthly_rent": 4000.0
+   },
+   "result": 10.416666666666666
+  },
+  {
+   "name": "price_to_rent",
+   "values": {
+    "price": 31000380.0,
+    "monthly_rent": 62000.0
+   },
+   "inputs": {
+    "price": 31000380.0,
+    "monthly_rent": 62000.0
+   },
+   "result": 41.667177419354836
+  },
+  {
+   "name": "price_to_rent",
+   "values": {
+    "price": 15500690.0,
+    "monthly_rent": 31000.0
+   },
+   "inputs": {
+    "price": 15500690.0,
+    "monthly_rent": 31000.0
+   },
+   "result": 41.66852150537635
+  },
+  {
+   "name": "one_percent_rule",
+   "values": {
+    "monthly_rent": 1500,
+    "price": 200000
+   },
+   "inputs": {
+    "monthly_rent": 1500.0,
+    "price": 200000.0
+   },
+   "result": 0.0075
+  },
+  {
+   "name": "one_percent_rule",
+   "values": {
+    "monthly_rent": 62000.0,
+    "price": 31000380.0
+   },
+   "inputs": {
+    "monthly_rent": 62000.0,
+    "price": 31000380.0
+   },
+   "result": 0.0019999754841714843
+  },
+  {
+   "name": "one_percent_rule",
+   "values": {
+    "monthly_rent": 31000.0,
+    "price": 15500690.0
+   },
+   "inputs": {
+    "monthly_rent": 31000.0,
+    "price": 15500690.0
+   },
+   "result": 0.0019999109717051306
+  },
+  {
+   "name": "fifty_percent_rule",
+   "values": {
+    "gross_monthly_rent": 2000
+   },
+   "inputs": {
+    "gross_monthly_rent": 2000.0
+   },
+   "result": 12000.0
+  },
+  {
+   "name": "fifty_percent_rule",
+   "values": {
+    "gross_monthly_rent": 62000.0
+   },
+   "inputs": {
+    "gross_monthly_rent": 62000.0
+   },
+   "result": 372000.0
+  },
+  {
+   "name": "fifty_percent_rule",
+   "values": {
+    "gross_monthly_rent": 31000.0
+   },
+   "inputs": {
+    "gross_monthly_rent": 31000.0
+   },
+   "result": 186000.0
+  },
+  {
+   "name": "gross_rent_multiplier_band",
+   "values": {
+    "price": 500000,
+    "gross_annual_rent": 48000
+   },
+   "inputs": {
+    "price": 500000.0,
+    "gross_annual_rent": 48000.0
+   },
+   "result": 10.416666666666666
+  },
+  {
+   "name": "gross_rent_multiplier_band",
+   "values": {
+    "price": 31000380.0,
+    "gross_annual_rent": 3100000.0
+   },
+   "inputs": {
+    "price": 31000380.0,
+    "gross_annual_rent": 3100000.0
+   },
+   "result": 10.000122580645161
+  },
+  {
+   "name": "gross_rent_multiplier_band",
+   "values": {
+    "price": 15500690.0,
+    "gross_annual_rent": 1550000.0
+   },
+   "inputs": {
+    "price": 15500690.0,
+    "gross_annual_rent": 1550000.0
+   },
+   "result": 10.000445161290322
+  },
+  {
+   "name": "monthly_payment",
+   "values": {
+    "principal": 375000,
+    "annual_rate": 0.0725,
+    "years": 30
+   },
+   "inputs": {
+    "principal": 375000.0,
+    "annual_rate": 0.0725,
+    "years": 30.0
+   },
+   "result": 2558.161050210713
+  },
+  {
+   "name": "monthly_payment",
+   "values": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18
+   },
+   "inputs": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18
+   },
+   "result": 335371.4058125993
+  },
+  {
+   "name": "monthly_payment",
+   "values": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09
+   },
+   "inputs": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09
+   },
+   "result": 144364.0733484044
+  },
+  {
+   "name": "payment_from_months",
+   "values": {
+    "principal": 375000,
+    "annual_rate": 0.0725,
+    "months": 360
+   },
+   "inputs": {
+    "principal": 375000.0,
+    "annual_rate": 0.0725,
+    "months": 360
+   },
+   "result": 2558.161050210713
+  },
+  {
+   "name": "payment_from_months",
+   "values": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "months": 302
+   },
+   "inputs": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "months": 302
+   },
+   "result": 335371.4058125993
+  },
+  {
+   "name": "payment_from_months",
+   "values": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "months": 157
+   },
+   "inputs": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "months": 157
+   },
+   "result": 144364.0733484044
+  },
+  {
+   "name": "loan_from_payment",
+   "values": {
+    "payment": 2500,
+    "annual_rate": 0.0725,
+    "years": 30
+   },
+   "inputs": {
+    "payment": 2500.0,
+    "annual_rate": 0.0725,
+    "years": 30.0
+   },
+   "result": 366474.19048256526
+  },
+  {
+   "name": "loan_from_payment",
+   "values": {
+    "payment": 124000.0,
+    "annual_rate": 0.124,
+    "years": 25.18
+   },
+   "inputs": {
+    "payment": 124000.0,
+    "annual_rate": 0.124,
+    "years": 25.18
+   },
+   "result": 11461919.33294388
+  },
+  {
+   "name": "loan_from_payment",
+   "values": {
+    "payment": 62000.0,
+    "annual_rate": 0.062,
+    "years": 13.09
+   },
+   "inputs": {
+    "payment": 62000.0,
+    "annual_rate": 0.062,
+    "years": 13.09
+   },
+   "result": 6656780.857663584
+  },
+  {
+   "name": "loan_constant",
+   "values": {
+    "annual_rate": 0.0725,
+    "years": 30
+   },
+   "inputs": {
+    "annual_rate": 0.0725,
+    "years": 30.0
+   },
+   "result": 0.08186115360674281
+  },
+  {
+   "name": "loan_constant",
+   "values": {
+    "annual_rate": 0.124,
+    "years": 25.18
+   },
+   "inputs": {
+    "annual_rate": 0.124,
+    "years": 25.18
+   },
+   "result": 0.12982118934681264
+  },
+  {
+   "name": "loan_constant",
+   "values": {
+    "annual_rate": 0.062,
+    "years": 13.09
+   },
+   "inputs": {
+    "annual_rate": 0.062,
+    "years": 13.09
+   },
+   "result": 0.11176573420521632
+  },
+  {
+   "name": "total_interest",
+   "values": {
+    "principal": 375000,
+    "annual_rate": 0.0725,
+    "years": 30,
+    "extra_principal": 0
+   },
+   "inputs": {
+    "principal": 375000.0,
+    "annual_rate": 0.0725,
+    "years": 30.0,
+    "extra_principal": 0.0
+   },
+   "result": 545937.9780758648
+  },
+  {
+   "name": "total_interest",
+   "values": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "extra_principal": 12400.0
+   },
+   "inputs": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "extra_principal": 12400.0
+   },
+   "result": 54912367.7409861
+  },
+  {
+   "name": "total_interest",
+   "values": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "extra_principal": 6200.0
+   },
+   "inputs": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "extra_principal": 6200.0
+   },
+   "result": 6676957.168961406
+  },
+  {
+   "name": "interest_saved_by_extra",
+   "values": {
+    "principal": 375000,
+    "annual_rate": 0.0725,
+    "years": 30,
+    "extra_principal": 200
+   },
+   "inputs": {
+    "principal": 375000.0,
+    "annual_rate": 0.0725,
+    "years": 30.0,
+    "extra_principal": 200.0
+   },
+   "result": {
+    "baseline_months": 360,
+    "boosted_months": 287,
+    "months_saved": 73,
+    "baseline_interest": 545937.9780758648,
+    "boosted_interest": 413849.6511254031,
+    "interest_saved": 132088.32695046172
+   }
+  },
+  {
+   "name": "interest_saved_by_extra",
+   "values": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "extra_principal": 12400.0
+   },
+   "inputs": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "extra_principal": 12400.0
+   },
+   "result": {
+    "baseline_months": 302,
+    "boosted_months": 248,
+    "months_saved": 54,
+    "baseline_interest": 70282164.55540457,
+    "boosted_interest": 54912367.7409861,
+    "interest_saved": 15369796.814418472
+   }
+  },
+  {
+   "name": "interest_saved_by_extra",
+   "values": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "extra_principal": 6200.0
+   },
+   "inputs": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "extra_principal": 6200.0
+   },
+   "result": {
+    "baseline_months": 157,
+    "boosted_months": 148,
+    "months_saved": 9,
+    "baseline_interest": 7165159.515699919,
+    "boosted_interest": 6676957.168961406,
+    "interest_saved": 488202.34673851356
+   }
+  },
+  {
+   "name": "balance_after",
+   "values": {
+    "principal": 375000,
+    "annual_rate": 0.0725,
+    "years": 30,
+    "months_elapsed": 60
+   },
+   "inputs": {
+    "principal": 375000.0,
+    "annual_rate": 0.0725,
+    "years": 30.0,
+    "months_elapsed": 60
+   },
+   "result": 353920.41460564145
+  },
+  {
+   "name": "balance_after",
+   "values": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "months_elapsed": 298
+   },
+   "inputs": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "months_elapsed": 298
+   },
+   "result": 1307534.0417494178
+  },
+  {
+   "name": "balance_after",
+   "values": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "months_elapsed": 149
+   },
+   "inputs": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "months_elapsed": 149
+   },
+   "result": 1128516.82537528
+  },
+  {
+   "name": "pmi_monthly",
+   "values": {
+    "loan_amount": 360000,
+    "price": 450000,
+    "annual_pmi_rate": 0.0075
+   },
+   "inputs": {
+    "loan_amount": 360000.0,
+    "price": 450000.0,
+    "annual_pmi_rate": 0.0075
+   },
+   "result": 0.0
+  },
+  {
+   "name": "pmi_monthly",
+   "values": {
+    "loan_amount": 31000000.0,
+    "price": 31000380.0,
+    "annual_pmi_rate": 0.0186
+   },
+   "inputs": {
+    "loan_amount": 31000000.0,
+    "price": 31000380.0,
+    "annual_pmi_rate": 0.0186
+   },
+   "result": 48050.0
+  },
+  {
+   "name": "pmi_monthly",
+   "values": {
+    "loan_amount": 15500000.0,
+    "price": 15500690.0,
+    "annual_pmi_rate": 0.0093
+   },
+   "inputs": {
+    "loan_amount": 15500000.0,
+    "price": 15500690.0,
+    "annual_pmi_rate": 0.0093
+   },
+   "result": 12012.5
+  },
+  {
+   "name": "months_until_pmi_drops",
+   "values": {
+    "principal": 360000,
+    "annual_rate": 0.0725,
+    "years": 30,
+    "price": 450000,
+    "threshold_ltv": 0.8
+   },
+   "inputs": {
+    "principal": 360000.0,
+    "annual_rate": 0.0725,
+    "years": 30.0,
+    "price": 450000.0,
+    "threshold_ltv": 0.8
+   },
+   "result": 0
+  },
+  {
+   "name": "months_until_pmi_drops",
+   "values": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "price": 31000380.0,
+    "threshold_ltv": 0.81
+   },
+   "inputs": {
+    "principal": 31000000.0,
+    "annual_rate": 0.124,
+    "years": 25.18,
+    "price": 31000380.0,
+    "threshold_ltv": 0.81
+   },
+   "result": 158
+  },
+  {
+   "name": "months_until_pmi_drops",
+   "values": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "price": 15500690.0,
+    "threshold_ltv": 0.655
+   },
+   "inputs": {
+    "principal": 15500000.0,
+    "annual_rate": 0.062,
+    "years": 13.09,
+    "price": 15500690.0,
+    "threshold_ltv": 0.655
+   },
+   "result": 70
+  },
+  {
+   "name": "points_cost",
+   "values": {
+    "loan_amount": 375000,
+    "points": 1.0
+   },
+   "inputs": {
+    "loan_amount": 375000.0,
+    "points": 1.0
+   },
+   "result": 3750.0
+  },
+  {
+   "name": "points_cost",
+   "values": {
+    "loan_amount": 31000000.0,
+    "points": 3.1
+   },
+   "inputs": {
+    "loan_amount": 31000000.0,
+    "points": 3.1
+   },
+   "result": 961000.0
+  },
+  {
+   "name": "points_cost",
+   "values": {
+    "loan_amount": 15500000.0,
+    "points": 1.55
+   },
+   "inputs": {
+    "loan_amount": 15500000.0,
+    "points": 1.55
+   },
+   "result": 240250.0
+  },
+  {
+   "name": "rate_buydown_payback",
+   "values": {
+    "loan_amount": 375000,
+    "base_rate": 0.075,
+    "bought_rate": 0.07,
+    "years": 30,
+    "points": 1.5
+   },
+   "inputs": {
+    "loan_amount": 375000.0,
+    "base_rate": 0.075,
+    "bought_rate": 0.07,
+    "years": 30.0,
+    "points": 1.5
+   },
+   "result": {
+    "monthly_saving": 127.17005015097811,
+    "cost": 5625.0,
+    "months_to_breakeven": 44.232112775939925
+   }
+  },
+  {
+   "name": "rate_buydown_payback",
+   "values": {
+    "loan_amount": 31000000.0,
+    "base_rate": 0.124,
+    "bought_rate": 0.124,
+    "years": 25.18,
+    "points": 3.1
+   },
+   "inputs": {
+    "loan_amount": 31000000.0,
+    "base_rate": 0.124,
+    "bought_rate": 0.124,
+    "years": 25.18,
+    "points": 3.1
+   },
+   "result": {
+    "monthly_saving": 0.0,
+    "cost": 961000.0,
+    "months_to_breakeven": null
+   }
+  },
+  {
+   "name": "rate_buydown_payback",
+   "values": {
+    "loan_amount": 15500000.0,
+    "base_rate": 0.062,
+    "bought_rate": 0.062,
+    "years": 13.09,
+    "points": 1.55
+   },
+   "inputs": {
+    "loan_amount": 15500000.0,
+    "base_rate": 0.062,
+    "bought_rate": 0.062,
+    "years": 13.09,
+    "points": 1.55
+   },
+   "result": {
+    "monthly_saving": 0.0,
+    "cost": 240250.0,
+    "months_to_breakeven": null
+   }
+  },
+  {
+   "name": "blended_rate",
+   "values": {
+    "loans": [
+     {
+      "amount": 100000,
+      "rate": 0.03
+     },
+     {
+      "amount": 200000,
+      "rate": 0.04
+     },
+     {
+      "amount": 300000,
+      "rate": 0.05
+     }
+    ]
+   },
+   "inputs": {
+    "loans": [
+     {
+      "amount": 100000,
+      "rate": 0.03
+     },
+     {
+      "amount": 200000,
+      "rate": 0.04
+     },
+     {
+      "amount": 300000,
+      "rate": 0.05
+     }
+    ]
+   },
+   "result": 0.043333333333333335
+  },
+  {
+   "name": "blended_rate",
+   "values": {
+    "loans": [
+     {
+      "amount": 100000,
+      "rate": 0.03
+     },
+     {
+      "amount": 200000,
+      "rate": 0.04
+     },
+     {
+      "amount": 300000,
+      "rate": 0.05
+     }
+    ]
+   },
+   "inputs": {
+    "loans": [
+     {
+      "amount": 100000,
+      "rate": 0.03
+     },
+     {
+      "amount": 200000,
+      "rate": 0.04
+     },
+     {
+      "amount": 300000,
+      "rate": 0.05
+     }
+    ]
+   },
+   "result": 0.043333333333333335
+  },
+  {
+   "name": "blended_rate",
+   "values": {
+    "loans": [
+     {
+      "amount": 100000,
+      "rate": 0.03
+     },
+     {
+      "amount": 200000,
+      "rate": 0.04
+     },
+     {
+      "amount": 300000,
+      "rate": 0.05
+     }
+    ]
+   },
+   "inputs": {
+    "loans": [
+     {
+      "amount": 100000,
+      "rate": 0.03
+     },
+     {
+      "amount": 200000,
+      "rate": 0.04
+     },
+     {
+      "amount": 300000,
+      "rate": 0.05
+     }
+    ]
+   },
+   "result": 0.043333333333333335
+  },
+  {
+   "name": "gross_potential_rent",
+   "values": {
+    "units": 4,
+    "monthly_rent_per_unit": 1500
+   },
+   "inputs": {
+    "units": 4,
+    "monthly_rent_per_unit": 1500.0
+   },
+   "result": 72000.0
+  },
+  {
+   "name": "gross_potential_rent",
+   "values": {
+    "units": 1240,
+    "monthly_rent_per_unit": 12400.0
+   },
+   "inputs": {
+    "units": 1240,
+    "monthly_rent_per_unit": 12400.0
+   },
+   "result": 184512000.0
+  },
+  {
+   "name": "gross_potential_rent",
+   "values": {
+    "units": 620,
+    "monthly_rent_per_unit": 6200.0
+   },
+   "inputs": {
+    "units": 620,
+    "monthly_rent_per_unit": 6200.0
+   },
+   "result": 46128000.0
+  },
+  {
+   "name": "effective_gross_income",
+   "values": {
+    "gross_rent": 72000,
+    "vacancy_pct": 0.07,
+    "credit_loss_pct": 0.01,
+    "other_annual_income": 6000
+   },
+   "inputs": {
+    "gross_rent": 72000.0,
+    "vacancy_pct": 0.07,
+    "credit_loss_pct": 0.01,
+    "other_annual_income": 6000.0
+   },
+   "result": 72240.0
+  },
+  {
+   "name": "effective_gross_income",
+   "values": {
+    "gross_rent": 3100000.0,
+    "vacancy_pct": 0.31,
+    "credit_loss_pct": 0.124,
+    "other_annual_income": 620000.0
+   },
+   "inputs": {
+    "gross_rent": 3100000.0,
+    "vacancy_pct": 0.31,
+    "credit_loss_pct": 0.124,
+    "other_annual_income": 620000.0
+   },
+   "result": 2374600.0
+  },
+  {
+   "name": "effective_gross_income",
+   "values": {
+    "gross_rent": 1550000.0,
+    "vacancy_pct": 0.155,
+    "credit_loss_pct": 0.062,
+    "other_annual_income": 310000.0
+   },
+   "inputs": {
+    "gross_rent": 1550000.0,
+    "vacancy_pct": 0.155,
+    "credit_loss_pct": 0.062,
+    "other_annual_income": 310000.0
+   },
+   "result": 1523649.9999999998
+  },
+  {
+   "name": "operating_expenses",
+   "values": {
+    "egi": 72000,
+    "units": 4,
+    "sqft": 4000,
+    "property_tax": 9000,
+    "insurance": 4500,
+    "management_pct": 0.08,
+    "maintenance_per_unit_year": 500,
+    "replacements_per_unit_year": 400,
+    "payroll": 0,
+    "utilities": 0
+   },
+   "inputs": {
+    "egi": 72000.0,
+    "units": 4,
+    "sqft": 4000.0,
+    "property_tax": 9000.0,
+    "insurance": 4500.0,
+    "management_pct": 0.08,
+    "maintenance_per_unit_year": 500.0,
+    "replacements_per_unit_year": 400.0,
+    "payroll": 0.0,
+    "utilities": 0.0
+   },
+   "result": {
+    "property_tax": 9000.0,
+    "insurance": 4500.0,
+    "management": 5760.0,
+    "maintenance": 2000.0,
+    "repairs": 0.0,
+    "replacements_reserve": 1600.0,
+    "payroll": 0.0,
+    "utilities": 0.0,
+    "hoa": 0.0,
+    "other": 0.0,
+    "other_pct_of_egi": 0.0,
+    "total": 22860.0
+   }
+  },
+  {
+   "name": "operating_expenses",
+   "values": {
+    "egi": 3100000.0,
+    "units": 1240,
+    "sqft": 1240000.0,
+    "property_tax": 1240000.0,
+    "insurance": 620000.0,
+    "management_pct": 0.124,
+    "maintenance_per_unit_year": 12400.0,
+    "replacements_per_unit_year": 12400.0,
+    "payroll": 1240000.0,
+    "utilities": 1240000.0
+   },
+   "inputs": {
+    "egi": 3100000.0,
+    "units": 1240,
+    "sqft": 1240000.0,
+    "property_tax": 1240000.0,
+    "insurance": 620000.0,
+    "management_pct": 0.124,
+    "maintenance_per_unit_year": 12400.0,
+    "replacements_per_unit_year": 12400.0,
+    "payroll": 1240000.0,
+    "utilities": 1240000.0
+   },
+   "result": {
+    "property_tax": 1240000.0,
+    "insurance": 620000.0,
+    "management": 384400.0,
+    "maintenance": 15376000.0,
+    "repairs": 0.0,
+    "replacements_reserve": 15376000.0,
+    "payroll": 1240000.0,
+    "utilities": 1240000.0,
+    "hoa": 0.0,
+    "other": 0.0,
+    "other_pct_of_egi": 0.0,
+    "total": 35476400.0
+   }
+  },
+  {
+   "name": "operating_expenses",
+   "values": {
+    "egi": 1550000.0,
+    "units": 620,
+    "sqft": 620000.0,
+    "property_tax": 620000.0,
+    "insurance": 310000.0,
+    "management_pct": 0.062,
+    "maintenance_per_unit_year": 6200.0,
+    "replacements_per_unit_year": 6200.0,
+    "payroll": 620000.0,
+    "utilities": 620000.0
+   },
+   "inputs": {
+    "egi": 1550000.0,
+    "units": 620,
+    "sqft": 620000.0,
+    "property_tax": 620000.0,
+    "insurance": 310000.0,
+    "management_pct": 0.062,
+    "maintenance_per_unit_year": 6200.0,
+    "replacements_per_unit_year": 6200.0,
+    "payroll": 620000.0,
+    "utilities": 620000.0
+   },
+   "result": {
+    "property_tax": 620000.0,
+    "insurance": 310000.0,
+    "management": 96100.0,
+    "maintenance": 3844000.0,
+    "repairs": 0.0,
+    "replacements_reserve": 3844000.0,
+    "payroll": 620000.0,
+    "utilities": 620000.0,
+    "hoa": 0.0,
+    "other": 0.0,
+    "other_pct_of_egi": 0.0,
+    "total": 9954100.0
+   }
+  },
+  {
+   "name": "expense_ratio",
+   "values": {
+    "total_opex": 33000,
+    "egi": 72000
+   },
+   "inputs": {
+    "total_opex": 33000.0,
+    "egi": 72000.0
+   },
+   "result": 0.4583333333333333
+  },
+  {
+   "name": "expense_ratio",
+   "values": {
+    "total_opex": 3100000.0,
+    "egi": 3100000.38
+   },
+   "inputs": {
+    "total_opex": 3100000.0,
+    "egi": 3100000.38
+   },
+   "result": 0.9999998774193699
+  },
+  {
+   "name": "expense_ratio",
+   "values": {
+    "total_opex": 1550000.0,
+    "egi": 1550000.69
+   },
+   "inputs": {
+    "total_opex": 1550000.0,
+    "egi": 1550000.69
+   },
+   "result": 0.9999995548389079
+  },
+  {
+   "name": "noi",
+   "values": {
+    "egi": 72000,
+    "total_opex": 33000
+   },
+   "inputs": {
+    "egi": 72000.0,
+    "total_opex": 33000.0
+   },
+   "result": 39000.0
+  },
+  {
+   "name": "noi",
+   "values": {
+    "egi": 3100000.0,
+    "total_opex": 3100000.0
+   },
+   "inputs": {
+    "egi": 3100000.0,
+    "total_opex": 3100000.0
+   },
+   "result": 0.0
+  },
+  {
+   "name": "noi",
+   "values": {
+    "egi": 1550000.0,
+    "total_opex": 1550000.0
+   },
+   "inputs": {
+    "egi": 1550000.0,
+    "total_opex": 1550000.0
+   },
+   "result": 0.0
+  },
+  {
+   "name": "breakeven_occupancy",
+   "values": {
+    "gross_potential_rent": 72000,
+    "total_opex": 28000,
+    "annual_debt_service": 24000
+   },
+   "inputs": {
+    "gross_potential_rent": 72000.0,
+    "total_opex": 28000.0,
+    "annual_debt_service": 24000.0
+   },
+   "result": 0.7222222222222222
+  },
+  {
+   "name": "breakeven_occupancy",
+   "values": {
+    "gross_potential_rent": 3100000.38,
+    "total_opex": 3100000.0,
+    "annual_debt_service": 3100000.0
+   },
+   "inputs": {
+    "gross_potential_rent": 3100000.38,
+    "total_opex": 3100000.0,
+    "annual_debt_service": 3100000.0
+   },
+   "result": null
+  },
+  {
+   "name": "breakeven_occupancy",
+   "values": {
+    "gross_potential_rent": 1550000.69,
+    "total_opex": 1550000.0,
+    "annual_debt_service": 1550000.0
+   },
+   "inputs": {
+    "gross_potential_rent": 1550000.69,
+    "total_opex": 1550000.0,
+    "annual_debt_service": 1550000.0
+   },
+   "result": null
+  },
+  {
+   "name": "dscr",
+   "values": {
+    "noi_value": 40000,
+    "annual_debt_service": 32000
+   },
+   "inputs": {
+    "noi_value": 40000.0,
+    "annual_debt_service": 32000.0
+   },
+   "result": 1.25
+  },
+  {
+   "name": "dscr",
+   "values": {
+    "noi_value": 3100000.0,
+    "annual_debt_service": 3100000.38
+   },
+   "inputs": {
+    "noi_value": 3100000.0,
+    "annual_debt_service": 3100000.38
+   },
+   "result": 0.9999998774193699
+  },
+  {
+   "name": "dscr",
+   "values": {
+    "noi_value": 1550000.0,
+    "annual_debt_service": 1550000.69
+   },
+   "inputs": {
+    "noi_value": 1550000.0,
+    "annual_debt_service": 1550000.69
+   },
+   "result": 0.9999995548389079
+  },
+  {
+   "name": "debt_yield",
+   "values": {
+    "noi_value": 40000,
+    "loan_amount": 300000
+   },
+   "inputs": {
+    "noi_value": 40000.0,
+    "loan_amount": 300000.0
+   },
+   "result": 0.13333333333333333
+  },
+  {
+   "name": "debt_yield",
+   "values": {
+    "noi_value": 3100000.0,
+    "loan_amount": 31000000.38
+   },
+   "inputs": {
+    "noi_value": 3100000.0,
+    "loan_amount": 31000000.38
+   },
+   "result": 0.09999999877419356
+  },
+  {
+   "name": "debt_yield",
+   "values": {
+    "noi_value": 1550000.0,
+    "loan_amount": 15500000.69
+   },
+   "inputs": {
+    "noi_value": 1550000.0,
+    "loan_amount": 15500000.69
+   },
+   "result": 0.0999999955483873
+  },
+  {
+   "name": "cash_on_cash",
+   "values": {
+    "annual_cashflow": 6000,
+    "cash_invested": 100000
+   },
+   "inputs": {
+    "annual_cashflow": 6000.0,
+    "cash_invested": 100000.0
+   },
+   "result": 0.06
+  },
+  {
+   "name": "cash_on_cash",
+   "values": {
+    "annual_cashflow": 2910000.0,
+    "cash_invested": 31000000.38
+   },
+   "inputs": {
+    "annual_cashflow": 2910000.0,
+    "cash_invested": 31000000.38
+   },
+   "result": 0.09387096659125913
+  },
+  {
+   "name": "cash_on_cash",
+   "values": {
+    "annual_cashflow": 1205000.0,
+    "cash_invested": 15500000.69
+   },
+   "inputs": {
+    "annual_cashflow": 1205000.0,
+    "cash_invested": 15500000.69
+   },
+   "result": 0.07774193202310109
+  },
+  {
+   "name": "cash_invested",
+   "values": {
+    "down_payment": 100000,
+    "closing_costs": 8000,
+    "rehab_cost": 15000,
+    "points_paid": 3000
+   },
+   "inputs": {
+    "down_payment": 100000.0,
+    "closing_costs": 8000.0,
+    "rehab_cost": 15000.0,
+    "points_paid": 3000.0
+   },
+   "result": 126000.0
+  },
+  {
+   "name": "cash_invested",
+   "values": {
+    "down_payment": 31000000.0,
+    "closing_costs": 620000.0,
+    "rehab_cost": 1240000.0,
+    "points_paid": 310000.0
+   },
+   "inputs": {
+    "down_payment": 31000000.0,
+    "closing_costs": 620000.0,
+    "rehab_cost": 1240000.0,
+    "points_paid": 310000.0
+   },
+   "result": 33170000.0
+  },
+  {
+   "name": "cash_invested",
+   "values": {
+    "down_payment": 15500000.0,
+    "closing_costs": 310000.0,
+    "rehab_cost": 620000.0,
+    "points_paid": 155000.0
+   },
+   "inputs": {
+    "down_payment": 15500000.0,
+    "closing_costs": 310000.0,
+    "rehab_cost": 620000.0,
+    "points_paid": 155000.0
+   },
+   "result": 16585000.0
+  },
+  {
+   "name": "payback_years",
+   "values": {
+    "initial_investment": 100000,
+    "annual_cashflow": 8000
+   },
+   "inputs": {
+    "initial_investment": 100000.0,
+    "annual_cashflow": 8000.0
+   },
+   "result": 12.5
+  },
+  {
+   "name": "payback_years",
+   "values": {
+    "initial_investment": 31000000.38,
+    "annual_cashflow": 3100000.0
+   },
+   "inputs": {
+    "initial_investment": 31000000.38,
+    "annual_cashflow": 3100000.0
+   },
+   "result": 10.000000122580644
+  },
+  {
+   "name": "payback_years",
+   "values": {
+    "initial_investment": 15500000.69,
+    "annual_cashflow": 1550000.0
+   },
+   "inputs": {
+    "initial_investment": 15500000.69,
+    "annual_cashflow": 1550000.0
+   },
+   "result": 10.00000044516129
+  },
+  {
+   "name": "equity_multiple",
+   "values": {
+    "total_distributions": 250000,
+    "total_invested": 100000
+   },
+   "inputs": {
+    "total_distributions": 250000.0,
+    "total_invested": 100000.0
+   },
+   "result": 2.5
+  },
+  {
+   "name": "equity_multiple",
+   "values": {
+    "total_distributions": 62000000.0,
+    "total_invested": 31000000.38
+   },
+   "inputs": {
+    "total_distributions": 62000000.0,
+    "total_invested": 31000000.38
+   },
+   "result": 1.9999999754838713
+  },
+  {
+   "name": "equity_multiple",
+   "values": {
+    "total_distributions": 31000000.0,
+    "total_invested": 15500000.69
+   },
+   "inputs": {
+    "total_distributions": 31000000.0,
+    "total_invested": 15500000.69
+   },
+   "result": 1.999999910967746
+  },
+  {
+   "name": "average_annual_return",
+   "values": {
+    "multiple": 2.5,
+    "years": 10
+   },
+   "inputs": {
+    "multiple": 2.5,
+    "years": 10.0
+   },
+   "result": 0.09595822638521723
+  },
+  {
+   "name": "average_annual_return",
+   "values": {
+    "multiple": 12.438,
+    "years": 31.19
+   },
+   "inputs": {
+    "multiple": 12.438,
+    "years": 31.19
+   },
+   "result": 0.08417504963747957
+  },
+  {
+   "name": "average_annual_return",
+   "values": {
+    "multiple": 6.269,
+    "years": 15.845
+   },
+   "inputs": {
+    "multiple": 6.269,
+    "years": 15.845
+   },
+   "result": 0.12282556476093909
+  },
+  {
+   "name": "total_return",
+   "values": {
+    "cumulative_cashflow": 60000,
+    "appreciation": 150000,
+    "principal_paydown": 80000,
+    "initial_equity": 100000
+   },
+   "inputs": {
+    "cumulative_cashflow": 60000.0,
+    "appreciation": 150000.0,
+    "principal_paydown": 80000.0,
+    "initial_equity": 100000.0
+   },
+   "result": 2.9
+  },
+  {
+   "name": "total_return",
+   "values": {
+    "cumulative_cashflow": 61620000.0,
+    "appreciation": 43000000.0,
+    "principal_paydown": 62000000.0,
+    "initial_equity": 31000000.38
+   },
+   "inputs": {
+    "cumulative_cashflow": 61620000.0,
+    "appreciation": 43000000.0,
+    "principal_paydown": 62000000.0,
+    "initial_equity": 31000000.38
+   },
+   "result": 5.374838643792301
+  },
+  {
+   "name": "total_return",
+   "values": {
+    "cumulative_cashflow": 30310000.0,
+    "appreciation": -3500000.0,
+    "principal_paydown": 31000000.0,
+    "initial_equity": 15500000.69
+   },
+   "inputs": {
+    "cumulative_cashflow": 30310000.0,
+    "appreciation": -3500000.0,
+    "principal_paydown": 31000000.0,
+    "initial_equity": 15500000.69
+   },
+   "result": 3.729677253324045
+  },
+  {
+   "name": "irr",
+   "values": {
+    "cashflows": [
+     -100000,
+     8000,
+     8000,
+     8000,
+     180000
+    ]
+   },
+   "inputs": {
+    "cashflows": [
+     -100000.0,
+     8000.0,
+     8000.0,
+     8000.0,
+     180000.0
+    ]
+   },
+   "result": 0.21186261619499458
+  },
+  {
+   "name": "irr",
+   "values": {
+    "cashflows": [
+     1620.0,
+     3240.0,
+     4860.0
+    ]
+   },
+   "inputs": {
+    "cashflows": [
+     1620.0,
+     3240.0,
+     4860.0
+    ]
+   },
+   "result": null
+  },
+  {
+   "name": "irr",
+   "values": {
+    "cashflows": [
+     1310.0,
+     2620.0,
+     3930.0
+    ]
+   },
+   "inputs": {
+    "cashflows": [
+     1310.0,
+     2620.0,
+     3930.0
+    ]
+   },
+   "result": null
+  },
+  {
+   "name": "npv",
+   "values": {
+    "rate": 0.08,
+    "cashflows": [
+     -100000,
+     8000,
+     8000,
+     180000
+    ]
+   },
+   "inputs": {
+    "rate": 0.08,
+    "cashflows": [
+     -100000.0,
+     8000.0,
+     8000.0,
+     180000.0
+    ]
+   },
+   "result": 57155.9213534522
+  },
+  {
+   "name": "npv",
+   "values": {
+    "rate": 0.31,
+    "cashflows": [
+     1620.0,
+     3240.0,
+     4860.0
+    ]
+   },
+   "inputs": {
+    "rate": 0.31,
+    "cashflows": [
+     1620.0,
+     3240.0,
+     4860.0
+    ]
+   },
+   "result": 6925.2852397878905
+  },
+  {
+   "name": "npv",
+   "values": {
+    "rate": 0.155,
+    "cashflows": [
+     1310.0,
+     2620.0,
+     3930.0
+    ]
+   },
+   "inputs": {
+    "rate": 0.155,
+    "cashflows": [
+     1310.0,
+     2620.0,
+     3930.0
+    ]
+   },
+   "result": 6524.370045538877
+  },
+  {
+   "name": "mirr",
+   "values": {
+    "cashflows": [
+     -100000,
+     8000,
+     8000,
+     180000
+    ],
+    "finance_rate": 0.07,
+    "reinvest_rate": 0.05
+   },
+   "inputs": {
+    "cashflows": [
+     -100000.0,
+     8000.0,
+     8000.0,
+     180000.0
+    ],
+    "finance_rate": 0.07,
+    "reinvest_rate": 0.05
+   },
+   "result": 0.25405615716806196
+  },
+  {
+   "name": "mirr",
+   "values": {
+    "cashflows": [
+     1620.0,
+     3240.0,
+     4860.0
+    ],
+    "finance_rate": 0.186,
+    "reinvest_rate": 0.186
+   },
+   "inputs": {
+    "cashflows": [
+     1620.0,
+     3240.0,
+     4860.0
+    ],
+    "finance_rate": 0.186,
+    "reinvest_rate": 0.186
+   },
+   "result": null
+  },
+  {
+   "name": "mirr",
+   "values": {
+    "cashflows": [
+     1310.0,
+     2620.0,
+     3930.0
+    ],
+    "finance_rate": 0.093,
+    "reinvest_rate": 0.093
+   },
+   "inputs": {
+    "cashflows": [
+     1310.0,
+     2620.0,
+     3930.0
+    ],
+    "finance_rate": 0.093,
+    "reinvest_rate": 0.093
+   },
+   "result": null
+  },
+  {
+   "name": "depreciable_basis",
+   "values": {
+    "purchase_price": 500000,
+    "land_pct": 0.2,
+    "closing_costs": 10000,
+    "capital_improvements": 20000
+   },
+   "inputs": {
+    "purchase_price": 500000.0,
+    "land_pct": 0.2,
+    "closing_costs": 10000.0,
+    "capital_improvements": 20000.0
+   },
+   "result": {
+    "total_cost": 530000.0,
+    "land": 102000.0,
+    "depreciable_basis": 428000.0,
+    "land_pct": 0.2
+   }
+  },
+  {
+   "name": "depreciable_basis",
+   "values": {
+    "purchase_price": 31000000.0,
+    "land_pct": 0.62,
+    "closing_costs": 620000.0,
+    "capital_improvements": 3100000.0
+   },
+   "inputs": {
+    "purchase_price": 31000000.0,
+    "land_pct": 0.62,
+    "closing_costs": 620000.0,
+    "capital_improvements": 3100000.0
+   },
+   "result": {
+    "total_cost": 34720000.0,
+    "land": 19604400.0,
+    "depreciable_basis": 15115600.0,
+    "land_pct": 0.62
+   }
+  },
+  {
+   "name": "depreciable_basis",
+   "values": {
+    "purchase_price": 15500000.0,
+    "land_pct": 0.31,
+    "closing_costs": 310000.0,
+    "capital_improvements": 1550000.0
+   },
+   "inputs": {
+    "purchase_price": 15500000.0,
+    "land_pct": 0.31,
+    "closing_costs": 310000.0,
+    "capital_improvements": 1550000.0
+   },
+   "result": {
+    "total_cost": 17360000.0,
+    "land": 4901100.0,
+    "depreciable_basis": 12458900.0,
+    "land_pct": 0.31
+   }
+  },
+  {
+   "name": "straight_line_annual",
+   "values": {
+    "basis": 420000,
+    "years": 27.5
+   },
+   "inputs": {
+    "basis": 420000.0,
+    "years": 27.5
+   },
+   "result": 15272.727272727272
+  },
+  {
+   "name": "straight_line_annual",
+   "values": {
+    "basis": 31000000.0,
+    "years": 25.18
+   },
+   "inputs": {
+    "basis": 31000000.0,
+    "years": 25.18
+   },
+   "result": 1231135.8220810166
+  },
+  {
+   "name": "straight_line_annual",
+   "values": {
+    "basis": 15500000.0,
+    "years": 13.09
+   },
+   "inputs": {
+    "basis": 15500000.0,
+    "years": 13.09
+   },
+   "result": 1184110.0076394195
+  },
+  {
+   "name": "annual_depreciation",
+   "values": {
+    "basis": 420000,
+    "years": 27.5,
+    "placed_in_service_month": 7
+   },
+   "inputs": {
+    "basis": 420000.0,
+    "years": 27.5,
+    "placed_in_service_month": 7
+   },
+   "result": 7000.0
+  },
+  {
+   "name": "annual_depreciation",
+   "values": {
+    "basis": 31000000.0,
+    "years": 25.18,
+    "placed_in_service_month": 8
+   },
+   "inputs": {
+    "basis": 31000000.0,
+    "years": 25.18,
+    "placed_in_service_month": 8
+   },
+   "result": 461675.93328038126
+  },
+  {
+   "name": "annual_depreciation",
+   "values": {
+    "basis": 15500000.0,
+    "years": 13.09,
+    "placed_in_service_month": 4
+   },
+   "inputs": {
+    "basis": 15500000.0,
+    "years": 13.09,
+    "placed_in_service_month": 4
+   },
+   "result": 838744.5887445888
+  },
+  {
+   "name": "depreciation_taken_over_hold",
+   "values": {
+    "basis": 420000,
+    "years": 27.5,
+    "placed_in_service_month": 7,
+    "hold_years": 10
+   },
+   "inputs": {
+    "basis": 420000.0,
+    "years": 27.5,
+    "placed_in_service_month": 7,
+    "hold_years": 10
+   },
+   "result": 152727.27272727274
+  },
+  {
+   "name": "depreciation_taken_over_hold",
+   "values": {
+    "basis": 31000000.0,
+    "years": 25.18,
+    "placed_in_service_month": 8,
+    "hold_years": 25
+   },
+   "inputs": {
+    "basis": 31000000.0,
+    "years": 25.18,
+    "placed_in_service_month": 8,
+    "hold_years": 25
+   },
+   "result": 30778395.552025422
+  },
+  {
+   "name": "depreciation_taken_over_hold",
+   "values": {
+    "basis": 15500000.0,
+    "years": 13.09,
+    "placed_in_service_month": 4,
+    "hold_years": 13
+   },
+   "inputs": {
+    "basis": 15500000.0,
+    "years": 13.09,
+    "placed_in_service_month": 4,
+    "hold_years": 13
+   },
+   "result": 15393430.099312454
+  },
+  {
+   "name": "cost_segregation_benefit",
+   "values": {
+    "building_basis": 2000000,
+    "reallocated_pct": 0.25,
+    "bonus_depreciation_rate": 1.0,
+    "ordinary_rate": 0.37,
+    "horizon_years": 10
+   },
+   "inputs": {
+    "building_basis": 2000000.0,
+    "reallocated_pct": 0.25,
+    "bonus_depreciation_rate": 1.0,
+    "ordinary_rate": 0.37,
+    "horizon_years": 10
+   },
+   "result": {
+    "reallocated_amount": 500000.0,
+    "first_year_deduction": 500000.0,
+    "pv_tax_saved_accelerated": 185000.0,
+    "pv_tax_saved_straight_line": 104739.70034705526,
+    "net_pv_benefit": 50260.29965294474,
+    "extra_recapture_exposure": 60000.0
+   }
+  },
+  {
+   "name": "cost_segregation_benefit",
+   "values": {
+    "building_basis": 62000000.0,
+    "reallocated_pct": 0.329,
+    "bonus_depreciation_rate": 0.62,
+    "ordinary_rate": 0.379,
+    "horizon_years": 25
+   },
+   "inputs": {
+    "building_basis": 62000000.0,
+    "reallocated_pct": 0.329,
+    "bonus_depreciation_rate": 0.62,
+    "ordinary_rate": 0.379,
+    "horizon_years": 25
+   },
+   "result": {
+    "reallocated_amount": 20398000.0,
+    "first_year_deduction": 12646760.0,
+    "pv_tax_saved_accelerated": 4793122.04,
+    "pv_tax_saved_straight_line": 5168133.238915152,
+    "net_pv_benefit": -1690682.1989151519,
+    "extra_recapture_exposure": 2631342.0
+   }
+  },
+  {
+   "name": "cost_segregation_benefit",
+   "values": {
+    "building_basis": 31000000.0,
+    "reallocated_pct": 0.1895,
+    "bonus_depreciation_rate": 0.31,
+    "ordinary_rate": 0.2395,
+    "horizon_years": 13
+   },
+   "inputs": {
+    "building_basis": 31000000.0,
+    "reallocated_pct": 0.1895,
+    "bonus_depreciation_rate": 0.31,
+    "ordinary_rate": 0.2395,
+    "horizon_years": 13
+   },
+   "result": {
+    "reallocated_amount": 5874500.0,
+    "first_year_deduction": 1821095.0,
+    "pv_tax_saved_accelerated": 436152.2525,
+    "pv_tax_saved_straight_line": 1365936.5780435943,
+    "net_pv_benefit": -898943.2005435943,
+    "extra_recapture_exposure": -61682.25000000006
+   }
+  },
+  {
+   "name": "sale_gain_components",
+   "values": {
+    "sale_price": 700000,
+    "selling_costs": 42000,
+    "purchase_price": 500000,
+    "capital_improvements": 40000,
+    "depreciation_claimed": 150000
+   },
+   "inputs": {
+    "sale_price": 700000.0,
+    "selling_costs": 42000.0,
+    "purchase_price": 500000.0,
+    "capital_improvements": 40000.0,
+    "depreciation_claimed": 150000.0
+   },
+   "result": {
+    "amount_realized": 658000.0,
+    "adjusted_basis": 390000.0,
+    "total_gain": 268000.0,
+    "section_1245_recapture": 0.0,
+    "unrecaptured_1250_gain": 150000.0,
+    "long_term_capital_gain": 118000.0,
+    "is_loss": false
+   }
+  },
+  {
+   "name": "sale_gain_components",
+   "values": {
+    "sale_price": 62000000.0,
+    "selling_costs": 3100000.0,
+    "purchase_price": 62000000.0,
+    "capital_improvements": 6200000.0,
+    "depreciation_claimed": 6200000.0
+   },
+   "inputs": {
+    "sale_price": 62000000.0,
+    "selling_costs": 3100000.0,
+    "purchase_price": 62000000.0,
+    "capital_improvements": 6200000.0,
+    "depreciation_claimed": 6200000.0
+   },
+   "result": {
+    "amount_realized": 58900000.0,
+    "adjusted_basis": 62000000.0,
+    "total_gain": -3100000.0,
+    "section_1245_recapture": 0.0,
+    "unrecaptured_1250_gain": 0.0,
+    "long_term_capital_gain": -3100000.0,
+    "is_loss": true
+   }
+  },
+  {
+   "name": "sale_gain_components",
+   "values": {
+    "sale_price": 31000000.0,
+    "selling_costs": 1550000.0,
+    "purchase_price": 31000000.0,
+    "capital_improvements": 3100000.0,
+    "depreciation_claimed": 3100000.0
+   },
+   "inputs": {
+    "sale_price": 31000000.0,
+    "selling_costs": 1550000.0,
+    "purchase_price": 31000000.0,
+    "capital_improvements": 3100000.0,
+    "depreciation_claimed": 3100000.0
+   },
+   "result": {
+    "amount_realized": 29450000.0,
+    "adjusted_basis": 31000000.0,
+    "total_gain": -1550000.0,
+    "section_1245_recapture": 0.0,
+    "unrecaptured_1250_gain": 0.0,
+    "long_term_capital_gain": -1550000.0,
+    "is_loss": true
+   }
+  },
+  {
+   "name": "capital_gains_tax",
+   "values": {
+    "s1245_recapture": 0,
+    "unrecaptured_1250_gain": 150000,
+    "long_term_capital_gain": 80000,
+    "ordinary_rate": 0.24,
+    "ltcg_rate": 0.15,
+    "state_rate": 0.05
+   },
+   "inputs": {
+    "s1245_recapture": 0.0,
+    "unrecaptured_1250_gain": 150000.0,
+    "long_term_capital_gain": 80000.0,
+    "ordinary_rate": 0.24,
+    "ltcg_rate": 0.15,
+    "state_rate": 0.05
+   },
+   "result": {
+    "tax_section_1245": 0.0,
+    "tax_unrecaptured_1250": 36000.0,
+    "rate_applied_to_1250": 0.24,
+    "tax_long_term_capital_gain": 12000.0,
+    "federal_tax": 48000.0,
+    "niit_tax": 0.0,
+    "state_tax": 11500.0,
+    "total_tax": 59500.0,
+    "effective_rate_on_gain": 0.25869565217391305
+   }
+  },
+  {
+   "name": "capital_gains_tax",
+   "values": {
+    "s1245_recapture": 6200000.0,
+    "unrecaptured_1250_gain": 6200000.0,
+    "long_term_capital_gain": 6200000.0,
+    "ordinary_rate": 0.379,
+    "ltcg_rate": 0.186,
+    "state_rate": 0.093
+   },
+   "inputs": {
+    "s1245_recapture": 6200000.0,
+    "unrecaptured_1250_gain": 6200000.0,
+    "long_term_capital_gain": 6200000.0,
+    "ordinary_rate": 0.379,
+    "ltcg_rate": 0.186,
+    "state_rate": 0.093
+   },
+   "result": {
+    "tax_section_1245": 2349800.0,
+    "tax_unrecaptured_1250": 1550000.0,
+    "rate_applied_to_1250": 0.25,
+    "tax_long_term_capital_gain": 1153200.0,
+    "federal_tax": 5053000.0,
+    "niit_tax": 0.0,
+    "state_tax": 1729800.0,
+    "total_tax": 6782800.0,
+    "effective_rate_on_gain": 0.36466666666666664
+   }
+  },
+  {
+   "name": "capital_gains_tax",
+   "values": {
+    "s1245_recapture": 3100000.0,
+    "unrecaptured_1250_gain": 3100000.0,
+    "long_term_capital_gain": 3100000.0,
+    "ordinary_rate": 0.2395,
+    "ltcg_rate": 0.093,
+    "state_rate": 0.0465
+   },
+   "inputs": {
+    "s1245_recapture": 3100000.0,
+    "unrecaptured_1250_gain": 3100000.0,
+    "long_term_capital_gain": 3100000.0,
+    "ordinary_rate": 0.2395,
+    "ltcg_rate": 0.093,
+    "state_rate": 0.0465
+   },
+   "result": {
+    "tax_section_1245": 742450.0,
+    "tax_unrecaptured_1250": 742450.0,
+    "rate_applied_to_1250": 0.2395,
+    "tax_long_term_capital_gain": 288300.0,
+    "federal_tax": 1773200.0,
+    "niit_tax": 0.0,
+    "state_tax": 432450.0,
+    "total_tax": 2205650.0,
+    "effective_rate_on_gain": 0.23716666666666666
+   }
+  },
+  {
+   "name": "niit",
+   "values": {
+    "net_investment_income": 80000,
+    "magi": 300000
+   },
+   "inputs": {
+    "net_investment_income": 80000.0,
+    "magi": 300000.0
+   },
+   "result": {
+    "magi": 300000.0,
+    "threshold": 250000.0,
+    "magi_over_threshold": 50000.0,
+    "niit_base": 80000.0,
+    "niit_taxable": 50000.0,
+    "niit_tax": 1900.0
+   }
+  },
+  {
+   "name": "niit",
+   "values": {
+    "net_investment_income": 6200000.0,
+    "magi": 12400000.0
+   },
+   "inputs": {
+    "net_investment_income": 6200000.0,
+    "magi": 12400000.0
+   },
+   "result": {
+    "magi": 12400000.0,
+    "threshold": 250000.0,
+    "magi_over_threshold": 12150000.0,
+    "niit_base": 6200000.0,
+    "niit_taxable": 6200000.0,
+    "niit_tax": 235600.0
+   }
+  },
+  {
+   "name": "niit",
+   "values": {
+    "net_investment_income": 3100000.0,
+    "magi": 6200000.0
+   },
+   "inputs": {
+    "net_investment_income": 3100000.0,
+    "magi": 6200000.0
+   },
+   "result": {
+    "magi": 6200000.0,
+    "threshold": 250000.0,
+    "magi_over_threshold": 5950000.0,
+    "niit_base": 3100000.0,
+    "niit_taxable": 3100000.0,
+    "niit_tax": 117800.0
+   }
+  },
+  {
+   "name": "passive_loss_allowed",
+   "values": {
+    "rental_loss": 20000,
+    "magi": 120000
+   },
+   "inputs": {
+    "rental_loss": 20000.0,
+    "magi": 120000.0
+   },
+   "result": {
+    "allowed": 0.0,
+    "suspended": 0.0,
+    "allowance": 0.0,
+    "phaseout_reduction": 0.0
+   }
+  },
+  {
+   "name": "passive_loss_allowed",
+   "values": {
+    "rental_loss": 1240000.0,
+    "magi": 12400000.0
+   },
+   "inputs": {
+    "rental_loss": 1240000.0,
+    "magi": 12400000.0
+   },
+   "result": {
+    "allowed": 0.0,
+    "suspended": 0.0,
+    "allowance": 0.0,
+    "phaseout_reduction": 0.0
+   }
+  },
+  {
+   "name": "passive_loss_allowed",
+   "values": {
+    "rental_loss": 620000.0,
+    "magi": 6200000.0
+   },
+   "inputs": {
+    "rental_loss": 620000.0,
+    "magi": 6200000.0
+   },
+   "result": {
+    "allowed": 0.0,
+    "suspended": 0.0,
+    "allowance": 0.0,
+    "phaseout_reduction": 0.0
+   }
+  },
+  {
+   "name": "qbi_deduction",
+   "values": {
+    "qualified_business_income": 40000,
+    "taxable_income_before_qbi": 300000
+   },
+   "inputs": {
+    "qualified_business_income": 40000.0,
+    "taxable_income_before_qbi": 300000.0
+   },
+   "result": {
+    "qbi": 40000.0,
+    "deduction": 8000.0,
+    "qualified": true,
+    "note": "subject to the taxable-income limitation and wage/capital limits above the threshold"
+   }
+  },
+  {
+   "name": "qbi_deduction",
+   "values": {
+    "qualified_business_income": 3100000.0,
+    "taxable_income_before_qbi": 12400000.0
+   },
+   "inputs": {
+    "qualified_business_income": 3100000.0,
+    "taxable_income_before_qbi": 12400000.0
+   },
+   "result": {
+    "qbi": 3100000.0,
+    "deduction": 620000.0,
+    "qualified": true,
+    "note": "subject to the taxable-income limitation and wage/capital limits above the threshold"
+   }
+  },
+  {
+   "name": "qbi_deduction",
+   "values": {
+    "qualified_business_income": 1550000.0,
+    "taxable_income_before_qbi": 6200000.0
+   },
+   "inputs": {
+    "qualified_business_income": 1550000.0,
+    "taxable_income_before_qbi": 6200000.0
+   },
+   "result": {
+    "qbi": 1550000.0,
+    "deduction": 310000.0,
+    "qualified": true,
+    "note": "subject to the taxable-income limitation and wage/capital limits above the threshold"
+   }
+  },
+  {
+   "name": "section_121_exclusion",
+   "values": {
+    "filing_status": "mfj",
+    "years_occupied": 5
+   },
+   "inputs": {
+    "filing_status": "mfj",
+    "years_occupied": 5.0
+   },
+   "result": 500000.0
+  },
+  {
+   "name": "section_121_exclusion",
+   "values": {
+    "filing_status": "mfj",
+    "years_occupied": 24.8
+   },
+   "inputs": {
+    "filing_status": "mfj",
+    "years_occupied": 24.8
+   },
+   "result": 500000.0
+  },
+  {
+   "name": "section_121_exclusion",
+   "values": {
+    "filing_status": "mfj",
+    "years_occupied": 12.4
+   },
+   "inputs": {
+    "filing_status": "mfj",
+    "years_occupied": 12.4
+   },
+   "result": 500000.0
+  },
+  {
+   "name": "section_1031_deferral",
+   "values": {
+    "total_gain": 250000,
+    "unrecaptured_1250_gain": 150000,
+    "ordinary_rate": 0.24,
+    "ltcg_rate": 0.15
+   },
+   "inputs": {
+    "total_gain": 250000.0,
+    "unrecaptured_1250_gain": 150000.0,
+    "ordinary_rate": 0.24,
+    "ltcg_rate": 0.15
+   },
+   "result": {
+    "total_gain": 250000.0,
+    "recapture_deferred": 150000.0,
+    "appreciation_deferred": 100000.0,
+    "tax_deferred": 51000.0,
+    "basis_reduction": 250000.0
+   }
+  },
+  {
+   "name": "section_1031_deferral",
+   "values": {
+    "total_gain": 31000000.0,
+    "unrecaptured_1250_gain": 31000000.0,
+    "ordinary_rate": 0.379,
+    "ltcg_rate": 0.186
+   },
+   "inputs": {
+    "total_gain": 31000000.0,
+    "unrecaptured_1250_gain": 31000000.0,
+    "ordinary_rate": 0.379,
+    "ltcg_rate": 0.186
+   },
+   "result": {
+    "total_gain": 31000000.0,
+    "recapture_deferred": 31000000.0,
+    "appreciation_deferred": 0.0,
+    "tax_deferred": 7750000.0,
+    "basis_reduction": 31000000.0
+   }
+  },
+  {
+   "name": "section_1031_deferral",
+   "values": {
+    "total_gain": 15500000.0,
+    "unrecaptured_1250_gain": 15500000.0,
+    "ordinary_rate": 0.2395,
+    "ltcg_rate": 0.093
+   },
+   "inputs": {
+    "total_gain": 15500000.0,
+    "unrecaptured_1250_gain": 15500000.0,
+    "ordinary_rate": 0.2395,
+    "ltcg_rate": 0.093
+   },
+   "result": {
+    "total_gain": 15500000.0,
+    "recapture_deferred": 15500000.0,
+    "appreciation_deferred": 0.0,
+    "tax_deferred": 3712250.0,
+    "basis_reduction": 15500000.0
+   }
+  },
+  {
+   "name": "opportunity_zone_deferral",
+   "values": {
+    "capital_gain": 250000,
+    "years_held": 10
+   },
+   "inputs": {
+    "capital_gain": 250000.0,
+    "years_held": 10.0
+   },
+   "result": {
+    "deferred_gain": 250000.0,
+    "tax_now": 0.0,
+    "years_held": 10.0,
+    "excludes_new_appreciation_after_year": 10
+   }
+  },
+  {
+   "name": "opportunity_zone_deferral",
+   "values": {
+    "capital_gain": 31000000.0,
+    "years_held": 18.6
+   },
+   "inputs": {
+    "capital_gain": 31000000.0,
+    "years_held": 18.6
+   },
+   "result": {
+    "deferred_gain": 31000000.0,
+    "tax_now": 0.0,
+    "years_held": 18.6,
+    "excludes_new_appreciation_after_year": 10
+   }
+  },
+  {
+   "name": "opportunity_zone_deferral",
+   "values": {
+    "capital_gain": 15500000.0,
+    "years_held": 9.3
+   },
+   "inputs": {
+    "capital_gain": 15500000.0,
+    "years_held": 9.3
+   },
+   "result": {
+    "deferred_gain": 15500000.0,
+    "tax_now": 0.0,
+    "years_held": 9.3,
+    "excludes_new_appreciation_after_year": 10
+   }
+  },
+  {
+   "name": "step_up_basis_benefit",
+   "values": {
+    "unrealized_gain": 500000,
+    "deferred_recapture": 200000,
+    "ordinary_rate": 0.24,
+    "ltcg_rate": 0.15,
+    "state_rate": 0.05
+   },
+   "inputs": {
+    "unrealized_gain": 500000.0,
+    "deferred_recapture": 200000.0,
+    "ordinary_rate": 0.24,
+    "ltcg_rate": 0.15,
+    "state_rate": 0.05
+   },
+   "result": {
+    "unrealized_gain": 500000.0,
+    "deferred_recapture": 200000.0,
+    "ltcg_portion": 300000.0,
+    "tax_avoided_by_step_up": 118000.0,
+    "effective_value_preserved": 1.0
+   }
+  },
+  {
+   "name": "step_up_basis_benefit",
+   "values": {
+    "unrealized_gain": 31000000.0,
+    "deferred_recapture": 31000000.0,
+    "ordinary_rate": 0.379,
+    "ltcg_rate": 0.186,
+    "state_rate": 0.093
+   },
+   "inputs": {
+    "unrealized_gain": 31000000.0,
+    "deferred_recapture": 31000000.0,
+    "ordinary_rate": 0.379,
+    "ltcg_rate": 0.186,
+    "state_rate": 0.093
+   },
+   "result": {
+    "unrealized_gain": 31000000.0,
+    "deferred_recapture": 31000000.0,
+    "ltcg_portion": 0.0,
+    "tax_avoided_by_step_up": 10633000.0,
+    "effective_value_preserved": 1.0
+   }
+  },
+  {
+   "name": "step_up_basis_benefit",
+   "values": {
+    "unrealized_gain": 15500000.0,
+    "deferred_recapture": 15500000.0,
+    "ordinary_rate": 0.2395,
+    "ltcg_rate": 0.093,
+    "state_rate": 0.0465
+   },
+   "inputs": {
+    "unrealized_gain": 15500000.0,
+    "deferred_recapture": 15500000.0,
+    "ordinary_rate": 0.2395,
+    "ltcg_rate": 0.093,
+    "state_rate": 0.0465
+   },
+   "result": {
+    "unrealized_gain": 15500000.0,
+    "deferred_recapture": 15500000.0,
+    "ltcg_portion": 0.0,
+    "tax_avoided_by_step_up": 4433000.0,
+    "effective_value_preserved": 1.0
+   }
+  },
+  {
+   "name": "estate_tax",
+   "values": {
+    "estate_value": 15000000,
+    "filing_status": "mfj",
+    "exemption_used": 0
+   },
+   "inputs": {
+    "estate_value": 15000000.0,
+    "filing_status": "mfj",
+    "exemption_used": 0.0
+   },
+   "result": {
+    "estate_value": 15000000.0,
+    "filing_status": "mfj",
+    "gross_exemption": 30000000.0,
+    "exemption_used": 0.0,
+    "remaining_exemption": 30000000.0,
+    "taxable_estate": 0.0,
+    "estate_tax": 0.0,
+    "effective_rate_on_estate": 0.0
+   }
+  },
+  {
+   "name": "estate_tax",
+   "values": {
+    "estate_value": 310000000.0,
+    "filing_status": "mfj",
+    "exemption_used": 62000000.0
+   },
+   "inputs": {
+    "estate_value": 310000000.0,
+    "filing_status": "mfj",
+    "exemption_used": 62000000.0
+   },
+   "result": {
+    "estate_value": 310000000.0,
+    "filing_status": "mfj",
+    "gross_exemption": 30000000.0,
+    "exemption_used": 62000000.0,
+    "remaining_exemption": 0.0,
+    "taxable_estate": 310000000.0,
+    "estate_tax": 124000000.0,
+    "effective_rate_on_estate": 0.4
+   }
+  },
+  {
+   "name": "estate_tax",
+   "values": {
+    "estate_value": 155000000.0,
+    "filing_status": "mfj",
+    "exemption_used": 31000000.0
+   },
+   "inputs": {
+    "estate_value": 155000000.0,
+    "filing_status": "mfj",
+    "exemption_used": 31000000.0
+   },
+   "result": {
+    "estate_value": 155000000.0,
+    "filing_status": "mfj",
+    "gross_exemption": 30000000.0,
+    "exemption_used": 31000000.0,
+    "remaining_exemption": 0.0,
+    "taxable_estate": 155000000.0,
+    "estate_tax": 62000000.0,
+    "effective_rate_on_estate": 0.4
+   }
+  },
+  {
+   "name": "gift_and_annual_exclusion",
+   "values": {
+    "annual_gifts": 8,
+    "years": 10
+   },
+   "inputs": {
+    "annual_gifts": 8,
+    "years": 10
+   },
+   "result": {
+    "per_year_excluded": 152000.0,
+    "total_excluded": 1520000.0,
+    "annual_exclusion": 19000.0,
+    "years": 10
+   }
+  },
+  {
+   "name": "gift_and_annual_exclusion",
+   "values": {
+    "annual_gifts": 124,
+    "years": 31
+   },
+   "inputs": {
+    "annual_gifts": 124,
+    "years": 31
+   },
+   "result": {
+    "per_year_excluded": 2356000.0,
+    "total_excluded": 73036000.0,
+    "annual_exclusion": 19000.0,
+    "years": 31
+   }
+  },
+  {
+   "name": "gift_and_annual_exclusion",
+   "values": {
+    "annual_gifts": 62,
+    "years": 16
+   },
+   "inputs": {
+    "annual_gifts": 62,
+    "years": 16
+   },
+   "result": {
+    "per_year_excluded": 1178000.0,
+    "total_excluded": 18848000.0,
+    "annual_exclusion": 19000.0,
+    "years": 16
+   }
+  },
+  {
+   "name": "tax_assumptions",
+   "values": {},
+   "inputs": {},
+   "result": {
+    "tax_year": 2026,
+    "residential_recovery_years": 27.5,
+    "nonresidential_recovery_years": 39.0,
+    "recapture_rate_cap": 0.25,
+    "niit_rate": 0.038,
+    "niit_thresholds": {
+     "single": 200000.0,
+     "mfj": 250000.0,
+     "mfs": 125000.0,
+     "hoh": 200000.0
+    },
+    "passive_loss_allowance": {
+     "single": 25000.0,
+     "mfj": 25000.0,
+     "mfs": 12500.0,
+     "hoh": 25000.0
+    },
+    "passive_phaseout_start": {
+     "single": 100000.0,
+     "mfj": 100000.0,
+     "mfs": 50000.0,
+     "hoh": 100000.0
+    },
+    "section_121_exclusion": {
+     "single": 250000.0,
+     "mfj": 500000.0,
+     "mfs": 250000.0,
+     "hoh": 250000.0
+    },
+    "estate_exemption": {
+     "single": 15000000.0,
+     "mfj": 30000000.0
+    },
+    "estate_tax_rate": 0.4,
+    "annual_gift_exclusion": 19000.0,
+    "authority": "IRS Pub 946, Pub 925, Pub 544; IRC 168, 469, 1031, 1014, 121, 199A, 1411; OBBBA P.L. 119-21; Rev. Proc. 2025-32"
+   }
+  },
+  {
+   "name": "size_loan",
+   "values": {
+    "price": 4000000,
+    "noi_value": 300000,
+    "ltv": 0.65,
+    "min_dscr": 1.25,
+    "min_debt_yield": 0.1,
+    "annual_rate": 0.0625,
+    "amort_years": 30
+   },
+   "inputs": {
+    "price": 4000000.0,
+    "noi_value": 300000.0,
+    "ltv": 0.65,
+    "min_dscr": 1.25,
+    "min_debt_yield": 0.1,
+    "annual_rate": 0.0625,
+    "amort_years": 30.0
+   },
+   "result": {
+    "loan": 2600000.0,
+    "binding_constraint": "ltv",
+    "constraint_caps": {
+     "ltv": 2600000.0,
+     "dscr": 3248244.484017933,
+     "debt_yield": 3000000.0
+    },
+    "ltv_achieved": 0.65,
+    "dscr_achieved": 1.5616560019316985,
+    "debt_yield_achieved": 0.11538461538461539,
+    "annual_debt_service": 192103.7665330351,
+    "equity_required": 1400000.0,
+    "loan_to_cost": null
+   }
+  },
+  {
+   "name": "size_loan",
+   "values": {
+    "price": 124000000.0,
+    "noi_value": 12400000.0,
+    "ltv": 0.596,
+    "min_dscr": 1.62,
+    "min_debt_yield": 0.1316,
+    "annual_rate": 0.124,
+    "amort_years": 25.18
+   },
+   "inputs": {
+    "price": 124000000.0,
+    "noi_value": 12400000.0,
+    "ltv": 0.596,
+    "min_dscr": 1.62,
+    "min_debt_yield": 0.1316,
+    "annual_rate": 0.124,
+    "amort_years": 25.18
+   },
+   "result": {
+    "loan": 58960490.39580186,
+    "binding_constraint": "dscr",
+    "constraint_caps": {
+     "ltv": 73904000.0,
+     "dscr": 58960490.39580186,
+     "debt_yield": 94224924.01215805
+    },
+    "ltv_achieved": 0.47548782577259563,
+    "dscr_achieved": 1.62,
+    "debt_yield_achieved": 0.21031032674183647,
+    "annual_debt_service": 7654320.987654321,
+    "equity_required": 65039509.60419814,
+    "loan_to_cost": null
+   }
+  },
+  {
+   "name": "size_loan",
+   "values": {
+    "price": 62000000.0,
+    "noi_value": 6200000.0,
+    "ltv": 0.348,
+    "min_dscr": 1.31,
+    "min_debt_yield": 0.0758,
+    "annual_rate": 0.062,
+    "amort_years": 13.09
+   },
+   "inputs": {
+    "price": 62000000.0,
+    "noi_value": 6200000.0,
+    "ltv": 0.348,
+    "min_dscr": 1.31,
+    "min_debt_yield": 0.0758,
+    "annual_rate": 0.062,
+    "amort_years": 13.09
+   },
+   "result": {
+    "loan": 21576000.0,
+    "binding_constraint": "ltv",
+    "constraint_caps": {
+     "ltv": 21576000.0,
+     "dscr": 42345934.20905587,
+     "debt_yield": 81794195.25065963
+    },
+    "ltv_achieved": 0.348,
+    "dscr_achieved": 2.5710592238535033,
+    "debt_yield_achieved": 0.28735632183908044,
+    "annual_debt_service": 2411457.4812117475,
+    "equity_required": 40424000.0,
+    "loan_to_cost": null
+   }
+  },
+  {
+   "name": "max_loan_by_dscr",
+   "values": {
+    "noi_value": 300000,
+    "min_dscr": 1.25,
+    "annual_rate": 0.0625,
+    "amort_years": 30
+   },
+   "inputs": {
+    "noi_value": 300000.0,
+    "min_dscr": 1.25,
+    "annual_rate": 0.0625,
+    "amort_years": 30.0
+   },
+   "result": 3248244.484017933
+  },
+  {
+   "name": "max_loan_by_dscr",
+   "values": {
+    "noi_value": 12400000.0,
+    "min_dscr": 1.62,
+    "annual_rate": 0.12438,
+    "amort_years": 25.18
+   },
+   "inputs": {
+    "noi_value": 12400000.0,
+    "min_dscr": 1.62,
+    "annual_rate": 0.12438,
+    "amort_years": 25.18
+   },
+   "result": 58806353.030366614
+  },
+  {
+   "name": "max_loan_by_dscr",
+   "values": {
+    "noi_value": 6200000.0,
+    "min_dscr": 1.31,
+    "annual_rate": 0.06269,
+    "amort_years": 13.09
+   },
+   "inputs": {
+    "noi_value": 6200000.0,
+    "min_dscr": 1.31,
+    "annual_rate": 0.06269,
+    "amort_years": 13.09
+   },
+   "result": 42180398.81873292
+  },
+  {
+   "name": "max_loan_by_debt_yield",
+   "values": {
+    "noi_value": 300000,
+    "min_debt_yield": 0.1
+   },
+   "inputs": {
+    "noi_value": 300000.0,
+    "min_debt_yield": 0.1
+   },
+   "result": 3000000.0
+  },
+  {
+   "name": "max_loan_by_debt_yield",
+   "values": {
+    "noi_value": 12400000.0,
+    "min_debt_yield": 0.1316
+   },
+   "inputs": {
+    "noi_value": 12400000.0,
+    "min_debt_yield": 0.1316
+   },
+   "result": 94224924.01215805
+  },
+  {
+   "name": "max_loan_by_debt_yield",
+   "values": {
+    "noi_value": 6200000.0,
+    "min_debt_yield": 0.0758
+   },
+   "inputs": {
+    "noi_value": 6200000.0,
+    "min_debt_yield": 0.0758
+   },
+   "result": 81794195.25065963
+  },
+  {
+   "name": "dscr_after_rate_move",
+   "values": {
+    "noi_value": 300000,
+    "loan": 2500000,
+    "base_rate": 0.0625,
+    "amort_years": 30,
+    "rate_delta": 0.01
+   },
+   "inputs": {
+    "noi_value": 300000.0,
+    "loan": 2500000.0,
+    "base_rate": 0.0625,
+    "amort_years": 30.0,
+    "rate_delta": 0.01
+   },
+   "result": {
+    "base_rate": 0.0625,
+    "dscr_base": 1.6241222420089665,
+    "dscr_stressed": 1.465896761930261,
+    "rate_stressed": 0.0725,
+    "payment_stressed": 17054.407001404754
+   }
+  },
+  {
+   "name": "dscr_after_rate_move",
+   "values": {
+    "noi_value": 12400000.0,
+    "loan": 124000000.0,
+    "base_rate": 0.124,
+    "amort_years": 25.18,
+    "rate_delta": 0.043
+   },
+   "inputs": {
+    "noi_value": 12400000.0,
+    "loan": 124000000.0,
+    "base_rate": 0.124,
+    "amort_years": 25.18,
+    "rate_delta": 0.043
+   },
+   "result": {
+    "base_rate": 0.124,
+    "dscr_base": 0.770290277751605,
+    "dscr_stressed": 0.5895851656636619,
+    "rate_stressed": 0.16699999999999998,
+    "payment_stressed": 1752644.7297400534
+   }
+  },
+  {
+   "name": "dscr_after_rate_move",
+   "values": {
+    "noi_value": 6200000.0,
+    "loan": 62000000.0,
+    "base_rate": 0.062,
+    "amort_years": 13.09,
+    "rate_delta": -0.0035
+   },
+   "inputs": {
+    "noi_value": 6200000.0,
+    "loan": 62000000.0,
+    "base_rate": 0.062,
+    "amort_years": 13.09,
+    "rate_delta": -0.0035
+   },
+   "result": {
+    "base_rate": 0.062,
+    "dscr_base": 0.8947286099010193,
+    "dscr_stressed": 0.9127773327303575,
+    "rate_stressed": 0.058499999999999996,
+    "payment_stressed": 566038.0118349133
+   }
+  },
+  {
+   "name": "yield_on_cost",
+   "values": {
+    "stabilized_noi": 400000,
+    "total_cost": 4500000
+   },
+   "inputs": {
+    "stabilized_noi": 400000.0,
+    "total_cost": 4500000.0
+   },
+   "result": 0.08888888888888889
+  },
+  {
+   "name": "yield_on_cost",
+   "values": {
+    "stabilized_noi": 12400000.0,
+    "total_cost": 124000000.38
+   },
+   "inputs": {
+    "stabilized_noi": 12400000.0,
+    "total_cost": 124000000.38
+   },
+   "result": 0.09999999969354839
+  },
+  {
+   "name": "yield_on_cost",
+   "values": {
+    "stabilized_noi": 6200000.0,
+    "total_cost": 62000000.69
+   },
+   "inputs": {
+    "stabilized_noi": 6200000.0,
+    "total_cost": 62000000.69
+   },
+   "result": 0.09999999888709679
+  },
+  {
+   "name": "development_spread",
+   "values": {
+    "yield_on_cost_value": 0.085,
+    "exit_cap_rate": 0.065
+   },
+   "inputs": {
+    "yield_on_cost_value": 0.085,
+    "exit_cap_rate": 0.065
+   },
+   "result": 0.020000000000000004
+  },
+  {
+   "name": "development_spread",
+   "values": {
+    "yield_on_cost_value": 0.1626,
+    "exit_cap_rate": 0.1626
+   },
+   "inputs": {
+    "yield_on_cost_value": 0.1626,
+    "exit_cap_rate": 0.1626
+   },
+   "result": 0.0
+  },
+  {
+   "name": "development_spread",
+   "values": {
+    "yield_on_cost_value": 0.0913,
+    "exit_cap_rate": 0.0913
+   },
+   "inputs": {
+    "yield_on_cost_value": 0.0913,
+    "exit_cap_rate": 0.0913
+   },
+   "result": 0.0
+  },
+  {
+   "name": "value_add_analysis",
+   "values": {
+    "purchase_price": 3000000,
+    "capex": 600000,
+    "stabilized_noi": 320000,
+    "exit_cap_rate": 0.07,
+    "hold_years": 3
+   },
+   "inputs": {
+    "purchase_price": 3000000.0,
+    "capex": 600000.0,
+    "stabilized_noi": 320000.0,
+    "exit_cap_rate": 0.07,
+    "hold_years": 3.0
+   },
+   "result": {
+    "total_cost": 3600000.0,
+    "stabilized_noi": 320000.0,
+    "exit_value": 4571428.571428571,
+    "value_created": 971428.5714285709,
+    "value_created_per_capex_dollar": 1.6190476190476182,
+    "going_in_cap": 0.0,
+    "yield_on_cost": 0.08888888888888889,
+    "development_spread": 0.018888888888888886,
+    "annualized_value_creation": 0.0899470899470899
+   }
+  },
+  {
+   "name": "value_add_analysis",
+   "values": {
+    "purchase_price": 124000000.0,
+    "capex": 31000000.0,
+    "stabilized_noi": 12400000.0,
+    "exit_cap_rate": 0.1626,
+    "hold_years": 9.49
+   },
+   "inputs": {
+    "purchase_price": 124000000.0,
+    "capex": 31000000.0,
+    "stabilized_noi": 12400000.0,
+    "exit_cap_rate": 0.1626,
+    "hold_years": 9.49
+   },
+   "result": {
+    "total_cost": 155000000.0,
+    "stabilized_noi": 12400000.0,
+    "exit_value": 76260762.60762608,
+    "value_created": -78739237.39237392,
+    "value_created_per_capex_dollar": -2.5399753997539976,
+    "going_in_cap": 0.0,
+    "yield_on_cost": 0.08,
+    "development_spread": -0.08259999999999999,
+    "annualized_value_creation": -0.05352951316657529
+   }
+  },
+  {
+   "name": "value_add_analysis",
+   "values": {
+    "purchase_price": 62000000.0,
+    "capex": 15500000.0,
+    "stabilized_noi": 6200000.0,
+    "exit_cap_rate": 0.0913,
+    "hold_years": 4.995
+   },
+   "inputs": {
+    "purchase_price": 62000000.0,
+    "capex": 15500000.0,
+    "stabilized_noi": 6200000.0,
+    "exit_cap_rate": 0.0913,
+    "hold_years": 4.995
+   },
+   "result": {
+    "total_cost": 77500000.0,
+    "stabilized_noi": 6200000.0,
+    "exit_value": 67907995.61883898,
+    "value_created": -9592004.38116102,
+    "value_created_per_capex_dollar": -0.618838992332969,
+    "going_in_cap": 0.0,
+    "yield_on_cost": 0.08,
+    "development_spread": -0.011300000000000004,
+    "annualized_value_creation": -0.024778338031350107
+   }
+  },
+  {
+   "name": "cash_out_refinance",
+   "values": {
+    "noi_value": 400000,
+    "exit_cap_rate": 0.065,
+    "refi_ltv": 0.7,
+    "existing_balance": 2000000,
+    "refi_rate": 0.0625
+   },
+   "inputs": {
+    "noi_value": 400000.0,
+    "exit_cap_rate": 0.065,
+    "refi_ltv": 0.7,
+    "existing_balance": 2000000.0,
+    "refi_rate": 0.0625
+   },
+   "result": {
+    "appraised_value": 6153846.153846154,
+    "new_loan": 4307692.307692308,
+    "existing_balance": 2000000.0,
+    "cash_out": 2307692.307692308,
+    "new_annual_debt_service": 318278.4297588747,
+    "post_refi_dscr": 1.2567612586974146,
+    "equity_left_in_deal": 1846153.846153846
+   }
+  },
+  {
+   "name": "cash_out_refinance",
+   "values": {
+    "noi_value": 12400000.0,
+    "exit_cap_rate": 0.1626,
+    "refi_ltv": 0.596,
+    "existing_balance": 124000000.0,
+    "refi_rate": 0.124
+   },
+   "inputs": {
+    "noi_value": 12400000.0,
+    "exit_cap_rate": 0.1626,
+    "refi_ltv": 0.596,
+    "existing_balance": 124000000.0,
+    "refi_rate": 0.124
+   },
+   "result": {
+    "appraised_value": 76260762.60762608,
+    "new_loan": 45451414.51414514,
+    "existing_balance": 124000000.0,
+    "cash_out": -78548585.48585486,
+    "new_annual_debt_service": 5778715.474032852,
+    "post_refi_dscr": 2.1458055956761415,
+    "equity_left_in_deal": 30809348.093480937
+   }
+  },
+  {
+   "name": "cash_out_refinance",
+   "values": {
+    "noi_value": 6200000.0,
+    "exit_cap_rate": 0.0913,
+    "refi_ltv": 0.348,
+    "existing_balance": 62000000.0,
+    "refi_rate": 0.062
+   },
+   "inputs": {
+    "noi_value": 6200000.0,
+    "exit_cap_rate": 0.0913,
+    "refi_ltv": 0.348,
+    "existing_balance": 62000000.0,
+    "refi_rate": 0.062
+   },
+   "result": {
+    "appraised_value": 67907995.61883898,
+    "new_loan": 23631982.475355964,
+    "existing_balance": 62000000.0,
+    "cash_out": -38368017.52464403,
+    "new_annual_debt_service": 1736862.736948492,
+    "post_refi_dscr": 3.569654566308924,
+    "equity_left_in_deal": 44276013.14348301
+   }
+  },
+  {
+   "name": "equity_waterfall",
+   "values": {
+    "distributable_cash": 200000,
+    "lp_contribution": 1000000,
+    "gp_contribution": 100000,
+    "preferred_return": 0.08,
+    "years": 1
+   },
+   "inputs": {
+    "distributable_cash": 200000.0,
+    "lp_contribution": 1000000.0,
+    "gp_contribution": 100000.0,
+    "preferred_return": 0.08,
+    "years": 1.0
+   },
+   "result": {
+    "distributable_cash": 200000.0,
+    "lp_contribution": 1000000.0,
+    "gp_contribution": 100000.0,
+    "return_of_capital": 200000.0,
+    "preferred_return_target": 80000.0,
+    "preferred_return_paid": 0.0,
+    "lp_distribution": 181818.18181818182,
+    "gp_distribution": 18181.818181818184,
+    "tiers_applied": [],
+    "lp_multiple": 0.18181818181818182,
+    "gp_multiple": 0.18181818181818185,
+    "balances": true,
+    "unpaid_preferred_return": 80000.0
+   }
+  },
+  {
+   "name": "equity_waterfall",
+   "values": {
+    "distributable_cash": 31000000.0,
+    "lp_contribution": 62000000.0,
+    "gp_contribution": 31000000.0,
+    "preferred_return": 0.155,
+    "years": 18.695
+   },
+   "inputs": {
+    "distributable_cash": 31000000.0,
+    "lp_contribution": 62000000.0,
+    "gp_contribution": 31000000.0,
+    "preferred_return": 0.155,
+    "years": 18.695
+   },
+   "result": {
+    "distributable_cash": 31000000.0,
+    "lp_contribution": 62000000.0,
+    "gp_contribution": 31000000.0,
+    "return_of_capital": 31000000.0,
+    "preferred_return_target": 179658950.0,
+    "preferred_return_paid": 0.0,
+    "lp_distribution": 20666666.666666668,
+    "gp_distribution": 10333333.333333332,
+    "tiers_applied": [],
+    "lp_multiple": 0.33333333333333337,
+    "gp_multiple": 0.3333333333333333,
+    "balances": true,
+    "unpaid_preferred_return": 179658950.0
+   }
+  },
+  {
+   "name": "equity_waterfall",
+   "values": {
+    "distributable_cash": 15500000.0,
+    "lp_contribution": 31000000.0,
+    "gp_contribution": 15500000.0,
+    "preferred_return": 0.0775,
+    "years": 9.4725
+   },
+   "inputs": {
+    "distributable_cash": 15500000.0,
+    "lp_contribution": 31000000.0,
+    "gp_contribution": 15500000.0,
+    "preferred_return": 0.0775,
+    "years": 9.4725
+   },
+   "result": {
+    "distributable_cash": 15500000.0,
+    "lp_contribution": 31000000.0,
+    "gp_contribution": 15500000.0,
+    "return_of_capital": 15500000.0,
+    "preferred_return_target": 22757681.25,
+    "preferred_return_paid": 0.0,
+    "lp_distribution": 10333333.333333334,
+    "gp_distribution": 5166666.666666666,
+    "tiers_applied": [],
+    "lp_multiple": 0.33333333333333337,
+    "gp_multiple": 0.3333333333333333,
+    "balances": true,
+    "unpaid_preferred_return": 22757681.25
+   }
+  },
+  {
+   "name": "sources_and_uses",
+   "values": {
+    "price": 4000000,
+    "closing_costs": 60000,
+    "capex": 200000,
+    "loan": 2600000,
+    "loan_fees": 26000,
+    "working_capital": 50000
+   },
+   "inputs": {
+    "price": 4000000.0,
+    "closing_costs": 60000.0,
+    "capex": 200000.0,
+    "loan": 2600000.0,
+    "loan_fees": 26000.0,
+    "working_capital": 50000.0
+   },
+   "result": {
+    "uses": {
+     "purchase_price": 4000000.0,
+     "closing_costs": 60000.0,
+     "capex": 200000.0,
+     "loan_fees": 26000.0,
+     "working_capital": 50000.0
+    },
+    "total_uses": 4336000.0,
+    "sources": {
+     "senior_loan": 2600000.0,
+     "sponsor_equity": 1762000.0
+    },
+    "net_loan_proceeds": 2574000.0,
+    "total_sources": 4336000.0,
+    "equity_required": 1762000.0,
+    "balances": true
+   }
+  },
+  {
+   "name": "sources_and_uses",
+   "values": {
+    "price": 124000000.0,
+    "closing_costs": 3100000.0,
+    "capex": 31000000.0,
+    "loan": 124000000.0,
+    "loan_fees": 3100000.0,
+    "working_capital": 3100000.0
+   },
+   "inputs": {
+    "price": 124000000.0,
+    "closing_costs": 3100000.0,
+    "capex": 31000000.0,
+    "loan": 124000000.0,
+    "loan_fees": 3100000.0,
+    "working_capital": 3100000.0
+   },
+   "result": {
+    "uses": {
+     "purchase_price": 124000000.0,
+     "closing_costs": 3100000.0,
+     "capex": 31000000.0,
+     "loan_fees": 3100000.0,
+     "working_capital": 3100000.0
+    },
+    "total_uses": 164300000.0,
+    "sources": {
+     "senior_loan": 124000000.0,
+     "sponsor_equity": 43400000.0
+    },
+    "net_loan_proceeds": 120900000.0,
+    "total_sources": 164300000.0,
+    "equity_required": 43400000.0,
+    "balances": true
+   }
+  },
+  {
+   "name": "sources_and_uses",
+   "values": {
+    "price": 62000000.0,
+    "closing_costs": 1550000.0,
+    "capex": 15500000.0,
+    "loan": 62000000.0,
+    "loan_fees": 1550000.0,
+    "working_capital": 1550000.0
+   },
+   "inputs": {
+    "price": 62000000.0,
+    "closing_costs": 1550000.0,
+    "capex": 15500000.0,
+    "loan": 62000000.0,
+    "loan_fees": 1550000.0,
+    "working_capital": 1550000.0
+   },
+   "result": {
+    "uses": {
+     "purchase_price": 62000000.0,
+     "closing_costs": 1550000.0,
+     "capex": 15500000.0,
+     "loan_fees": 1550000.0,
+     "working_capital": 1550000.0
+    },
+    "total_uses": 82150000.0,
+    "sources": {
+     "senior_loan": 62000000.0,
+     "sponsor_equity": 21700000.0
+    },
+    "net_loan_proceeds": 60450000.0,
+    "total_sources": 82150000.0,
+    "equity_required": 21700000.0,
+    "balances": true
+   }
+  },
+  {
+   "name": "walt",
+   "values": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ]
+   },
+   "inputs": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ]
+   },
+   "result": 216666.66666666666
+  },
+  {
+   "name": "walt",
+   "values": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ]
+   },
+   "inputs": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ]
+   },
+   "result": 216666.66666666666
+  },
+  {
+   "name": "walt",
+   "values": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ]
+   },
+   "inputs": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ]
+   },
+   "result": 216666.66666666666
+  },
+  {
+   "name": "lease_rollover_exposure",
+   "values": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ],
+    "within_years": 3
+   },
+   "inputs": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ],
+    "within_years": 3.0
+   },
+   "result": {
+    "annual_rent": 0.12000000000000001,
+    "rolling_rent": 0,
+    "rolling_pct": 0.0,
+    "rolling_leases": 0.0
+   }
+  },
+  {
+   "name": "lease_rollover_exposure",
+   "values": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ],
+    "within_years": 12.59
+   },
+   "inputs": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ],
+    "within_years": 12.59
+   },
+   "result": {
+    "annual_rent": 0.12000000000000001,
+    "rolling_rent": 0,
+    "rolling_pct": 0.0,
+    "rolling_leases": 0.0
+   }
+  },
+  {
+   "name": "lease_rollover_exposure",
+   "values": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ],
+    "within_years": 6.545
+   },
+   "inputs": {
+    "leases": [
+     {
+      "years_remaining": 100000,
+      "annual_rent": 0.03
+     },
+     {
+      "years_remaining": 200000,
+      "annual_rent": 0.04
+     },
+     {
+      "years_remaining": 300000,
+      "annual_rent": 0.05
+     }
+    ],
+    "within_years": 6.545
+   },
+   "result": {
+    "annual_rent": 0.12000000000000001,
+    "rolling_rent": 0,
+    "rolling_pct": 0.0,
+    "rolling_leases": 0.0
+   }
+  },
+  {
+   "name": "nnn_effective_rent",
+   "values": {
+    "base_rent": 120000,
+    "recoverable_opex": 30000,
+    "recovery_ratio": 1.0,
+    "management_fee_on_recovery": 0.0
+   },
+   "inputs": {
+    "base_rent": 120000.0,
+    "recoverable_opex": 30000.0,
+    "recovery_ratio": 1.0,
+    "management_fee_on_recovery": 0.0
+   },
+   "result": {
+    "base_rent": 120000.0,
+    "recoverable_opex": 30000.0,
+    "recovered": 30000.0,
+    "unrecovered_opex": 0.0,
+    "management_fee_on_recovery": 0.0,
+    "net_effective_rent": 150000.0
+   }
+  },
+  {
+   "name": "nnn_effective_rent",
+   "values": {
+    "base_rent": 12400000.0,
+    "recoverable_opex": 3100000.0,
+    "recovery_ratio": 0.93,
+    "management_fee_on_recovery": 0.124
+   },
+   "inputs": {
+    "base_rent": 12400000.0,
+    "recoverable_opex": 3100000.0,
+    "recovery_ratio": 0.93,
+    "management_fee_on_recovery": 0.124
+   },
+   "result": {
+    "base_rent": 12400000.0,
+    "recoverable_opex": 3100000.0,
+    "recovered": 2883000.0,
+    "unrecovered_opex": 217000.0,
+    "management_fee_on_recovery": 357492.0,
+    "net_effective_rent": 14925508.0
+   }
+  },
+  {
+   "name": "nnn_effective_rent",
+   "values": {
+    "base_rent": 6200000.0,
+    "recoverable_opex": 1550000.0,
+    "recovery_ratio": 0.465,
+    "management_fee_on_recovery": 0.062
+   },
+   "inputs": {
+    "base_rent": 6200000.0,
+    "recoverable_opex": 1550000.0,
+    "recovery_ratio": 0.465,
+    "management_fee_on_recovery": 0.062
+   },
+   "result": {
+    "base_rent": 6200000.0,
+    "recoverable_opex": 1550000.0,
+    "recovered": 720750.0,
+    "unrecovered_opex": 829250.0,
+    "management_fee_on_recovery": 44686.5,
+    "net_effective_rent": 6876063.5
+   }
+  },
+  {
+   "name": "stabilized_occupancy_needed",
+   "values": {
+    "total_opex": 400000,
+    "debt_service_annual": 320000,
+    "gross_potential_rent": 900000
+   },
+   "inputs": {
+    "total_opex": 400000.0,
+    "debt_service_annual": 320000.0,
+    "gross_potential_rent": 900000.0
+   },
+   "result": 0.8
+  },
+  {
+   "name": "stabilized_occupancy_needed",
+   "values": {
+    "total_opex": 12400000.0,
+    "debt_service_annual": 12400000.0,
+    "gross_potential_rent": 12400000.38
+   },
+   "inputs": {
+    "total_opex": 12400000.0,
+    "debt_service_annual": 12400000.0,
+    "gross_potential_rent": 12400000.38
+   },
+   "result": null
+  },
+  {
+   "name": "stabilized_occupancy_needed",
+   "values": {
+    "total_opex": 6200000.0,
+    "debt_service_annual": 6200000.0,
+    "gross_potential_rent": 6200000.69
+   },
+   "inputs": {
+    "total_opex": 6200000.0,
+    "debt_service_annual": 6200000.0,
+    "gross_potential_rent": 6200000.69
+   },
+   "result": null
+  },
+  {
+   "name": "loan_to_cost",
+   "values": {
+    "loan": 2600000,
+    "total_project_cost": 4300000
+   },
+   "inputs": {
+    "loan": 2600000.0,
+    "total_project_cost": 4300000.0
+   },
+   "result": 0.6046511627906976
+  },
+  {
+   "name": "loan_to_cost",
+   "values": {
+    "loan": 124000000.0,
+    "total_project_cost": 124000000.38
+   },
+   "inputs": {
+    "loan": 124000000.0,
+    "total_project_cost": 124000000.38
+   },
+   "result": 0.9999999969354839
+  },
+  {
+   "name": "loan_to_cost",
+   "values": {
+    "loan": 62000000.0,
+    "total_project_cost": 62000000.69
+   },
+   "inputs": {
+    "loan": 62000000.0,
+    "total_project_cost": 62000000.69
+   },
+   "result": 0.9999999888709679
+  },
+  {
+   "name": "expense_stop_rent",
+   "values": {
+    "base_year_opex": 80000,
+    "current_opex": 95000,
+    "tenant_share": 1.0
+   },
+   "inputs": {
+    "base_year_opex": 80000.0,
+    "current_opex": 95000.0,
+    "tenant_share": 1.0
+   },
+   "result": {
+    "base_year_expense": 80000.0,
+    "current_expense": 95000.0,
+    "increase": 15000.0,
+    "tenant_reimbursement": 15000.0,
+    "landlord_exposure": 0.0
+   }
+  },
+  {
+   "name": "expense_stop_rent",
+   "values": {
+    "base_year_opex": 3100000.0,
+    "current_opex": 3100000.0,
+    "tenant_share": 0.62
+   },
+   "inputs": {
+    "base_year_opex": 3100000.0,
+    "current_opex": 3100000.0,
+    "tenant_share": 0.62
+   },
+   "result": {
+    "base_year_expense": 3100000.0,
+    "current_expense": 3100000.0,
+    "increase": 0.0,
+    "tenant_reimbursement": 0.0,
+    "landlord_exposure": 0.0
+   }
+  },
+  {
+   "name": "expense_stop_rent",
+   "values": {
+    "base_year_opex": 1550000.0,
+    "current_opex": 1550000.0,
+    "tenant_share": 0.31
+   },
+   "inputs": {
+    "base_year_opex": 1550000.0,
+    "current_opex": 1550000.0,
+    "tenant_share": 0.31
+   },
+   "result": {
+    "base_year_expense": 1550000.0,
+    "current_expense": 1550000.0,
+    "increase": 0.0,
+    "tenant_reimbursement": 0.0,
+    "landlord_exposure": 0.0
+   }
+  },
+  {
+   "name": "rent_to_income",
+   "values": {
+    "annual_rent": 24000,
+    "median_household_income": 85000
+   },
+   "inputs": {
+    "annual_rent": 24000.0,
+    "median_household_income": 85000.0
+   },
+   "result": 0.2823529411764706
+  },
+  {
+   "name": "rent_to_income",
+   "values": {
+    "annual_rent": 3100000.0,
+    "median_household_income": 1240000.38
+   },
+   "inputs": {
+    "annual_rent": 3100000.0,
+    "median_household_income": 1240000.38
+   },
+   "result": 2.4999992338712027
+  },
+  {
+   "name": "rent_to_income",
+   "values": {
+    "annual_rent": 1550000.0,
+    "median_household_income": 620000.69
+   },
+   "inputs": {
+    "annual_rent": 1550000.0,
+    "median_household_income": 620000.69
+   },
+   "result": 2.4999972177450323
+  },
+  {
+   "name": "cap_rate_spread_to_treasury",
+   "values": {
+    "cap": 0.065
+   },
+   "inputs": {
+    "cap": 0.065
+   },
+   "result": {
+    "cap_rate": 0.065,
+    "ten_year_treasury": 0.046,
+    "spread": 0.019000000000000003,
+    "spread_bps": 190,
+    "interpretation": "normal"
+   }
+  },
+  {
+   "name": "cap_rate_spread_to_treasury",
+   "values": {
+    "cap": 0.1588
+   },
+   "inputs": {
+    "cap": 0.1588
+   },
+   "result": {
+    "cap_rate": 0.1588,
+    "ten_year_treasury": 0.046,
+    "spread": 0.1128,
+    "spread_bps": 1128,
+    "interpretation": "wide"
+   }
+  },
+  {
+   "name": "cap_rate_spread_to_treasury",
+   "values": {
+    "cap": 0.0844
+   },
+   "inputs": {
+    "cap": 0.0844
+   },
+   "result": {
+    "cap_rate": 0.0844,
+    "ten_year_treasury": 0.046,
+    "spread": 0.038400000000000004,
+    "spread_bps": 384,
+    "interpretation": "wide"
+   }
+  },
+  {
+   "name": "monthly_carry",
+   "values": {
+    "price": 420000,
+    "down_pct": 0.25,
+    "annual_rate": 0.0725,
+    "years": 30,
+    "monthly_tax": 700,
+    "monthly_insurance": 175,
+    "monthly_rent": 2600,
+    "vacancy_pct": 0.05,
+    "monthly_maintenance": 250
+   },
+   "inputs": {
+    "price": 420000.0,
+    "down_pct": 0.25,
+    "annual_rate": 0.0725,
+    "years": 30.0,
+    "monthly_tax": 700.0,
+    "monthly_insurance": 175.0,
+    "monthly_rent": 2600.0,
+    "vacancy_pct": 0.05,
+    "monthly_maintenance": 250.0
+   },
+   "result": 803.855282176999
+  },
+  {
+   "name": "monthly_carry",
+   "values": {
+    "price": 31000380.0,
+    "down_pct": 0.639,
+    "annual_rate": 0.12438,
+    "years": 26.7,
+    "monthly_tax": 12400.0,
+    "monthly_insurance": 12400.0,
+    "monthly_rent": 62000.0,
+    "vacancy_pct": 0.31,
+    "monthly_maintenance": 12400.0
+   },
+   "inputs": {
+    "price": 31000380.0,
+    "down_pct": 0.639,
+    "annual_rate": 0.12438,
+    "years": 26.7,
+    "monthly_tax": 12400.0,
+    "monthly_insurance": 12400.0,
+    "monthly_rent": 62000.0,
+    "vacancy_pct": 0.31,
+    "monthly_maintenance": 12400.0
+   },
+   "result": 114840.54700874569
+  },
+  {
+   "name": "monthly_carry",
+   "values": {
+    "price": 15500690.0,
+    "down_pct": 0.3445,
+    "annual_rate": 0.06269,
+    "years": 15.85,
+    "monthly_tax": 6200.0,
+    "monthly_insurance": 6200.0,
+    "monthly_rent": 31000.0,
+    "vacancy_pct": 0.155,
+    "monthly_maintenance": 6200.0
+   },
+   "inputs": {
+    "price": 15500690.0,
+    "down_pct": 0.3445,
+    "annual_rate": 0.06269,
+    "years": 15.85,
+    "monthly_tax": 6200.0,
+    "monthly_insurance": 6200.0,
+    "monthly_rent": 31000.0,
+    "vacancy_pct": 0.155,
+    "monthly_maintenance": 6200.0
+   },
+   "result": 76819.88800651004
+  }
+ ],
+ "skipped": []
+}

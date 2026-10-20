@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { brand } from '../config/brand';
+---
+<Base title="Privacy" description="What LexJolt collects: nothing you type. Here is the whole list.">
+  <div class="lexjolt-shell lj-page" style="max-width:760px">
+    <p class="lexjolt-eyebrow">Privacy</p>
+    <h1 class="lexjolt-h1">Nothing you type leaves the page</h1>
+    <p class="lj-lede-sm">
+      The calculators are client-side code. Your inputs are read by the browser, the answer is computed
+      in the browser, and nothing is submitted to a server. There is no account to delete because there
+      is no account.
+    </p>
+
+    <h2 class="lexjolt-h2" style="margin-top:28px">What is collected</h2>
+    <ul class="lj-list">
+      <li><b>Aggregate page views</b><span class="lj-sub">If analytics is enabled, a cookieless counter records the page path and referrer host — no cookies, no cross-site identifier, no fingerprint.</span></li>
+      <li><b>Server logs</b><span class="lj-sub">The static host keeps standard request logs (IP, path, user agent) for a short retention window, as every host does.</span></li>
+      <li><b>Nothing else</b><span class="lj-sub">No emails, no accounts, no advertising pixels, no third-party trackers on the calculator pages.</span></li>
+    </ul>
+
+    <h2 class="lexjolt-h2" style="margin-top:28px">Shared links</h2>
+    <p class="lj-lede-sm">
+      When you change an input, the page rewrites its own URL with those values so you can send the
+      calculation to someone. That is the only reason the numbers appear in the address bar; they are
+      not logged by us beyond the ordinary request log, and they are not tied to you.
+    </p>
+
+    <h2 class="lexjolt-h2" style="margin-top:28px">The videos</h2>
+    <p class="lj-lede-sm">
+      The videos are static files served from this domain. Watching one does not load a third-party
+      player or set an advertising cookie.
+    </p>
+
+    <h2 class="lexjolt-h2" style="margin-top:28px">Contact</h2>
+    <p class="lj-lede-sm">Questions about this page: <a href={`mailto:${brand.email}`}>{brand.email}</a>.</p>
+  </div>
+</Base>

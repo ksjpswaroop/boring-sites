@@ -1,0 +1,132 @@
+---
+import Base from '../layouts/Base.astro';
+import CalculatorForm from '../components/CalculatorForm.astro';
+import { catalog, byName, runCalc } from '../lib/cre';
+import { formatValue } from '../lib/format';
+import { niches, bandClass, bandLabel } from '../lib/niches';
+import { ideas } from '../lib/ideas';
+import videosJson from '../data/videos.json';
+
+const capRate = byName['cap_rate'];
+const capResult = runCalc('cap_rate', {});
+const top = [...niches].sort((a, b) => b.score - a.score).slice(0, 4);
+const featured = (videosJson.videos as Array<{ file: string; label: string; calculator: string; duration_s: number | null }>).slice(0, 4);
+const groups = catalog.groups.length;
+---
+<Base
+  title="LexJolt — free real-estate calculators, a measured niche finder, and a video studio"
+  description="72 real-estate calculators that show their arithmetic, ten content niches scored on measured YouTube data, and a 30-second video for every calculator. Free, no signup."
+>
+  <div class="lexjolt-shell">
+    <section class="lexjolt-hero lj-page">
+      <p class="lexjolt-eyebrow">Free tools, no signup</p>
+      <h1 class="lexjolt-h1">Underwrite a deal. Find a niche. Make the video.</h1>
+      <p class="lj-lede-sm">
+        Three tools that share one habit: they show the arithmetic instead of asserting the answer.
+        {catalog.calculators.length} calculators across {groups} groups, {niches.length} content niches
+        measured from real search results, and one vertical video per calculator, rendered from the
+        same numbers you see on the page.
+      </p>
+      <div class="lj-stat-row">
+        <div class="lj-stat"><b>{catalog.calculators.length}</b><span>calculators</span></div>
+        <div class="lj-stat"><b>{niches.length}</b><span>niches measured</span></div>
+        <div class="lj-stat"><b>{ideas.length}</b><span>video ideas</span></div>
+        <div class="lj-stat"><b>{videosJson.videos.length}</b><span>videos rendered</span></div>
+      </div>
+    </section>
+
+    <section class="lexjolt-section">
+      <div class="lj-grid lj-grid-3">
+        <div class="lj-card">
+          <p class="lj-kicker">01 · Calculators</p>
+          <h3>72 answers, inputs on the table</h3>
+          <p>Valuation, financing, income, returns, tax, commercial, market. Every field editable, every answer recomputed in your browser.</p>
+          <p style="margin-top:10px"><a class="lexjolt-button lexjolt-button-primary" href="/calculators">Open the calculators</a></p>
+        </div>
+        <div class="lj-card">
+          <p class="lj-kicker">02 · Niche Lab</p>
+          <h3>A niche is a number</h3>
+          <p>Ten candidates scored on six measured dimensions — median views, small-channel breakout, openness, spread, incumbent depth, our own repeatability.</p>
+          <p style="margin-top:10px"><a class="lexjolt-button lexjolt-button-primary" href="/niches">See the board</a></p>
+        </div>
+        <div class="lj-card">
+          <p class="lj-kicker">03 · Studio</p>
+          <h3>Ideas with their numbers</h3>
+          <p>{ideas.length} video ideas, each naming the calculator or niche that backs it, plus {videosJson.videos.length} videos already rendered at 1080×1920.</p>
+          <p style="margin-top:10px"><a class="lexjolt-button lexjolt-button-primary" href="/ideas">Open the idea studio</a></p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="lj-hr" />
+
+    <section class="lexjolt-section">
+      <h2 class="lexjolt-h2">Try one now</h2>
+      <p class="lj-lede-sm">Cap rate: the yield on an unlevered purchase. Change the two numbers and watch the answer move — this is the whole product, in one screen.</p>
+      <div class="lj-calc" style="margin-top:18px">
+        <CalculatorForm spec={capRate} />
+        <aside>
+          <div class="lj-card">
+            <p class="lj-kicker">Why people get this wrong</p>
+            <p>
+              A cap rate is not a return. It ignores the loan, the tax, and the capex you will spend in
+              year three. It is a price — the price the market pays for a dollar of net operating
+              income — and the moment you compare two properties with different expense ratios, the
+              comparison stops meaning anything.
+            </p>
+            <p class="lj-note" style="margin-top:10px">
+              At the defaults this is {capResult.error ? '—' : formatValue(capResult.result, 'percent')}.
+              <a href="/calculators/cap-rate">Full calculator →</a>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <hr class="lj-hr" />
+
+    <section class="lexjolt-section">
+      <h2 class="lexjolt-h2">Where the door is open</h2>
+      <p class="lj-lede-sm">
+        The top of the Niche Lab board, by score. The attention column is the one that matters: it is
+        the share of views in a niche that went to channels under 150K subscribers.
+      </p>
+      <div class="lj-table-scroll" style="margin-top:14px">
+        <table class="lj-table">
+          <thead><tr><th>Niche</th><th class="num">Score</th><th>Band</th><th class="num">Median views</th><th class="num">Small-channel attention</th></tr></thead>
+          <tbody>
+            {top.map((n) => (
+              <tr>
+                <td><a href={`/niches/${n.slug}`}><b>{n.label}</b></a></td>
+                <td class="num">{n.score.toFixed(2)}</td>
+                <td><span class={`lj-pill ${bandClass(n.band)}`}>{bandLabel(n.band)}</span></td>
+                <td class="num">{Math.round(n.metrics.median_views).toLocaleString('en-US')}</td>
+                <td class="num">{(100 * n.metrics.small_channel_views_share).toFixed(0)}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:12px"><a href="/niches">All ten, with the method →</a></p>
+    </section>
+
+    <hr class="lj-hr" />
+
+    <section class="lexjolt-section">
+      <h2 class="lexjolt-h2">The videos</h2>
+      <p class="lj-lede-sm">One per calculator, 1080×1920, transcript included. Rendered from the engine so the number in the video is the number in the calculator.</p>
+      <div class="lj-videos" style="margin-top:16px">
+        {featured.map((v) => (
+          <article class="lj-video">
+            <video src={v.file} controls preload="none" playsinline muted></video>
+            <div class="lj-video-meta">
+              <b>{v.label}</b>
+              <span>{v.duration_s ? `${v.duration_s.toFixed(0)}s` : ''}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p style="margin-top:12px"><a href="/videos">All {videosJson.videos.length} videos →</a></p>
+    </section>
+  </div>
+</Base>

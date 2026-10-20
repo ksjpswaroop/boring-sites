@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import { catalog, byGroup } from '../../lib/cre';
+
+const total = catalog.calculators.length;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Real-estate calculators',
+  description: `${total} free real-estate calculators: valuation, financing, income, returns, tax, commercial and market.`,
+  hasPart: catalog.calculators.map((c) => ({
+    '@type': 'WebApplication',
+    name: c.label,
+    url: `https://lexjolt.com/calculators/${c.name.replace(/_/g, '-')}`,
+    applicationCategory: 'FinanceApplication',
+  })),
+};
+---
+<Base
+  title={`${total} free real-estate calculators`}
+  description={`${total} calculators for underwriting property: cap rate, DSCR, IRR, depreciation, cost segregation, waterfalls, loan sizing. Every one shows its inputs, its answer and the arithmetic. No signup.`}
+  jsonLd={jsonLd}
+>
+  <div class="lexjolt-shell lj-page">
+    <header class="lj-page-head">
+      <p class="lexjolt-eyebrow">Calculators</p>
+      <h1 class="lexjolt-h1">{total} calculators, one method</h1>
+      <p class="lj-lede-sm">
+        Every calculator here answers one question with one number, shows the inputs it used, and
+        updates as you type. Defaults are a worked example — a plausible deal, not advice. The same
+        engine produces the numbers in each calculator's video, so the two cannot disagree.
+      </p>
+      <div class="lj-stat-row">
+        <div class="lj-stat"><b>{total}</b><span>calculators</span></div>
+        <div class="lj-stat"><b>{catalog.groups.length}</b><span>groups</span></div>
+        <div class="lj-stat"><b>$0</b><span>to use</span></div>
+        <div class="lj-stat"><b>client</b><span>side maths</span></div>
+      </div>
+    </header>
+
+    <div class="lj-filter">
+      <input type="search" id="calc-search" placeholder="Filter by name or what it does…" aria-label="Filter calculators" />
+      {catalog.groups.map((g) => (
+        <button class="lexjolt-button lexjolt-button-secondary" type="button" data-group={g}>{g}</button>
+      ))}
+      <button class="lexjolt-button lexjolt-button-secondary" type="button" data-group="">All</button>
+      <span class="lj-note" id="calc-count">{total} shown</span>
+    </div>
+
+    <div id="calc-list">
+      {catalog.groups.map((g) => (
+        <section class="lexjolt-section" data-section={g}>
+          <h2 class="lexjolt-h2">{g} <span class="lj-note">({byGroup[g].length})</span></h2>
+          <ul class="lj-list">
+            {byGroup[g].map((c) => (
+              <li data-item data-group={g} data-text={`${c.label} ${c.description} ${c.result_label}`.toLowerCase()}>
+                <a href={`/calculators/${c.name.replace(/_/g, '-')}`}>{c.label}</a>
+                <span class="lj-sub">{c.description}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+    <p class="lj-note" id="calc-empty" hidden>Nothing matches that filter.</p>
+  </div>
+
+  <script>
+    const search = document.getElementById('calc-search') as HTMLInputElement | null;
+    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-item]'));
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-section]'));
+    const count = document.getElementById('calc-count');
+    const empty = document.getElementById('calc-empty');
+    let group = '';
+
+    const apply = () => {
+      const q = (search?.value ?? '').trim().toLowerCase();
+      let shown = 0;
+      for (const item of items) {
+        const okGroup = !group || item.dataset.group === group;
+        const okText = !q || (item.dataset.text ?? '').includes(q);
+        const visible = okGroup && okText;
+        item.hidden = !visible;
+        if (visible) shown++;
+      }
+      for (const s of sections) {
+        const any = Array.from(s.querySelectorAll<HTMLElement>('[data-item]')).some((i) => !i.hidden);
+        s.hidden = !any;
+      }
+      if (count) count.textContent = `${shown} shown`;
+      if (empty) empty.hidden = shown !== 0;
+    };
+
+    search?.addEventListener('input', apply);
+    document.querySelectorAll<HTMLButtonElement>('[data-group]').forEach((b) =>
+      b.addEventListener('click', () => {
+        group = b.dataset.group ?? '';
+        apply();
+      })
+    );
+  </script>
+</Base>

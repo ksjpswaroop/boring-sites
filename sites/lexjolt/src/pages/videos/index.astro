@@ -1,0 +1,100 @@
+---
+import Base from '../../layouts/Base.astro';
+import videosJson from '../../data/videos.json';
+import { catalog } from '../../lib/cre';
+
+const videos = videosJson.videos as Array<{
+  slug: string; calculator: string; label: string; group: string; title: string;
+  result_label: string; result_display: string; duration_s: number | null; bytes: number | null;
+  file: string; transcript: string;
+}>;
+const groups = [...new Set(videos.map((v) => v.group))];
+const totalMinutes = videos.reduce((n, v) => n + (v.duration_s ?? 0), 0) / 60;
+const totalMB = videos.reduce((n, v) => n + (v.bytes ?? 0), 0) / 1e6;
+const missing = catalog.calculators.length - videos.length;
+---
+<Base
+  title={`${videos.length} calculator videos`}
+  description={`One 30-second vertical video per calculator: the formula, the inputs, the answer. Rendered from the same engine that powers the calculators, with the transcript on every card.`}
+>
+  <div class="lexjolt-shell lj-page">
+    <header class="lj-page-head">
+      <p class="lexjolt-eyebrow">Videos</p>
+      <h1 class="lexjolt-h1">Every calculator, in {Math.round(videos.reduce((n, v) => n + (v.duration_s ?? 0), 0) / videos.length)} seconds</h1>
+      <p class="lj-lede-sm">
+        One vertical video per calculator: the formula, the inputs, the answer, the link. The numbers
+        are computed by the engine at render time, so a video cannot drift from its calculator — the
+        manifest would have to be wrong twice. Voice is macOS <code>say</code>; frames are drawn with
+        PIL; no stock footage and no licensing to clear.
+      </p>
+      <div class="lj-stat-row">
+        <div class="lj-stat"><b>{videos.length}</b><span>videos</span></div>
+        <div class="lj-stat"><b>{Math.round(totalMinutes)}</b><span>minutes total</span></div>
+        <div class="lj-stat"><b>{totalMB.toFixed(0)} MB</b><span>1080×1920 H.264</span></div>
+        <div class="lj-stat"><b>{missing}</b><span>calculators without one</span></div>
+      </div>
+    </header>
+
+    <div class="lj-filter">
+      <input type="search" id="vid-search" placeholder="Search by calculator…" aria-label="Search videos" />
+      {groups.map((g) => <button class="lexjolt-button lexjolt-button-secondary" type="button" data-g={g}>{g}</button>)}
+      <button class="lexjolt-button lexjolt-button-secondary" type="button" data-g="">All</button>
+      <span class="lj-note" id="vid-count">{videos.length} shown</span>
+    </div>
+
+    <div class="lj-videos" id="vid-list">
+      {videos.map((v, i) => (
+        <article class="lj-video" data-v data-g={v.group} data-text={`${v.label} ${v.group} ${v.result_label}`.toLowerCase()}>
+          <video src={v.file} controls preload={i < 8 ? 'metadata' : 'none'} playsinline muted
+            aria-label={`${v.label}: ${v.result_label} ${v.result_display}`}></video>
+          <div class="lj-video-meta">
+            <b><a href={`/calculators/${v.calculator.replace(/_/g, '-')}`} style="color:inherit;text-decoration:none">{v.label}</a></b>
+            <span>{v.result_label} {v.result_display} · {v.duration_s ? `${v.duration_s.toFixed(0)}s` : '—'}</span>
+            <details style="margin-top:6px">
+              <summary class="lj-note" style="cursor:pointer">Transcript</summary>
+              <p class="lj-note" style="margin-top:6px">{v.transcript}</p>
+            </details>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="lj-note" id="vid-empty" hidden>Nothing matches that filter.</p>
+
+    <hr class="lj-hr" />
+    <section>
+      <h2 class="lexjolt-h2">How they are made</h2>
+      <p class="lj-lede-sm">
+        <code class="lj-mono">tools/make_calc_videos.py</code> reads the catalogue and the engine, runs
+        each calculator at its defaults, and writes a five-scene manifest: hook, formula, numbers,
+        answer, call to action. The reel engine turns each manifest into a 1080×1920 H.264 file with a
+        burned-in caption track. Re-render one after a formula change and only that one re-renders —
+        the manifest hash is the cache key.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-v]'));
+    const search = document.getElementById('vid-search') as HTMLInputElement | null;
+    const count = document.getElementById('vid-count');
+    const empty = document.getElementById('vid-empty');
+    let group = '';
+
+    const apply = () => {
+      const q = (search?.value ?? '').trim().toLowerCase();
+      let shown = 0;
+      for (const el of items) {
+        const ok = (!group || el.dataset.g === group) && (!q || (el.dataset.text ?? '').includes(q));
+        el.hidden = !ok;
+        if (ok) shown++;
+      }
+      if (count) count.textContent = `${shown} shown`;
+      if (empty) empty.hidden = shown !== 0;
+    };
+
+    search?.addEventListener('input', apply);
+    document.querySelectorAll<HTMLButtonElement>('[data-g]').forEach((b) =>
+      b.addEventListener('click', () => { group = b.dataset.g ?? ''; apply(); })
+    );
+  </script>
+</Base>

@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import { catalog } from '../lib/cre';
+import { niches } from '../lib/niches';
+---
+<Base title="About" description="What LexJolt is, what it will not do, and how the numbers are made.">
+  <div class="lexjolt-shell lj-page" style="max-width:760px">
+    <p class="lexjolt-eyebrow">About</p>
+    <h1 class="lexjolt-h1">Tools that show their working</h1>
+    <p class="lj-lede-sm">
+      LexJolt is a set of free tools for people who make property decisions and content about them.
+      There is no account, no email wall, and no sales call. Nothing you type is sent anywhere: the
+      calculators run in your browser.
+    </p>
+
+    <hr class="lj-hr" />
+
+    <h2 class="lexjolt-h2">What is here</h2>
+    <ul class="lj-list">
+      <li><a href="/calculators">{catalog.calculators.length} calculators</a><span class="lj-sub">Valuation, financing, income, returns, tax, commercial, market. Each one shows its inputs and recomputes as you type.</span></li>
+      <li><a href="/niches">{niches.length} measured niches</a><span class="lj-sub">Scored on six weighted dimensions from real search results, with the rules published and the arithmetic visible.</span></li>
+      <li><a href="/ideas">An idea studio</a><span class="lj-sub">Short-video ideas that each name the calculator or niche behind them.</span></li>
+      <li><a href="/videos">A video per calculator</a><span class="lj-sub">1080×1920, rendered from the same engine, transcript on every card.</span></li>
+    </ul>
+
+    <hr class="lj-hr" />
+
+    <h2 class="lexjolt-h2">What it will not do</h2>
+    <p class="lj-lede-sm">
+      It will not tell you a deal is good. Every default is a worked example chosen to make the
+      arithmetic legible, not a recommendation. It will not price your market for you: the assumptions
+      are inputs, and the answer is only as good as what you put in. It will not pretend a measurement
+      is a prediction — the niche scores describe what the search results looked like when they were
+      read, and search results move.
+    </p>
+
+    <hr class="lj-hr" />
+
+    <h2 class="lexjolt-h2">How the numbers are made</h2>
+    <p class="lj-lede-sm">
+      The calculators are ported from a Python engine and gated on golden vectors: every calculator has
+      three recorded input/output pairs produced by the Python implementation, and the TypeScript port
+      must reproduce all of them within 1e-9 before the site is allowed to build. A formula that drifts
+      fails the build, not the user.
+    </p>
+    <p class="lj-lede-sm" style="margin-top:12px">
+      The niche numbers come from reading the top results of two search phrases per niche, then
+      computing medians per phrase and combining by median rather than pooling — two phrases can be two
+      different topics, and pooling one weak phrase into a strong niche hides the difference.
+    </p>
+
+    <p style="margin-top:24px"><a href="/contact">Say something about a number →</a></p>
+  </div>
+</Base>
