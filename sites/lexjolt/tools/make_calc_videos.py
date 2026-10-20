@@ -25,6 +25,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -344,6 +345,59 @@ def main():
     os.makedirs(mdir, exist_ok=True)
     os.makedirs(vdir, exist_ok=True)
 
+    # One writer at a time. Two renders running at once interleave their writes into videos.json and
+    # leave a directory where the index claims 26s while half the files are 48s -- which is precisely
+    # the kind of quiet disagreement this project exists to rule out.
+    lock = os.path.join(HERE, "videos", ".render.lock")
+    if not acquire_lock(lock):
+        print("another render is already writing into %s; refusing to race it" % vdir)
+        print("if that is stale, delete %s" % lock)
+        return 2
+    try:
+        return run_all(a, mdir, vdir)
+    finally:
+        release_lock(lock)
+
+
+def acquire_lock(path):
+    """Take an exclusive lock, honouring a stale one (dead pid, or older than the longest render)."""
+    if os.path.exists(path):
+        try:
+            pid = int(open(path).read().split()[0])
+            age = time.time() - os.path.getmtime(path)
+        except Exception:
+            pid, age = 0, 1e9
+        alive = False
+        if pid:
+            try:
+                os.kill(pid, 0)
+                alive = True
+            except OSError:
+                alive = False
+        if alive and age < 3600:
+            return False
+        try:
+            os.unlink(path)
+        except OSError:
+            return False
+    try:
+        fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        return False
+    os.write(fd, ("%d %s\n" % (os.getpid(), time.strftime("%Y-%m-%dT%H:%M:%S"))).encode())
+    os.close(fd)
+    return True
+
+
+def release_lock(path):
+    try:
+        os.unlink(path)
+    except OSError:
+        pass
+
+
+def run_all(a, mdir, vdir):
+
     specs = catalogue()
     if a.only:
         want = {s.strip() for s in a.only.split(",")}
@@ -412,6 +466,17 @@ def main():
             })
             print("  %s %-32s %5.1fs %6.0f KB" % ("~" if r["status"] == "cached" else "+",
                                                   spec["name"], dur or 0, (rows[-1]["bytes"] or 0) / 1024))
+
+    # The index is a claim: "this video is 26 seconds". Check the files against it rather than
+    # trusting the values recorded a moment earlier -- a mixed directory from a concurrent render, or
+    # a half-written mp4, must fail here and not on the site.
+    for r in rows:
+        if not r["duration_s"]:
+            failures.append((r["calculator"], "unprobeable", r["file"]))
+        elif r["duration_s"] > 31.0:
+            failures.append((r["calculator"], "over 31s", "%.1fs" % r["duration_s"]))
+        elif not (r["bytes"] or 0) > 20_000:
+            failures.append((r["calculator"], "suspiciously small", "%d bytes" % (r["bytes"] or 0)))
 
     rows.sort(key=lambda r: catalog_order().index(r["calculator"]))
     index = os.path.join(HERE, "src", "data", "videos.json")
